@@ -1,11 +1,11 @@
----
+﻿---
 name: unity-shader-artist
 description: >
   [production-grade internal] Creates Unity shaders using Shader Graph and HLSL —
   custom render passes, URP/HDRP materials, procedural effects, and post-processing.
   Routed via the production-grade orchestrator (Game Build mode).
 version: 1.0.0
-author: forgewright
+author: Digital-Nervous
 tags: [unity, shaders, shader-graph, hlsl, urp, hdrp, materials, post-processing, vfx]
 ---
 

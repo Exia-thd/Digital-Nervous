@@ -1,4 +1,4 @@
----
+﻿---
 name: godot-engineer
 description: >
   [production-grade internal] Builds Godot Engine games with GDScript/C# —
@@ -6,7 +6,7 @@ description: >
   multiplayer networking, and export configuration.
   Routed via the production-grade orchestrator (Game Build mode).
 version: 1.0.0
-author: forgewright
+author: Digital-Nervous
 tags: [godot, gdscript, scene-tree, signals, shaders, multiplayer, game-development]
 ---
 

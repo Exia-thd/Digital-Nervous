@@ -1,4 +1,4 @@
----
+﻿---
 name: unity-multiplayer
 description: >
   [production-grade internal] Implements Unity multiplayer networking — Netcode
@@ -6,7 +6,7 @@ description: >
   compensation, and matchmaking integration.
   Routed via the production-grade orchestrator (Game Build mode).
 version: 1.0.0
-author: forgewright
+author: Digital-Nervous
 tags: [unity, multiplayer, netcode, networking, relay, lobby, prediction, replication]
 ---
 
@@ -25,7 +25,7 @@ tags: [unity, multiplayer, netcode, networking, relay, lobby, prediction, replic
 
 ## Aesthetic Foundation
 
-Multiplayer games need consistent visual language across all players. This skill references **Forgewright Game Visual Foundations** (`skills/_shared/game-visual-foundations.md`) for:
+Multiplayer games need consistent visual language across all players. This skill references **Digital-Nervous Game Visual Foundations** (`skills/_shared/game-visual-foundations.md`) for:
 
 - **Visual consistency** (same visual style across all connected clients)
 

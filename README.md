@@ -1,7 +1,7 @@
-# Forgewright — Adaptive AI Orchestrator
+﻿# Digital-Nervous — Adaptive AI Orchestrator
 
 <p align="center">
-  <img src="assets/forgewright-banner.png" alt="Forgewright Banner" width="100%" />
+  <img src="assets/Digital-Nervous-banner.png" alt="Digital-Nervous Banner" width="100%" />
 </p>
 
 <p align="center">
@@ -20,12 +20,12 @@
 
 ## TL;DR — What Is This?
 
-Forgewright is an AI-powered orchestrator that routes your request through the right skills automatically.
+Digital-Nervous is an AI-powered orchestrator that routes your request through the right skills automatically.
 
 ```
 You say: "Build a production-grade SaaS for X"
         ↓
-Forgewright activates:
+Digital-Nervous activates:
   BA → PM → Architect → Engineers → QA → Security → DevOps → SRE
         ↓
 Output: production-ready code, reviewed, tested, scored 0–100
@@ -47,34 +47,34 @@ Output: production-ready code, reviewed, tested, scored 0–100
 
 ```bash
 CWD="$(pwd)"
-IS_FORGEWRIGHT_REPO="$(echo "$CWD" | grep -q 'forgewright' && echo "yes" || echo "no")"
+IS_Digital-Nervous_REPO="$(echo "$CWD" | grep -q 'Digital-Nervous' && echo "yes" || echo "no")"
 FW_PLUGINS="$(realpath "$CWD/.antigravity/plugins/production-grade" 2>/dev/null || echo "")"
 echo "CWD: $CWD"
-echo "IS_FORGEWRIGHT_REPO: $IS_FORGEWRIGHT_REPO"
+echo "IS_Digital-Nervous_REPO: $IS_Digital-Nervous_REPO"
 echo "FW_PLUGINS: $FW_PLUGINS"
 ```
 
 | Condition | Next step |
 |-----------|-----------|
-| `IS_FORGEWRIGHT_REPO=yes` | **Step 1A** — Forgewright self-setup |
+| `IS_Digital-Nervous_REPO=yes` | **Step 1A** — Digital-Nervous self-setup |
 | `$FW_PLUGINS` non-empty | **Step 1B** — Submodule already installed |
 | Otherwise | **Step 1C** — Add as git submodule |
 
 ---
 
-### Step 1 — Install Forgewright
+### Step 1 — Install Digital-Nervous
 
-#### (A) Inside the forgewright repo — self-setup
+#### (A) Inside the Digital-Nervous repo — self-setup
 
 ```bash
 # Verify core files
 ls skills/production-grade/SKILL.md  # orchestrator entry
 ls CLAUDE.md                          # code intelligence rules
 ls AGENTS.md                          # 52-skill catalog
-echo "Forgewright self-setup OK."
+echo "Digital-Nervous self-setup OK."
 ```
 
-#### (B) Forgewright is a git submodule
+#### (B) Digital-Nervous is a git submodule
 
 ```bash
 # Initialize submodule
@@ -87,12 +87,12 @@ ls .antigravity/plugins/production-grade/AGENTS.md          # must exist
 echo "Submodule initialized."
 ```
 
-#### (C) Add Forgewright as a submodule to any project
+#### (C) Add Digital-Nervous as a submodule to any project
 
 ```bash
-# Run from project root (NOT inside forgewright)
+# Run from project root (NOT inside Digital-Nervous)
 PROJECT_ROOT="$(pwd)"
-git submodule add -b main https://github.com/buiphucminhtam/forgewright.git \
+git submodule add -b main https://github.com/buiphucminhtam/Digital-Nervous.git \
   "$PROJECT_ROOT/.antigravity/plugins/production-grade"
 
 # Copy required files to project root
@@ -103,7 +103,7 @@ cp "$PROJECT_ROOT/.antigravity/plugins/production-grade/CLAUDE.md" \
 
 # Commit
 git add .gitmodules .antigravity AGENTS.md CLAUDE.md
-git commit -m "feat: add forgewright v7.7 — 52 skills, ForgeNexus, MCP"
+git commit -m "feat: add Digital-Nervous v7.7 — 52 skills, ForgeNexus, MCP"
 
 # Initialize
 git submodule update --init --recursive .antigravity/plugins/production-grade
@@ -149,17 +149,17 @@ npx forgenexus status "$PROJECT_ROOT"
 
 ```bash
 PROJECT_ROOT="$(pwd)"
-FORGEWRIGHT_ROOT="$(realpath .antigravity/plugins/production-grade 2>/dev/null || pwd)"
+Digital-Nervous_ROOT="$(realpath .antigravity/plugins/production-grade 2>/dev/null || pwd)"
 
 # Initialize memory store
-bash "$FORGEWRIGHT_ROOT/scripts/ensure-mem0.sh" "$PROJECT_ROOT"
+bash "$Digital-Nervous_ROOT/scripts/ensure-mem0.sh" "$PROJECT_ROOT"
 
 # Verify
-ls "$PROJECT_ROOT/.forgewright/memory.jsonl"   # must exist
-python3 "$FORGEWRIGHT_ROOT/scripts/mem0-cli.py" refresh
+ls "$PROJECT_ROOT/.Digital-Nervous/memory.jsonl"   # must exist
+python3 "$Digital-Nervous_ROOT/scripts/mem0-cli.py" refresh
 
 # Skip if CI/headless only:
-# FORGEWRIGHT_SKIP_MEM0=1
+# Digital-Nervous_SKIP_MEM0=1
 ```
 
 **How it works:**
@@ -180,8 +180,8 @@ PROJECT_ROOT="$(pwd)"
 bash "$FW_ROOT/scripts/mcp-generate.sh"
 
 # Verify
-ls "$PROJECT_ROOT/.forgewright/mcp-server/"
-cat "$PROJECT_ROOT/.forgewright/mcp-server/mcp-config.json"
+ls "$PROJECT_ROOT/.Digital-Nervous/mcp-server/"
+cat "$PROJECT_ROOT/.Digital-Nervous/mcp-server/mcp-config.json"
 ```
 
 Then add to your AI client:
@@ -228,18 +228,18 @@ echo '{"jsonrpc":"2.0","id":1,"method":"tools/list","params":{}}' | \
 PROJECT_ROOT="$(pwd)"
 FW_ROOT="$(realpath .antigravity/plugins/production-grade 2>/dev/null || pwd)"
 
-echo "=== Forgewright Power Level Check ==="
+echo "=== Digital-Nervous Power Level Check ==="
 echo "Skills: $(ls "$FW_ROOT/skills" -1 2>/dev/null | wc -l | tr -d ' ') / 52"
 echo "ForgeNexus: $([ -f "$FW_ROOT/forgenexus/dist/cli/index.js" ] && echo '✓ built' || echo '✗ missing')"
-echo "MCP server: $([ -d "$PROJECT_ROOT/.forgewright/mcp-server" ] && echo '✓ generated' || echo '✗ missing')"
-echo "Memory: $([ -f "$PROJECT_ROOT/.forgewright/memory.jsonl" ] && echo '✓ initialized' || echo '✗ missing')"
-echo "ForgeNexus indexed: $([ -d "$PROJECT_ROOT/.forgewright/mcp-server" ] && echo '✓ yes' || echo '✗ run: npx forgenexus analyze')"
+echo "MCP server: $([ -d "$PROJECT_ROOT/.Digital-Nervous/mcp-server" ] && echo '✓ generated' || echo '✗ missing')"
+echo "Memory: $([ -f "$PROJECT_ROOT/.Digital-Nervous/memory.jsonl" ] && echo '✓ initialized' || echo '✗ missing')"
+echo "ForgeNexus indexed: $([ -d "$PROJECT_ROOT/.Digital-Nervous/mcp-server" ] && echo '✓ yes' || echo '✗ run: npx forgenexus analyze')"
 echo "======================================="
 ```
 
 ---
 
-## The Flow — How Forgewright Works
+## The Flow — How Digital-Nervous Works
 
 > All diagrams below render in GitHub, GitLab, and any mermaid-compatible viewer.
 > If a diagram does not render, check that your viewer uses mermaid 10+.
@@ -344,7 +344,7 @@ sequenceDiagram
 
     User->>Orch: New Session Start
 
-    Orch->>Orch: Step 0.5: Load .forgewright/ context
+    Orch->>Orch: Step 0.5: Load .Digital-Nervous/ context
     Orch->>Orch: Step 1: Load project-profile.json
     Orch->>Orch: Step 2: Load session-log.json
     Orch->>Orch: Step 3: mem0 search + code-conventions
@@ -518,7 +518,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - uses: buiphucminhtam/forgewright/.github/actions/pr-review@main
+      - uses: buiphucminhtam/Digital-Nervous/.github/actions/pr-review@main
         with:
           dry-run: 'false'
           openapi-enabled: 'true'
@@ -792,9 +792,9 @@ bash scripts/forge-validate.sh --json
 | Command | What It Does |
 |---------|-------------|
 | `/setup` | First-time install as git submodule |
-| `/update` | Check + install Forgewright updates (safe, preserves project changes) |
+| `/update` | Check + install Digital-Nervous updates (safe, preserves project changes) |
 | `/pipeline` | Show full pipeline reference, modes, and skill list |
-| `/onboard` | Deep project analysis — creates `.forgewright/project-profile.json` |
+| `/onboard` | Deep project analysis — creates `.Digital-Nervous/project-profile.json` |
 | `/mcp` | Generate or regenerate MCP server config |
 | `/setup-mobile-test` | Set up plug-and-play mobile testing (Android/iOS) |
 
@@ -819,14 +819,14 @@ MIT
 
 ## Give me a coffee
 
-If Forgewright helps you ship faster, you can support the project here:
+If Digital-Nervous helps you ship faster, you can support the project here:
 
 <img src="assets/donate/give-me-a-coffee-international.png" width="240" />
 
 ---
 
 <p align="center">
-  <strong>Forgewright — 52 AI skills. 22 modes. 15 protocols. Persistent Memory. Code Intelligence. SaaS to AAA games.</strong>
+  <strong>Digital-Nervous — 52 AI skills. 22 modes. 15 protocols. Persistent Memory. Code Intelligence. SaaS to AAA games.</strong>
 </p>
 <p align="center">
   <em>Plan with precision. Build with confidence. Scale with intelligence.</em>

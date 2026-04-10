@@ -1,4 +1,4 @@
-# ForgeNexus
+﻿# ForgeNexus
 
 **Self-hosted code intelligence for AI agents** — no external services, no API key required for core features.
 
@@ -352,7 +352,7 @@ GEMINI_API_KEY=...
 HUGGINGFACE_TOKEN=...
 
 # ForgeNexus root (auto-detected)
-FORGEWRIGHT_ROOT=/path/to/forgewright
+Digital-Nervous_ROOT=/path/to/Digital-Nervous
 ```
 
 ## Auto-Reindex (Git Hooks)

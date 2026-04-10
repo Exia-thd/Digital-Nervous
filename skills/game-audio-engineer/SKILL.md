@@ -1,4 +1,4 @@
----
+﻿---
 name: game-audio-engineer
 description: >
   [production-grade internal] Designs and implements game audio systems —
@@ -6,7 +6,7 @@ description: >
   and mix management. Creates immersive soundscapes that reinforce gameplay.
   Routed via the production-grade orchestrator (Game Build mode).
 version: 1.0.0
-author: forgewright
+author: Digital-Nervous
 tags: [audio, sound-design, music, wwise, fmod, spatial-audio, adaptive-music, mix]
 ---
 
@@ -27,7 +27,7 @@ tags: [audio, sound-design, music, wwise, fmod, spatial-audio, adaptive-music, m
 
 ## Aesthetic Foundation
 
-Game audio and visuals are inseparable — audio-visual sync creates the "feel." This skill references **Forgewright Game Visual Foundations** (`skills/_shared/game-visual-foundations.md`) for:
+Game audio and visuals are inseparable — audio-visual sync creates the "feel." This skill references **Digital-Nervous Game Visual Foundations** (`skills/_shared/game-visual-foundations.md`) for:
 
 - **Audio-visual sync principles** (how sound pairs with visual feedback)
 - **Spatial aesthetics** (audio panning and 3D positioning aligned with visual composition)
@@ -35,7 +35,7 @@ Game audio and visuals are inseparable — audio-visual sync creates the "feel."
 
 ## Engagement Mode
 
-!`cat .forgewright/settings.md 2>/dev/null || echo "No settings — using Standard"`
+!`cat .Digital-Nervous/settings.md 2>/dev/null || echo "No settings — using Standard"`
 
 | Mode | Behavior |
 |------|----------|
@@ -64,7 +64,7 @@ Runs AFTER Game Designer (feedback spec) and engine engineers (trigger events). 
 ## Output Structure
 
 ```
-.forgewright/game-audio-engineer/
+.Digital-Nervous/game-audio-engineer/
 ├── audio-design-document.md         # Complete audio vision
 ├── sfx/
 │   ├── sfx-catalog.md               # All sound effects with triggers

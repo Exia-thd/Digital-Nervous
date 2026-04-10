@@ -1,4 +1,4 @@
-# Middleware 04 — Guardrail
+﻿# Middleware 04 — Guardrail
 
 > **Source:** `skills/_shared/protocols/guardrail.md`
 > **Hook:** `before_tool()`
@@ -12,7 +12,7 @@
    BLOCKED operations:
    - rm -rf /, chmod 777, destructive git operations
    - .env, .key, .pem, credentials.json reads
-   - .forgewright/protected_paths writes
+   - .Digital-Nervous/protected_paths writes
    
 2. Scan staged files for API keys, tokens, passwords
    

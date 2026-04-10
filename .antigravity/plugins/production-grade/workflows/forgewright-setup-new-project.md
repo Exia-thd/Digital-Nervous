@@ -1,13 +1,13 @@
-# Forgewright Setup — New Project (Greenfield)
+﻿# Digital-Nervous Setup — New Project (Greenfield)
 
-> Copy & paste this prompt to set up Forgewright in a brand-new project.
+> Copy & paste this prompt to set up Digital-Nervous in a brand-new project.
 
 ---
 
 ## Prompt
 
 ```
-I want to set up Forgewright in a brand new project from scratch.
+I want to set up Digital-Nervous in a brand new project from scratch.
 Please do the following in order:
 
 ## Step 1 — Initialize Git
@@ -19,10 +19,10 @@ git add .
 git commit -m "chore: initial commit"
 ```
 
-## Step 2 — Install Forgewright as git submodule
+## Step 2 — Install Digital-Nervous as git submodule
 
 ```bash
-git submodule add -b main https://github.com/buiphucminhtam/forgewright.git .antigravity/plugins/production-grade
+git submodule add -b main https://github.com/buiphucminhtam/Digital-Nervous.git .antigravity/plugins/production-grade
 git submodule update --init --recursive
 ```
 
@@ -31,14 +31,14 @@ git submodule update --init --recursive
 ```bash
 cp .antigravity/plugins/production-grade/AGENTS.md AGENTS.md
 cp .antigravity/plugins/production-grade/CLAUDE.md CLAUDE.md
-cp .antigravity/plugins/production-grade/README.md FORGEWRIGHT.md
+cp .antigravity/plugins/production-grade/README.md Digital-Nervous.md
 ```
 
 ## Step 4 — Commit
 
 ```bash
-git add .gitmodules .antigravity AGENTS.md CLAUDE.md FORGEWRIGHT.md
-git commit -m "feat: add Forgewright v7.8 — 52 skills, ForgeNexus, MCP"
+git add .gitmodules .antigravity AGENTS.md CLAUDE.md Digital-Nervous.md
+git commit -m "feat: add Digital-Nervous v7.8 — 52 skills, ForgeNexus, MCP"
 ```
 
 ## Step 5 — Power Level Setup
@@ -69,10 +69,10 @@ npx forgenexus status "$(pwd)"
 
 Run:
 ```bash
-FORGEWRIGHT_ROOT="$(pwd)/.antigravity/plugins/production-grade"
-bash "$FORGEWRIGHT_ROOT/scripts/ensure-mem0.sh" "$(pwd)"
-ls .forgewright/memory.jsonl   # must exist
-python3 "$FORGEWRIGHT_ROOT/scripts/mem0-cli.py" refresh
+Digital-Nervous_ROOT="$(pwd)/.antigravity/plugins/production-grade"
+bash "$Digital-Nervous_ROOT/scripts/ensure-mem0.sh" "$(pwd)"
+ls .Digital-Nervous/memory.jsonl   # must exist
+python3 "$Digital-Nervous_ROOT/scripts/mem0-cli.py" refresh
 ```
 
 ### Level 4 — MCP Tools (12 ForgeNexus tools in AI chat)
@@ -102,11 +102,11 @@ Restart Cursor after adding the config.
 
 ```bash
 FW_ROOT="$(pwd)/.antigravity/plugins/production-grade"
-echo "=== Forgewright Power Level Check ==="
+echo "=== Digital-Nervous Power Level Check ==="
 echo "Skills: $(ls "$FW_ROOT/skills" -1 2>/dev/null | wc -l | tr -d ' ') / 52"
 echo "ForgeNexus: $([ -f "$FW_ROOT/forgenexus/dist/cli/index.js" ] && echo '✓ built' || echo '✗ missing')"
-echo "MCP server: $([ -d ".forgewright/mcp-server" ] && echo '✓ generated' || echo '✗ missing')"
-echo "Memory: $([ -f ".forgewright/memory.jsonl" ] && echo '✓ initialized' || echo '✗ missing')"
+echo "MCP server: $([ -d ".Digital-Nervous/mcp-server" ] && echo '✓ generated' || echo '✗ missing')"
+echo "Memory: $([ -f ".Digital-Nervous/memory.jsonl" ] && echo '✓ initialized' || echo '✗ missing')"
 echo "ForgeNexus indexed: $([ -d ".forgenexus" ] && echo '✓ yes' || echo '✗ run: npx forgenexus analyze')"
 echo "======================================="
 ```
@@ -133,7 +133,7 @@ Try these commands:
 
 Or use workflow shortcuts:
 - `/setup` — Re-run installation
-- `/onboard` — Deep project analysis (creates `.forgewright/project-profile.json`)
+- `/onboard` — Deep project analysis (creates `.Digital-Nervous/project-profile.json`)
 - `/pipeline` — Show full pipeline reference
 - `/mcp` — Regenerate MCP config
 ```
@@ -145,9 +145,9 @@ Or use workflow shortcuts:
 | Component | Files Created |
 |-----------|--------------|
 | **52 Skills** | `.antigravity/plugins/production-grade/skills/` |
-| **Orchestrator** | `CLAUDE.md`, `AGENTS.md`, `FORGEWRIGHT.md` |
+| **Orchestrator** | `CLAUDE.md`, `AGENTS.md`, `Digital-Nervous.md` |
 | **ForgeNexus (Level 2)** | `.forgenexus/` — indexed code graph |
-| **Memory (Level 3)** | `.forgewright/memory.jsonl` — persistent cross-session memory |
+| **Memory (Level 3)** | `.Digital-Nervous/memory.jsonl` — persistent cross-session memory |
 | **MCP Tools (Level 4)** | `~/.cursor/mcp.json` — 12 ForgeNexus tools in AI chat |
 
 ## Power Levels Summary

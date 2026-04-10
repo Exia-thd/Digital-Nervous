@@ -1,12 +1,12 @@
-#!/usr/bin/env bash
+﻿#!/usr/bin/env bash
 set -euo pipefail
 
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-# Forgewright Quality Gate — Automated Quality Checks
+# Digital-Nervous Quality Gate — Automated Quality Checks
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 #
 # Usage:
-#   ./forgewright/scripts/quality-gate.sh [options]
+#   ./Digital-Nervous/scripts/quality-gate.sh [options]
 #
 # Options:
 #   --task ID        Task ID (e.g., T3a) for labeling
@@ -24,18 +24,18 @@ set -euo pipefail
 
 # ── Resolve paths ──────────────────────────────────────
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-FORGEWRIGHT_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
+Digital-Nervous_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
 
-# Find project root (where .forgewright/ lives or parent of forgewright submodule)
-if [[ -d "$FORGEWRIGHT_DIR/.forgewright" ]]; then
-  PROJECT_ROOT="$FORGEWRIGHT_DIR"
-elif [[ -d "$FORGEWRIGHT_DIR/../.forgewright" ]]; then
-  PROJECT_ROOT="$(cd "$FORGEWRIGHT_DIR/.." && pwd)"
+# Find project root (where .Digital-Nervous/ lives or parent of Digital-Nervous submodule)
+if [[ -d "$Digital-Nervous_DIR/.Digital-Nervous" ]]; then
+  PROJECT_ROOT="$Digital-Nervous_DIR"
+elif [[ -d "$Digital-Nervous_DIR/../.Digital-Nervous" ]]; then
+  PROJECT_ROOT="$(cd "$Digital-Nervous_DIR/.." && pwd)"
 else
   PROJECT_ROOT="$(pwd)"
 fi
 
-WORKSPACE="$PROJECT_ROOT/.forgewright"
+WORKSPACE="$PROJECT_ROOT/.Digital-Nervous"
 PROFILE="$WORKSPACE/project-profile.json"
 METRICS_FILE="$WORKSPACE/quality-metrics.json"
 
@@ -228,7 +228,7 @@ level3_standards() {
     -E '(TODO|FIXME|HACK|XXX|Not implemented|throw new Error\(.Not implemented|raise NotImplementedError)' \
     "$PROJECT_ROOT" 2>/dev/null \
     | grep -v 'node_modules' \
-    | grep -v '.forgewright' \
+    | grep -v '.Digital-Nervous' \
     | grep -v '__tests__' \
     | grep -v '.test.' \
     | grep -v '.spec.' \
@@ -248,7 +248,7 @@ level3_standards() {
     -E '(sk-[a-zA-Z0-9]{20,}|AKIA[A-Z0-9]{16}|password\s*=\s*["\x27][^"\x27]+["\x27]|Bearer [a-zA-Z0-9._-]{20,}|api[_-]?key\s*[=:]\s*["\x27][a-zA-Z0-9]{16,})' \
     "$PROJECT_ROOT" 2>/dev/null \
     | grep -v 'node_modules' \
-    | grep -v '.forgewright' \
+    | grep -v '.Digital-Nervous' \
     | grep -v '.env' \
     | grep -v 'example' \
     | grep -v 'sample' \

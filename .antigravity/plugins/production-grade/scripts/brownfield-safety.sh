@@ -1,8 +1,8 @@
-#!/usr/bin/env bash
+﻿#!/usr/bin/env bash
 set -euo pipefail
 
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-# Forgewright Brownfield Safety Net
+# Digital-Nervous Brownfield Safety Net
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 #
 # Usage:
@@ -14,27 +14,27 @@ set -euo pipefail
 #   brownfield-safety.sh help          — show this help
 #
 # Files:
-#   .forgewright/baseline-{session}.json
-#   .forgewright/change-manifest-{session}.json
+#   .Digital-Nervous/baseline-{session}.json
+#   .Digital-Nervous/change-manifest-{session}.json
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-FORGEWRIGHT_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
+Digital-Nervous_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
 
-if [[ -d "$FORGEWRIGHT_DIR/.forgewright" ]]; then
-  PROJECT_ROOT="$FORGEWRIGHT_DIR"
-elif [[ -d "$FORGEWRIGHT_DIR/../.forgewright" ]]; then
-  PROJECT_ROOT="$(cd "$FORGEWRIGHT_DIR/.." && pwd)"
+if [[ -d "$Digital-Nervous_DIR/.Digital-Nervous" ]]; then
+  PROJECT_ROOT="$Digital-Nervous_DIR"
+elif [[ -d "$Digital-Nervous_DIR/../.Digital-Nervous" ]]; then
+  PROJECT_ROOT="$(cd "$Digital-Nervous_DIR/.." && pwd)"
 else
   PROJECT_ROOT="$(pwd)"
 fi
 
-WORKSPACE="$PROJECT_ROOT/.forgewright"
+WORKSPACE="$PROJECT_ROOT/.Digital-Nervous"
 PROFILE="$WORKSPACE/project-profile.json"
 SESSION_ID="session-$(date +%Y%m%d-%H%M)"
 BASELINE_FILE="$WORKSPACE/baseline-${SESSION_ID}.json"
 MANIFEST_FILE="$WORKSPACE/change-manifest-${SESSION_ID}.json"
-BRANCH_NAME="forgewright/$SESSION_ID"
+BRANCH_NAME="Digital-Nervous/$SESSION_ID"
 
 mkdir -p "$WORKSPACE"
 
@@ -76,7 +76,7 @@ cmd_init() {
       read -p "Auto-stash and continue? [Y/n] " -n 1 -r
       echo ""
       if [[ ! $REPLY =~ ^[Nn]$ ]]; then
-        git -C "$PROJECT_ROOT" stash push -m "forgewright-safety-$SESSION_ID"
+        git -C "$PROJECT_ROOT" stash push -m "Digital-Nervous-safety-$SESSION_ID"
         echo "✓ Changes stashed"
       fi
     fi
@@ -327,7 +327,7 @@ cmd_rollback() {
   local current_branch
   current_branch=$(git -C "$PROJECT_ROOT" branch --show-current)
   
-  if [[ "$current_branch" == forgewright/* ]]; then
+  if [[ "$current_branch" == Digital-Nervous/* ]]; then
     local main_branch
     main_branch=$(git -C "$PROJECT_ROOT" symbolic-ref refs/remotes/origin/HEAD 2>/dev/null | sed 's@^refs/remotes/origin/@@' || echo "main")
     
@@ -336,7 +336,7 @@ cmd_rollback() {
     echo "✓ Rolled back. Session branch preserved: $current_branch"
     echo "  To delete: git branch -D $current_branch"
   else
-    echo "⚠ Not on a forgewright session branch (current: $current_branch)"
+    echo "⚠ Not on a Digital-Nervous session branch (current: $current_branch)"
     echo "  Manual rollback needed"
   fi
 }

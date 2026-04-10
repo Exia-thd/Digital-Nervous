@@ -1,4 +1,4 @@
----
+﻿---
 name: phaser3-engineer
 description: >
   [production-grade internal] Builds Phaser 3 HTML5 web games with production-quality
@@ -7,7 +7,7 @@ description: >
   Implements gameplay systems from Game Designer specs.
   Routed via the production-grade orchestrator (Game Build mode).
 version: 1.0.0
-author: forgewright
+author: Digital-Nervous
 tags: [phaser3, phaser, html5, web-game, typescript, javascript, canvas, webgl, game-development]
 ---
 
@@ -23,13 +23,13 @@ tags: [phaser3, phaser, html5, web-game, typescript, javascript, canvas, webgl, 
 !`cat skills/_shared/protocols/quality-gate.md 2>/dev/null || true`
 !`cat skills/_shared/protocols/task-validator.md 2>/dev/null || true`
 !`cat .production-grade.yaml 2>/dev/null || echo "No config — using defaults"`
-!`cat .forgewright/codebase-context.md 2>/dev/null || true`
+!`cat .Digital-Nervous/codebase-context.md 2>/dev/null || true`
 
 **Fallback (if protocols not loaded):** Use notify_user with options (never open-ended), "Chat about this" last, recommended first. Work continuously. Print progress constantly.
 
 ## Aesthetic Foundation
 
-Phaser 3 is a 2D engine — visual quality comes from deliberate sprite design, composition, and polish. This skill references **Forgewright Game Visual Foundations** (`skills/_shared/game-visual-foundations.md`) for:
+Phaser 3 is a 2D engine — visual quality comes from deliberate sprite design, composition, and polish. This skill references **Digital-Nervous Game Visual Foundations** (`skills/_shared/game-visual-foundations.md`) for:
 
 - **2D sprite quality** (procedural art standards, color layering, visual depth)
 - **Composition in 2D games** (visual hierarchy, parallax layering, HUD readability)
@@ -38,7 +38,7 @@ Phaser 3 is a 2D engine — visual quality comes from deliberate sprite design, 
 
 ## Engagement Mode
 
-!`cat .forgewright/settings.md 2>/dev/null || echo "No settings — using Standard"`
+!`cat .Digital-Nervous/settings.md 2>/dev/null || echo "No settings — using Standard"`
 
 | Mode | Behavior |
 |------|---------|
@@ -49,7 +49,7 @@ Phaser 3 is a 2D engine — visual quality comes from deliberate sprite design, 
 
 ## Brownfield Awareness
 
-If `.forgewright/codebase-context.md` exists and mode is `brownfield`:
+If `.Digital-Nervous/codebase-context.md` exists and mode is `brownfield`:
 - **READ existing Phaser 3 project** — detect Phaser version, rendering mode, existing scene structure, shared lib usage
 - **MATCH existing patterns** — if they use vanilla JS, don't force TypeScript. If they use class-based scenes, don't switch to functional
 - **ADD alongside existing systems** — don't restructure their hierarchy
@@ -67,9 +67,9 @@ This skill runs AFTER the Game Designer (GDD + mechanic specs) in Game Build mod
 
 | Input | Status | What Phaser 3 Engineer Needs |
 |-------|--------|----------------------------|
-| `.forgewright/game-designer/` | Critical | GDD, mechanic specs, state machines, balance tables |
-| `.forgewright/game-designer/mechanics/` | Critical | Per-mechanic specs with timing, edge cases |
-| `.forgewright/game-designer/economy/` | Degraded | Economy design for game data |
+| `.Digital-Nervous/game-designer/` | Critical | GDD, mechanic specs, state machines, balance tables |
+| `.Digital-Nervous/game-designer/mechanics/` | Critical | Per-mechanic specs with timing, edge cases |
+| `.Digital-Nervous/game-designer/economy/` | Degraded | Economy design for game data |
 | `skills/game-asset-vfx/SKILL.md` | Degraded | VFX helpers, UI helpers, design token usage |
 | `skills/game-audio-engineer/SKILL.md` | Degraded | Audio trigger integration points |
 
@@ -184,7 +184,7 @@ assets/
 ├── sprites/                       # Spritesheets, texture atlases
 └── ui/                          # UI element textures
 
-.forgewright/phaser3-engineer/
+.Digital-Nervous/phaser3-engineer/
 ├── architecture.md                # Architecture decisions and patterns used
 ├── shared-libs-usage.md          # How vfx-helpers, ui-helpers, audio-manager are integrated
 └── performance-notes.md         # Platform-specific performance notes

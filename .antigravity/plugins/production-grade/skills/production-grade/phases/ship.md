@@ -1,4 +1,4 @@
-# SHIP Phase — Dispatcher
+﻿# SHIP Phase — Dispatcher
 
 This phase manages tasks T7 (DevOps IaC), T8 (Remediation), T9 (SRE), T10 (Data Scientist). Sequential execution with authority boundaries.
 
@@ -21,7 +21,7 @@ Context:
 - Read protocols from: skills/_shared/protocols/
 - Generate: Terraform/Pulumi, K8s manifests (if microservices), CI/CD pipelines, monitoring dashboards.
 - Write to project root: infrastructure/, .github/workflows/
-- Write workspace artifacts to: .forgewright/devops/
+- Write workspace artifacts to: .Digital-Nervous/devops/
 - DO NOT define SLOs — add placeholder: "SLO thresholds defined by SRE."
 - DO NOT write runbooks — SRE writes runbooks to docs/runbooks/.
 - Validate: terraform validate, pipeline syntax lint.
@@ -35,7 +35,7 @@ Update task.md: T7 status → completed
 Update task.md: T8 status → in_progress
 
 Context:
-- Read HARDEN findings from workspace: .forgewright/security-engineer/, code-reviewer/, qa-engineer/
+- Read HARDEN findings from workspace: .Digital-Nervous/security-engineer/, code-reviewer/, qa-engineer/
 - Focus on Critical and High severity findings only.
 - For each finding:
   1. Read the affected file
@@ -62,7 +62,7 @@ Context:
 - Define SLIs/SLOs per service, error budgets, burn-rate alerts.
 - Design chaos engineering scenarios and game-day playbook.
 - Write runbooks to project root: docs/runbooks/
-- Write workspace artifacts to: .forgewright/sre/
+- Write workspace artifacts to: .Digital-Nervous/sre/
 
 Update task.md: T9 status → completed
 ```
@@ -81,7 +81,7 @@ Context:
 - Read protocols from: skills/_shared/protocols/
 - Optimize: prompt engineering, token usage, semantic caching, fallback chains.
 - Design: A/B testing infrastructure, experiment framework, data pipeline.
-- Write workspace artifacts to: .forgewright/data-scientist/
+- Write workspace artifacts to: .Digital-Nervous/data-scientist/
 
 Update task.md: T10 status → completed
 ```

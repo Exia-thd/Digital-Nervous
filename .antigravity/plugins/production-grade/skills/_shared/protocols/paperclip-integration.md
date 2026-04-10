@@ -1,7 +1,7 @@
----
+﻿---
 name: paperclip-integration
 description: >
-  Protocol for Forgewright skills operating under Paperclip orchestration.
+  Protocol for Digital-Nervous skills operating under Paperclip orchestration.
   Defines how skills detect, interact with, and report to Paperclip's
   ticket system, heartbeat cycle, and budget controls.
 version: 1.0.0
@@ -11,9 +11,9 @@ version: 1.0.0
 
 ## Overview
 
-[Paperclip](https://github.com/paperclipai/paperclip) is an **optional** business orchestration layer that manages AI agents as a company. When present, Forgewright skills operate within Paperclip's ticket-based workflow instead of direct prompts.
+[Paperclip](https://github.com/paperclipai/paperclip) is an **optional** business orchestration layer that manages AI agents as a company. When present, Digital-Nervous skills operate within Paperclip's ticket-based workflow instead of direct prompts.
 
-**Paperclip manages WHAT to do. Forgewright manages HOW to do it.**
+**Paperclip manages WHAT to do. Digital-Nervous manages HOW to do it.**
 
 ## Detection
 
@@ -28,7 +28,7 @@ Indicators that Paperclip is managing this session:
 ```
 
 If detected → apply Paperclip-Aware Behavior below.
-If not detected → normal Forgewright operation (no changes).
+If not detected → normal Digital-Nervous operation (no changes).
 
 ## Paperclip-Aware Behavior
 
@@ -149,12 +149,12 @@ IF budget_remaining < 5%:
 When Paperclip assigns multiple tickets to the same agent:
 
 1. Paperclip decides WHICH tickets to assign (business priority)
-2. Forgewright's Parallel Dispatch decides HOW to execute them (git worktrees)
-3. No conflict — Paperclip prioritizes, Forgewright parallelizes
+2. Digital-Nervous's Parallel Dispatch decides HOW to execute them (git worktrees)
+3. No conflict — Paperclip prioritizes, Digital-Nervous parallelizes
 
 ```
 Paperclip assigns: [CLIP-42, CLIP-43, CLIP-44]
-Forgewright checks: Can these run in parallel? (no shared files?)
+Digital-Nervous checks: Can these run in parallel? (no shared files?)
   → Yes: git worktree per ticket → merge when all complete
   → No: sequential execution in priority order
 ```

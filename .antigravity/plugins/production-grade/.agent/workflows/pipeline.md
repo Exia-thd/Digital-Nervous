@@ -1,8 +1,8 @@
----
-description: Show Forgewright pipeline reference, available modes, and skill list
+﻿---
+description: Show Digital-Nervous pipeline reference, available modes, and skill list
 ---
 
-# Forgewright Pipeline Reference
+# Digital-Nervous Pipeline Reference
 
 ## Pipeline Phases
 

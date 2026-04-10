@@ -1,6 +1,6 @@
-# Mode Reference Index
+﻿# Mode Reference Index
 
-> **Purpose:** Maps each of Forgewright's 19 modes to their location in `SKILL.md`.
+> **Purpose:** Maps each of Digital-Nervous's 19 modes to their location in `SKILL.md`.
 > This file provides a quick reference; full mode descriptions are in `skills/production-grade/SKILL.md`.
 
 ## Mode Map
@@ -34,7 +34,7 @@
 
 All modes share these behaviors (see `SKILL.md` → Mode Execution):
 
-- Bootstrap workspace: `mkdir -p skills/_shared/protocols/ .forgewright/`
+- Bootstrap workspace: `mkdir -p skills/_shared/protocols/ .Digital-Nervous/`
 - Write shared protocols from `skills/_shared/protocols/`
 - Read `.production-grade.yaml` for path overrides
 - Read existing workspace state if present

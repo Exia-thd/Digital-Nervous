@@ -1,4 +1,4 @@
----
+﻿---
 name: chat-interpreter
 description: Translates natural language chat into structured pipeline requests. Use at the start of every conversation when the user describes what they want. Powered by prompt-master methodology.
 model: fast
@@ -15,7 +15,7 @@ Most users don't speak "prompt engineer." They say:
 - "I want something like..."
 - "there's this bug where..."
 
-Your job is to extract their TRUE intent and produce a structured pipeline request that Forgewright can execute without ambiguity.
+Your job is to extract their TRUE intent and produce a structured pipeline request that Digital-Nervous can execute without ambiguity.
 
 ## The 9-Dimension Extraction (from prompt-master)
 
@@ -24,7 +24,7 @@ Before anything else, silently extract these 9 dimensions from the user's messag
 | Dimension | What to Find | Always Required? |
 |-----------|-------------|----------------|
 | **Task** | What they actually want done | Yes |
-| **Target tool** | Forgewright pipeline mode | Auto-detect |
+| **Target tool** | Digital-Nervous pipeline mode | Auto-detect |
 | **Output format** | What they expect to receive | Yes |
 | **Constraints** | Explicit limits (scale, budget, team) | If mentioned |
 | **Input** | What they're providing (files, specs, URLs) | If applicable |
@@ -37,7 +37,7 @@ Before anything else, silently extract these 9 dimensions from the user's messag
 
 ### Step 1: Detect Intent Type
 
-Map the user's message to one of Forgewright's modes:
+Map the user's message to one of Digital-Nervous's modes:
 
 | Mode | Trigger Phrases |
 |------|----------------|
@@ -194,7 +194,7 @@ Success criteria:
   - Deployable as Docker container
 
 Related context from session:
-  [Check .forgewright/session-log.json for prior decisions]
+  [Check .Digital-Nervous/session-log.json for prior decisions]
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
@@ -316,17 +316,17 @@ Ready to route to Debug pipeline.
 
 Write the interpreted request to:
 ```
-.forgewright/subagent-context/INTERPRETED_REQUEST.md
+.Digital-Nervous/subagent-context/INTERPRETED_REQUEST.md
 ```
 
 Append to session log:
 ```
-.forgewright/session-log.json (append interpreted_request to last entry)
+.Digital-Nervous/session-log.json (append interpreted_request to last entry)
 ```
 
 ## When Done
 
 Once the structured request is produced:
-1. Write to `.forgewright/subagent-context/INTERPRETED_REQUEST.md`
+1. Write to `.Digital-Nervous/subagent-context/INTERPRETED_REQUEST.md`
 2. Proceed to invoke the appropriate pipeline mode
 3. Pass the interpreted request as context to the mode classifier

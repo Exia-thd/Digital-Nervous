@@ -1,4 +1,4 @@
----
+﻿---
 name: roblox-engineer
 description: >
   [production-grade internal] Builds Roblox experiences — Luau scripting,
@@ -6,7 +6,7 @@ description: >
   avatar systems, monetization, and moderation.
   Routed via the production-grade orchestrator (Game Build mode).
 version: 1.0.0
-author: forgewright
+author: Digital-Nervous
 tags: [roblox, luau, roblox-studio, experience, datastore, avatar, game-development]
 ---
 

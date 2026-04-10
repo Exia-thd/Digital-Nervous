@@ -1,4 +1,4 @@
-# Guardrail Protocol
+﻿# Guardrail Protocol
 
 > **Purpose:** Pre-authorize every tool call before execution. Blocks destructive operations, warns on sensitive access, and enforces scope discipline. Runs as Middleware ④ in the chain — the only middleware that can halt skill execution.
 
@@ -195,7 +195,7 @@ If the DENY causes the skill to fail entirely (no alternative path), also emit `
 
 ## Logging
 
-All guardrail decisions are logged to `.forgewright/guardrail-log.jsonl`:
+All guardrail decisions are logged to `.Digital-Nervous/guardrail-log.jsonl`:
 
 ```jsonl
 {"timestamp":"2026-03-25T11:00:00Z","decision":"ALLOW","tool":"write_to_file","target":"src/auth.ts","skill":"software-engineer"}

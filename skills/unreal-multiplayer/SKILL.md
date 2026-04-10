@@ -1,4 +1,4 @@
----
+﻿---
 name: unreal-multiplayer
 description: >
   [production-grade internal] Implements Unreal Engine multiplayer — dedicated
@@ -6,7 +6,7 @@ description: >
   and session management.
   Routed via the production-grade orchestrator (Game Build mode).
 version: 1.0.0
-author: forgewright
+author: Digital-Nervous
 tags: [unreal, multiplayer, replication, dedicated-server, networking, gas, prediction]
 ---
 
@@ -25,7 +25,7 @@ tags: [unreal, multiplayer, replication, dedicated-server, networking, gas, pred
 
 ## Aesthetic Foundation
 
-Multiplayer games need consistent visual language across all players. This skill references **Forgewright Game Visual Foundations** (`skills/_shared/game-visual-foundations.md`) for:
+Multiplayer games need consistent visual language across all players. This skill references **Digital-Nervous Game Visual Foundations** (`skills/_shared/game-visual-foundations.md`) for:
 
 - **Visual consistency** (same visual style across all connected clients)
 

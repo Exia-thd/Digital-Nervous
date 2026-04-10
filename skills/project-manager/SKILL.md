@@ -1,4 +1,4 @@
----
+﻿---
 name: project-manager
 description: >
   [production-grade internal] Manages project execution — sprint planning,
@@ -6,7 +6,7 @@ description: >
   and retrospectives. Operational counterpart to Product Manager.
   Routed via the production-grade orchestrator (cross-cutting).
 version: 1.0.0
-author: forgewright
+author: Digital-Nervous
 tags: [project-management, sprint, agile, scrum, kanban, jira, velocity, risk]
 ---
 
@@ -93,7 +93,7 @@ You are the **Project Management Specialist**. You ensure projects are delivered
 ## Output Structure
 
 ```
-.forgewright/project-manager/
+.Digital-Nervous/project-manager/
 ├── project-charter.md               # Goals, scope, team, timeline
 ├── sprint-plan.md                   # Current sprint backlog and goals
 ├── roadmap.md                       # Multi-sprint timeline view

@@ -1,9 +1,9 @@
-#!/usr/bin/env python3
+﻿#!/usr/bin/env python3
 """
-Forgewright Memory Manager CLI — persistent project memory, git-versioned.
+Digital-Nervous Memory Manager CLI — persistent project memory, git-versioned.
 
 Storage:
-  .forgewright/memory.jsonl  — source of truth, committed to git (compact, human-readable)
+  .Digital-Nervous/memory.jsonl  — source of truth, committed to git (compact, human-readable)
 
 Usage:
     python3 mem0-cli.py search <query> [--limit N] [--format compact|full]
@@ -39,8 +39,8 @@ from datetime import datetime, timedelta
 from collections import Counter
 
 # ── Constants ──
-FORGEWRIGHT_DIR = ".forgewright"
-MEMORY_LOG = os.path.join(FORGEWRIGHT_DIR, "memory.jsonl")
+Digital-Nervous_DIR = ".Digital-Nervous"
+MEMORY_LOG = os.path.join(Digital-Nervous_DIR, "memory.jsonl")
 MEMIGNORE_FILE = ".memignore"
 MAX_MEMORIES_DEFAULT = 200
 
@@ -649,7 +649,7 @@ def cmd_refresh(args):
 
     # Store refreshed project identity
     store.add(
-        f"Project: Forgewright v{version} — Production-grade AI pipeline orchestrator",
+        f"Project: Digital-Nervous v{version} — Production-grade AI pipeline orchestrator",
         category="project", source="refresh:identity"
     )
     store.add(
@@ -689,7 +689,7 @@ def cmd_refresh(args):
     except Exception:
         pass
 
-    print(f"\n✅ Memory refreshed for Forgewright v{version}")
+    print(f"\n✅ Memory refreshed for Digital-Nervous v{version}")
     print(f"   Total memories: {store.count()} | Size: {store.size_bytes():,} bytes")
 
 
@@ -780,9 +780,9 @@ def cmd_gc(args):
 
 
 def cmd_setup(args):
-    print("🔧 Forgewright Memory Manager Setup\n")
-    os.makedirs(FORGEWRIGHT_DIR, exist_ok=True)
-    print(f"  ✅ {FORGEWRIGHT_DIR}/ ready")
+    print("🔧 Digital-Nervous Memory Manager Setup\n")
+    os.makedirs(Digital-Nervous_DIR, exist_ok=True)
+    print(f"  ✅ {Digital-Nervous_DIR}/ ready")
 
     if not Path(MEMIGNORE_FILE).exists():
         Path(MEMIGNORE_FILE).write_text(

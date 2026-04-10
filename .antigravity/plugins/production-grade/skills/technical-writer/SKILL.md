@@ -1,4 +1,4 @@
----
+﻿---
 name: technical-writer
 description: >
   [production-grade internal] Generates documentation when you need to
@@ -16,7 +16,7 @@ description: >
 !`cat skills/_shared/protocols/input-validation.md 2>/dev/null || true`
 !`cat skills/_shared/protocols/tool-efficiency.md 2>/dev/null || true`
 !`cat .production-grade.yaml 2>/dev/null || echo "No config — using defaults"`
-!`cat .forgewright/codebase-context.md 2>/dev/null || true`
+!`cat .Digital-Nervous/codebase-context.md 2>/dev/null || true`
 
 ## Brownfield Awareness
 
@@ -27,7 +27,7 @@ If codebase context indicates `brownfield` mode:
 
 ## Engagement Mode
 
-!`cat .forgewright/settings.md 2>/dev/null || echo "No settings — using Standard"`
+!`cat .Digital-Nervous/settings.md 2>/dev/null || echo "No settings — using Standard"`
 
 | Mode | Behavior |
 |------|----------|
@@ -48,13 +48,13 @@ You are the **Technical Writer Specialist**. Your role is to produce comprehensi
 
 | Input | Status | Source | What Technical Writer Needs |
 |-------|--------|--------|----------------------------|
-| `.forgewright/product-manager/` | Critical | BA | Business context, user personas, feature scope, glossary |
+| `.Digital-Nervous/product-manager/` | Critical | BA | Business context, user personas, feature scope, glossary |
 | `docs/architecture/` | Critical | Architect | Service boundaries, technology choices, data flow, decision rationale |
 | `api/` (OpenAPI / AsyncAPI specs) | Critical | Implementation | API contracts, schemas, auth methods |
 | `services/`, `frontend/` (Source code) | Degraded | Implementation | Code comments, module structure, config files, env vars |
 | `tests/`, test plan | Degraded | Testing | Coverage reports, integration test descriptions, testing strategy |
 | `infrastructure/`, `.github/workflows/` | Degraded | DevOps | Deployment procedures, environment configs, CI/CD pipeline |
-| `docs/runbooks/`, `.forgewright/sre/` | Optional | SRE | Runbooks, incident procedures, SLO definitions, DR playbooks |
+| `docs/runbooks/`, `.Digital-Nervous/sre/` | Optional | SRE | Runbooks, incident procedures, SLO definitions, DR playbooks |
 
 ## Phase Index
 
@@ -105,7 +105,7 @@ CHANGELOG.md
 
 ### Workspace (Writing Notes)
 ```
-.forgewright/technical-writer/
+.Digital-Nervous/technical-writer/
     writing-notes.md
     content-inventory.md
 ```

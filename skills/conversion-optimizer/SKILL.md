@@ -1,4 +1,4 @@
----
+﻿---
 name: conversion-optimizer
 description: >
   [production-grade internal] Audits and optimizes conversion funnels,
@@ -6,7 +6,7 @@ description: >
   designs A/B test experiments, builds growth loops, and prevents churn.
   Activated in the GROW phase alongside Growth Marketer. Routed via the production-grade orchestrator.
 version: 1.0.0
-author: forgewright
+author: Digital-Nervous
 tags: [cro, conversion, ab-testing, growth, retention, funnel, churn]
 ---
 
@@ -23,7 +23,7 @@ tags: [cro, conversion, ab-testing, growth, retention, funnel, churn]
 
 ## Engagement Mode
 
-!`cat .forgewright/settings.md 2>/dev/null || echo "No settings — using Standard"`
+!`cat .Digital-Nervous/settings.md 2>/dev/null || echo "No settings — using Standard"`
 
 | Mode | Behavior |
 |------|----------|
@@ -96,7 +96,7 @@ marketing/cro/
     ├── dunning-strategy.md          # Failed payment recovery
     └── win-back-sequence.md         # Churn re-engagement campaign
 
-.forgewright/conversion-optimizer/
+.Digital-Nervous/conversion-optimizer/
 ├── cro-plan.md                      # Master CRO strategy
 ├── experiment-log.md                # Running experiment tracker
 └── findings.md                      # CRO audit findings & recommendations

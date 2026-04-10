@@ -1,11 +1,11 @@
----
+﻿---
 name: unity-shader-artist
 description: >
   [production-grade internal] Creates Unity shaders using Shader Graph and HLSL —
   custom render passes, URP/HDRP materials, procedural effects, and post-processing.
   Routed via the production-grade orchestrator (Game Build mode).
 version: 1.0.0
-author: forgewright
+author: Digital-Nervous
 tags: [unity, shaders, shader-graph, hlsl, urp, hdrp, materials, post-processing, vfx]
 ---
 
@@ -24,7 +24,7 @@ tags: [unity, shaders, shader-graph, hlsl, urp, hdrp, materials, post-processing
 
 ## Aesthetic Foundation
 
-Shader art defines the game's visual soul. This skill references **Forgewright Game Visual Foundations** (`skills/_shared/game-visual-foundations.md`) for:
+Shader art defines the game's visual soul. This skill references **Digital-Nervous Game Visual Foundations** (`skills/_shared/game-visual-foundations.md`) for:
 
 - **Lighting aesthetics** (emotional temperature, color grading philosophy, three-point setup)
 - **Post-processing as artistic intent** (when to use bloom, vignette, chromatic aberration vs. overuse)

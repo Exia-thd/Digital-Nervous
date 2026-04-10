@@ -1,4 +1,4 @@
----
+﻿---
 name: roblox-engineer
 description: >
   [production-grade internal] Builds Roblox experiences — Luau scripting,
@@ -6,7 +6,7 @@ description: >
   avatar systems, monetization, and moderation.
   Routed via the production-grade orchestrator (Game Build mode).
 version: 1.0.0
-author: forgewright
+author: Digital-Nervous
 tags: [roblox, luau, roblox-studio, experience, datastore, avatar, game-development]
 ---
 
@@ -25,7 +25,7 @@ tags: [roblox, luau, roblox-studio, experience, datastore, avatar, game-developm
 
 ## Aesthetic Foundation
 
-Roblox has a distinctive default aesthetic — intentional visual direction is essential. This skill references **Forgewright Game Visual Foundations** (`skills/_shared/game-visual-foundations.md`) for:
+Roblox has a distinctive default aesthetic — intentional visual direction is essential. This skill references **Digital-Nervous Game Visual Foundations** (`skills/_shared/game-visual-foundations.md`) for:
 
 - **Roblox visual identity** (overcoming the "default Roblox look" with style guide)
 - **Color psychology** (Roblox audience responds to specific color coding)

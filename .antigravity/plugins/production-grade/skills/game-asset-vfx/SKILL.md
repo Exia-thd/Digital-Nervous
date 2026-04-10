@@ -1,4 +1,4 @@
----
+﻿---
 name: game-asset-vfx
 description: >
   [production-grade internal] Quality standards and production patterns for game
@@ -11,7 +11,7 @@ description: >
   "UI helpers", "design tokens", "audio feedback", "game audio sync".
   Routed via the production-grade orchestrator (Game Build mode).
 version: 2.0.0
-author: forgewright
+author: Digital-Nervous
 tags: [game-assets, vfx, sprites, particles, visual-polish, game-juice, phaser, 2d-art, procedural-art, ui-helpers, audio-visual, design-tokens]
 ---
 

@@ -1,4 +1,4 @@
----
+﻿---
 name: security-engineer
 description: >
   [production-grade internal] Audits code for security vulnerabilities —
@@ -18,7 +18,7 @@ description: >
 
 ## Engagement Mode
 
-!`cat .forgewright/.orchestrator/settings.md 2>/dev/null || echo "No settings — using Standard"`
+!`cat .Digital-Nervous/.orchestrator/settings.md 2>/dev/null || echo "No settings — using Standard"`
 
 | Mode | Behavior |
 |------|----------|
@@ -157,14 +157,14 @@ Triggered -> Phase 0: Reconnaissance -> Phase 1: Threat Modeling
 
 | Output | Location | Description |
 |--------|----------|-------------|
-| Threat model | `.forgewright/security-engineer/threat-model/` | STRIDE analysis, attack surface, trust boundaries, data flow threats |
-| Code audit | `.forgewright/security-engineer/code-audit/` | OWASP Top 10 report, per-service findings, injection points |
-| Auth review | `.forgewright/security-engineer/auth-review/` | Auth flow analysis, token management, RBAC policy review |
-| Data security | `.forgewright/security-engineer/data-security/` | PII inventory, encryption audit, data retention, GDPR compliance |
-| Supply chain | `.forgewright/security-engineer/supply-chain/` | SBOM, dependency audit, license compliance |
-| Pen test plan | `.forgewright/security-engineer/pen-test/` | Test plan, API fuzzing config, attack scenarios |
-| AI security | `.forgewright/security-engineer/ai-security/` | Prompt injection tests, output filtering rules, PII scan results |
-| Remediation | `.forgewright/security-engineer/remediation/` | Remediation plan, critical fixes with code, timeline |
+| Threat model | `.Digital-Nervous/security-engineer/threat-model/` | STRIDE analysis, attack surface, trust boundaries, data flow threats |
+| Code audit | `.Digital-Nervous/security-engineer/code-audit/` | OWASP Top 10 report, per-service findings, injection points |
+| Auth review | `.Digital-Nervous/security-engineer/auth-review/` | Auth flow analysis, token management, RBAC policy review |
+| Data security | `.Digital-Nervous/security-engineer/data-security/` | PII inventory, encryption audit, data retention, GDPR compliance |
+| Supply chain | `.Digital-Nervous/security-engineer/supply-chain/` | SBOM, dependency audit, license compliance |
+| Pen test plan | `.Digital-Nervous/security-engineer/pen-test/` | Test plan, API fuzzing config, attack scenarios |
+| AI security | `.Digital-Nervous/security-engineer/ai-security/` | Prompt injection tests, output filtering rules, PII scan results |
+| Remediation | `.Digital-Nervous/security-engineer/remediation/` | Remediation plan, critical fixes with code, timeline |
 | Code fixes | `services/`, `frontend/`, etc. | Security fixes applied directly to project code |
 
 ## Severity Classification Standard

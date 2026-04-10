@@ -1,4 +1,4 @@
----
+﻿---
 name: ui-designer
 description: >
   [production-grade internal] Designs UI/UX wireframes, design systems, 
@@ -18,13 +18,13 @@ tags: [design, ux, ui, wireframes, design-system, color, typography, accessibili
 !`cat skills/_shared/protocols/input-validation.md 2>/dev/null || true`
 !`cat skills/_shared/protocols/tool-efficiency.md 2>/dev/null || true`
 !`cat .production-grade.yaml 2>/dev/null || echo "No config — using defaults"`
-!`cat .forgewright/codebase-context.md 2>/dev/null || true`
+!`cat .Digital-Nervous/codebase-context.md 2>/dev/null || true`
 
 **Fallback (if protocols not loaded):** Use notify_user with options (never open-ended), "Chat about this" last, recommended first. Work continuously. Print progress constantly. Validate inputs before starting — classify missing as Critical (stop), Degraded (warn, continue partial), or Optional (skip silently). Use parallel tool calls for independent reads. Use view_file_outline before full Read.
 
 ## Engagement Mode
 
-!`cat .forgewright/settings.md 2>/dev/null || echo "No settings — using Standard"`
+!`cat .Digital-Nervous/settings.md 2>/dev/null || echo "No settings — using Standard"`
 
 | Mode | Behavior |
 |------|----------|
@@ -35,7 +35,7 @@ tags: [design, ux, ui, wireframes, design-system, color, typography, accessibili
 
 ## Brownfield Awareness
 
-If `.forgewright/codebase-context.md` exists and mode is `brownfield`:
+If `.Digital-Nervous/codebase-context.md` exists and mode is `brownfield`:
 - **READ existing design tokens** — check for CSS custom properties, Tailwind config, design token files
 - **MATCH existing design language** — don't introduce a new design system if one exists
 - **EXTEND, don't replace** — add new components that fit the existing aesthetic
@@ -54,13 +54,13 @@ This skill runs AFTER the Product Manager (BRD) and BEFORE the Solution Architec
 - **BRD / PRD** — User personas, user stories, feature requirements, acceptance criteria
 - **Competitive analysis** (if available) — screenshots, feature comparisons
 
-The UI Designer outputs to `.forgewright/ui-designer/` and `docs/design/`.
+The UI Designer outputs to `.Digital-Nervous/ui-designer/` and `docs/design/`.
 
 ## Input Classification
 
 | Input | Status | What UI Designer Needs |
 |-------|--------|----------------------|
-| `.forgewright/product-manager/` | Critical | User personas, user stories, feature list, brand context |
+| `.Digital-Nervous/product-manager/` | Critical | User personas, user stories, feature list, brand context |
 | Competitive screenshots/references | Degraded | Visual benchmarks, industry standards |
 | Existing `frontend/` CSS/config | Degraded | Current design tokens, existing patterns (brownfield) |
 | Brand guidelines (logo, colors, fonts) | Optional | Brand consistency constraints |
@@ -70,7 +70,7 @@ The UI Designer outputs to `.forgewright/ui-designer/` and `docs/design/`.
 ### Workspace Output
 
 ```
-.forgewright/ui-designer/
+.Digital-Nervous/ui-designer/
 ├── design-brief.md                    # Design rationale, target audience, aesthetic direction
 ├── wireframes/
 │   ├── sitemap.md                     # Page hierarchy and navigation structure
@@ -374,7 +374,7 @@ How much content fits on one screen.
    - Anti-patterns to avoid (from reasoning rules + AI Tells)
    - Responsive breakpoints
 
-**Output:** `.forgewright/ui-designer/design-brief.md`
+**Output:** `.Digital-Nervous/ui-designer/design-brief.md`
 
 ---
 
@@ -469,7 +469,7 @@ Rules:
 Define elevation system (sm, md, lg, xl) and corner radius scale.
 
 **Output:**
-- `.forgewright/ui-designer/design-tokens.md` — human-readable token specs
+- `.Digital-Nervous/ui-designer/design-tokens.md` — human-readable token specs
 - `docs/design/design-tokens.json` — machine-readable tokens for frontend-engineer
 
 ---
@@ -515,7 +515,7 @@ Define elevation system (sm, md, lg, xl) and corner radius scale.
 6. Define **loading states**: skeleton screens, spinners, progress indicators
 7. Define **error states**: error pages (404, 500), form validation, toast notifications
 
-**Output:** `.forgewright/ui-designer/wireframes/`
+**Output:** `.Digital-Nervous/ui-designer/wireframes/`
 
 ---
 
@@ -592,10 +592,10 @@ When MOTION_INTENSITY > 5, select creative patterns from `data/creative-patterns
    - Icon library recommendation (Lucide / Heroicons / Material Icons)
 
 **Output:**
-- `.forgewright/ui-designer/component-inventory.md`
-- `.forgewright/ui-designer/interaction-patterns.md`
-- `.forgewright/ui-designer/accessibility-guidelines.md`
-- `.forgewright/ui-designer/handoff-notes.md`
+- `.Digital-Nervous/ui-designer/component-inventory.md`
+- `.Digital-Nervous/ui-designer/interaction-patterns.md`
+- `.Digital-Nervous/ui-designer/accessibility-guidelines.md`
+- `.Digital-Nervous/ui-designer/handoff-notes.md`
 
 ---
 
@@ -662,7 +662,7 @@ When the project needs a full brand system (not just a design system), produce t
 
 ### Output
 ```
-.forgewright/ui-designer/
+.Digital-Nervous/ui-designer/
 ├── ... (existing outputs)
 ├── brand-guide.md                     # Logo rules, visual identity
 ├── voice-and-tone.md                  # Writing style guidelines

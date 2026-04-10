@@ -1,4 +1,4 @@
----
+﻿---
 name: unreal-engineer
 description: >
   [production-grade internal] Builds Unreal Engine games with AAA-quality C++/Blueprint
@@ -6,7 +6,7 @@ description: >
   replication-ready code, and Lyra-style gameplay frameworks.
   Routed via the production-grade orchestrator (Game Build mode).
 version: 1.0.0
-author: forgewright
+author: Digital-Nervous
 tags: [unreal-engine, cpp, blueprint, gas, nanite, lumen, multiplayer, game-development]
 ---
 
@@ -22,13 +22,13 @@ tags: [unreal-engine, cpp, blueprint, gas, nanite, lumen, multiplayer, game-deve
 !`cat skills/_shared/protocols/quality-gate.md 2>/dev/null || true`
 !`cat skills/_shared/protocols/task-validator.md 2>/dev/null || true`
 !`cat .production-grade.yaml 2>/dev/null || echo "No config — using defaults"`
-!`cat .forgewright/codebase-context.md 2>/dev/null || true`
+!`cat .Digital-Nervous/codebase-context.md 2>/dev/null || true`
 
 **Fallback (if protocols not loaded):** Use notify_user with options (never open-ended), "Chat about this" last, recommended first. Work continuously. Print progress constantly.
 
 ## Aesthetic Foundation
 
-Unreal Engine delivers AAA visuals — intentional artistic direction is required to avoid "generic Unreal look." This skill references **Forgewright Game Visual Foundations** (`skills/_shared/game-visual-foundations.md`) for:
+Unreal Engine delivers AAA visuals — intentional artistic direction is required to avoid "generic Unreal look." This skill references **Digital-Nervous Game Visual Foundations** (`skills/_shared/game-visual-foundations.md`) for:
 
 - **Visual style definition** (defining intentional style vs. default Unreal aesthetics)
 - **Color grading** (Unreal's color management for consistent cinematic tone)
@@ -36,7 +36,7 @@ Unreal Engine delivers AAA visuals — intentional artistic direction is require
 
 ## Engagement Mode
 
-!`cat .forgewright/settings.md 2>/dev/null || echo "No settings — using Standard"`
+!`cat .Digital-Nervous/settings.md 2>/dev/null || echo "No settings — using Standard"`
 
 | Mode | Behavior |
 |------|----------|
@@ -47,7 +47,7 @@ Unreal Engine delivers AAA visuals — intentional artistic direction is require
 
 ## Brownfield Awareness
 
-If `.forgewright/codebase-context.md` exists and mode is `brownfield`:
+If `.Digital-Nervous/codebase-context.md` exists and mode is `brownfield`:
 - **READ existing Unreal project** — detect engine version, modules, existing GAS usage, Blueprint assets
 - **MATCH existing patterns** — if they have custom ability system, don't force GAS migration
 - **ADD modules alongside existing** — don't restructure their module hierarchy
@@ -65,9 +65,9 @@ This skill runs AFTER the Game Designer (GDD + mechanic specs) in Game Build mod
 
 | Input | Status | What Unreal Engineer Needs |
 |-------|--------|---------------------------|
-| `.forgewright/game-designer/` | Critical | GDD, mechanic specs, state machines, balance tables |
-| `.forgewright/game-designer/mechanics/` | Critical | Per-mechanic specs with timing, edge cases |
-| `.forgewright/game-designer/economy/` | Degraded | Economy design for data tables |
+| `.Digital-Nervous/game-designer/` | Critical | GDD, mechanic specs, state machines, balance tables |
+| `.Digital-Nervous/game-designer/mechanics/` | Critical | Per-mechanic specs with timing, edge cases |
+| `.Digital-Nervous/game-designer/economy/` | Degraded | Economy design for data tables |
 | Level Designer output | Optional | Level requirements |
 | Technical Artist output | Optional | Material/VFX requirements |
 
@@ -198,7 +198,7 @@ Content/
     ├── IA_Attack.uasset
     └── IMC_Default.uasset
 
-.forgewright/unreal-engineer/
+.Digital-Nervous/unreal-engineer/
 ├── architecture.md                  # C++ module architecture, class hierarchy
 ├── gas-setup.md                     # GAS configuration and ability catalog
 ├── blueprint-api.md                 # Blueprint-exposed API reference

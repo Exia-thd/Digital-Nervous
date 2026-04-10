@@ -1,4 +1,4 @@
----
+﻿---
 name: xr-engineer
 description: >
   [production-grade internal] Builds AR/VR/MR applications — spatial UI/UX,
@@ -6,7 +6,7 @@ description: >
   and cross-platform XR (Quest, Vision Pro, WebXR, PCVR).
   Routed via the production-grade orchestrator (Game Build mode).
 version: 1.0.0
-author: forgewright
+author: Digital-Nervous
 tags: [xr, vr, ar, mr, spatial-computing, hand-tracking, visionos, quest, webxr]
 ---
 

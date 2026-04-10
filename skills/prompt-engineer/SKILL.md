@@ -1,4 +1,4 @@
----
+﻿---
 name: prompt-engineer
 description: >
   [production-grade internal] Designs, optimizes, and evaluates AI prompts —
@@ -15,13 +15,13 @@ description: >
 !`cat skills/_shared/protocols/input-validation.md 2>/dev/null || true`
 !`cat skills/_shared/protocols/tool-efficiency.md 2>/dev/null || true`
 !`cat .production-grade.yaml 2>/dev/null || echo "No config — using defaults"`
-!`cat .forgewright/codebase-context.md 2>/dev/null || true`
+!`cat .Digital-Nervous/codebase-context.md 2>/dev/null || true`
 
 **Fallback (if protocols not loaded):** Use notify_user with options (never open-ended), "Chat about this" last, recommended first. Work continuously. Print progress constantly. Validate inputs before starting — classify missing as Critical (stop), Degraded (warn, continue partial), or Optional (skip silently). Use parallel tool calls for independent reads. Use view_file_outline before full Read.
 
 ## Engagement Mode
 
-!`cat .forgewright/settings.md 2>/dev/null || echo "No settings — using Standard"`
+!`cat .Digital-Nervous/settings.md 2>/dev/null || echo "No settings — using Standard"`
 
 | Mode | Behavior |
 |------|----------|
@@ -32,7 +32,7 @@ description: >
 
 ## Brownfield Awareness
 
-If `.forgewright/codebase-context.md` exists and mode is `brownfield`:
+If `.Digital-Nervous/codebase-context.md` exists and mode is `brownfield`:
 - **READ existing prompts first** — understand current prompt patterns, model choices, provider APIs
 - **MATCH existing prompt style** — if they use structured XML tags, use XML tags. If they use markdown, use markdown
 - **PRESERVE working prompts** — don't rewrite prompts that are performing well
@@ -338,7 +338,7 @@ evaluation/
 
 ### Workspace
 ```
-.forgewright/prompt-engineer/
+.Digital-Nervous/prompt-engineer/
 ├── task-analysis.md         # Task classification and model selection
 ├── prompt-design.md         # Architecture decisions and rationale
 ├── eval-report.md           # Evaluation results and recommendations

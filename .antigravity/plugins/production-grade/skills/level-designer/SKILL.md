@@ -1,4 +1,4 @@
----
+﻿---
 name: level-designer
 description: >
   [production-grade internal] Designs game levels, encounters, environmental
@@ -6,7 +6,7 @@ description: >
   design documents and blockout specifications consumed by engine engineers.
   Routed via the production-grade orchestrator (Game Build mode).
 version: 1.0.0
-author: forgewright
+author: Digital-Nervous
 tags: [level-design, encounters, pacing, blockout, environmental-storytelling, world-building]
 ---
 
@@ -18,13 +18,13 @@ tags: [level-design, encounters, pacing, blockout, environmental-storytelling, w
 !`cat skills/_shared/protocols/input-validation.md 2>/dev/null || true`
 !`cat skills/_shared/protocols/tool-efficiency.md 2>/dev/null || true`
 !`cat .production-grade.yaml 2>/dev/null || echo "No config — using defaults"`
-!`cat .forgewright/codebase-context.md 2>/dev/null || true`
+!`cat .Digital-Nervous/codebase-context.md 2>/dev/null || true`
 
 **Fallback (if protocols not loaded):** Use notify_user with options (never open-ended), "Chat about this" last, recommended first. Work continuously. Print progress constantly.
 
 ## Engagement Mode
 
-!`cat .forgewright/settings.md 2>/dev/null || echo "No settings — using Standard"`
+!`cat .Digital-Nervous/settings.md 2>/dev/null || echo "No settings — using Standard"`
 
 | Mode | Behavior |
 |------|----------|
@@ -45,7 +45,7 @@ This skill runs AFTER Game Designer and AFTER Unity/Unreal Engineer (needs prefa
 
 | Input | Status | What Level Designer Needs |
 |-------|--------|--------------------------|
-| `.forgewright/game-designer/` | Critical | Core loop, difficulty curve, mechanic specs, enemy types |
+| `.Digital-Nervous/game-designer/` | Critical | Core loop, difficulty curve, mechanic specs, enemy types |
 | Engine engineer prefab/actor catalog | Degraded | Available building blocks for level assembly |
 | Narrative Designer output | Optional | Story beats to place in levels |
 | Technical Artist output | Optional | Visual themes, art budget per level |
@@ -53,7 +53,7 @@ This skill runs AFTER Game Designer and AFTER Unity/Unreal Engineer (needs prefa
 ## Output Structure
 
 ```
-.forgewright/level-designer/
+.Digital-Nervous/level-designer/
 ├── level-plan.md                   # Overall level structure and progression
 ├── levels/
 │   ├── level-01-tutorial.md        # Per-level design document

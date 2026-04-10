@@ -1,10 +1,10 @@
-# ADR-004: Skills Count Verification (Oscillation Prevention)
+﻿# ADR-004: Skills Count Verification (Oscillation Prevention)
 
 ## Status
 Accepted
 
 ## Context
-Forgewright's changelog (v7.7.0) acknowledged a "skill count oscillation" issue: the number of skills documented (52) kept changing as new skills were added or removed without updating the central reference.
+Digital-Nervous's changelog (v7.7.0) acknowledged a "skill count oscillation" issue: the number of skills documented (52) kept changing as new skills were added or removed without updating the central reference.
 
 This caused:
 - Documentation drift (AGENTS.md says 52, actual might differ)

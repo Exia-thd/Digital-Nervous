@@ -1,6 +1,6 @@
-#!/usr/bin/env bash
+﻿#!/usr/bin/env bash
 # ============================================================================
-# Forgewright — Mobile Test Setup Script
+# Digital-Nervous — Mobile Test Setup Script
 # Auto-detects environment and installs everything needed for AI-powered
 # mobile testing on Android (ADB + Midscene) and iOS (WDA + Midscene).
 #
@@ -65,7 +65,7 @@ get_status() {
 print_report() {
   echo ""
   echo -e "${BOLD}${CYAN}╔══════════════════════════════════════════════════════════╗${NC}"
-  echo -e "${BOLD}${CYAN}║  ${PHONE} Forgewright Mobile Test Setup — Status Report         ║${NC}"
+  echo -e "${BOLD}${CYAN}║  ${PHONE} Digital-Nervous Mobile Test Setup — Status Report         ║${NC}"
   echo -e "${BOLD}${CYAN}╠══════════════════════════════════════════════════════════╣${NC}"
 
   local items="Node.js|npm|Appium|ADB|ANDROID_HOME|Android Device|Appium uiautomator2|Xcode CLI|WebDriverAgent|iOS Simulator|Appium xcuitest|@midscene/android|@midscene/ios|WebdriverIO|API Key (.env)|Test Directory"
@@ -110,7 +110,7 @@ IS_MACOS=false
 [[ "$OS" == "Darwin" ]] && IS_MACOS=true
 
 echo ""
-echo -e "${BOLD}${ROCKET} Forgewright Mobile Test Setup${NC}"
+echo -e "${BOLD}${ROCKET} Digital-Nervous Mobile Test Setup${NC}"
 echo -e "${DIM}Platform: $OS ($ARCH) | $(date '+%Y-%m-%d %H:%M:%S')${NC}"
 if $CHECK_ONLY; then
   echo -e "${YELLOW}Mode: CHECK ONLY (no changes will be made)${NC}"
@@ -457,7 +457,7 @@ else
     info "Creating $ENV_FILE template..."
     cat > "$ENV_FILE" << 'ENVEOF'
 # ============================================================================
-# Forgewright — Midscene Mobile Testing Configuration
+# Digital-Nervous — Midscene Mobile Testing Configuration
 # ============================================================================
 # Get your API key from: https://aistudio.google.com/apikey
 # Cost: ~$0.001 per vision call (Gemini Flash)
@@ -541,7 +541,7 @@ WDIOOF
   if $ANDROID_ONLY && [[ ! -f "$TEST_DIR/android/demo.test.ts" ]]; then
     cat > "$TEST_DIR/android/demo.test.ts" << 'ATEST'
 /**
- * Forgewright — Android Demo Test (Midscene + ADB)
+ * Digital-Nervous — Android Demo Test (Midscene + ADB)
  *
  * Prerequisites:
  *   1. Android device connected via USB with USB Debugging enabled
@@ -589,7 +589,7 @@ async function main() {
   await sleep(3000);
 
   console.log('📝 Searching...');
-  await agent.aiAction('type "Forgewright mobile testing" in the search box and press Enter');
+  await agent.aiAction('type "Digital-Nervous mobile testing" in the search box and press Enter');
   await sleep(5000);
 
   // ── Assert results ─────────────────────────────────────────────────────
@@ -619,7 +619,7 @@ ATEST
   if $ANDROID_ONLY && [[ ! -f "$TEST_DIR/android/appium-demo.test.ts" ]]; then
     cat > "$TEST_DIR/android/appium-demo.test.ts" << 'AATEST'
 /**
- * Forgewright — Android Appium WebdriverIO Demo
+ * Digital-Nervous — Android Appium WebdriverIO Demo
  * Deterministic testing for the HARDEN phase.
  * Run with: npx wdio wdio.conf.ts
  */
@@ -638,7 +638,7 @@ AATEST
   if $IOS_ONLY && $IS_MACOS && [[ ! -f "$TEST_DIR/ios/demo.test.ts" ]]; then
     cat > "$TEST_DIR/ios/demo.test.ts" << 'ITEST'
 /**
- * Forgewright — iOS Demo Test (Midscene + WebDriverAgent)
+ * Digital-Nervous — iOS Demo Test (Midscene + WebDriverAgent)
  *
  * Prerequisites:
  *   1. macOS with Xcode installed
@@ -671,7 +671,7 @@ async function main() {
   await sleep(3000);
 
   console.log('📝 Searching...');
-  await agent.aiAction('type "Forgewright iOS testing" in the search box and press search');
+  await agent.aiAction('type "Digital-Nervous iOS testing" in the search box and press search');
   await sleep(5000);
 
   // ── Assert ─────────────────────────────────────────────────────────────
@@ -695,7 +695,7 @@ ITEST
   if $IOS_ONLY && $IS_MACOS && [[ ! -f "$TEST_DIR/ios/appium-demo.test.ts" ]]; then
     cat > "$TEST_DIR/ios/appium-demo.test.ts" << 'IATEST'
 /**
- * Forgewright — iOS Appium WebdriverIO Demo
+ * Digital-Nervous — iOS Appium WebdriverIO Demo
  * Deterministic testing for the HARDEN phase.
  * Run with: npx wdio wdio.conf.ts
  */
@@ -768,4 +768,4 @@ fi
 echo -e "  ${GREEN}▸${NC} View visual reports after test run:"
 echo -e "     ${CYAN}open ./midscene_run/report/index.html${NC}"
 echo ""
-echo -e "${DIM}─── Forgewright Mobile Test Setup Complete ───${NC}"
+echo -e "${DIM}─── Digital-Nervous Mobile Test Setup Complete ───${NC}"

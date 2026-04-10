@@ -1,14 +1,14 @@
-#!/usr/bin/env bash
+﻿#!/usr/bin/env bash
 # ─────────────────────────────────────────────────────────
-# Forgewright MCP Server Manager
-# Usage: forgewright-mcp [start|stop|status|config]
+# Digital-Nervous MCP Server Manager
+# Usage: Digital-Nervous-mcp [start|stop|status|config]
 # ─────────────────────────────────────────────────────────
 
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
-MCP_DIR="${PROJECT_ROOT}/.forgewright/mcp-server"
+MCP_DIR="${PROJECT_ROOT}/.Digital-Nervous/mcp-server"
 PID_FILE="${MCP_DIR}/.mcp-server.pid"
 
 # Colors
@@ -74,7 +74,7 @@ cmd_stop() {
 
 cmd_status() {
   echo ""
-  echo "━━━ Forgewright MCP Server Status ━━━"
+  echo "━━━ Digital-Nervous MCP Server Status ━━━"
   echo ""
 
   if [ ! -d "$MCP_DIR" ]; then
@@ -161,7 +161,7 @@ case "${1:-help}" in
   status) cmd_status ;;
   config) cmd_config ;;
   *)
-    echo "Usage: forgewright-mcp [start|stop|status|config]"
+    echo "Usage: Digital-Nervous-mcp [start|stop|status|config]"
     echo ""
     echo "Commands:"
     echo "  start   Start the MCP server (stdio transport)"

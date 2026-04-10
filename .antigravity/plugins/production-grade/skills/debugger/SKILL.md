@@ -1,4 +1,4 @@
----
+﻿---
 name: debugger
 description: >
   [production-grade internal] Systematic debugging and root-cause analysis —
@@ -18,13 +18,13 @@ description: >
 !`cat skills/_shared/protocols/graceful-failure.md 2>/dev/null || true`
 !`cat skills/_shared/protocols/code-intelligence.md 2>/dev/null || true`
 !`cat .production-grade.yaml 2>/dev/null || echo "No config — using defaults"`
-!`cat .forgewright/codebase-context.md 2>/dev/null || true`
+!`cat .Digital-Nervous/codebase-context.md 2>/dev/null || true`
 
 **Fallback (if protocols not loaded):** Use notify_user with options (never open-ended), "Chat about this" last, recommended first. Work continuously. Print progress constantly. Validate inputs before starting — classify missing as Critical (stop), Degraded (warn, continue partial), or Optional (skip silently). Use parallel tool calls for independent reads. Use view_file_outline before full Read.
 
 ## Engagement Mode
 
-!`cat .forgewright/settings.md 2>/dev/null || echo "No settings — using Standard"`
+!`cat .Digital-Nervous/settings.md 2>/dev/null || echo "No settings — using Standard"`
 
 | Mode | Behavior |
 |------|----------|
@@ -405,7 +405,7 @@ git bisect good <last-known-good-commit>
 
 ### Workspace Output
 ```
-.forgewright/debugger/
+.Digital-Nervous/debugger/
 ├── investigation-report.md      # Full investigation trail
 ├── root-cause-analysis.md       # Root cause + fix summary
 └── evidence/                    # Collected evidence (logs, states, diffs)

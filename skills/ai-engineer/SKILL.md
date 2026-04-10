@@ -1,4 +1,4 @@
----
+﻿---
 name: ai-engineer
 description: >
   [production-grade internal] Builds production AI/ML systems — model training,
@@ -6,7 +6,7 @@ description: >
   RAG optimization, and agent orchestration at scale.
   Routed via the production-grade orchestrator (AI Build mode).
 version: 1.0.0
-author: forgewright
+author: Digital-Nervous
 tags: [ai, ml, mlops, model-serving, fine-tuning, rag, agents, evaluation, llm]
 ---
 
@@ -115,7 +115,7 @@ Data → Preprocessing → Training/Fine-tuning → Evaluation → Registry → 
 ## Output Structure
 
 ```
-.forgewright/ai-engineer/
+.Digital-Nervous/ai-engineer/
 ├── model-selection.md               # Model benchmarks and selection rationale
 ├── architecture.md                  # AI system architecture
 ├── rag-pipeline.md                  # RAG design (if applicable)

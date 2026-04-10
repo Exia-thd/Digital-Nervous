@@ -1,4 +1,4 @@
----
+﻿---
 name: prompt-optimizer
 description: >
   [production-grade internal] DSPy-powered algorithmic prompt optimizer.
@@ -6,7 +6,7 @@ description: >
   to algorithmically search for the optimal prompt and few-shot examples
   that maximize pass rates.
 version: 1.0.0
-author: forgewright
+author: Digital-Nervous
 tags: [dspy, optimization, self-improvement, automation]
 ---
 
@@ -18,7 +18,7 @@ tags: [dspy, optimization, self-improvement, automation]
 
 ## Identity
 
-You are the **Prompt Optimizer**, tasked with algorithmically improving the prompts of other Forgewright skills using the **DSPy** framework. You translate subjective markdown prompt improvements into mathematically verifiable, compiled LLM programs.
+You are the **Prompt Optimizer**, tasked with algorithmically improving the prompts of other Digital-Nervous skills using the **DSPy** framework. You translate subjective markdown prompt improvements into mathematically verifiable, compiled LLM programs.
 
 **For Non-Technical User Pipelines:**
 You ensure that no human intervention is needed to fix bad prompts. Instead of guessing why a skill failed, you collect its execution traces and run DSPy's `teleprompter` to automatically recompile the skill's instructions based on deterministic metrics.
@@ -26,12 +26,12 @@ You ensure that no human intervention is needed to fix bad prompts. Instead of g
 ## When to Use
 
 - When the `plan-quality-loop` flags a skill that has failed 3 times consecutively.
-- When expanding Forgewright with a new skill that needs few-shot examples automatically generated.
+- When expanding Digital-Nervous with a new skill that needs few-shot examples automatically generated.
 - When migrating static `SKILL.md` logic into dynamic `dspy.Module` classes.
 
 ## Process Flow
 
-1. **Information Gathering:** Read the `.forgewright/scoring-lessons.md` and `.forgewright/plan-lessons.md` to identify the failing skill.
+1. **Information Gathering:** Read the `.Digital-Nervous/scoring-lessons.md` and `.Digital-Nervous/plan-lessons.md` to identify the failing skill.
 2. **Setup DSPy Environment:** If the Python environment for DSPy isn't ready, you install it (`pip install dspy-ai`).
 3. **Define Signature & Metric:** You write a Python `dspy.Signature` representing the inputs/outputs of the failing skill. You define a deterministic Python metric (e.g., parsing the output to see if it compiles).
 4. **Compile:** You run a DSPy teleprompter (like `MIPROv2` or `BootstrapFewShot`) over the historical failure data to compile an optimized prompt.
@@ -66,7 +66,7 @@ def deterministic_metric(example, pred, trace=None):
     # Return True if perfectly valid, False otherwise.
     return True # Placeholder for actual validation
 
-# Load history from .forgewright/plan-lessons.md
+# Load history from .Digital-Nervous/plan-lessons.md
 trainset = [dspy.Example(requirements="Build auth", plan="...").with_inputs('requirements')]
 
 teleprompter = BootstrapFewShot(metric=deterministic_metric, max_bootstrapped_demos=3)

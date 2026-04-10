@@ -1,4 +1,4 @@
----
+﻿---
 name: technical-artist
 description: >
   [production-grade internal] Bridges art and engineering — shader development,
@@ -6,7 +6,7 @@ description: >
   Maintains visual fidelity within hard performance constraints.
   Routed via the production-grade orchestrator (Game Build mode).
 version: 1.0.0
-author: forgewright
+author: Digital-Nervous
 tags: [shaders, vfx, lod, performance, hlsl, shader-graph, niagara, materials, tech-art]
 ---
 
@@ -27,7 +27,7 @@ tags: [shaders, vfx, lod, performance, hlsl, shader-graph, niagara, materials, t
 
 ## Aesthetic Foundation
 
-Technical art bridges artistic vision and engineering. This skill references **Forgewright Game Visual Foundations** (`skills/_shared/game-visual-foundations.md`) for:
+Technical art bridges artistic vision and engineering. This skill references **Digital-Nervous Game Visual Foundations** (`skills/_shared/game-visual-foundations.md`) for:
 
 - **Color theory** (value > hue, palette design for 3D lighting)
 - **Lighting aesthetics** (emotional temperature, post-processing philosophy)
@@ -38,7 +38,7 @@ Technical art bridges artistic vision and engineering. This skill references **F
 
 ## Engagement Mode
 
-!`cat .forgewright/settings.md 2>/dev/null || echo "No settings — using Standard"`
+!`cat .Digital-Nervous/settings.md 2>/dev/null || echo "No settings — using Standard"`
 
 | Mode | Behavior |
 |------|----------|
@@ -67,7 +67,7 @@ Runs AFTER Game Designer and engine engineers have core systems. Produces visual
 ## Output Structure
 
 ```
-.forgewright/technical-artist/
+.Digital-Nervous/technical-artist/
 ├── art-pipeline.md                  # Asset pipeline standards and workflow
 ├── performance-budget.md            # Per-platform performance budgets
 ├── shaders/

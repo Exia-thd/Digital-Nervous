@@ -1,13 +1,13 @@
-# Project Onboarding Protocol
+﻿# Project Onboarding Protocol
 
 **Every new project installation MUST run this protocol to create a comprehensive project fingerprint.** This applies to both greenfield and brownfield projects, adapting depth based on what exists.
 
 ## When to Run
 
-- **First time** Forgewright is invoked in a project (no `.forgewright/project-profile.json` exists)
+- **First time** Digital-Nervous is invoked in a project (no `.Digital-Nervous/project-profile.json` exists)
 - **On explicit `/onboard`** command from user
 - **When manual changes detected** (session-lifecycle protocol detects drift)
-- **Skip if** `.forgewright/project-profile.json` exists AND is less than 24 hours old AND no git changes since last onboarding
+- **Skip if** `.Digital-Nervous/project-profile.json` exists AND is less than 24 hours old AND no git changes since last onboarding
 
 ## Phase 1 — Fingerprint (Parallel Scans)
 
@@ -87,7 +87,7 @@ Do NOT silently skip. Pause and present a clear explanation using notify_user:
 notify_user:
   "💡 Code Intelligence chưa được cài đặt
 
-   Forgewright tích hợp sẵn tính năng Code Intelligence — giúp AI
+   Digital-Nervous tích hợp sẵn tính năng Code Intelligence — giúp AI
    hiểu được mối quan hệ giữa các file, function, class trong dự án.
 
    Lợi ích:
@@ -134,7 +134,7 @@ notify_user:
 
 Generates a project-specific MCP server that exposes codebase intelligence to any MCP-compatible client. Powered by `mcp-generator` skill.
 
-**Auto-skip if:** `code_intelligence.indexed == false`, OR `.forgewright/mcp-server/` exists and is <24h old.
+**Auto-skip if:** `code_intelligence.indexed == false`, OR `.Digital-Nervous/mcp-server/` exists and is <24h old.
 
 ```
 1. Check prerequisites:
@@ -146,16 +146,16 @@ Generates a project-specific MCP server that exposes codebase intelligence to an
 2. Generate MCP server:
    - Read project-profile.json for project name, language, framework
    - Detect available commands (test, lint, build) from profile
-   - Render templates from skills/mcp-generator/templates/ into .forgewright/mcp-server/
+   - Render templates from skills/mcp-generator/templates/ into .Digital-Nervous/mcp-server/
    - Replace Handlebars variables: {{projectName}}, {{testCommand}}, etc.
 
 3. Install dependencies:
-   cd .forgewright/mcp-server/ && npm install --silent
+   cd .Digital-Nervous/mcp-server/ && npm install --silent
 
 4. Populate profile:
    mcp_server: {
      generated: true,
-     path: ".forgewright/mcp-server/",
+     path: ".Digital-Nervous/mcp-server/",
      tools_count: N,       // count of enabled tools
      resources_count: N,    // count of enabled resources
      prompts_count: 3,
@@ -171,7 +171,7 @@ Generates a project-specific MCP server that exposes codebase intelligence to an
 
 **Error handling:** If MCP generation fails, mark as `mcp_server.generated = false` — never fail onboarding because of MCP. Log the error for debugging.
 
-**Output:** Generate `.forgewright/mcp-server/` directory and populate `mcp_server` section of project profile. See `skills/mcp-generator/SKILL.md` for full details.
+**Output:** Generate `.Digital-Nervous/mcp-server/` directory and populate `mcp_server` section of project profile. See `skills/mcp-generator/SKILL.md` for full details.
 
 ## Phase 2 — Health Check
 
@@ -230,7 +230,7 @@ Read 3-5 representative source files to detect coding patterns:
    - Low (<50%) → note as inconsistent, don't enforce
 ```
 
-**Output:** Write `patterns` section to project profile AND `.forgewright/code-conventions.md` (human-readable).
+**Output:** Write `patterns` section to project profile AND `.Digital-Nervous/code-conventions.md` (human-readable).
 
 ## Phase 4 — Risk Assessment
 
@@ -265,7 +265,7 @@ Read 3-5 representative source files to detect coding patterns:
 
 ## Phase 5 — Profile Generation
 
-Write `.forgewright/project-profile.json`:
+Write `.Digital-Nervous/project-profile.json`:
 
 ```json
 {
@@ -312,7 +312,7 @@ Write `.forgewright/project-profile.json`:
     "protected_paths": [".env*", "prisma/migrations/**", ".github/**"],
     "protected_branches": ["main", "production"]
   },
-  "forgewright": {
+  "Digital-Nervous": {
     "version": "7.0.0",
     "onboarded_at": "ISO-8601",
     "last_session": null,
@@ -321,9 +321,9 @@ Write `.forgewright/project-profile.json`:
 }
 ```
 
-Also write `.forgewright/code-conventions.md` — human-readable version of patterns section for developers.
+Also write `.Digital-Nervous/code-conventions.md` — human-readable version of patterns section for developers.
 
-Also ensure `.forgewright/.gitignore` is created:
+Also ensure `.Digital-Nervous/.gitignore` is created:
 
 ```
 # Session-specific (never commit)
@@ -352,7 +352,7 @@ Tests:     142 passing (78% coverage)
 Health:    ✓ Build OK | ⚠ 23 lint errors | ⚠ 1 CVE (medium)
 Risk:      4.1/10 (low-moderate)
 Patterns:  camelCase, feature-based, Zustand
-Profile:   .forgewright/project-profile.json
+Profile:   .Digital-Nervous/project-profile.json
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ```
 

@@ -1,4 +1,4 @@
-# Middleware 08 — TaskTracking
+﻿# Middleware 08 — TaskTracking
 
 > **Source:** `skills/_shared/protocols/session-lifecycle.md` §Hooks
 > **Hook:** `after_skill()`
@@ -7,7 +7,7 @@
 ## Execution
 
 ```
-1. Update .forgewright/task.md with skill completion status
+1. Update .Digital-Nervous/task.md with skill completion status
 
 2. Emit session lifecycle hook:
    TASK_COMPLETE(task_id, name, status, summary)
