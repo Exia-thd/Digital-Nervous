@@ -1,0 +1,21 @@
+{
+  "name": "forgewright",
+  "version": "7.8.1",
+  "description": "Production-Grade AI Pipeline Orchestrator — 52 skills, 19 modes",
+  "private": true,
+  "scripts": {
+    "prepare": "husky install",
+    "build": "npm run build:forgenexus",
+    "build:forgenexus": "cd forgenexus && npm run build",
+    "test": "npm run test:forgenexus",
+    "test:forgenexus": "cd forgenexus && npm test",
+    "lint:forgenexus": "cd forgenexus && npm run lint",
+    "format:forgenexus": "cd forgenexus && npm run format:write",
+    "build:cli": "cd src/cli && npm install && npm run build",
+    "dev:cli": "cd src/cli && npm run dev",
+    "typecheck:cli": "cd src/cli && npx tsc --noEmit"
+  },
+  "devDependencies": {
+    "husky": "^9.1.7"
+  }
+}
