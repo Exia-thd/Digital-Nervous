@@ -57,7 +57,18 @@ jobs:
           cache: 'npm'
 
       - name: Install ForgeNexus
-        run: npm install -g forgenexus
+        run: |
+        if [ -d "forgenexus" ]; then
+          cd forgenexus
+        elif [ -d "Digital-Nervous/forgenexus" ]; then
+          cd Digital-Nervous/forgenexus
+        else
+          echo "Error: forgenexus directory not found. Make sure Digital-Nervous is checked out."
+          exit 1
+        fi
+        npm ci
+        npm run build
+        npm link
 
       - name: Setup environment
         id: env
@@ -191,7 +202,18 @@ jobs:
           cache: 'npm'
 
       - name: Install ForgeNexus
-        run: npm install -g forgenexus
+        run: |
+        if [ -d "forgenexus" ]; then
+          cd forgenexus
+        elif [ -d "Digital-Nervous/forgenexus" ]; then
+          cd Digital-Nervous/forgenexus
+        else
+          echo "Error: forgenexus directory not found. Make sure Digital-Nervous is checked out."
+          exit 1
+        fi
+        npm ci
+        npm run build
+        npm link
 
       - name: Analyze Symbol Impact
         id: impact
@@ -251,7 +273,18 @@ jobs:
           cache: 'npm'
 
       - name: Install ForgeNexus
-        run: npm install -g forgenexus
+        run: |
+        if [ -d "forgenexus" ]; then
+          cd forgenexus
+        elif [ -d "Digital-Nervous/forgenexus" ]; then
+          cd Digital-Nervous/forgenexus
+        else
+          echo "Error: forgenexus directory not found. Make sure Digital-Nervous is checked out."
+          exit 1
+        fi
+        npm ci
+        npm run build
+        npm link
 
       - name: Analyze Cross-Repo Dependencies
         id: deps

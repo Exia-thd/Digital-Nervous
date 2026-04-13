@@ -96,7 +96,7 @@ notify_user:
    • Debug nhanh hơn — trace ngược chuỗi gọi để tìm root cause
 
    Cài đặt rất đơn giản (yêu cầu Node.js):
-   npm install -g forgenexus
+   cd ./forgenexus && npm ci && npm run build && npm link
 
    Bạn muốn làm gì?"
   Options:
@@ -107,7 +107,7 @@ notify_user:
 ```
 
 **If user selects "Tôi sẽ cài ngay":**
-- Wait for user to run `npm install -g forgenexus`
+- Wait for user to run `cd ./forgenexus && npm ci && npm run build && npm link`
 - Verify: `command -v forgenexus` → if found, proceed to step 2
 - If still not found, guide troubleshooting (PATH issues, permissions)
 
@@ -123,7 +123,7 @@ notify_user:
   Windows: Download from https://nodejs.org (LTS version)
   Linux:   curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash - && sudo apt install -y nodejs
   ```
-- After Node.js installed, guide: `npm install -g forgenexus`
+- After Node.js installed, guide: `cd ./forgenexus && npm ci && npm run build && npm link`
 - Then proceed to step 2
 
 **Error handling:** If `forgenexus analyze` fails (timeout, parse error, etc.), mark as `code_intelligence.indexed = false` — never fail onboarding because of Code Intelligence. Log the error for debugging.

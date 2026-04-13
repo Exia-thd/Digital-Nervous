@@ -214,7 +214,7 @@ run_forgenexus_analyze() {
     if npx --yes forgenexus analyze "$TARGET_PROJECT" > /dev/null 2>&1; then
         log_ok "ForgeNexus analysis complete"
     else
-        log_warn "ForgeNexus analysis failed. Install with: npm install -g forgenexus"
+        log_warn "ForgeNexus analysis failed. Install with: cd ./forgenexus && npm ci && npm run build && npm link"
     fi
 }
 

@@ -215,7 +215,7 @@ Chạy `forgenexus analyze` trong CI trước:
 ```yaml
 - name: Setup ForgeNexus
   run: |
-    npm install -g forgenexus
+    npm ci --prefix forgenexus && npm run build --prefix forgenexus && npm link --prefix forgenexus
     forgenexus analyze --no-incremental
 ```
 
