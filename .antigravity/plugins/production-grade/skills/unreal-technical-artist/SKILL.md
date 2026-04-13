@@ -1,4 +1,4 @@
-﻿---
+---
 name: unreal-technical-artist
 description: >
   [production-grade internal] Creates Unreal Engine visual systems — Niagara VFX,
@@ -6,7 +6,7 @@ description: >
   and art pipeline automation.
   Routed via the production-grade orchestrator (Game Build mode).
 version: 1.0.0
-author: Digital-Nervous
+author: forgewright
 tags: [unreal, niagara, materials, lumen, nanite, vfx, shaders, tech-art]
 ---
 

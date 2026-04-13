@@ -1,4 +1,4 @@
-﻿---
+---
 name: threejs-engineer
 description: >
   [production-grade internal] Builds 3D web games and interactive experiences with Three.js —
@@ -7,7 +7,7 @@ description: >
   Implements gameplay systems from Game Designer specs.
   Routed via the production-grade orchestrator (Game Build mode).
 version: 1.0.0
-author: Digital-Nervous
+author: forgewright
 tags: [threejs, 3d, webgpu, webgl, web-game, typescript, javascript, ecs, game-development, rapier, cannon-es]
 ---
 
@@ -23,13 +23,13 @@ tags: [threejs, 3d, webgpu, webgl, web-game, typescript, javascript, ecs, game-d
 !`cat skills/_shared/protocols/quality-gate.md 2>/dev/null || true`
 !`cat skills/_shared/protocols/task-validator.md 2>/dev/null || true`
 !`cat .production-grade.yaml 2>/dev/null || echo "No config — using defaults"`
-!`cat .Digital-Nervous/codebase-context.md 2>/dev/null || true`
+!`cat .forgewright/codebase-context.md 2>/dev/null || true`
 
 **Fallback (if protocols not loaded):** Use notify_user with options (never open-ended), "Chat about this" last, recommended first. Work continuously. Print progress constantly.
 
 ## Aesthetic Foundation
 
-3D web game aesthetics must be deliberate — the browser is a constrained canvas. This skill references **Digital-Nervous Game Visual Foundations** (`skills/_shared/game-visual-foundations.md`) for:
+3D web game aesthetics must be deliberate — the browser is a constrained canvas. This skill references **Forgewright Game Visual Foundations** (`skills/_shared/game-visual-foundations.md`) for:
 
 - **3D lighting aesthetics** (color temperature, emotional lighting, PBR semantics)
 - **3D composition** (camera placement, leading lines, visual hierarchy in 3D space)
@@ -39,7 +39,7 @@ tags: [threejs, 3d, webgpu, webgl, web-game, typescript, javascript, ecs, game-d
 
 ## Engagement Mode
 
-!`cat .Digital-Nervous/settings.md 2>/dev/null || echo "No settings — using Standard"`
+!`cat .forgewright/settings.md 2>/dev/null || echo "No settings — using Standard"`
 
 | Mode | Behavior |
 |------|---------|
@@ -50,7 +50,7 @@ tags: [threejs, 3d, webgpu, webgl, web-game, typescript, javascript, ecs, game-d
 
 ## Brownfield Awareness
 
-If `.Digital-Nervous/codebase-context.md` exists and mode is `brownfield`:
+If `.forgewright/codebase-context.md` exists and mode is `brownfield`:
 - **READ existing Three.js project** — detect renderer type, physics library, existing ECS setup
 - **MATCH existing patterns** — if they use Object3D hierarchy, don't force ECS. Migrate gradually.
 - **ADD alongside existing systems** — don't restructure their scene graph
@@ -68,9 +68,9 @@ This skill runs AFTER the Game Designer (GDD + mechanic specs) in Game Build mod
 
 | Input | Status | What Three.js Engineer Needs |
 |-------|--------|----------------------------|
-| `.Digital-Nervous/game-designer/` | Critical | GDD, mechanic specs, state machines, balance tables, 3D interaction design |
-| `.Digital-Nervous/game-designer/mechanics/` | Critical | Per-mechanic specs with timing, physics interactions, camera design |
-| `.Digital-Nervous/game-designer/economy/` | Degraded | Economy design for game data |
+| `.forgewright/game-designer/` | Critical | GDD, mechanic specs, state machines, balance tables, 3D interaction design |
+| `.forgewright/game-designer/mechanics/` | Critical | Per-mechanic specs with timing, physics interactions, camera design |
+| `.forgewright/game-designer/economy/` | Degraded | Economy design for game data |
 | `skills/game-asset-vfx/SKILL.md` | Degraded | VFX patterns, visual feedback spec |
 | `skills/game-audio-engineer/SKILL.md` | Degraded | Spatial audio integration |
 
@@ -215,7 +215,7 @@ assets/
 ├── audio/                         # Spatial audio files
 └── shaders/                       # GLSL shader files
 
-.Digital-Nervous/threejs-engineer/
+.forgewright/threejs-engineer/
 ├── architecture.md                # ECS decisions, system execution order
 ├── physics-config.md             # Rapier/cannon-es world configuration
 ├── performance-notes.md          # Draw call budgets, LOD setup, profiling

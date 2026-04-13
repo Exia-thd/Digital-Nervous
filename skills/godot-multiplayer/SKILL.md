@@ -1,4 +1,4 @@
-﻿---
+---
 name: godot-multiplayer
 description: >
   [production-grade internal] Implements Godot multiplayer networking —
@@ -6,7 +6,7 @@ description: >
   server-authoritative logic, client prediction, and lobby systems.
   Routed via the production-grade orchestrator (Game Build mode).
 version: 1.0.0
-author: Digital-Nervous
+author: forgewright
 tags: [godot, multiplayer, networking, enet, websocket, prediction, replication]
 ---
 
@@ -25,7 +25,7 @@ tags: [godot, multiplayer, networking, enet, websocket, prediction, replication]
 
 ## Aesthetic Foundation
 
-Multiplayer games need consistent visual language across all players. This skill references **Digital-Nervous Game Visual Foundations** (`skills/_shared/game-visual-foundations.md`) for:
+Multiplayer games need consistent visual language across all players. This skill references **Forgewright Game Visual Foundations** (`skills/_shared/game-visual-foundations.md`) for:
 
 - **Visual consistency** (same visual style across all connected clients)
 

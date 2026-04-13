@@ -1,4 +1,4 @@
-﻿# Middleware 01 — SessionData
+# Middleware 01 — SessionData
 
 > **Source:** `skills/_shared/protocols/session-lifecycle.md` §Steps 1-3
 > **Hook:** `before_skill()`
@@ -7,12 +7,12 @@
 ## Execution
 
 ```
-1. Load .Digital-Nervous/project-profile.json
+1. Load .forgewright/project-profile.json
    → If exists and fresh (<24h): use cached fingerprint
    → If stale: re-run health check only
    → If missing: run full project onboarding
 
-2. Load .Digital-Nervous/session-log.json
+2. Load .forgewright/session-log.json
    → If interrupted session: offer resume via notify_user
    → If completed: log summary, continue to new request
    → If first session: continue normally
@@ -22,7 +22,7 @@
    → If structural changes detected: re-run onboarding fingerprint + patterns
 
 4. Display quality trend (if history exists)
-   → Read .Digital-Nervous/quality-history.json → show trend of last 5 sessions
+   → Read .forgewright/quality-history.json → show trend of last 5 sessions
 ```
 
 ## Outputs

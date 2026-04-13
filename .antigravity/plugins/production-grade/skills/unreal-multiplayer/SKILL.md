@@ -1,4 +1,4 @@
-﻿---
+---
 name: unreal-multiplayer
 description: >
   [production-grade internal] Implements Unreal Engine multiplayer — dedicated
@@ -6,7 +6,7 @@ description: >
   and session management.
   Routed via the production-grade orchestrator (Game Build mode).
 version: 1.0.0
-author: Digital-Nervous
+author: forgewright
 tags: [unreal, multiplayer, replication, dedicated-server, networking, gas, prediction]
 ---
 

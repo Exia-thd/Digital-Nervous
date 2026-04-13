@@ -1,4 +1,4 @@
-﻿# Phase 5: Local Dev Environment
+# Phase 5: Local Dev Environment
 
 ## Objective
 
@@ -169,10 +169,10 @@ docker-compose.dev.yml             # Full local dev stack
 Makefile                           # Root-level dev commands
 ```
 
-### Workspace Output (`.Digital-Nervous/software-engineer/`)
+### Workspace Output (`.forgewright/software-engineer/`)
 
 ```
-.Digital-Nervous/software-engineer/
+.forgewright/software-engineer/
 ├── implementation-plan.md
 ├── progress.md
 └── logs/

@@ -1,13 +1,13 @@
-﻿# Middleware 03 — SkillRegistry
+# Middleware 03 — SkillRegistry
 
-> **Source:** `.Digital-Nervous/skills-config.json`
+> **Source:** `.forgewright/skills-config.json`
 > **Hook:** `before_skill()`
 > **Purpose:** Progressive skill discovery — load only skills relevant to classified mode
 
 ## Execution
 
 ```
-1. Read .Digital-Nervous/skills-config.json (mode → skill mapping)
+1. Read .forgewright/skills-config.json (mode → skill mapping)
 
 2. Load only skills needed for current mode:
    Review mode   → 1 skill  (~3KB)

@@ -1,4 +1,4 @@
-﻿---
+---
 name: production-grade
 description: >
   Orchestrates software engineering work — build apps, add features,
@@ -12,14 +12,14 @@ description: >
 
 !`git status 2>/dev/null || echo "No git repo detected"`
 !`cat CLAUDE.md 2>/dev/null || echo "No CLAUDE.md found"`
-!`ls .Digital-Nervous/ 2>/dev/null || echo "No existing workspace"`
+!`ls .forgewright/ 2>/dev/null || echo "No existing workspace"`
 !`cat .production-grade.yaml 2>/dev/null || echo "No config file — defaults apply"`
 
 ## Overview
 
 Adaptive meta-skill orchestrator for all software engineering work. Analyzes the user's request, identifies which skills are needed, builds a minimal task graph, and executes — from a single code review to a full 17-skill greenfield build.
 
-**52 skills, one orchestrator.** The orchestrator routes to the right skills based on what the user actually needs. No forced full-pipeline execution for everyday tasks.
+**55 skills, one orchestrator.** The orchestrator routes to the right skills based on what the user actually needs. No forced full-pipeline execution for everyday tasks.
 
 **All skills are bundled in this plugin. Single install, everything included.**
 
@@ -51,7 +51,7 @@ Post-Skill: ⑥ QualityGate → ⑦ BrownfieldSafety → ⑧ TaskTracking → �
 
 ### Progressive Skill Loading (v8.0 — DeerFlow Pattern)
 
-Skills are loaded on-demand based on classified mode. Read `.Digital-Nervous/skills-config.json` for the mode→skill mapping.
+Skills are loaded on-demand based on classified mode. Read `.forgewright/skills-config.json` for the mode→skill mapping.
 
 ```
 Instead of loading all 52 skill descriptions (~66KB), only load skills relevant to the mode:
@@ -97,13 +97,84 @@ If detected:
 
 If not detected → proceed normally (no changes).
 
+## Step 0 — Request Interpretation (MANDATORY)
+
+**⚠️ DO NOT SKIP THIS STEP. EVER.**
+
+Before ANY skill execution, interpret the user's request:
+
+1. **Extract 9 dimensions** (from chat-interpreter):
+   - Task: What they actually want
+   - Target tool: Forgewright mode
+   - Output format: What they expect
+   - Constraints: Explicit limits
+   - Input: What they're providing
+   - Context: Prior decisions, project state
+   - Audience: Who uses output
+   - Success criteria: How they know it's done
+   - Examples: Reference systems
+
+2. **Scan for vague patterns** (from credit-killing patterns):
+   - Vague verb ("help me", "make it", "do something") → ask specifics
+   - Two tasks in one → ask priority
+   - No success criteria → derive and confirm
+   - Emotional description → extract technical fault
+   - Assumed knowledge → inject context
+   - No project context → pull from project-profile.json
+   - No scope boundary → ask what's in/out
+   - No file path → ask for location
+
+3. **Clarification Rules:**
+   - **MAX 3 clarifying questions** — pick the 3 most critical
+   - **If HIGH confidence**: Skip clarification, generate structured request
+   - **If MEDIUM/LOW confidence**: Ask before proceeding
+   - **NEVER start executing** if request is unclear
+   - **Use defaults** for everything else (don't over-ask)
+
+4. **Generate Structured Request:**
+   ```
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   🔍 INTERPRETED REQUEST
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   Mode: [detected]
+   Confidence: [HIGH/MEDIUM/LOW]
+
+   Intent: "[original message quoted]"
+
+   What you want:
+     [1-sentence clear description]
+
+   Key decisions made:
+     [Defaults applied with reasoning]
+
+   Scope:
+     ✓ [In scope]
+     ✗ [Out of scope]
+
+   Success criteria:
+     [How we know it's done]
+
+   Missing (will be handled by PM):
+     [Max 3 items]
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   ```
+
 **Step 1 — Analyze the request:**
 
-Read `.Digital-Nervous/subagent-context/INTERPRETED_REQUEST.md` (from chat-interpreter Step -1) for the authoritative request analysis. The chat-interpreter has already performed 9-dimension extraction and mode detection.
+Read `.forgewright/subagent-context/INTERPRETED_REQUEST.md` (from chat-interpreter Step -1) for the authoritative request analysis. The chat-interpreter has already performed 9-dimension extraction and mode detection.
 
 If `confidence: HIGH` → use the detected mode directly, skip the classification table.
 If `confidence: MEDIUM` → present 2 most likely modes to the user.
 If `confidence: LOW` → present 3 most likely modes to the user.
+
+**⚠️ ENFORCEMENT: If request is unclear, STOP and ask. DO NOT start executing.**
+
+The following requests MUST trigger clarification:
+- Contains vague verbs: "help me", "make it", "do something", "fix it"
+- No specific scope: "build an app", "add a feature", "update the system"
+- Two or more tasks in one: "explain AND build", "fix AND test"
+- No success criteria: "make it better", "improve it"
+- No file/location specified: "update login", "add auth"
 
 Override the detected mode only if the user's intent clearly differs from what was interpreted. Otherwise, trust the chat-interpreter's analysis.
 
@@ -121,7 +192,7 @@ Override the detected mode only if the user's intent clearly differs from what w
 | **Architect** | "design", "architecture", "API design", "data model", "tech stack", "how should I structure" | Solution Architect |
 | **Document** | "document", "write docs", "API docs", "README" | Technical Writer |
 | **Explore** | "explain", "understand", "help me think", "what should I", "I'm not sure" | Polymath |
-| **Research** | "research", "deep research", "find sources", "analyze topic", "investigate [domain]" | Polymath (research mode) + NotebookLM MCP (optional) + crawl4ai (optional, for JS-rendered sites) |
+| **Research** | "research", "deep research", "find sources", "analyze topic", "investigate [domain]", "NotebookLM", "study materials", "generate quiz" | NotebookLM Researcher → Polymath (research mode) + NotebookLM MCP (primary) |
 | **Optimize** | "performance", "slow", "optimize", "scale", "reliability" | Performance Engineer + SRE + Code Reviewer |
 | **Design** | "design UI", "wireframes", "design system", "color palette", "UX flow" | UX Researcher → UI Designer |
 | **Mobile** | "mobile app", "React Native", "Flutter", "iOS", "Android" | BA (if gaps detected) → Mobile Engineer (+ PM scoped, Architect scoped if needed) |
@@ -146,9 +217,21 @@ Here's my plan:
 Scope: [light / moderate / heavy]
 
 1. **Looks good — start (Recommended)** — Execute this plan
-2. **I want the full production-grade pipeline** — Run all 52 skills, 6 phases, 3 gates
+2. **I want the full production-grade pipeline** — Run all 55 skills, 6 phases, 3 gates
 3. **Adjust the plan** — Add or remove skills from the plan
 4. **Chat about this** — Free-form input
+```
+
+**Large Feature Mode** (Feature with 3+ components, or any request with complexity): Create planning document on antigravity BEFORE starting:
+
+```
+antigravity/
+└── planning/
+    └── [feature-name]/
+        ├── PLAN.md          # Main planning document
+        ├── SCOPE.md         # Scope definition
+        ├── ARCHITECTURE.md  # Technical architecture (if needed)
+        └── TASKS.md         # Task breakdown
 ```
 
 **Full Build mode**: Always proceed to the Full Build Pipeline section below.
@@ -187,22 +270,142 @@ All skills MUST follow the sensitive file protection protocol:
 
 ## Plan Quality Loop
 
-**ALL skills** MUST run the plan quality loop before doing any work. No exceptions — every skill plans first, scores, improves until ≥ 8.0:
+**ALL skills** MUST run the plan quality loop before doing any work. No exceptions — every skill plans first, scores, improves until ≥ 9.0:
 
-!`cat skills/_shared/protocols/plan-quality-loop.md 2>/dev/null || echo "Protocol not found — apply defaults: every skill must plan first, score against 8 criteria, threshold 8.0/10, improve loop with research + skill self-improvement"`
+!`cat skills/_shared/protocols/plan-quality-loop.md 2>/dev/null || echo "Protocol not found — apply defaults: every skill must plan first, score against 8 criteria, threshold 9.0/10, improve loop with research + skill self-improvement"`
+
+## Execution Blocker Loop
+
+**ANY time a blocker is encountered during implementation, MUST run this loop BEFORE asking user:**
+
+!`cat skills/_shared/protocols/execution-blocker-loop.md 2>/dev/null || echo "Protocol not found — apply defaults: assess → research (web/codebase/docs) → synthesize → attempt → verify → improve skill. Max 3 cycles."`
+
+**⚠️ NEVER give up after 1 failed attempt. ALWAYS research first.**
 
 ## Mode Execution (Non-Full-Build)
 
 All modes share these behaviors:
-- Bootstrap workspace: `mkdir -p skills/_shared/protocols/ .Digital-Nervous/`
+- Bootstrap workspace: `mkdir -p skills/_shared/protocols/ .forgewright/`
 - Write shared protocols (same as Full Build step 3)
 - Read `.production-grade.yaml` for path overrides
 - Read existing workspace state if present
 - Apply coding-level adaptation from `.production-grade.yaml` (see above)
 - Apply sensitive file protection protocol for all file operations
-- **Run plan quality loop** on EVERY skill invocation — plan first, score ≥ 8.0 before any work begins
+- **Run plan quality loop** on EVERY skill invocation — plan first, score ≥ 9.0 before any work begins
 - **Asynchronous Heartbeat:** Periodically emit human-readable status updates (e.g., "Running tests...", "Applying self-healing fix 2/5...") so the user knows the AI is working and hasn't frozen.
+- **⚠️ QA AUTO-RUN (MANDATORY):** After any code change (build, fix, feature), ALWAYS run QA/Testing WITHOUT waiting for user prompt. The sequence is: BUILD → TEST → VERIFY → DONE. Never finish without testing.
+- **Antigravity Planning (for large features):** Features with 3+ components MUST use antigravity planning structure BEFORE starting implementation. Create `antigravity/planning/[feature-name]/` with PLAN.md, SCOPE.md, ARCHITECTURE.md, TASKS.md files.
 - Engagement mode: ask ONLY if mode involves 3+ skills. For 1-2 skill modes, use Standard engagement + Sequential execution.
+
+## ⚠️ Self-Check Before Finishing (MANDATORY)
+
+**BEFORE declaring a task complete, verify ALL of the following:**
+
+| # | Check | Action if Failed |
+|---|-------|-----------------|
+| 1 | **Request interpreted?** | If Step 0 wasn't completed, go back and do it |
+| 2 | **Plan scored ≥ 9.0?** | If < 9.0, improve plan before proceeding |
+| 3 | **Code changes made?** | If yes → run QA tests |
+| 4 | **Tests written?** | If code changed → write tests |
+| 5 | **Tests passed?** | If tests exist → run them |
+| 6 | **forgenexus_impact run?** | If editing symbols → run impact analysis |
+| 7 | **Scope respected?** | If scope creep detected → flag to user |
+| 8 | **User approval obtained?** | If gate exists → wait for approval |
+
+**⚠️ NEVER finish a task without completing checks 3-5 if code was changed.**
+
+### QA Test Sequence (MANDATORY after any code change)
+
+```
+Code Changed?
+    ↓ YES
+Run QA Engineer (Express mode)
+    ↓
+Write tests (unit → integration → e2e)
+    ↓
+Run tests and verify ALL pass
+    ↓
+Report results
+    ↓
+Done ✓
+```
+
+**Do NOT wait for user to ask for tests. Run them automatically.**
+
+## Antigravity Planning System
+
+For large features (3+ components), use the Antigravity Planning System to structure your work.
+
+### When to Use Antigravity
+
+| Feature Type | Antigravity? |
+|--------------|--------------|
+| Single file change | ❌ No |
+| Small (1-2 components) | ❌ No |
+| Medium (3+ components) | ✅ Yes |
+| Full Build / Game Build | ✅ Required |
+| Multi-team coordination | ✅ Required |
+| New integration (auth, payment) | ✅ Yes |
+
+### Antigravity Folder Structure
+
+```
+antigravity/
+└── planning/
+    └── [feature-name]/
+        ├── PLAN.md          # Main planning document
+        ├── SCOPE.md         # Scope definition
+        ├── ARCHITECTURE.md   # Technical architecture
+        ├── TASKS.md         # Task breakdown
+        ├── DECISIONS.md     # Architecture decisions log
+        └── RETROSPECTIVE.md # Post-completion retrospective
+```
+
+### Quick Commands
+
+```bash
+# Create new feature plan
+./scripts/antigravity/antigravity.sh new <feature-name>
+
+# Check status
+./scripts/antigravity/antigravity.sh status
+
+# Show progress
+./scripts/antigravity/antigravity.sh progress <feature>
+
+# Archive completed
+./scripts/antigravity/antigravity.sh archive <feature>
+```
+
+### Feature Plan Template
+
+Each feature plan must include:
+
+| File | Required? | Content |
+|------|-----------|---------|
+| `PLAN.md` | ✅ Yes | Overview, goals, key decisions, timeline |
+| `SCOPE.md` | ✅ Yes | In/out scope, constraints, risks, acceptance criteria |
+| `ARCHITECTURE.md` | ⚠️ If complex | Component diagram, data models, API design |
+| `TASKS.md` | ✅ Yes | Task breakdown by priority, estimates |
+| `DECISIONS.md` | ⚠️ Recommended | Architecture Decision Records |
+| `RETROSPECTIVE.md` | ⚠️ After completion | Lessons learned, metrics |
+
+### Plan Quality Criteria
+
+Each feature plan must score ≥ 9.0/10 on:
+
+| Criteria | Description |
+|----------|-------------|
+| Clarity | Scope clearly defined |
+| Completeness | Enough info to implement |
+| Feasibility | Achievable in timeframe |
+| Risk Awareness | Risks identified |
+| Testability | Clear acceptance criteria |
+| Maintainability | Long-term viable |
+| Priority | Impact vs effort clear |
+| Dependencies | External deps identified |
+
+See `antigravity/README.md` for full documentation.
 
 ### Feature Mode
 
@@ -213,10 +416,12 @@ Add a feature to an existing codebase. Lightweight DEFINE → BUILD → TEST.
 3. **PM (Express depth)** — 2-3 questions to scope the feature. Write a mini-BRD (user stories + acceptance criteria for this feature only). If BA ran, use `ba-package.md` to reduce questions.
 4. **Architect (scoped)** — design how this feature fits the existing architecture. New endpoints, schema changes, component additions. NOT a full system redesign.
 5. **Build** — Software Engineer and/or Frontend Engineer implement the feature
-6. **Test** — QA writes and runs tests for the new feature
+6. **⚠️ Test (AUTO-RUN)** — **Immediately** write and run tests for the new feature. **DO NOT WAIT for user to ask.** Sequence: Build → Test → Verify → Done.
 7. **Optional: Review** — Code Reviewer checks the new code against existing patterns
 
 **1 gate:** After PM scoping (step 3), confirm scope before building.
+
+**⚠️ IMPORTANT:** Step 6 (Test) is MANDATORY. After building, ALWAYS run tests without waiting for user prompt.
 
 ### Harden Mode
 
@@ -292,20 +497,27 @@ Thinking partner. Single skill.
 
 ### Research Mode
 
-Deep, grounded research on any topic. Polymath + NotebookLM MCP (optional) + crawl4ai (optional).
+Deep, grounded research on any topic. **NotebookLM Researcher is the primary skill** (v0.5.19, 35+ tools: research, studio, audio, quiz, flashcards, slides, cross-notebook, batch, pipelines, tags). Polymath + crawl4ai are enhancement layers.
 
-1. Read `skills/polymath/SKILL.md` and invoke in **research mode**
-2. **Phase 1 — Web Discovery:** Polymath runs broad `search_web` sweeps (3-5 parallel) to gather relevant URLs and initial understanding
-3. **Phase 1.5 — Deep Crawling (optional):** If crawl4ai is installed and `read_url_content` fails on key URLs (JS-rendered, anti-bot), use Polymath's Crawl4AI Deep Research pattern. Security: library-only, URL validation, output sanitization. See `skills/web-scraper/SKILL.md`.
-4. **Phase 2 — NotebookLM Enhancement (optional):**
-   - Check if NotebookLM MCP tools are available (`server_info()`)
-   - If available: create notebook → add source URLs → run deep research → iterative querying → generate report
-   - If unavailable: skip — Polymath synthesizes from web search alone (still effective)
-   - Follow `workflows/deep-research.md` for detailed steps
-5. **Phase 3 — Synthesize:** Combine all findings into grounded research report with citations, trade-offs, and recommendations
-6. When ready, offer handoff to relevant mode (Feature, Architect, Full Build, etc.)
+1. Read `skills/notebooklm-researcher/SKILL.md` and follow its instructions
+2. Check authentication: `nlm auth status`
+3. Check for existing notebooks before creating new: `nlm notebook list`
+4. **Phase 1 — Discovery:** Identify if this is a new topic (→ create notebook) or existing notebook (→ add sources)
+5. **Phase 2 — Source Ingestion:** Add source URLs, text notes, or YouTube videos. Use `nlm research start --mode deep` for automatic web discovery
+6. **Phase 3 — NotebookLM Synthesis:** Use `notebook describe`, `notebook query`, `cross query` to synthesize findings
+7. **Phase 4 — Content Generation:** Generate study materials: audio (podcast), report (briefing doc/study guide), quiz, flashcards, slides, infographic
+8. **Phase 5 — Cross-Notebook (if needed):** Query across multiple notebooks for comparative research
+9. **Phase 6 — Handoff:** Format findings as research report with citations, hand off to relevant mode
 
-**0 gates.** Polymath manages dialogue. NotebookLM and crawl4ai are enhancement layers, not requirements.
+**NotebookLM Capabilities (v0.5.19):**
+- 35+ MCP tools: notebook, source, research, studio, audio, video, report, quiz, flashcards, mindmap, slides, infographic, data-table, download, export, chat, share, batch, cross, pipeline, tag, alias, config, doctor, skill, setup
+- Batch operations: same action across multiple notebooks
+- Pipelines: `ingest-and-podcast`, `research-and-report`, `multi-format`
+- Drive sync: stale source detection and sync
+- Multi-profile: multiple Google accounts
+- Enterprise/Workspace support via `NOTEBOOKLM_BASE_URL`
+
+**0 gates.** NotebookLM Researcher manages dialogue.
 
 ### Optimize Mode
 
@@ -535,7 +747,7 @@ Invoke: /chat-interpreter [user's message]
 
 1. **9-Dimension Extraction** — silently extracts: Task, Target tool, Output format, Constraints, Input, Context, Audience, Success criteria, Examples
 
-2. **Mode Detection** — maps the request to Digital-Nervous's 19 modes with confidence level (HIGH/MEDIUM/LOW)
+2. **Mode Detection** — maps the request to Forgewright's 19 modes with confidence level (HIGH/MEDIUM/LOW)
 
 3. **Gap Detection** — identifies missing information (max 3 clarifying questions if needed)
 
@@ -583,7 +795,7 @@ After your answers, I'll route to the right pipeline.
 
 **Chat Interpretation Output:**
 ```
-.Digital-Nervous/subagent-context/INTERPRETED_REQUEST.md
+.forgewright/subagent-context/INTERPRETED_REQUEST.md
   ├── mode: [detected mode]
   ├── confidence: [HIGH/MEDIUM/LOW]
   ├── intent_summary: [1 sentence]
@@ -595,7 +807,82 @@ After your answers, I'll route to the right pipeline.
 ```
 
 **Reading the interpreted request before proceeding:**
-All subsequent pipeline steps read `.Digital-Nervous/subagent-context/INTERPRETED_REQUEST.md` as the authoritative source of user intent — not the raw chat message.
+All subsequent pipeline steps read `.forgewright/subagent-context/INTERPRETED_REQUEST.md` as the authoritative source of user intent — not the raw chat message.
+
+## Tool-Specific Routing (from prompt-master)
+
+When generating prompts for specific AI tools, use the appropriate template and technique based on the target tool. Reference files:
+
+| File | Read When |
+|------|-----------|
+| `skills/_shared/protocols/prompt-templates.md` | Need template structure for any tool category |
+| `skills/_shared/protocols/credit-killing-patterns.md` | Fixing bad prompts or diagnosing failures |
+| `skills/_shared/protocols/prompt-techniques.md` | Selecting safe techniques per model |
+
+### Code AI Tools
+
+| Tool | Template | Key Fixes |
+|------|----------|-----------|
+| **Claude Code** | ReAct + Stop Conditions (H) | Stop conditions MANDATORY, file scope, human review triggers |
+| **Cursor / Windsurf** | File-Scope (G) | Path + function + do-not-touch list + done_when |
+| **GitHub Copilot** | RTF (A) | Exact function signature as docstring |
+| **Cline (Claude Dev)** | ReAct + Stop Conditions (H) | File scope + approval gates + stop conditions |
+
+### Reasoning Models
+
+| Tool | Template | Key Fixes |
+|------|----------|-----------|
+| **Claude (claude.ai)** | RTF/CO-STAR (A/B) | XML tags, explicit length, no over-engineering |
+| **ChatGPT / GPT-5.x** | RTF/CO-STAR (A/B) | Output contract, verbosity control, compact structure |
+| **o3 / o4-mini** | Short clean only | **REMOVE CoT** — they think internally, under 200 words |
+| **Gemini 2.x/3** | CO-STAR (B) | Grounding anchors, citation rules, format locks |
+| **DeepSeek-R1** | Short clean only | **REMOVE CoT**, short instructions only |
+| **Qwen3 (thinking)** | Short clean only | Treat like o3 — no CoT scaffolding |
+| **Qwen3 (non-thinking)** | RTF (A) | Full structure, explicit format, role assignment |
+| **MiniMax** | RTF (A) | Temperature 0-1 only, structured output |
+
+### Local Models
+
+| Tool | Template | Key Fixes |
+|------|----------|-----------|
+| **Ollama** | RTF (A) | Ask which model first, shorter prompts, simple structure |
+| **Llama / Mistral** | RTF (A) | Shorter prompts, flat structure, explicit role |
+| **CodeLlama** | File-Scope (G) | Coding-focused prompts, shorter |
+
+### Image/Video AI
+
+| Tool | Template | Key Fixes |
+|------|----------|-----------|
+| **Midjourney** | Visual Descriptor (I) | Comma-separated, negative prompt, parameters |
+| **DALL-E 3** | Visual Descriptor (I) | Prose works, text exclusion, foreground/background |
+| **Stable Diffusion** | Visual Descriptor (I) | `(word:weight)` syntax, CFG 7-12, negative mandatory |
+| **ComfyUI** | ComfyUI (K) | Separate positive/negative, checkpoint-specific |
+| **Reference editing** | Reference Image (J) | Delta only, attach reference first |
+| **Sora / Runway** | Visual Descriptor (I) | Camera movement, duration, cinematic language |
+
+### Full-Stack Generators
+
+| Tool | Template | Key Fixes |
+|------|----------|-----------|
+| **Bolt / v0 / Lovable** | RISEN (C) | Stack + version + what NOT to scaffold |
+| **Figma Make** | RISEN (C) | Component names from Figma, scope boundaries |
+| **Google Stitch** | RISEN (C) | Interface goal over implementation, Material Design 3 |
+
+### Autonomous Agents
+
+| Tool | Template | Key Fixes |
+|------|----------|-----------|
+| **Devin / SWE-agent** | ReAct + Stop Conditions (H) | Starting state + target state + forbidden actions |
+| **Manus / Perplexity Computer** | RISEN (C) | End deliverable focus, permission scope |
+
+### Quick Reference
+
+- **Claude Code, Devin, AutoGPT** → Template H (ReAct + Stop Conditions)
+- **Cursor, Windsurf, Copilot** → Template G (File-Scope)
+- **o3, o4-mini, R1, Qwen3-thinking** → **REMOVE CoT**, keep under 200 words
+- **Claude, GPT-4o, Gemini** → CoT allowed, use Template E if logic-heavy
+- **Midjourney, SD, DALL-E** → Template I (Visual Descriptor), negative prompts
+- **Complex multi-step** → Template C (RISEN)
 
 ## Auto-Initialization Check
 
@@ -603,16 +890,16 @@ Run silently BEFORE any execution (all modes) to ensure project intelligence is 
 
 **Step 0.1 — MCP & ForgeNexus Check:**
 
-1. Check if the file `.Digital-Nervous/mcp-server/mcp-config.json` exists in the project root.
+1. Check if the file `.forgewright/mcp-server/mcp-config.json` exists in the project root.
 2. **If missing**, silently execute the following terminal commands to auto-initialize it:
    - `npx --yes forgenexus analyze`
-   - `bash <path-to-Digital-Nervous-submodule>/scripts/mcp-generate.sh`
+   - `bash <path-to-forgewright-submodule>/scripts/mcp-generate.sh`
    - Yield a brief message to the user: `ℹ Auto-initialized ForgeNexus index and MCP server (missing setup).`
 3. **If exists**, continue normally without doing anything.
 
 **Step 0.2 — System Requirements + Power Level Check (required):**
 
-Digital-Nervous requires **Node.js 18+** (ForgeNexus) and **Python 3** (mem0). Power level determines which tools are needed.
+Forgewright requires **Node.js 18+** (ForgeNexus) and **Python 3** (mem0). Power level determines which tools are needed.
 
 **Step 0.2.1 — System Requirements Check:**
 
@@ -621,8 +908,8 @@ Run these in parallel:
 ```
 node_check:  node --version 2>/dev/null | grep -oE '[0-9]+' | head -1
 python_check: python3 --version 2>/dev/null
-mem0_check:  [ -f .Digital-Nervous/memory.jsonl ] && echo "exists" || echo "missing"
-settings_check: [ -f .Digital-Nervous/settings.md ] && echo "exists" || echo "missing"
+mem0_check:  [ -f .forgewright/memory.jsonl ] && echo "exists" || echo "missing"
+settings_check: [ -f .forgewright/settings.md ] && echo "exists" || echo "missing"
 ```
 
 **Decision matrix:**
@@ -638,7 +925,7 @@ settings_check: [ -f .Digital-Nervous/settings.md ] && echo "exists" || echo "mi
 **If Node.js or Python missing (blocking):**
 ```
 notify_user:
-  "⚠️ Missing required tools for Digital-Nervous:
+  "⚠️ Missing required tools for Forgewright:
 
    Node.js 18+ required for: ForgeNexus code intelligence, MCP server
    Python 3.8+ required for: Cross-session memory (mem0)
@@ -657,10 +944,10 @@ notify_user:
 **If mem0 missing (non-blocking):**
 ```
 # Run silently
-bash <path-to-Digital-Nervous>/scripts/ensure-mem0.sh "$(pwd)" 2>/dev/null
+bash <path-to-forgewright>/scripts/ensure-mem0.sh "$(pwd)" 2>/dev/null
 
 # If failed (no python3)
-Log: "⚠️ mem0 init failed — install Python 3 first. Forcing: Digital-Nervous_SKIP_MEM0=1"
+Log: "⚠️ mem0 init failed — install Python 3 first. Forcing: FORGEWRIGHT_SKIP_MEM0=1"
 # CI/headless exemption auto-applied
 ```
 
@@ -675,7 +962,7 @@ Log: "✓ System requirements verified:
 **Step 0.2.2 — Power Level Check:**
 
 ```
-IF .Digital-Nervous/settings.md exists:
+IF .forgewright/settings.md exists:
   Read engagement + execution from settings
   Log: "✓ Power level loaded: [level]"
   Continue to Step 0.3
@@ -687,9 +974,9 @@ ELSE:
 **Prompt for power level (only if settings missing):**
 ```
 notify_user:
-  "Digital-Nervous has 5 power levels. Choose based on how much capability you need:
+  "Forgewright has 5 power levels. Choose based on how much capability you need:
 
-  ⚡ Basic       — 52 skills, full pipeline (Node.js only)
+  ⚡ Basic       — 55 skills, full pipeline (Node.js only)
   ⚡⚡ Smart     — + ForgeNexus blast-radius analysis (Node.js only)
   ⚡⚡⚡ Persistent — + mem0 cross-session memory (Node.js + Python 3)
   ⚡⚡⚡⚡ Research  — + NotebookLM grounded research (optional)
@@ -775,8 +1062,8 @@ IF Basic:
 **Write settings file:**
 
 ```bash
-mkdir -p .Digital-Nervous
-cat > .Digital-Nervous/settings.md << 'EOF'
+mkdir -p .forgewright
+cat > .forgewright/settings.md << 'EOF'
 # Pipeline Settings
 Power_Level: [selected]
 Engagement: [express/standard/thorough/meticulous — default: standard]
@@ -791,7 +1078,7 @@ Log: "✓ System init complete:
   - Python 3: [version] ✓  
   - mem0: [ready] ✓
   - Power level: [level] ✓
-  - Settings: written to .Digital-Nervous/settings.md"
+  - Settings: written to .forgewright/settings.md"
 ```
 
 ## Auto-Update Check
@@ -801,7 +1088,7 @@ Run BEFORE any execution (all modes). Silent if current. One prompt max if updat
 **Step 0 — version check:**
 
 1. Check current version from plugin metadata
-2. Use `read_url_content` to fetch `https://raw.githubusercontent.com/buiphucminhtam/Digital-Nervous/main/VERSION` → read the version string (this is the remote version)
+2. Use `read_url_content` to fetch `https://raw.githubusercontent.com/buiphucminhtam/forgewright/main/VERSION` → read the version string (this is the remote version)
 3. **If fetch fails** (offline, timeout, 404) → silently continue. Never block the pipeline over an update check.
 4. **If remote ≤ local** → continue silently (user sees nothing)
 5. **If remote > local** → prompt via notify_user:
@@ -816,7 +1103,7 @@ production-grade v{remote} is available (you have v{local})
 6. **If skip** → continue pipeline with current version
 7. **If update** → execute in sequence:
    ```bash
-   git clone --depth 1 https://github.com/buiphucminhtam/Digital-Nervous.git /tmp/pg-update
+   git clone --depth 1 https://github.com/buiphucminhtam/forgewright.git /tmp/pg-update
    ```
    - Copy updated files to the skills directory
    - Clean up: `rm -rf /tmp/pg-update`
@@ -832,26 +1119,26 @@ Run AFTER update check, BEFORE mode classification. Follows `skills/_shared/prot
 **Step 0.5 — session start:**
 
 1. **Load project profile:**
-   - If `.Digital-Nervous/project-profile.json` exists and is fresh (<24h) → load context, skip re-onboarding
+   - If `.forgewright/project-profile.json` exists and is fresh (<24h) → load context, skip re-onboarding
    - If stale → re-run health check only (project-onboarding Phase 2)
    - If missing → run full project onboarding (see `skills/_shared/protocols/project-onboarding.md`)
 
 2. **Load last session state:**
-   - If `.Digital-Nervous/session-log.json` exists with interrupted session → offer resume via notify_user
+   - If `.forgewright/session-log.json` exists with interrupted session → offer resume via notify_user
    - If last session completed → log summary, continue to new request
    - If first session → continue normally
 
 3. **Load memory context (mem0 is required — Step 0.2):**
-   - Run `python3 <path-to-Digital-Nervous>/scripts/mem0-cli.py search "<project-name> <user-request-keywords>" --limit 5 --format compact` (or `./scripts/mem0-cli.py` when the project is the Digital-Nervous repo)
+   - Run `python3 <path-to-forgewright>/scripts/mem0-cli.py search "<project-name> <user-request-keywords>" --limit 5 --format compact` (or `./scripts/mem0-cli.py` when the project is the Forgewright repo)
    - If the store is empty or search returns nothing → run `python3 ... mem0-cli.py refresh` once, then search again
-   - Also read `.Digital-Nervous/code-conventions.md` if it exists for extra conventions
+   - Also read `.forgewright/code-conventions.md` if it exists for extra conventions
 
 4. **Detect manual changes:**
    - If git available → check commits since last session
    - If structural changes detected → re-run onboarding fingerprint + patterns
 
 5. **Display quality trend** (if history exists):
-   - Read `.Digital-Nervous/quality-history.json` → show trend of last 5 sessions
+   - Read `.forgewright/quality-history.json` → show trend of last 5 sessions
 
 Log: `✓ Session context loaded — [project name], last session: [summary or "first session"]`
 
@@ -861,38 +1148,38 @@ Run AFTER session context is loaded, AFTER chat-interpreter (Step -1), BEFORE an
 
 1. **Ensure subagent context directory exists:**
    ```
-   mkdir -p .Digital-Nervous/subagent-context/
+   mkdir -p .forgewright/subagent-context/
    ```
 
 2. **Read chat-interpreter output:**
    ```
-   Read .Digital-Nervous/subagent-context/INTERPRETED_REQUEST.md
+   Read .forgewright/subagent-context/INTERPRETED_REQUEST.md
    → This is the authoritative source of user intent
    → All skills use this instead of the raw chat message
    ```
 
 3. **Write PIPELINE_SUMMARY.md** (refresh for each new phase): (refresh for each new phase):
-   - Read `.Digital-Nervous/project-profile.json` if exists
-   - Read current phase status from `.Digital-Nervous/task.md`
+   - Read `.forgewright/project-profile.json` if exists
+   - Read current phase status from `.forgewright/task.md`
    - Read approved architecture from `docs/architecture/` (if exists)
    - Read BRD summary from `product-manager/BRD/` (if exists)
    - Compress to ≤ 2,000 tokens
-   - Write to `.Digital-Nervous/subagent-context/PIPELINE_SUMMARY.md`
+   - Write to `.forgewright/subagent-context/PIPELINE_SUMMARY.md`
 
 3. **Write REVIEWER_CONTRACT.md** (per-review, generated dynamically):
    ```
    For each review task, write:
    - REVIEWER_CONTRACT.md with scope, acceptance criteria, forbidden paths
-   - Reference: .Digital-Nervous/subagent-context/REVIEWER_CONTRACT_TEMPLATE.md
+   - Reference: .forgewright/subagent-context/REVIEWER_CONTRACT_TEMPLATE.md
    ```
 
 4. **Update SECURITY_STANDARDS.md** (refresh for HARDEN phase):
    - Run security-engineer skill output through SECURITY_STANDARDS template
-   - Write to `.Digital-Nervous/subagent-context/SECURITY_STANDARDS.md`
+   - Write to `.forgewright/subagent-context/SECURITY_STANDARDS.md`
 
 5. **Log:**
    ```
-   ✓ Subagent context prepared — [N] files in .Digital-Nervous/subagent-context/
+   ✓ Subagent context prepared — [N] files in .forgewright/subagent-context/
    ```
 
 **Cursor Subagent Invocation Convention:**
@@ -936,7 +1223,7 @@ Project: [extracted from user's message]
 2. **Bootstrap workspace:**
 ```bash
 mkdir -p skills/_shared/protocols/
-mkdir -p .Digital-Nervous/
+mkdir -p .forgewright/
 ```
 
 3. **Write shared protocols** to `skills/_shared/protocols/`:
@@ -954,12 +1241,15 @@ mkdir -p .Digital-Nervous/
 | `quality-dashboard.md` | Quality scoring & reporting: real-time tracking, final dashboard, machine-readable JSON reports, cross-session trending, early warning |
 | `graceful-failure.md` | Retry limits, stuck detection, graceful exit format, failure categories — prevents skills from looping on impossible tasks |
 | `code-intelligence.md` | ForgeNexus-powered knowledge graph: impact analysis, 360° context, process tracing, pre-commit risk — optional enhancement for deep code awareness |
+| `prompt-templates.md` | 12 prompt templates auto-selected by task type: RTF, CO-STAR, RISEN, CRISPE, Chain of Thought, Few-Shot, File-Scope, ReAct+Stop, Visual Descriptor, Reference Image, ComfyUI, Prompt Decompiler |
+| `credit-killing-patterns.md` | 35 patterns that waste tokens: 7 task, 6 context, 6 format, 6 scope, 5 reasoning, 5 agentic |
+| `prompt-techniques.md` | 5 safe techniques: Role Assignment, Few-Shot, XML Tags, Grounding Anchors, Chain of Thought. Also lists forbidden techniques: ToT, GoT, USC, prompt chaining, MoE |
 
 Read these from the plugin's `skills/_shared/protocols/` directory and copy them. If plugin path is unavailable, write from the summaries above.
 
 4. **Codebase discovery — detect greenfield vs brownfield:**
 
-   **If project onboarding already ran** (Step 0.5 loaded `.Digital-Nervous/project-profile.json`) → use cached fingerprint data. Otherwise, run scans:
+   **If project onboarding already ran** (Step 0.5 loaded `.forgewright/project-profile.json`) → use cached fingerprint data. Otherwise, run scans:
 
    Run these scans in parallel:
    ```
@@ -991,13 +1281,13 @@ Read these from the plugin's `skills/_shared/protocols/` directory and copy them
    | Source files exist, no `.production-grade.yaml` | **Brownfield (unmapped)** | Deep onboarding, generate config, adapt |
    | Source files + `.production-grade.yaml` exist | **Brownfield (mapped)** | Use config paths, augment existing code |
 
-   **If Greenfield** → log `✓ Greenfield project — creating from scratch`. Write minimal `.Digital-Nervous/project-profile.json` (to be populated progressively). Continue to step 5.
+   **If Greenfield** → log `✓ Greenfield project — creating from scratch`. Write minimal `.forgewright/project-profile.json` (to be populated progressively). Continue to step 5.
 
    **If Brownfield** → run the enhanced adaptation sequence:
 
    a. **Deep project onboarding** — run full `skills/_shared/protocols/project-onboarding.md` if not already done in Step 0.5. This produces:
-      - `.Digital-Nervous/project-profile.json` — full fingerprint, health, patterns, risk
-      - `.Digital-Nervous/code-conventions.md` — coding patterns for all skills to follow
+      - `.forgewright/project-profile.json` — full fingerprint, health, patterns, risk
+      - `.forgewright/code-conventions.md` — coding patterns for all skills to follow
 
    b. **Structure report** — display from project profile:
    ```
@@ -1027,30 +1317,30 @@ Read these from the plugin's `skills/_shared/protocols/` directory and copy them
 
    d. **Write `.production-grade.yaml`** from discovered structure — map `paths.*` to actual directories found.
 
-   e. **Set brownfield context** — write to `.Digital-Nervous/codebase-context.md`:
+   e. **Set brownfield context** — write to `.forgewright/codebase-context.md`:
    ```markdown
    # Codebase Context
    Mode: brownfield
    Language: [detected]
    Framework: [detected]
    Existing paths: [mapping]
-   Code conventions: .Digital-Nervous/code-conventions.md
-   Project profile: .Digital-Nervous/project-profile.json
+   Code conventions: .forgewright/code-conventions.md
+   Project profile: .forgewright/project-profile.json
 
    ## Rules for all agents
    - Don't overwrite existing files without explicit user approval — blindly replacing files can destroy production-critical configuration or break existing consumers that depend on current signatures
-   - READ .Digital-Nervous/code-conventions.md and MATCH existing code style
+   - READ .forgewright/code-conventions.md and MATCH existing code style
    - ADD to existing directories, don't replace them
    - If a file exists at the target path, create alongside it or extend it
    - Existing tests must still pass after changes (verified by quality-gate)
-   - Check .Digital-Nervous/project-profile.json → risk.protected_paths before writing
+   - Check .forgewright/project-profile.json → risk.protected_paths before writing
    ```
 
    f. **Activate brownfield safety net** — follow `skills/_shared/protocols/brownfield-safety.md`:
-      - Create session branch: `Digital-Nervous/session-{timestamp}`
+      - Create session branch: `forgewright/session-{timestamp}`
       - Snapshot baseline (existing tests pass count)
       - Register protected paths
-      - Log: `✓ Safety net active — branch: Digital-Nervous/session-{timestamp}, baseline: [N] tests`
+      - Log: `✓ Safety net active — branch: forgewright/session-{timestamp}, baseline: [N] tests`
 
    All skills read codebase-context.md and code-conventions.md before executing.
 
@@ -1067,7 +1357,7 @@ How deeply should the pipeline involve you in decisions?
 4. **Meticulous** — Maximum depth. Approve each ADR individually. Review every agent output. Full control.
 ```
 
-Write the choice to `.Digital-Nervous/settings.md`:
+Write the choice to `.forgewright/settings.md`:
 ```markdown
 # Pipeline Settings
 Engagement: [express|standard|thorough|meticulous]
@@ -1226,7 +1516,7 @@ Notify user via notify_user with the analysis:
 
 **Step 5b-7: Save Decision**
 
-Append to `.Digital-Nervous/settings.md`:
+Append to `.forgewright/settings.md`:
 ```markdown
 Execution: [parallel|sequential]
 Max_Workers: 4
@@ -1236,16 +1526,16 @@ Estimated_Time_Parallel: [N]min
 Risk_Level: [LOW|MEDIUM|HIGH]
 ```
 
-Write analysis report to `.Digital-Nervous/scope-analysis.md` for future reference.
+Write analysis report to `.forgewright/scope-analysis.md` for future reference.
 
 When **Parallel** is selected, the BUILD and HARDEN phases use the parallel-dispatch skill (`skills/parallel-dispatch/SKILL.md`) to spawn git worktrees, distribute Task Contracts, and merge results. When **Sequential** is selected, the pipeline behaves as before.
 
-6. **Detect existing workspace & load memory** — if `.Digital-Nervous/` has prior state, use session-lifecycle resume protocol. If `.Digital-Nervous/session-log.json` has interrupted state, offer resume. Otherwise offer clean start via notify_user.
+6. **Detect existing workspace & load memory** — if `.forgewright/` has prior state, use session-lifecycle resume protocol. If `.forgewright/session-log.json` has interrupted state, offer resume. Otherwise offer clean start via notify_user.
    - **Memory load:** Run `python3 scripts/mem0-cli.py search "<project-name> <user-request-keywords>" --limit 5 --format compact` to retrieve relevant project context. Inject results into your context for this session.
    - If no results or memory is empty, run `python3 scripts/mem0-cli.py refresh` once to bootstrap memory from project files.
 
 7. **Polymath pre-flight check:**
-   - If `.Digital-Nervous/polymath/handoff/context-package.md` exists → read it, pass to PM as pre-loaded context. Log: `✓ Polymath context loaded — skipping redundant discovery`
+   - If `.forgewright/polymath/handoff/context-package.md` exists → read it, pass to PM as pre-loaded context. Log: `✓ Polymath context loaded — skipping redundant discovery`
    - If no polymath context, assess the user's request for knowledge gaps:
      - **Vague scope** (no specific problem domain), **no constraints** (scale, budget, team), **complex domain with no domain language**, **contradictory signals**
      - If gaps detected → read `skills/polymath/SKILL.md` and follow its instructions for pre-flight consultation before proceeding. The polymath will research, clarify with the user, and write a context package when ready.
@@ -1259,14 +1549,14 @@ When **Parallel** is selected, the BUILD and HARDEN phases use the parallel-disp
    - **Greenfield Full Build — BA is mandatory (no silent skip):**
      - Do **not** skip BA because the model self-scored 6W1H ≥ 6/7. Self-scores are optimistic; greenfield needs **documented client answers**.
      - **MUST** read `skills/business-analyst/SKILL.md` and run through at least **one full elicitation cycle** (stakeholder + structured questions per engagement depth: Express minimum **3** client-answered items, Standard **3–5**, Thorough **5+** with **2 rounds** if gaps remain) until:
-       - `.Digital-Nervous/business-analyst/handoff/ba-package.md` exists **and**
+       - `.forgewright/business-analyst/handoff/ba-package.md` exists **and**
        - Open gaps are either resolved or explicitly logged as **client-acknowledged assumptions** (not BA guesses).
      - Log: `⧖ Greenfield Full Build — mandatory BA before PM`
      - **Escape hatches (only these):** (1) `.production-grade.yaml` → `features.skip_define_ba: true`, or (2) `notify_user` with explicit option **"Skip BA — I accept incomplete requirements risk"** (user must choose; never auto-skip), or (3) `ba-package.md` already present from **this session** with completeness sign-off.
 
    **Brownfield Full Build** (existing meaningful codebase):
 
-   - If `.Digital-Nervous/business-analyst/handoff/ba-package.md` exists → read it, pass to PM. Log: `✓ BA package loaded — requirements pre-validated`
+   - If `.forgewright/business-analyst/handoff/ba-package.md` exists → read it, pass to PM. Log: `✓ BA package loaded — requirements pre-validated`
    - If no BA package: run 6W1H completeness. If average < 6/7 **or** the request describes a **net-new product/surface** (major scope) → run BA as above (same minimum elicitation as Standard depth).
    - If score ≥ 6/7 **and** incremental change only **and** no net-new product → may skip BA. Log: `✓ Requirements sufficiently complete — proceeding to PM`
 
@@ -1281,7 +1571,7 @@ When **Parallel** is selected, the BUILD and HARDEN phases use the parallel-disp
 
 9. **Create task tracking:**
 
-Create a `task.md` file in `.Digital-Nervous/` with all 13 tasks and their statuses. Track dependencies and completion.
+Create a `task.md` file in `.forgewright/` with all 13 tasks and their statuses. Track dependencies and completion.
 
 10. **Begin Phase 1** — read `phases/define.md` and start immediately. Do NOT ask "should I proceed?"
    - **Memory save (session start):** Run `python3 scripts/mem0-cli.py add "Session started: [mode] mode for [brief request]. Engagement: [level]" --category session`
@@ -1405,11 +1695,11 @@ Invoke: /verifier Confirm all pipeline deliverables are complete and functional 
 ```
 
 The verifier subagent:
-1. Reads `.Digital-Nervous/subagent-context/PIPELINE_SUMMARY.md` for scope
+1. Reads `.forgewright/subagent-context/PIPELINE_SUMMARY.md` for scope
 2. Reads all DELIVERY.json from completed tasks
 3. Runs compilation and tests for each deliverable
 4. Scans for TODOs, secrets, and obvious bugs
-5. Writes report to `.Digital-Nervous/subagent-context/VERIFIER_REPORT.md`
+5. Writes report to `.forgewright/subagent-context/VERIFIER_REPORT.md`
 
 **Step G3.2 — Present Gate 3 options (using verifier report):**
 
@@ -1610,12 +1900,12 @@ When HARDEN skills find Critical/High issues:
 | T11: Tech Writer | ALL workspace + project | `docs/` | `technical-writer/` |
 | T12: Skill Maker | ALL workspace | `skills/` | `skill-maker/` |
 
-**Deliverables** go to project root (respecting `.production-grade.yaml` path overrides). **Workspace artifacts** go to `.Digital-Nervous/<skill-name>/`.
+**Deliverables** go to project root (respecting `.production-grade.yaml` path overrides). **Workspace artifacts** go to `.forgewright/<skill-name>/`.
 
 ## Workspace Architecture
 
 ```
-.Digital-Nervous/
+.forgewright/
 ├── .protocols/              # Shared protocols (written at bootstrap)
 ├── .orchestrator/           # Pipeline state via task.md
 ├── product-manager/         # BRD, research
@@ -1662,7 +1952,7 @@ Every skill execution follows:
 4. **Self-debug** — read errors, identify root cause. After 3 failures: stop and report.
 5. **Quality bar** — no TODOs, no stubs. All code compiles. All tests pass. Quality score ≥ 90.
 6. **TDD enforced** — write test first, watch fail, implement, watch pass, refactor.
-7. **Convention compliance** — read `.Digital-Nervous/code-conventions.md` (if brownfield) and match existing patterns.
+7. **Convention compliance** — read `.forgewright/code-conventions.md` (if brownfield) and match existing patterns.
 
 ## Partial Execution
 
@@ -1690,13 +1980,13 @@ The dashboard includes:
 - **Acceptance** — BRD criteria coverage, traceability
 - **Pipeline stats** — mode, duration, skills run, files changed
 
-**Machine-readable output:** `.Digital-Nervous/quality-report-{session}.json`
-**Quality trending:** `.Digital-Nervous/quality-history.json` (appended each session)
+**Machine-readable output:** `.forgewright/quality-report-{session}.json`
+**Quality trending:** `.forgewright/quality-history.json` (appended each session)
 
 Also display the legacy summary for backward compatibility:
 ```
 ╔══════════════════════════════════════════════════════════════╗
-║          Digital-Nervous v{local_version} — COMPLETE                    ║
+║          Forgewright v{local_version} — COMPLETE                    ║
 ╠══════════════════════════════════════════════════════════════╣
 ║  Project: <name>                                             ║
 ║  Quality Score: [XX]/100 (Grade [A-F])                       ║
@@ -1707,9 +1997,9 @@ Also display the legacy summary for backward compatibility:
 ║  SHIP:    ✓ Docker ✓ CI/CD ✓ Terraform ✓ SRE approved       ║
 ║  SUSTAIN: ✓ Docs ✓ Skills (<N> created) ✓ Learnings captured ║
 ║                                                              ║
-║  Workspace: .Digital-Nervous/              ║
+║  Workspace: .forgewright/              ║
 ║  Config: .production-grade.yaml                              ║
-║  Report: .Digital-Nervous/quality-report-{session}.json              ║
+║  Report: .forgewright/quality-report-{session}.json              ║
 ╚══════════════════════════════════════════════════════════════╝
 ```
 
@@ -1719,7 +2009,7 @@ For ALL brownfield projects (any mode, not just Full Build), activate the safety
 
 | Safety Layer | When | Action |
 |-------------|------|--------|
-| Git branch | Pre-pipeline | Create `Digital-Nervous/session-{timestamp}` branch |
+| Git branch | Pre-pipeline | Create `forgewright/session-{timestamp}` branch |
 | Baseline snapshot | Pre-pipeline | Run existing tests, record pass count |
 | Protected paths | Pre-pipeline | Register paths that must not be modified |
 | Regression checks | After T3a, T3b, T5 | Verify existing tests still pass |
@@ -1746,7 +2036,7 @@ For ALL brownfield projects (any mode, not just Full Build), activate the safety
 | Not leveraging skill architecture | Even though execution is sequential, each skill's internal phase structure ensures quality. Foundations before dependent work. |
 | Duplicating security review | code-reviewer references security-engineer findings |
 | Skipping quality gate | EVERY skill output must pass quality-gate.md — no exceptions, even in sequential mode |
-| Ignoring code conventions in brownfield | Read `.Digital-Nervous/code-conventions.md` BEFORE writing code. Match existing patterns. |
+| Ignoring code conventions in brownfield | Read `.forgewright/code-conventions.md` BEFORE writing code. Match existing patterns. |
 | Modifying protected paths | Check brownfield-safety protected paths before ANY file write |
 | No regression check in brownfield | After EACH build skill, verify existing tests still pass against baseline |
 | Not saving session state | Call session lifecycle hooks at every phase/task/gate completion |

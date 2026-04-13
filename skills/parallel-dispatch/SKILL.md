@@ -1,4 +1,4 @@
-﻿---
+---
 name: parallel-dispatch
 description: >
   Orchestrates parallel task execution using git worktrees. Analyzes
@@ -12,7 +12,7 @@ description: >
 
 ## Overview
 
-Manages the parallel execution of independent tasks in the Digital-Nervous pipeline. Uses **git worktrees** for process isolation, **Task Contracts** for explicit input/output boundaries, and **automated validation** to prevent hallucination and ensure clean architecture.
+Manages the parallel execution of independent tasks in the Forgewright pipeline. Uses **git worktrees** for process isolation, **Task Contracts** for explicit input/output boundaries, and **automated validation** to prevent hallucination and ensure clean architecture.
 
 **Max concurrent workers:** 4 (configurable via `MAX_WORKERS` env var)
 
@@ -23,11 +23,11 @@ Manages the parallel execution of independent tasks in the Digital-Nervous pipel
 The production-grade orchestrator invokes this skill when:
 1. User selected **Parallel** execution strategy
 2. The current phase has **2+ independent tasks** (e.g., BUILD: T3a + T3b + T3c + T4)
-3. Execution mode is set to `parallel` in `.Digital-Nervous/settings.md`
+3. Execution mode is set to `parallel` in `.forgewright/settings.md`
 
 ## Parallel Groups
 
-Based on the Digital-Nervous task dependency graph, these groups can run in parallel:
+Based on the Forgewright task dependency graph, these groups can run in parallel:
 
 ```
 ┌─────────────────────────────────────────────────────┐
@@ -53,7 +53,7 @@ Based on the Digital-Nervous task dependency graph, these groups can run in para
 ### Phase 1 — Dependency Analysis
 
 ```
-1. Read .Digital-Nervous/settings.md
+1. Read .forgewright/settings.md
    - Confirm execution: parallel
    - Read engagement mode
 
@@ -120,12 +120,12 @@ T5 (QA):
 
 T6a (Security):
   inputs: ALL implementation code (read-only)
-  outputs: workspace only (.Digital-Nervous/security-engineer/)
+  outputs: workspace only (.forgewright/security-engineer/)
   forbidden: ALL source code (read-only audit)
 
 T6b (Code Review):
   inputs: ALL implementation + architecture (read-only)
-  outputs: workspace only (.Digital-Nervous/code-reviewer/)
+  outputs: workspace only (.forgewright/code-reviewer/)
   forbidden: ALL source code (read-only review)
 ```
 
@@ -156,7 +156,7 @@ Context Isolation Rules:
     ✅ Its CONTRACT.json (task-specific inputs/outputs/constraints)
     ✅ Its SKILL.md (skill instructions only)
     ✅ Shared API contracts (api/, schemas/ — read-only)
-    ✅ .Digital-Nervous/code-conventions.md (pattern consistency)
+    ✅ .forgewright/code-conventions.md (pattern consistency)
     ✅ Compressed pipeline summary (from Summarization middleware ⑤)
        → Max 2K tokens, covering completed phase decisions only
 
@@ -170,12 +170,12 @@ Context Isolation Rules:
 
   LEAD AGENT (CEO) RECEIVES after merge:
     ✅ All workers' DELIVERY.json (synthesized)
-    ✅ All subagent review reports from .Digital-Nervous/subagent-context/ (SPEC_REVIEW_*.md, QUALITY_REVIEW_*.md, SECURITY_AUDIT_*.md)
+    ✅ All subagent review reports from .forgewright/subagent-context/ (SPEC_REVIEW_*.md, QUALITY_REVIEW_*.md, SECURITY_AUDIT_*.md)
     ✅ VERIFIER_REPORT.md — overall delivery confirmation
     ✅ Merge conflict log (if any)
     ✅ Full pipeline context (not compressed)
 
-  CURSOR SUBAGENT CONTEXT (for reviewers — .Digital-Nervous/subagent-context/):
+  CURSOR SUBAGENT CONTEXT (for reviewers — .forgewright/subagent-context/):
     ✅ PIPELINE_SUMMARY.md     — project + phase + architecture context
     ✅ WORKER_INSTRUCTIONS_TEMPLATE.md — worker boundary rules
     ✅ REVIEWER_CONTRACT_TEMPLATE.md  — reviewer contract template  
@@ -196,20 +196,108 @@ Guardrail middleware (④) enforces context isolation at the tool level:
 - Workers attempting to read files outside their contract inputs → WARN
 - Workers attempting to write outside their contract outputs → DENY
 
-### Phase 4 — Worker Dispatch
+### Phase 4 — Circuit Breaker Check
 
-Spawn Gemini CLI instances for each worktree. Each worker runs in its own shell process:
+Before dispatching workers, check circuit breaker state for each worker type:
 
 ```bash
-# For each worktree, spawn a Gemini CLI worker in the background
+# Load circuit breaker config
+CIRCUIT_FILE="${CIRCUIT_FILE:-.forgewright/circuits.json}"
+
+# Source circuit breaker functions
+source "$(dirname "$0")/../_shared/scripts/circuit-breaker.sh" 2>/dev/null || true
+
+# Check circuit state for each worker
+for task in T3a T3b T3c T4 T5 T6a T6b; do
+  circuit_key="${task,,}"  # lowercase
+
+  # Check if circuit allows request
+  state=$(should_allow "$circuit_key" 60)  # 60s timeout
+
+  if [ "$state" = "OPEN" ]; then
+    echo "[CIRCUIT_BREAKER] Skipping ${task}: circuit is OPEN"
+    continue
+  elif [ "$state" = "HALF_OPEN" ]; then
+    echo "[CIRCUIT_BREAKER] ${task}: circuit is HALF_OPEN (limited requests)"
+  else
+    echo "[CIRCUIT_BREAKER] ${task}: circuit is CLOSED"
+  fi
+done
+```
+
+**Circuit Breaker per Worker Type:**
+
+| Worker | Circuit Key | Default Config |
+|--------|-------------|----------------|
+| T3a (Backend) | `t3a` | failure_threshold: 3 |
+| T3b (Frontend) | `t3b` | failure_threshold: 3 |
+| T3c (Mobile) | `t3c` | failure_threshold: 3 |
+| T4 (DevOps) | `t4` | failure_threshold: 3 |
+| T5 (QA) | `t5` | failure_threshold: 3 |
+| T6a (Security) | `t6a` | failure_threshold: 3 |
+| T6b (Code Review) | `t6b` | failure_threshold: 3 |
+
+**State Tracking:**
+
+```json
+{
+  "t3a": { "state": "CLOSED", "failure_count": 0, "last_failure": null },
+  "t3b": { "state": "OPEN", "failure_count": 5, "last_failure": 1712912400 },
+  "t4": { "state": "HALF_OPEN", "failure_count": 3, "last_failure": 1712912400 }
+}
+```
+
+**Recording Results:**
+
+After each worker completes, record the outcome:
+
+```bash
+# On worker success
+record_success "$circuit_key"
+
+# On worker failure
+record_failure "$circuit_key" 3  # 3 = threshold
+```
+
+### Phase 4.1 — Worker Dispatch
+
+Spawn Gemini CLI instances for each worktree. Each worker runs in its own shell process with bulkhead limits:
+
+```bash
+# Load bulkhead config from .production-grade.yaml
+BULKHEAD_MEMORY="${BULKHEAD_MEMORY_MB:-512}"
+BULKHEAD_CPU="${BULKHEAD_CPU_PERCENT:-80}"
+BULKHEAD_DURATION="${BULKHEAD_DURATION_MINUTES:-30}"
+
+# Apply bulkhead limits to this shell
+# NOTE: bulkhead-limits expects: <memory_mb> <cpu_percent> <duration_min>
+scripts/worktree-manager.sh bulkhead-limits "$BULKHEAD_MEMORY" "$BULKHEAD_CPU" "$BULKHEAD_DURATION"
+
+# Per-worker resource limits
+declare -A WORKER_LIMITS=(
+  ["T3a"]="512 30"  # Backend: 512MB, 30min
+  ["T3b"]="512 30"  # Frontend: 512MB, 30min
+  ["T3c"]="512 30"  # Mobile: 512MB, 30min
+  ["T4"]="768 45"   # DevOps: 768MB, 45min
+  ["T5"]="512 30"   # QA: 512MB, 30min
+  ["T6a"]="256 20"  # Security: 256MB, 20min
+  ["T6b"]="256 20"  # Code Review: 256MB, 20min
+)
+
+# For each worktree, spawn a worker with watchdog
 for task in T3a T3b T3c; do
   worktree_path=".worktrees/${task}"
+
+  # Get worker-specific limits
+  limits="${WORKER_LIMITS[$task]}"
+  mem_mb=$(echo "$limits" | cut -d' ' -f1)
+  duration_min=$(echo "$limits" | cut -d' ' -f2)
 
   # Create worker instruction file
   cat > "${worktree_path}/WORKER_INSTRUCTIONS.md" <<INSTRUCTIONS
   # Worker Instructions for ${task}
 
-  You are a parallel worker in the Digital-Nervous pipeline.
+  You are a parallel worker in the Forgewright pipeline.
 
   ## Your Contract
   Read CONTRACT.json in this directory. It defines:
@@ -241,20 +329,32 @@ for task in T3a T3b T3c; do
   Write DELIVERY.json with your results. Do not attempt to merge.
   INSTRUCTIONS
 
-  # Dispatch worker (background process)
-  (
-    cd "${worktree_path}"
-    gemini -p "Read WORKER_INSTRUCTIONS.md and CONTRACT.json, then execute the task following the skill instructions. Work autonomously until complete. Write DELIVERY.json when done." \
-      2>&1 | tee "worker-${task}.log"
-  ) &
-
-  echo "Worker ${task} dispatched (PID: $!)"
+  # Dispatch worker with watchdog
+  scripts/worktree-manager.sh bulkhead-watchdog "$task" "$worktree_path" "$mem_mb" "$duration_min" &
+  echo "Worker ${task} dispatched with bulkhead (mem=${mem_mb}MB, time=${duration_min}m)"
 done
 
 # Wait for all workers to complete
 wait
 echo "All workers completed."
 ```
+
+**Bulkhead Failure Containment:**
+
+| Worker | Memory | Time | On OOM | On Timeout |
+|--------|--------|------|--------|-----------|
+| T3a (Backend) | 512MB | 30min | Kill + Skip | Kill + Skip |
+| T3b (Frontend) | 512MB | 30min | Kill + Skip | Kill + Skip |
+| T3c (Mobile) | 512MB | 30min | Kill + Skip | Kill + Skip |
+| T4 (DevOps) | 768MB | 45min | Kill + Skip | Kill + Skip |
+| T5 (QA) | 512MB | 30min | Kill + Skip | Kill + Skip |
+| T6 (Review) | 256MB | 20min | Kill + Skip | Kill + Skip |
+
+**Key Safety Guarantees:**
+1. One worker OOM/timeout does NOT crash other workers
+2. Main process remains stable
+3. All bulkhead events logged to `.forgewright/bulkhead-log.md`
+4. Workers can be monitored via `scripts/worktree-manager.sh bulkhead-status`
 
 **Alternative dispatch (for environments without `gemini` CLI):**
 
@@ -282,7 +382,7 @@ Example: /spec-reviewer Review T3b frontend pages against CONTRACT.json
 # For each task, generate reviewer contract from CONTRACT.json
 for task in T3a T3b T3c; do
   # Extract acceptance criteria from worktree CONTRACT.json
-  # Write to .Digital-Nervous/subagent-context/REVIEWER_CONTRACT_$task.md
+  # Write to .forgewright/subagent-context/REVIEWER_CONTRACT_$task.md
 done
 ```
 
@@ -293,8 +393,8 @@ done
 4. Checks every acceptance criterion: PASS / FAIL / PARTIAL
 5. Detects over-building (out of scope features)
 6. Detects under-building (missing requirements)
-7. Writes report to `.Digital-Nervous/subagent-context/SPEC_REVIEW_[task-id].md`
-8. Appends one-line status to `.Digital-Nervous/subagent-context/REVIEW_STATUS.md`
+7. Writes report to `.forgewright/subagent-context/SPEC_REVIEW_[task-id].md`
+8. Appends one-line status to `.forgewright/subagent-context/REVIEW_STATUS.md`
 
 **Retry protocol:**
 - If spec compliance FAILS: feed issues back to worker → worker fixes → re-submit → re-invoke spec-reviewer (max 3 iterations)
@@ -325,7 +425,7 @@ Example: /quality-reviewer Assess T3b frontend code quality
 5. Assesses: naming, error handling, architecture conformance, test quality
 6. Scores per file: Correctness, Readability, Maintainability, Testability, Performance
 7. Runs anti-hallucination checks: imports resolve, API calls match spec, no invented endpoints
-8. Writes report to `.Digital-Nervous/subagent-context/QUALITY_REVIEW_[task-id].md`
+8. Writes report to `.forgewright/subagent-context/QUALITY_REVIEW_[task-id].md`
 
 **For HARDEN phase — run security-auditor additionally:**
 
@@ -338,7 +438,7 @@ Example: /security-auditor Perform OWASP audit on T3a auth and payment code
 1. Reads `PIPELINE_SUMMARY.md` and `SECURITY_STANDARDS.md`
 2. Checks all 10 OWASP Top 10 categories
 3. Checks MITRE CWE Top 25
-4. Writes report to `.Digital-Nervous/subagent-context/SECURITY_AUDIT_[task-id].md`
+4. Writes report to `.forgewright/subagent-context/SECURITY_AUDIT_[task-id].md`
 5. **readonly: true** — never modifies any file
 
 **Retry protocol:**
@@ -356,9 +456,9 @@ Example: /security-auditor Perform OWASP audit on T3a auth and payment code
   "stage2_security_audit": "PASS/FAIL (if run)",
   "overall": "PASS/FAIL/PARTIAL",
   "reports": {
-    "spec": ".Digital-Nervous/subagent-context/SPEC_REVIEW_[task-id].md",
-    "quality": ".Digital-Nervous/subagent-context/QUALITY_REVIEW_[task-id].md",
-    "security": ".Digital-Nervous/subagent-context/SECURITY_AUDIT_[task-id].md"
+    "spec": ".forgewright/subagent-context/SPEC_REVIEW_[task-id].md",
+    "quality": ".forgewright/subagent-context/QUALITY_REVIEW_[task-id].md",
+    "security": ".forgewright/subagent-context/SECURITY_AUDIT_[task-id].md"
   },
   "validated_at": "[ISO timestamp]"
 }
@@ -451,7 +551,7 @@ Read `skills/_shared/protocols/merge-arbiter.md` and follow merge protocol:
 1. Merge in dependency order (infrastructure → backend → frontend → mobile)
 2. Run post-merge validation after each merge
 3. Run full integration test after all merges
-4. Log to .Digital-Nervous/merge-log.md
+4. Log to .forgewright/merge-log.md
 5. Clean up worktrees: scripts/worktree-manager.sh cleanup-all
 ```
 
@@ -502,7 +602,7 @@ scripts/worktree-manager.sh resume T3a
 
 ## Progress Tracking
 
-Update `.Digital-Nervous/task.md` with parallel status:
+Update `.forgewright/task.md` with parallel status:
 
 ```markdown
 ## BUILD Phase (Parallel)

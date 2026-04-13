@@ -1,4 +1,4 @@
-﻿# Middleware 09 — Memory
+# Middleware 09 — Memory
 
 > **Source:** `memory-manager.md` §Hooks + `session-lifecycle.md` §Per-request
 > **Hook:** `after_skill()` AND `turn_close()`
@@ -35,4 +35,4 @@
 ## Failure Handling
 
 - If mem0 unavailable → LOG warning, continue (non-blocking)
-- Check `MEM0_DISABLED` or `Digital-Nervous_SKIP_MEM0` env vars
+- Check `MEM0_DISABLED` or `FORGEWRIGHT_SKIP_MEM0` env vars

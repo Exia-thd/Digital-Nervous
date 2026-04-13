@@ -1,4 +1,4 @@
-﻿---
+---
 name: solution-architect
 description: >
   [production-grade internal] Designs system architecture when you need to
@@ -15,13 +15,13 @@ description: >
 !`cat skills/_shared/protocols/tool-efficiency.md 2>/dev/null || true`
 !`cat skills/_shared/protocols/code-intelligence.md 2>/dev/null || true`
 !`cat .production-grade.yaml 2>/dev/null || echo "No config — using defaults"`
-!`cat .Digital-Nervous/codebase-context.md 2>/dev/null || true`
+!`cat .forgewright/codebase-context.md 2>/dev/null || true`
 
 **Fallback (if protocols not loaded):** Use notify_user with options (never open-ended), "Chat about this" last, recommended first. Work continuously. Print progress constantly. Validate inputs before starting — classify missing as Critical (stop), Degraded (warn, continue partial), or Optional (skip silently). Use parallel tool calls for independent reads. Use view_file_outline before full Read.
 
 ## Brownfield Awareness
 
-If `.Digital-Nervous/codebase-context.md` exists and mode is `brownfield`:
+If `.forgewright/codebase-context.md` exists and mode is `brownfield`:
 - **READ existing architecture first** — understand current patterns, tech stack, API structure
 - **Design around existing code** — new architecture extends the system, doesn't replace it
 - **Document existing patterns in ADRs** — capture what's already decided
@@ -30,9 +30,9 @@ If `.Digital-Nervous/codebase-context.md` exists and mode is `brownfield`:
 
 ## Engagement Mode
 
-!`cat .Digital-Nervous/settings.md 2>/dev/null || echo "No settings — using Standard"`
+!`cat .forgewright/settings.md 2>/dev/null || echo "No settings — using Standard"`
 
-Read `.Digital-Nervous/settings.md` at startup. Adapt discovery depth:
+Read `.forgewright/settings.md` at startup. Adapt discovery depth:
 
 | Mode | Discovery Approach |
 |------|-------------------|
@@ -45,7 +45,7 @@ Read `.Digital-Nervous/settings.md` at startup. Adapt discovery depth:
 
 Full architecture pipeline: from business requirements to a scaffolded, production-ready codebase. The architecture is DERIVED from project constraints (scale, team, budget, compliance) — not picked from a template. There is no one-size-fits-all architecture.
 
-Generates architecture deliverables at the project root (`api/`, `schemas/`, `docs/architecture/`, project scaffold) with workspace artifacts in `.Digital-Nervous/solution-architect/`.
+Generates architecture deliverables at the project root (`api/`, `schemas/`, `docs/architecture/`, project scaffold) with workspace artifacts in `.forgewright/solution-architect/`.
 
 ## Config Paths
 
@@ -57,7 +57,7 @@ Read `.production-grade.yaml` at startup. Use these overrides if defined:
 - `paths.migrations` — default: `schemas/migrations/`
 - `paths.tech_stack` — default: `docs/architecture/tech-stack.md`
 
-Deliverables go to the **project root** (`api/`, `schemas/`, `docs/architecture/`). Workspace artifacts go to `.Digital-Nervous/solution-architect/`.
+Deliverables go to the **project root** (`api/`, `schemas/`, `docs/architecture/`). Workspace artifacts go to `.forgewright/solution-architect/`.
 
 ## When to Use
 
@@ -102,9 +102,9 @@ The architecture must fit the project's actual constraints. This phase gathers t
 ### Step 1: Read Existing Context
 
 Before asking ANY questions, read in parallel:
-1. `.Digital-Nervous/polymath/handoff/context-package.md` — may contain scale, constraints, decisions
-2. `.Digital-Nervous/product-manager/BRD/brd.md` — user stories, acceptance criteria, business rules
-3. `.Digital-Nervous/codebase-context.md` — brownfield context
+1. `.forgewright/polymath/handoff/context-package.md` — may contain scale, constraints, decisions
+2. `.forgewright/product-manager/BRD/brd.md` — user stories, acceptance criteria, business rules
+3. `.forgewright/codebase-context.md` — brownfield context
 
 **Reduce questions to cover ONLY gaps not addressed in existing context.** If polymath or PM already established scale targets, do not re-ask.
 
@@ -525,10 +525,10 @@ Makefile
 README.md
 ```
 
-### Workspace Output (`.Digital-Nervous/solution-architect/`)
+### Workspace Output (`.forgewright/solution-architect/`)
 
 ```
-.Digital-Nervous/solution-architect/
+.forgewright/solution-architect/
 ├── working-notes.md
 └── analysis/
     └── *.md

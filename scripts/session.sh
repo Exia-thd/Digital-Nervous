@@ -1,8 +1,8 @@
-﻿#!/usr/bin/env bash
+#!/usr/bin/env bash
 set -euo pipefail
 
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-# Digital-Nervous Session Lifecycle Manager
+# Forgewright Session Lifecycle Manager
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 #
 # Usage:
@@ -17,22 +17,22 @@ set -euo pipefail
 #   session.sh help                      — show this help
 #
 # Files:
-#   .Digital-Nervous/session-log.json        — session history
+#   .forgewright/session-log.json        — session history
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 # ── Resolve paths ──────────────────────────────────────
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-Digital-Nervous_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
+FORGEWRIGHT_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
 
-if [[ -d "$Digital-Nervous_DIR/.Digital-Nervous" ]]; then
-  PROJECT_ROOT="$Digital-Nervous_DIR"
-elif [[ -d "$Digital-Nervous_DIR/../.Digital-Nervous" ]]; then
-  PROJECT_ROOT="$(cd "$Digital-Nervous_DIR/.." && pwd)"
+if [[ -d "$FORGEWRIGHT_DIR/.forgewright" ]]; then
+  PROJECT_ROOT="$FORGEWRIGHT_DIR"
+elif [[ -d "$FORGEWRIGHT_DIR/../.forgewright" ]]; then
+  PROJECT_ROOT="$(cd "$FORGEWRIGHT_DIR/.." && pwd)"
 else
   PROJECT_ROOT="$(pwd)"
 fi
 
-WORKSPACE="$PROJECT_ROOT/.Digital-Nervous"
+WORKSPACE="$PROJECT_ROOT/.forgewright"
 SESSION_LOG="$WORKSPACE/session-log.json"
 PROFILE="$WORKSPACE/project-profile.json"
 

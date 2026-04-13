@@ -1,4 +1,4 @@
-﻿# Middleware 10 — GracefulFailure
+# Middleware 10 — GracefulFailure
 
 > **Source:** `skills/_shared/protocols/graceful-failure.md`
 > **Hook:** `on_error()`
@@ -24,7 +24,7 @@
      
 4. Graceful exit format
    → Structured report with all context for next session
-   → Saved to .Digital-Nervous/session-log.json
+   → Saved to .forgewright/session-log.json
 ```
 
 ## Failure Categories

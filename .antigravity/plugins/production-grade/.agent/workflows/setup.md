@@ -1,18 +1,18 @@
-﻿---
-description: First-time setup of Digital-Nervous as a git submodule in your project
+---
+description: First-time setup of Forgewright as a git submodule in your project
 ---
 
-# Setup Digital-Nervous
+# Setup Forgewright
 
-> **New project?** → Use **Digital-Nervous-setup-new-project.md** (workflows/)
-> **Existing project?** → Use **Digital-Nervous-setup-existing-project.md** (workflows/)
+> **New project?** → Use **forgewright-setup-new-project.md** (workflows/)
+> **Existing project?** → Use **forgewright-setup-existing-project.md** (workflows/)
 > Both prompts include the full setup: submodule + Power Levels + verification.
 
 ## Quick Setup (basic — Level 1 only)
 
 1. Add as git submodule:
 ```bash
-git submodule add -b main https://github.com/buiphucminhtam/Digital-Nervous.git .antigravity/plugins/production-grade
+git submodule add -b main https://github.com/buiphucminhtam/forgewright.git .antigravity/plugins/production-grade
 git submodule update --init --recursive
 ```
 
@@ -20,13 +20,13 @@ git submodule update --init --recursive
 ```bash
 cp .antigravity/plugins/production-grade/AGENTS.md AGENTS.md
 cp .antigravity/plugins/production-grade/CLAUDE.md CLAUDE.md
-cp .antigravity/plugins/production-grade/README.md Digital-Nervous.md
+cp .antigravity/plugins/production-grade/README.md FORGEWRIGHT.md
 ```
 
 3. Commit:
 ```bash
-git add .gitmodules .antigravity/ AGENTS.md CLAUDE.md Digital-Nervous.md
-git commit -m "feat: add Digital-Nervous v7.8 — 52 skills, ForgeNexus, MCP"
+git add .gitmodules .antigravity/ AGENTS.md CLAUDE.md FORGEWRIGHT.md
+git commit -m "feat: add Forgewright v7.8 — 52 skills, ForgeNexus, MCP"
 ```
 
 4. Verify:
@@ -41,8 +41,8 @@ See the dedicated workflow files:
 
 | Scenario | File |
 |----------|------|
-| **New project (greenfield)** | `workflows/Digital-Nervous-setup-new-project.md` |
-| **Existing project (brownfield)** | `workflows/Digital-Nervous-setup-existing-project.md` |
+| **New project (greenfield)** | `workflows/forgewright-setup-new-project.md` |
+| **Existing project (brownfield)** | `workflows/forgewright-setup-existing-project.md` |
 
 Each includes all 4 Power Levels + verification + optional enhancements.
 
@@ -66,7 +66,7 @@ You're ready to go! Try:
 
 Or use workflow shortcuts:
 - `/setup` — Re-run installation
-- `/onboard` — Deep project analysis (creates `.Digital-Nervous/project-profile.json`)
+- `/onboard` — Deep project analysis (creates `.forgewright/project-profile.json`)
 - `/pipeline` — Show full pipeline reference
 - `/mcp` — Regenerate MCP config
-- `/update` — Check for new Digital-Nervous versions
+- `/update` — Check for new Forgewright versions

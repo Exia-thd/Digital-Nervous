@@ -1,4 +1,4 @@
-﻿# Middleware 06 — QualityGate
+# Middleware 06 — QualityGate
 
 > **Source:** `skills/_shared/protocols/quality-gate.md`
 > **Hook:** `after_skill()`
@@ -26,7 +26,7 @@
 
 - Quality scorecard per skill
 - Aggregate scorecard at each gate
-- Machine-readable: `.Digital-Nervous/quality-report-{session}.json`
+- Machine-readable: `.forgewright/quality-report-{session}.json`
 
 ## Note
 

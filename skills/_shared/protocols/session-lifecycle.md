@@ -1,4 +1,4 @@
-﻿# Session Lifecycle Protocol
+# Session Lifecycle Protocol
 
 **Manages cross-session continuity so the pipeline remembers what happened, can resume interrupted work, and doesn't re-discover context already known.**
 
@@ -9,7 +9,7 @@ Every pipeline invocation begins here, BEFORE mode classification.
 ### Step 1 — Load Project Profile
 
 ```
-IF .Digital-Nervous/project-profile.json exists:
+IF .forgewright/project-profile.json exists:
   Read it → set project context
   Check file age:
     IF < 24 hours AND no new git commits since onboarded_at:
@@ -27,7 +27,7 @@ ELSE:
 ### Step 2 — Load Last Session State
 
 ```
-IF .Digital-Nervous/session-log.json exists:
+IF .forgewright/session-log.json exists:
   Read last_session entry
   Determine session state:
     IF last_session.status == "interrupted" OR "in_progress":
@@ -46,7 +46,7 @@ ELSE:
 ### Step 3 — Load Memory Context
 
 ```
-IF MEM0_DISABLED != true AND Digital-Nervous_SKIP_MEM0 != 1:
+IF MEM0_DISABLED != true AND FORGEWRIGHT_SKIP_MEM0 != 1:
   Run: python3 scripts/mem0-cli.py search "<project-name> <user-request-keywords>" --limit 5 --format compact
   IF no results returned:
     Run: python3 scripts/mem0-cli.py refresh
@@ -54,7 +54,7 @@ IF MEM0_DISABLED != true AND Digital-Nervous_SKIP_MEM0 != 1:
   Inject results into prompt context (max 800 tokens)
   Log: "✓ Memory loaded: [N] relevant items"
 ELSE:
-  Read .Digital-Nervous/code-conventions.md if exists
+  Read .forgewright/code-conventions.md if exists
   Log: "✓ Conventions loaded (memory skipped or disabled)"
 ```
 
@@ -108,7 +108,7 @@ ELSE:
 ### Step T1 — Load Conversation Summary
 
 ```
-IF .Digital-Nervous/subagent-context/CONVERSATION_SUMMARY.md exists:
+IF .forgewright/subagent-context/CONVERSATION_SUMMARY.md exists:
   Read it → inject into context
   Log: "✓ Conversation summary loaded — [N] exchanges summarized"
 ```
@@ -116,7 +116,7 @@ IF .Digital-Nervous/subagent-context/CONVERSATION_SUMMARY.md exists:
 ### Step T2 — Retrieve Recent Turns
 
 ```
-IF MEM0_DISABLED != true AND Digital-Nervous_SKIP_MEM0 != 1:
+IF MEM0_DISABLED != true AND FORGEWRIGHT_SKIP_MEM0 != 1:
   # Search for recent conversation facts (within current session)
   python3 scripts/mem0-cli.py search "conversation recent" --limit 3 --format compact 2>/dev/null
   
@@ -130,12 +130,12 @@ IF MEM0_DISABLED != true AND Digital-Nervous_SKIP_MEM0 != 1:
 ### Step T3 — Detect Scope Context
 
 ```
-IF .Digital-Nervous/business-analyst/handoff/ba-package.md exists:
+IF .forgewright/business-analyst/handoff/ba-package.md exists:
   # BA scope persists across turns
   Read key sections → inject scope summary
   Log: "✓ BA scope context loaded"
 
-IF .Digital-Nervous/subagent-context/PIPELINE_SUMMARY.md exists:
+IF .forgewright/subagent-context/PIPELINE_SUMMARY.md exists:
   # Pipeline summary from orchestrator
   Log: "✓ Pipeline summary loaded"
 ```
@@ -161,7 +161,7 @@ The orchestrator calls these hooks at specific lifecycle points. All hooks are e
 Called after each pipeline phase completes (DEFINE, BUILD, HARDEN, SHIP, SUSTAIN).
 
 ```
-1. Update .Digital-Nervous/session-log.json:
+1. Update .forgewright/session-log.json:
    {
      "session_id": "session-{YYYYMMDD-HHmm}",
      "started_at": "ISO-8601",
@@ -310,7 +310,7 @@ The middleware chain references these protocols:
 
 ## Per-request memory (Turn-Close) — mandatory
 
-**When:** After the assistant has **fully addressed** the current user message (single-turn chat, end of pipeline step, or before waiting on the next user input). **Not optional** for normal sessions (`MEM0_DISABLED` / `Digital-Nervous_SKIP_MEM0` exempt).
+**When:** After the assistant has **fully addressed** the current user message (single-turn chat, end of pipeline step, or before waiting on the next user input). **Not optional** for normal sessions (`MEM0_DISABLED` / `FORGEWRIGHT_SKIP_MEM0` exempt).
 
 **Why:** Without this, project memory only grows at gates/phases — **conversation facts and incremental decisions are lost** between requests.
 
@@ -324,7 +324,7 @@ BEFORE running the mem0 add command, auto-generate a summary:
    - What remains open?
 2. Compose auto-summary (~100-200 chars):
    "Exchange: [2-3 sentences summarizing the exchange]"
-3. Write to .Digital-Nervous/subagent-context/CONVERSATION_SUMMARY.md:
+3. Write to .forgewright/subagent-context/CONVERSATION_SUMMARY.md:
    # Conversation Summary — [session_id]
    - [timestamp]: [summary of exchange 1]
    - [timestamp]: [summary of exchange 2]
@@ -415,12 +415,12 @@ Called when pipeline completes OR when session is explicitly ended.
    all code changes made during this session.
 
 6. Update project profile:
-   .Digital-Nervous/project-profile.json → forge17.last_session = session_id, total_sessions++
+   .forgewright/project-profile.json → forge17.last_session = session_id, total_sessions++
 ```
 
 ## Session Log Format
 
-`.Digital-Nervous/session-log.json`:
+`.forgewright/session-log.json`:
 
 ```json
 {

@@ -1,4 +1,4 @@
-﻿# Plan Quality Loop Protocol
+# Plan Quality Loop Protocol
 
 > **Purpose:** Every skill MUST plan before acting. Plans are scored against a quality rubric. Plans below threshold enter a LEARN → RESEARCH → IMPROVE SKILL cycle until quality is sufficient. NO skill may begin implementation without a passing plan score.
 
@@ -134,7 +134,7 @@ After the 5 checks, assign a confidence level:
 
 When meta-evaluation reveals scoring problems, APPEND improvement to THIS protocol's understanding:
 
-Log to `.Digital-Nervous/scoring-lessons.md`:
+Log to `.forgewright/scoring-lessons.md`:
 ```markdown
 ## Scoring Issue: [Date] — [Bias Type]
 - **Problem:** Gave Completeness 1.25 without verifying edge case coverage
@@ -160,7 +160,7 @@ When plan scores below threshold:
    - AI Build PM step → `skills/ai-engineer/SKILL.md`
    - etc.
 
-3. **Log lesson to session file** — APPEND to `.Digital-Nervous/plan-lessons.md`:
+3. **Log lesson to session file** — APPEND to `.forgewright/plan-lessons.md`:
 
 ```markdown
 ## [Phase Name] — Iteration [N] — Score: [X]/10
@@ -215,9 +215,9 @@ Before re-planning, actively search for knowledge to address weak criteria:
 
 2. **Search codebase** — find similar solved patterns in the existing project
    - Example: `grep -r "similar pattern"` in existing code
-   - Example: Check existing `.Digital-Nervous/` artifacts for past plans
+   - Example: Check existing `.forgewright/` artifacts for past plans
 
-3. **Check existing protocols** — reuse approaches from Digital-Nervous's own protocols
+3. **Check existing protocols** — reuse approaches from Forgewright's own protocols
    - Example: Impact assessment weak → reference `code-intelligence.md` for blast radius analysis
    - Example: Testability weak → reference `quality-gate.md` for verification criteria
 
@@ -252,4 +252,4 @@ This protocol runs **BEFORE** implementation. The Quality Gate Protocol runs **A
 Plan Quality Loop (pre-implementation) → Implementation → Quality Gate (post-implementation)
 ```
 
-> Inspired by ClaudeKit's review gates and Digital-Nervous's Quality Gate Protocol. Extended with research-driven self-improvement loop.
+> Inspired by ClaudeKit's review gates and Forgewright's Quality Gate Protocol. Extended with research-driven self-improvement loop.

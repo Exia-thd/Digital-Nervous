@@ -1,15 +1,11 @@
-﻿# Digital-Nervous — Adaptive AI Orchestrator
-
-<p align="center">
-  <img src="assets/Digital-Nervous-banner.png" alt="Digital-Nervous Banner" width="100%" />
-</p>
+# Forgewright — Adaptive AI Orchestrator
 
 <p align="center">
   <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT" /></a>
-  <img src="https://img.shields.io/badge/version-7.8.2-blue.svg" alt="Version" />
-  <img src="https://img.shields.io/badge/skills-52-brightgreen.svg" alt="Skills" />
-  <img src="https://img.shields.io/badge/modes-22-blueviolet.svg" alt="Modes" />
-  <img src="https://img.shields.io/badge/protocols-15-00CED1.svg" alt="Protocols" />
+  <img src="https://img.shields.io/badge/version-7.9.0-blue.svg" alt="Version" />
+  <img src="https://img.shields.io/badge/skills-55-brightgreen.svg" alt="Skills" />
+  <img src="https://img.shields.io/badge/modes-23-blueviolet.svg" alt="Modes" />
+  <img src="https://img.shields.io/badge/protocols-29-00CED1.svg" alt="Protocols" />
   <img src="https://img.shields.io/badge/Game_Dev-Unity·Unreal·Godot·Roblox-FF4500.svg" alt="Game Dev" />
   <img src="https://img.shields.io/badge/Code_Intelligence-ForgeNexus·GitNexus-4B0082.svg" alt="Code Intelligence" />
   <img src="https://img.shields.io/badge/Memory-Persistent%20(mem0)-00CED1.svg" alt="Memory" />
@@ -18,238 +14,195 @@
 
 ---
 
-## TL;DR — What Is This?
+## TL;DR — What is Forgewright?
 
-Digital-Nervous is an AI-powered orchestrator that routes your request through the right skills automatically.
+**Imagine:** You have a team of 55 AI experts. Each one excels at a different task — writing code, security auditing, game design, performance optimization. Forgewright is the "manager" — when you say "I want to build an e-commerce app", it automatically knows which experts to call, in what order, and how to validate quality.
+
+> **One sentence:** Forgewright automatically selects the right AI expert for the right job, from idea to production.
+
+### Concrete Example
 
 ```
-You say: "Build a production-grade SaaS for X"
-        ↓
-Digital-Nervous activates:
-  BA → PM → Architect → Engineers → QA → Security → DevOps → SRE
-        ↓
-Output: production-ready code, reviewed, tested, scored 0–100
+You say:  "Build me a t-shirt selling website"
+
+    ↓
+
+Forgewright automatically does:
+    1. Market analysis (Business Analyst)
+    2. Feature planning (Product Manager)
+    3. Database & API architecture design (Solution Architect)
+    4. Write backend + frontend code (Software Engineer)
+    5. Write unit tests (QA Engineer)
+    6. Security audit (Security Engineer)
+    7. Deploy to server (DevOps)
+    8. Monitor & optimize (SRE)
+
+    ↓
+
+Result: Production-ready website, reviewed, tested, score 0-100
 ```
 
-**Pipeline:** `DEFINE → BUILD → HARDEN → SHIP → SUSTAIN → GROW`
-**Skills:** 52 specialized AI agents covering SaaS, game dev, XR, AI/ML, data engineering, and growth.
-**Modes:** 22 execution modes for precise task routing.
+### 4 Power Levels — Choose what fits you
 
----
+```mermaid
+flowchart LR
+    subgraph L1["⚡ Level 1 — Basic"]
+        direction TB
+        L1A["✅ What's included"]
+        L1B["• 55 AI skills"]
+        L1C["• Automated pipeline"]
+        L1D["• Default on install"]
+    end
 
-## Agent Setup — Executable Checklist
+    subgraph L2["⚡⚡ Level 2 — Smart"]
+        direction TB
+        L2A["🔍 What's added"]
+        L2B["• Ask 'what does this affect?' → instant answer"]
+        L2C["• Automatic blast radius analysis"]
+        L2D["• Requires: Node.js 18+"]
+    end
 
-> Follow every step in order. Each block is **machine-executable** — copy, paste, run.
+    subgraph L3["⚡⚡⚡ Level 3 — Memory"]
+        direction TB
+        L3A["🧠 What's added"]
+        L3B["• Remembers everything across chat sessions"]
+        L3C["• Saves decisions, architecture, blockers"]
+        L3D["• Requires: Python 3.8+"]
+    end
 
----
+    subgraph L4["⚡⚡⚡⚡ Level 4 — Full Power"]
+        direction TB
+        L4A["🚀 Everything"]
+        L4B["• 12 ForgeNexus tools in chat"]
+        L4C["• Instant code lookup"]
+        L4D["• Requires: MCP server"]
+    end
 
-### Step 0 — Detect Context
+    L1 --> L2 --> L3 --> L4
 
-```bash
-CWD="$(pwd)"
-IS_Digital-Nervous_REPO="$(echo "$CWD" | grep -q 'Digital-Nervous' && echo "yes" || echo "no")"
-FW_PLUGINS="$(realpath "$CWD/.antigravity/plugins/production-grade" 2>/dev/null || echo "")"
-echo "CWD: $CWD"
-echo "IS_Digital-Nervous_REPO: $IS_Digital-Nervous_REPO"
-echo "FW_PLUGINS: $FW_PLUGINS"
-```
-
-| Condition | Next step |
-|-----------|-----------|
-| `IS_Digital-Nervous_REPO=yes` | **Step 1A** — Digital-Nervous self-setup |
-| `$FW_PLUGINS` non-empty | **Step 1B** — Submodule already installed |
-| Otherwise | **Step 1C** — Add as git submodule |
-
----
-
-### Step 1 — Install Digital-Nervous
-
-#### (A) Inside the Digital-Nervous repo — self-setup
-
-```bash
-# Verify core files
-ls skills/production-grade/SKILL.md  # orchestrator entry
-ls CLAUDE.md                          # code intelligence rules
-ls AGENTS.md                          # 52-skill catalog
-echo "Digital-Nervous self-setup OK."
-```
-
-#### (B) Digital-Nervous is a git submodule
-
-```bash
-# Initialize submodule
-git submodule update --init --recursive .antigravity/plugins/production-grade
-
-# Verify
-ls .antigravity/plugins/production-grade/skills/ | wc -l   # should be 52
-ls .antigravity/plugins/production-grade/CLAUDE.md          # must exist
-ls .antigravity/plugins/production-grade/AGENTS.md          # must exist
-echo "Submodule initialized."
-```
-
-#### (C) Add Digital-Nervous as a submodule to any project
-
-```bash
-# Run from project root (NOT inside Digital-Nervous)
-PROJECT_ROOT="$(pwd)"
-git submodule add -b main https://github.com/buiphucminhtam/Digital-Nervous.git \
-  "$PROJECT_ROOT/.antigravity/plugins/production-grade"
-
-# Copy required files to project root
-cp "$PROJECT_ROOT/.antigravity/plugins/production-grade/AGENTS.md" \
-   "$PROJECT_ROOT/AGENTS.md"
-cp "$PROJECT_ROOT/.antigravity/plugins/production-grade/CLAUDE.md" \
-   "$PROJECT_ROOT/CLAUDE.md"
-
-# Commit
-git add .gitmodules .antigravity AGENTS.md CLAUDE.md
-git commit -m "feat: add Digital-Nervous v7.7 — 52 skills, ForgeNexus, MCP"
-
-# Initialize
-git submodule update --init --recursive .antigravity/plugins/production-grade
+    style L1 fill:#1a5276,stroke:#3498db,color:#fff
+    style L2 fill:#1e8449,stroke:#2ecc71,color:#fff
+    style L3 fill:#d35400,stroke:#e67e22,color:#fff
+    style L4 fill:#c0392b,stroke:#e74c3c,color:#fff
+    style L1A fill:#1a5276,stroke:#3498db,color:#fff
+    style L2A fill:#1e8449,stroke:#2ecc71,color:#fff
+    style L3A fill:#d35400,stroke:#e67e22,color:#fff
+    style L4A fill:#c0392b,stroke:#e74c3c,color:#fff
 ```
 
 ---
 
-### Step 2 — Power Level Setup
+## Getting Started — 3 Easiest Steps
 
-Run from project root. Each command is independent — run what you need.
+```mermaid
+flowchart TD
+    START(["Hey, where do I start?"])
 
-#### ⚡ Level 1 — Basic (52 skills + pipeline)
+    START --> Q1{"Are you a developer?"}
+    Q1 --> |"No / Just starting"| EASY["✅ Level 1 — Basic<br/>Just install and go<br/>52 skills ready"]
+    Q1 --> |"Yes, want smarter"| SMART["✅ Level 2 — Smart<br/>Add code analysis<br/>Ask anything"]
 
-> Installed by Step 1. Nothing extra needed.
+    SMART --> Q2{"Need memory across chats?"}
+    Q2 --> |"Yes, long project"| MEM["✅ Level 3 — Memory<br/>Save all decisions<br/>No need to repeat"]
+    Q2 --> |"No / CI only"| MCP["✅ Level 4 — Full Power<br/>12 tools in chat<br/>Instant code lookup"]
 
-#### ⚡⚡ Level 2 — Smart (ForgeNexus code intelligence)
+    EASY --> DONE1["🎉 Done! Start using now"]
+    SMART --> DONE2["🎉 Done! One extra step"]
+    MEM --> DONE3["🎉 Done! Two extra steps"]
+    MCP --> DONE4["🎉 Done! Two extra steps"]
 
-> **What you get:** Ask *"what breaks if I change this function?"* — instant blast-radius analysis.
-> **Requires:** Node.js 18+
-
-```bash
-FW_ROOT="$(realpath .antigravity/plugins/production-grade 2>/dev/null || pwd)"
-PROJECT_ROOT="$(pwd)"
-
-# Build ForgeNexus (if not built)
-if [ ! -f "$FW_ROOT/forgenexus/dist/cli/index.js" ]; then
-    cd "$FW_ROOT" && npm install && npm run build
-fi
-
-# Index your project
-cd "$FW_ROOT"
-npx --yes forgenexus analyze "$PROJECT_ROOT"
-
-# Verify
-npx forgenexus status "$PROJECT_ROOT"
+    style START fill:#1a1a2e,stroke:#e94560,color:#fff
+    style EASY fill:#1a5276,stroke:#3498db,color:#fff
+    style SMART fill:#1e8449,stroke:#2ecc71,color:#fff
+    style MEM fill:#d35400,stroke:#e67e22,color:#fff
+    style MCP fill:#c0392b,stroke:#e74c3c,color:#fff
+    style DONE1 fill:#0f3460,stroke:#2ecc71,color:#fff
+    style DONE2 fill:#0f3460,stroke:#2ecc71,color:#fff
+    style DONE3 fill:#0f3460,stroke:#2ecc71,color:#fff
+    style DONE4 fill:#0f3460,stroke:#2ecc71,color:#fff
+    style Q1 fill:#533483,stroke:#9b59b6,color:#fff
+    style Q2 fill:#533483,stroke:#9b59b6,color:#fff
 ```
 
-#### ⚡⚡⚡ Level 3 — Persistent Memory (Turn-Start + Turn-Close)
+### Quick Setup (no bash knowledge needed)
 
-> **What you get:** Cross-session memory. The orchestrator remembers decisions, architecture, blockers across requests.
-> **Why:** Without this, project memory only grows at gates — conversation facts are lost between turns.
-> **Requires:** Python 3.8+
+#### If you're using Cursor / VS Code
 
-```bash
-PROJECT_ROOT="$(pwd)"
-Digital-Nervous_ROOT="$(realpath .antigravity/plugins/production-grade 2>/dev/null || pwd)"
+1. Open Cursor or VS Code
+2. Type your question or request
+3. **Done!** No additional installation needed — Level 1 is already working
 
-# Initialize memory store
-bash "$Digital-Nervous_ROOT/scripts/ensure-mem0.sh" "$PROJECT_ROOT"
+#### If you want to get smarter (Level 2+)
 
-# Verify
-ls "$PROJECT_ROOT/.Digital-Nervous/memory.jsonl"   # must exist
-python3 "$Digital-Nervous_ROOT/scripts/mem0-cli.py" refresh
-
-# Skip if CI/headless only:
-# Digital-Nervous_SKIP_MEM0=1
-```
-
-**How it works:**
-- **Turn-Start** (before each request): loads conversation summary + recent turns + BA scope
-- **Turn-Close** (after each request): writes `REQ: | DONE: | OPEN: | SCOPE_UPDATE:` to mem0
-- The orchestrator calls these automatically — no manual action needed
-
-#### ⚡⚡⚡⚡ Level 4 — Full Power (MCP + ForgeNexus tools)
-
-> **What you get:** 12 ForgeNexus tools in your AI chat (`query`, `context`, `impact`, `detect_changes`, `rename`, `cypher`, `route_map`, `tool_map`, `shape_check`, `api_impact`, `pr_review`, `list_repos`)
-> **Requires:** Step 2 + Step 3
+Open **Terminal** (or Command Prompt) and run:
 
 ```bash
-FW_ROOT="$(realpath .antigravity/plugins/production-grade 2>/dev/null || pwd)"
-PROJECT_ROOT="$(pwd)"
+# Check Node.js
+node --version
 
-# Generate MCP config
-bash "$FW_ROOT/scripts/mcp-generate.sh"
-
-# Verify
-ls "$PROJECT_ROOT/.Digital-Nervous/mcp-server/"
-cat "$PROJECT_ROOT/.Digital-Nervous/mcp-server/mcp-config.json"
-```
-
-Then add to your AI client:
-
-**Cursor / VS Code** — already written by Step 3:
-
-```bash
-cat ~/.cursor/mcp.json          # verify
-# Restart Cursor after any MCP config change
-```
-
-**Claude Desktop (macOS):**
-
-```bash
-FORGENEXUS_ENTRY="$(realpath .antigravity/plugins/production-grade/forgenexus/dist/cli/index.js 2>/dev/null)"
-cat > "$HOME/Library/Application Support/Claude/claude_desktop_config.json" << EOF
-{
-  "mcpServers": {
-    "forgenexus": {
-      "command": "node",
-      "args": ["$FORGENEXUS_ENTRY", "mcp", "$PROJECT_ROOT"]
-    }
-  }
-}
-EOF
-```
-
-**Verify MCP connection:**
-
-```bash
-# Quick smoke test
-echo '{"jsonrpc":"2.0","id":1,"method":"tools/list","params":{}}' | \
-    node "$(realpath .antigravity/plugins/production-grade/forgenexus/dist/cli/index.js)" \
-    mcp "$PROJECT_ROOT" 2>/dev/null | head -5
-
-# Expected: {"jsonrpc":"2.0","id":1,"result":{"tools":[...
+# If you see a version (e.g. v20.x.x) → you're good
+# If you get "command not found" → install Node.js first
+#   macOS: brew install node
+#   Windows: download from nodejs.org
 ```
 
 ---
 
-### Step 3 — Verify Full Setup
+## The Flow — How Forgewright Works
 
-```bash
-PROJECT_ROOT="$(pwd)"
-FW_ROOT="$(realpath .antigravity/plugins/production-grade 2>/dev/null || pwd)"
+> All diagrams below render well on GitHub, GitLab, and any mermaid viewer.
+> If you don't see the diagrams — make sure your viewer uses **mermaid 10+**.
 
-echo "=== Digital-Nervous Power Level Check ==="
-echo "Skills: $(ls "$FW_ROOT/skills" -1 2>/dev/null | wc -l | tr -d ' ') / 52"
-echo "ForgeNexus: $([ -f "$FW_ROOT/forgenexus/dist/cli/index.js" ] && echo '✓ built' || echo '✗ missing')"
-echo "MCP server: $([ -d "$PROJECT_ROOT/.Digital-Nervous/mcp-server" ] && echo '✓ generated' || echo '✗ missing')"
-echo "Memory: $([ -f "$PROJECT_ROOT/.Digital-Nervous/memory.jsonl" ] && echo '✓ initialized' || echo '✗ missing')"
-echo "ForgeNexus indexed: $([ -d "$PROJECT_ROOT/.Digital-Nervous/mcp-server" ] && echo '✓ yes' || echo '✗ run: npx forgenexus analyze')"
-echo "======================================="
+### Overview — Who Does What
+
+```mermaid
+flowchart TD
+    START(["You say: 'Build an e-commerce app'"])
+    CHAT_INT{{"Chat Interpreter<br/>(chat-interpreter)"}}
+    ORCH(["Forgewright<br/>(the manager)"])
+
+    START --> CHAT_INT
+    CHAT_INT --> |"intent parsed"| ORCH
+
+    ORCH --> MODE{{"Select the right<br/>mode"}}
+
+    MODE --> |"Full build"| DEFINE["DEFINE<br/>Analyze → Plan"]
+    MODE --> |"Add feature"| FEATURE["FEATURE<br/>PM → Code → Test"]
+    MODE --> |"Build game"| GAME["GAME<br/>Designer → Code → Test"]
+    MODE --> |"AI feature"| AI["AI<br/>AI Engineer → Prompt → Data"]
+    MODE --> |"Other"| OTHER["Other<br/>Test · Review · Design · Debug"]
+
+    DEFINE --> GATE1{{"OK?"}}
+    FEATURE --> GATE1
+    GATE1 --> |"✅ Yes"| BUILD["BUILD<br/>Code → Test → Security"]
+    GATE1 --> |"❌ No"| REV1["Revise DEFINE"]
+    BUILD --> GATE2{{"OK?"}}
+    GATE2 --> |"✅ Yes"| SHIP["SHIP<br/>Deploy → Monitor"]
+    GATE2 --> |"❌ No"| REV2["Revise BUILD"]
+    SHIP --> END(["🎉 Production Ready"])
+
+    style START fill:#1a1a2e,stroke:#e94560,color:#fff
+    style CHAT_INT fill:#8e44ad,stroke:#9b59b6,color:#fff
+    style ORCH fill:#0f3460,stroke:#e94560,color:#fff
+    style MODE fill:#533483,stroke:#9b59b6,color:#fff
+    style GATE1 fill:#533483,stroke:#f39c12,color:#fff
+    style GATE2 fill:#533483,stroke:#f39c12,color:#fff
+    style END fill:#1e8449,stroke:#2ecc71,color:#fff
+    style REV1 fill:#c0392b,stroke:#e74c3c,color:#fff
+    style REV2 fill:#c0392b,stroke:#e74c3c,color:#fff
+    style DEFINE fill:#1a5276,stroke:#3498db,color:#fff
+    style BUILD fill:#1a5276,stroke:#3498db,color:#fff
+    style SHIP fill:#1a5276,stroke:#3498db,color:#fff
 ```
-
----
-
-## The Flow — How Digital-Nervous Works
-
-> All diagrams below render in GitHub, GitLab, and any mermaid-compatible viewer.
-> If a diagram does not render, check that your viewer uses mermaid 10+.
-
-### Architecture Overview
 
 ```mermaid
 flowchart TD
     START(["User Request"])
+    CHAT_INT{{"Chat Interpreter"}}
     ORCH(["Orchestrator<br/>production-grade"])
+
+    START --> CHAT_INT
+    CHAT_INT --> ORCH
 
     ORCH --> MODE{{"Classify Request<br/>22 Modes"}}
 
@@ -280,10 +233,10 @@ flowchart TD
     GATE3 --> |"No"| REVISE3["Revise SHIP"]
     SUSTAIN --> GROW["GROW Phase<br/>Growth → Optimize"]
 
-    START --> ORCH
     GROW --> END(["Output: Production<br/>Ready Code"])
 
     style START fill:#1a1a2e,stroke:#e94560,color:#fff
+    style CHAT_INT fill:#8e44ad,stroke:#9b59b6,color:#fff
     style END fill:#16213e,stroke:#0f3460,color:#e94560
     style ORCH fill:#0f3460,stroke:#e94560,color:#fff
     style MODE fill:#533483,stroke:#e94560,color:#fff
@@ -295,7 +248,7 @@ flowchart TD
     style REVISE3 fill:#c0392b,stroke:#e74c3c,color:#fff
 ```
 
-### Middleware Chain (per skill execution)
+### Middleware Chain (every skill execution)
 
 ```mermaid
 flowchart TD
@@ -304,16 +257,17 @@ flowchart TD
     PRE2["② ContextLoader<br/>Memory + conventions + KIs"]
     PRE3["③ SkillRegistry<br/>Progressive skill discovery"]
     PRE4["④ Guardrail<br/>Pre-tool authorization"]
-    PRE5["⑤ Summarization<br/>Auto-compress if >70% budget"]
+    PRE5["⑤ PromptMaster<br/>Intent parse · Prompt techniques · Templates"]
+    PRE6["⑥ Summarization<br/>Auto-compress if >70% budget"]
     SKILL_EXEC["SKILL EXECUTION<br/>Engineer → QA → Security → ..."]
-    POST1["⑥ QualityGate<br/>4-level validation 0-100"]
-    POST2["⑦ BrownfieldSafety<br/>Regression + change manifest"]
-    POST3["⑧ TaskTracking<br/>Update task.md"]
-    POST4["⑨ Memory Turn-Close<br/>REQ: DONE: OPEN: → mem0"]
-    POST5["⑩ GracefulFailure<br/>Retry + exit strategy"]
+    POST1["⑦ QualityGate<br/>4-level validation 0-100"]
+    POST2["⑧ BrownfieldSafety<br/>Regression + change manifest"]
+    POST3["⑨ TaskTracking<br/>Update task.md"]
+    POST4["⑩ Memory Turn-Close<br/>REQ: DONE: OPEN: → mem0"]
+    POST5["⑪ GracefulFailure<br/>Retry + exit strategy"]
     RESULT(["Result / Next Skill"])
 
-    REQ --> PRE1 --> PRE2 --> PRE3 --> PRE4 --> PRE5 --> SKILL_EXEC
+    REQ --> PRE1 --> PRE2 --> PRE3 --> PRE4 --> PRE5 --> PRE6 --> SKILL_EXEC
     SKILL_EXEC --> POST1 --> POST2 --> POST3 --> POST4 --> POST5 --> RESULT
 
     style REQ fill:#1a1a2e,stroke:#e94560,color:#fff
@@ -324,6 +278,7 @@ flowchart TD
     style PRE3 fill:#1a5276,stroke:#3498db,color:#fff
     style PRE4 fill:#1a5276,stroke:#3498db,color:#fff
     style PRE5 fill:#1a5276,stroke:#3498db,color:#fff
+    style PRE6 fill:#1a5276,stroke:#3498db,color:#fff
     style POST1 fill:#1e8449,stroke:#2ecc71,color:#fff
     style POST2 fill:#1e8449,stroke:#2ecc71,color:#fff
     style POST3 fill:#1e8449,stroke:#2ecc71,color:#fff
@@ -344,7 +299,7 @@ sequenceDiagram
 
     User->>Orch: New Session Start
 
-    Orch->>Orch: Step 0.5: Load .Digital-Nervous/ context
+    Orch->>Orch: Step 0.5: Load .forgewright/ context
     Orch->>Orch: Step 1: Load project-profile.json
     Orch->>Orch: Step 2: Load session-log.json
     Orch->>Orch: Step 3: mem0 search + code-conventions
@@ -379,7 +334,154 @@ sequenceDiagram
     User->>Orch: Session End
 ```
 
-### ForgeNexus Analyze Pipeline (Code Intelligence)
+### Game Build Pipeline (18 game skills)
+
+```mermaid
+flowchart TD
+    START(["Game Build Request"])
+
+    START --> DESIGNER["Game Designer<br/>Concept → GDD → MVP Spec"]
+    DESIGNER --> ART_STYLE["Art Style + Visual Foundations<br/>Color · Shape · Composition · Lighting · Motion"]
+
+    ART_STYLE --> ENGINE{{"Choose Engine"}}
+    ENGINE --> |"Unity"| UNITY["Unity Engineer<br/>C# · ScriptableObjects · DOTS · ShaderGraph"]
+    ENGINE --> |"Unreal"| UNREAL["Unreal Engineer<br/>C++ · Blueprint · GAS · Nanite · Lumen"]
+    ENGINE --> |"Godot"| GODOT["Godot Engineer<br/>GDScript · Scene Tree · Signals · Godot 4"]
+    ENGINE --> |"Phaser 3"| PHASER["Phaser 3 Engineer<br/>TypeScript · ECS · WebGL · Object Pool"]
+    ENGINE --> |"Three.js"| THREEJS["Three.js Engineer<br/>ECS · WebGPU · Rapier Physics · PostFX"]
+    ENGINE --> |"Roblox"| ROBLOX["Roblox Engineer<br/>Luau · Studio · DataStores"]
+
+    UNITY --> LEVEL["Level Designer<br/>Layout · Pacing · Spatial Design"]
+    UNREAL --> LEVEL
+    GODOT --> LEVEL
+    PHASER --> LEVEL
+    THREEJS --> LEVEL
+    ROBLOX --> LEVEL
+
+    LEVEL --> TECH_ART["Technical Artist<br/>Shaders · VFX · Pipeline · DCC"]
+    LEVEL --> NARRATIVE["Narrative Designer<br/>Story · Dialogue · Quest Design"]
+    LEVEL --> AUDIO["Game Audio Engineer<br/>SFX · Music · Spatial Audio · Wwise/FMOD"]
+
+    TECH_ART --> BUILD["BUILD Phase<br/>Implement → Integrate → Polish"]
+    NARRATIVE --> BUILD
+    AUDIO --> BUILD
+
+    BUILD --> GAME_TEST{{"Game Test Protocol"}}
+    GAME_TEST --> |"Mechanics"| MT["Mechanics Validation<br/>Physics · Controls · Collision · FSM"]
+    GAME_TEST --> |"Balance"| BT["Balance Validation<br/>Economy · Difficulty · Progression"]
+    GAME_TEST --> |"Performance"| PT["Performance Validation<br/>FPS · Memory · Load · Platform"]
+    GAME_TEST --> |"Build"| BT2["Build Validation<br/>Platform · Crash · CI/CD"]
+    GAME_TEST --> |"Platform"| PLT["Platform Validation<br/>iOS · Android · Console · WebGL"]
+
+    MT --> SHIP["SHIP Phase<br/>Build · Store · Release"]
+    BT --> SHIP
+    PT --> SHIP
+    BT2 --> SHIP
+    PLT --> SHIP
+
+    SHIP --> SUSTAIN["SUSTAIN Phase<br/>Analytics · LiveOps · Content Drops"]
+    SUSTAIN --> END(["Shipped Game"])
+
+    style START fill:#1a1a2e,stroke:#e94560,color:#fff
+    style END fill:#16213e,stroke:#0f3460,color:#e94560
+    style ENGINE fill:#533483,stroke:#9b59b6,color:#fff
+    style GAME_TEST fill:#d35400,stroke:#e67e22,color:#fff
+    style ART_STYLE fill:#1e8449,stroke:#2ecc71,color:#fff
+```
+
+### Full Build Pipeline (6 Phases + 3 Gates)
+
+```mermaid
+flowchart LR
+    START(["User Request"])
+
+    START --> DEFINE["DEFINE Phase<br/>Business Analyst<br/>Product Manager<br/>Solution Architect"]
+
+    DEFINE --> GATE1{{"Gate 1<br/>Plan Approved?"}}
+    GATE1 --> |"No"| REV1["Revise DEFINE"]
+    GATE1 --> |"Yes"| BUILD["BUILD Phase<br/>Backend Engineer<br/>Frontend Engineer<br/>QA Engineer<br/>Security Engineer"]
+
+    BUILD --> GATE2{{"Gate 2<br/>Code Approved?"}}
+    GATE2 --> |"No"| REV2["Revise BUILD"]
+    GATE2 --> |"Yes"| HARDEN["HARDEN Phase<br/>Security Engineer<br/>QA Engineer<br/>Code Reviewer<br/>Accessibility Engineer"]
+
+    HARDEN --> SHIP["SHIP Phase<br/>DevOps<br/>SRE<br/>Database Engineer<br/>Performance Engineer"]
+
+    SHIP --> GATE3{{"Gate 3<br/>Deploy Approved?"}}
+    GATE3 --> |"No"| REV3["Revise SHIP"]
+    GATE3 --> |"Yes"| SUSTAIN["SUSTAIN Phase<br/>Monitor<br/>Test · Review<br/>Document"]
+
+    SUSTAIN --> GROW["GROW Phase<br/>Growth Marketer<br/>Conversion Optimizer<br/>AI Engineer"]
+
+    GROW --> END(["Production Ready"])
+
+    style START fill:#1a1a2e,stroke:#e94560,color:#fff
+    style END fill:#16213e,stroke:#0f3460,color:#e94560
+    style GATE1 fill:#533483,stroke:#f39c12,color:#fff
+    style GATE2 fill:#533483,stroke:#f39c12,color:#fff
+    style GATE3 fill:#533483,stroke:#f39c12,color:#fff
+    style REV1 fill:#c0392b,stroke:#e74c3c,color:#fff
+    style REV2 fill:#c0392b,stroke:#e74c3c,color:#fff
+    style REV3 fill:#c0392b,stroke:#e74c3c,color:#fff
+    style DEFINE fill:#0f3460,stroke:#3498db,color:#fff
+    style BUILD fill:#0f3460,stroke:#3498db,color:#fff
+    style HARDEN fill:#0f3460,stroke:#3498db,color:#fff
+    style SHIP fill:#0f3460,stroke:#3498db,color:#fff
+    style SUSTAIN fill:#0f3460,stroke:#3498db,color:#fff
+    style GROW fill:#0f3460,stroke:#3498db,color:#fff
+```
+
+### NotebookLM Research Workflow (Research Mode — v0.5.19)
+
+```mermaid
+flowchart TD
+    START(["Deep Research Request"])
+
+    START --> CHECK_AUTH["1. Check Auth<br/>nlm auth status"]
+    CHECK_AUTH --> CHECK_NOTEBOOK["2. Check Notebooks<br/>nlm notebook list"]
+
+    CHECK_NOTEBOOK --> |"New topic"| CREATE["3. Create Notebook<br/>nlm notebook create"]
+    CHECK_NOTEBOOK --> |"Existing notebook"| EXISTING["Use existing notebook<br/>nlm notebook get"]
+    CREATE --> ADD_SOURCES
+
+    EXISTING --> ADD_SOURCES["3. Add Sources<br/>URL · YouTube · Text · Drive"]
+
+    ADD_SOURCES --> RESEARCH{{"Research Mode"}}
+    RESEARCH --> |"Fast"| FAST["4a. Fast Research<br/>~30s · ~10 sources"]
+    RESEARCH --> |"Deep"| DEEP["4b. Deep Research<br/>~5min · ~40+ sources"]
+
+    FAST --> IMPORT["5. Import Sources<br/>nlm research import"]
+    DEEP --> IMPORT
+
+    IMPORT --> SYNTH["6. Synthesize<br/>nlm notebook describe<br/>nlm notebook query"]
+    SYNTH --> CROSS{{"Cross-Notebook?"}}
+    CROSS --> |"Yes"| CROSS_Q["7. Cross Query<br/>nlm cross query"]
+    CROSS --> |"No"| GENERATE
+
+    CROSS_Q --> GENERATE["8. Generate Content<br/>nlm audio create<br/>nlm report create<br/>nlm quiz create<br/>nlm slides create<br/>nlm infographic create"]
+
+    GENERATE --> POLL["9. Poll Status<br/>nlm studio status"]
+    POLL --> |"In progress"| POLL
+    POLL --> |"Completed"| DOWNLOAD["10. Download Artifact<br/>nlm download audio<br/>nlm download report<br/>nlm download slides"]
+
+    DOWNLOAD --> TAG["11. Tag + Alias<br/>nlm tag add<br/>nlm alias set"]
+
+    TAG --> END(["Grounded Research Report"])
+
+    style START fill:#1a1a2e,stroke:#e94560,color:#fff
+    style END fill:#16213e,stroke:#0f3460,color:#e94560
+    style RESEARCH fill:#533483,stroke:#9b59b6,color:#fff
+    style CROSS fill:#d35400,stroke:#e67e22,color:#fff
+    style CHECK_AUTH fill:#1a5276,stroke:#3498db,color:#fff
+    style CHECK_NOTEBOOK fill:#1a5276,stroke:#3498db,color:#fff
+    style ADD_SOURCES fill:#1a5276,stroke:#3498db,color:#fff
+    style SYNTH fill:#1e8449,stroke:#2ecc71,color:#fff
+    style GENERATE fill:#1e8449,stroke:#2ecc71,color:#fff
+    style DOWNLOAD fill:#1e8449,stroke:#2ecc71,color:#fff
+    style TAG fill:#1e8449,stroke:#2ecc71,color:#fff
+```
+
+### ForgeNexus Analyze Pipeline (code analysis)
 
 ```mermaid
 flowchart LR
@@ -446,7 +548,7 @@ flowchart LR
     style META fill:#2c3e50,stroke:#7f8c8d
 ```
 
-### Multi-Repo Group Management (ForgeNexus Groups)
+### Multi-Repo Group Management
 
 ```mermaid
 flowchart TD
@@ -477,7 +579,7 @@ flowchart TD
     style REPOS fill:#1a5276,stroke:#3498db,color:#fff
 ```
 
-### ForgeNexus Enterprise — GitHub Actions (CI/CD)
+### ForgeNexus Enterprise — GitHub Actions
 
 ```mermaid
 flowchart LR
@@ -501,53 +603,32 @@ flowchart LR
     style WIKI fill:#1e8449,stroke:#2ecc71,color:#fff
 ```
 
-#### Quick Setup — PR Review in Your Repo
+#### Quick Setup — PR Review for your repo
 
-```yaml
-# .github/workflows/forge-review.yml
-name: ForgeNexus PR Review
+#### CLI Commands (Enterprise)
 
-on:
-  pull_request:
-    types: [opened, synchronize, reopened]
-
-jobs:
-  review:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-      - uses: buiphucminhtam/Digital-Nervous/.github/actions/pr-review@main
-        with:
-          dry-run: 'false'
-          openapi-enabled: 'true'
-```
-
-#### CLI Commands (New in Enterprise)
-
-| Command | Mô tả |
-|---------|--------|
-| `pr-review <base> [head]` | PR blast radius analysis |
-| `impact <symbol>` | Symbol impact analysis |
+| Command | Description |
+|---------|-------------|
+| `pr-review <base> [head]` | Analyze PR blast radius |
+| `impact <symbol>` | Analyze symbol impact |
 | `group contracts <group>` | View all contracts in group |
 | `group status <group>` | Check staleness of all repos |
-| `group query <group> <term>` | Search across all repos in group |
+| `group query <group> <term>` | Search across all repos |
 
 #### Enterprise Features
 
 | Feature | CLI | GitHub Actions | Dry Run |
 |---------|-----|---------------|---------|
 | PR Review Blast Radius | ✅ | ✅ | ✅ |
-| OpenAPI Contract Check (oasdiff) | N/A | ✅ | ✅ |
-| Auto Wiki Generation | ✅ | ✅ | ✅ |
+| OpenAPI contract check (oasdiff) | N/A | ✅ | ✅ |
+| Auto-generate Wiki | ✅ | ✅ | ✅ |
 | Auto Reindex (incremental/full) | ✅ | ✅ | ✅ |
 | Multi-Repo Group Management | ✅ | ✅ | ✅ |
-| Cross-Repo Impact Analysis | N/A | ✅ | ✅ |
+| Cross-repo impact analysis | N/A | ✅ | ✅ |
 
-**Compliance: 100%** — All features support dry-run mode.
+**Completion: 100%** — All features support dry-run mode.
 
-### Claude Code Hooks — Auto-Reindex Flow
+### Claude Code Hooks — Auto-Reindex
 
 ```mermaid
 flowchart TD
@@ -591,31 +672,32 @@ flowchart TD
     style G3 fill:#d35400,stroke:#e67e22,color:#fff
 ```
 
-### Request → Mode → Skills Routing
+### 22 Modes — What You Say, Forgewright Chooses
 
 ```mermaid
 flowchart LR
-    INPUT["You Say..."]
+    INPUT["You say..."]
 
     INPUT --> F1["Build SaaS<br/>Production Grade"]
-    INPUT --> F2["Add Feature<br/>Implement"]
+    INPUT --> F2["Add feature"]
     INPUT --> F3["Build Game<br/>Unity/Unreal/Godot/Roblox"]
-    INPUT --> F4["Build VR/AR<br/>XR App"]
+    INPUT --> F4["Build VR/AR"]
     INPUT --> F5["Build Mobile<br/>iOS/Android"]
     INPUT --> F6["AI Feature<br/>RAG/LLM/Chatbot"]
-    INPUT --> F7["Review Code<br/>Quality Check"]
-    INPUT --> F8["Write Tests<br/>Coverage"]
+    INPUT --> F7["Review Code<br/>Quality check"]
+    INPUT --> F8["Write Tests"]
     INPUT --> F9["Deploy CI/CD<br/>Docker/Terraform"]
     INPUT --> F10["Design UI<br/>UX Research"]
     INPUT --> F11["Optimize<br/>Performance"]
-    INPUT --> F12["Deep Research<br/>Investigate"]
-    INPUT --> F13["Marketing<br/>Growth Strategy"]
+    INPUT --> F12["Deep research"]
+    INPUT --> F13["Marketing"]
     INPUT --> F14["Debug Fix<br/>Bug Trace"]
     INPUT --> F15["Analyze<br/>Requirements"]
-    INPUT --> F16["Migrate DB<br/>Upgrade/Move"]
+    INPUT --> F16["Migrate DB"]
     INPUT --> F17["Harden Security<br/>Audit + Fix"]
     INPUT --> F18["Design Architecture<br/>API/Data Model"]
-    INPUT --> F19["Write Docs<br/>Documentation"]
+    INPUT --> F19["Write Docs"]
+    INPUT --> F20["Improve Prompts<br/>Prompt Engineering"]
 
     F1 --> M1{{"Full Build"}}
     F2 --> M2{{"Feature"}}
@@ -636,6 +718,7 @@ flowchart LR
     F17 --> M17{{"Harden"}}
     F18 --> M18{{"Architect"}}
     F19 --> M19{{"Document"}}
+    F20 --> M20{{"Prompt"}}
 
     M1 --> SK1["BA → PM → Architect →<br/>BE → FE → QA →<br/>Security → DevOps → SRE"]
     M2 --> SK2["PM → Architect →<br/>BE/FE → QA"]
@@ -648,7 +731,7 @@ flowchart LR
     M9 --> SK9["DevOps → SRE"]
     M10 --> SK10["UX Researcher →<br/>UI Designer"]
     M11 --> SK11["Performance Engineer →<br/>SRE"]
-    M12 --> SK12["Polymath +<br/>NotebookLM MCP"]
+    M12 --> SK12["NotebookLM Researcher\n(+ Polymath web search)"]
     M13 --> SK13["Growth Marketer →<br/>Conversion Optimizer"]
     M14 --> SK14["Debugger →<br/>Engineer"]
     M15 --> SK15["Business Analyst"]
@@ -656,6 +739,7 @@ flowchart LR
     M17 --> SK17["Security → QA →<br/>Code Review → Fix"]
     M18 --> SK18["Solution Architect"]
     M19 --> SK19["Technical Writer"]
+    M20 --> SK20["Prompt Engineer →<br/>chat-interpreter →<br/>prompt-techniques → templates"]
 
     style INPUT fill:#1a1a2e,stroke:#e94560,color:#fff
     style M1 fill:#533483,stroke:#9b59b6,color:#fff
@@ -677,6 +761,7 @@ flowchart LR
     style M17 fill:#533483,stroke:#9b59b6,color:#fff
     style M18 fill:#533483,stroke:#9b59b6,color:#fff
     style M19 fill:#533483,stroke:#9b59b6,color:#fff
+    style M20 fill:#8e44ad,stroke:#9b59b6,color:#fff
     style SK1 fill:#0f3460,stroke:#3498db,color:#fff
     style SK2 fill:#0f3460,stroke:#3498db,color:#fff
     style SK3 fill:#0f3460,stroke:#3498db,color:#fff
@@ -696,24 +781,160 @@ flowchart LR
     style SK17 fill:#0f3460,stroke:#3498db,color:#fff
     style SK18 fill:#0f3460,stroke:#3498db,color:#fff
     style SK19 fill:#0f3460,stroke:#3498db,color:#fff
+    style SK20 fill:#8e44ad,stroke:#3498db,color:#fff
 ```
 
 ---
 
-## 52 Skills — Quick Reference
+## 55 Skills — Which One, When?
 
-| Division | Skills |
-|----------|--------|
-| **Orchestrator & Meta** | production-grade, polymath, parallel-dispatch, memory-manager, skill-maker, mcp-generator |
-| **Core Engineering** | business-analyst, product-manager, solution-architect, software-engineer, frontend-engineer, qa-engineer, security-engineer, code-reviewer, devops, sre, data-scientist, technical-writer, ui-designer, mobile-engineer, mobile-tester, api-designer, database-engineer, debugger, prompt-engineer, project-manager |
-| **AI/ML & Data** | ai-engineer, performance-engineer, data-engineer, web-scraper, xlsx-engineer |
-| **Accessibility & UX** | accessibility-engineer, ux-researcher |
-| **Game Development** | game-designer, unity-engineer, unreal-engineer, godot-engineer, godot-multiplayer, roblox-engineer, level-designer, narrative-designer, technical-artist, game-audio-engineer, unity-shader-artist, unity-multiplayer, unreal-technical-artist, unreal-multiplayer, xr-engineer |
-| **Growth** | growth-marketer, conversion-optimizer |
+```mermaid
+flowchart TD
+    USER["What do you want to do?"]
+
+    USER --> |"Build new website/app"| SaaS["📦 Core Engineering<br/>22 skills"]
+    USER --> |"Build game (Unity/Unreal/Godot)"| GAME["🎮 Game Development<br/>18 skills"]
+    USER --> |"Optimize / debug code"| OPT["🔧 Optimization & Debug<br/>Performance · Debugger · QA"]
+    USER --> |"Research / data analysis"| DATA["📊 Data & AI<br/>AI Engineer · Data Scientist · NotebookLM"]
+    USER --> |"Deploy / CI/CD / infra"| DEVOPS["🚀 DevOps & Ship<br/>DevOps · SRE · Database"]
+    USER --> |"Marketing / growth"| GROW["📈 Growth<br/>Growth Marketer · Conversion Optimizer"]
+    USER --> |"Design / UX"| DESIGN["🎨 Design & UX<br/>UX Researcher · UI Designer"]
+
+    SaaS --> SaaS_DETAIL["<b>22 skills:</b><br/>Business Analyst · Product Manager<br/>Solution Architect · Software Engineer<br/>Frontend · QA · Security · DevOps · SRE<br/>Database · API Designer · Prompt Engineer"]
+    GAME --> GAME_DETAIL["<b>18 skills:</b><br/>Game Designer · Unity/Unreal/Godot/Roblox Engineer<br/>Level Designer · Narrative Designer<br/>Technical Artist · Game Audio Engineer<br/>XR Engineer"]
+    OPT --> OPT_DETAIL["<b>Optimize:</b> Performance Engineer<br/><b>Debug:</b> Debugger → Software Engineer<br/><b>Test:</b> QA Engineer"]
+    DATA --> DATA_DETAIL["<b>AI:</b> AI Engineer · Prompt Engineer · Data Scientist<br/><b>Research:</b> NotebookLM Researcher<br/><b>Web:</b> Web Scraper · XLSX Engineer"]
+    DEVOPS --> DEVOPS_DETAIL["<b>Ship:</b> DevOps · SRE · Performance Engineer<br/><b>Data:</b> Database Engineer<br/><b>API:</b> API Designer"]
+    GROW --> GROW_DETAIL["<b>Growth:</b> Growth Marketer<br/><b>Conversion:</b> Conversion Optimizer"]
+    DESIGN --> DESIGN_DETAIL["<b>Research:</b> UX Researcher<br/><b>Design:</b> UI Designer<br/><b>Accessibility:</b> Accessibility Engineer"]
+
+    style USER fill:#1a1a2e,stroke:#e94560,color:#fff
+    style SaaS fill:#1a5276,stroke:#3498db,color:#fff
+    style GAME fill:#1a5276,stroke:#3498db,color:#fff
+    style OPT fill:#1a5276,stroke:#3498db,color:#fff
+    style DATA fill:#1a5276,stroke:#3498db,color:#fff
+    style DEVOPS fill:#1a5276,stroke:#3498db,color:#fff
+    style GROW fill:#1a5276,stroke:#3498db,color:#fff
+    style DESIGN fill:#1a5276,stroke:#3498db,color:#fff
+    style SaaS_DETAIL fill:#0f3460,stroke:#3498db,color:#fff
+    style GAME_DETAIL fill:#0f3460,stroke:#3498db,color:#fff
+    style OPT_DETAIL fill:#0f3460,stroke:#3498db,color:#fff
+    style DATA_DETAIL fill:#0f3460,stroke:#3498db,color:#fff
+    style DEVOPS_DETAIL fill:#0f3460,stroke:#3498db,color:#fff
+    style GROW_DETAIL fill:#0f3460,stroke:#3498db,color:#fff
+    style DESIGN_DETAIL fill:#0f3460,stroke:#3498db,color:#fff
+```
+
+---
+
+## Detailed Setup
+
+### Method 1: Add to another project as submodule
+
+**Step 1:** Open Terminal, run from your project root:
+
+```bash
+git submodule add -b main https://github.com/buiphucminhtam/forgewright.git \
+  .antigravity/plugins/production-grade
+```
+
+**Step 2:** Copy the 2 required files:
+
+```bash
+cp .antigravity/plugins/production-grade/AGENTS.md .
+cp .antigravity/plugins/production-grade/CLAUDE.md .
+```
+
+**Step 3:** Commit:
+
+```bash
+git add .gitmodules .antigravity AGENTS.md CLAUDE.md
+git commit -m "feat: add forgewright"
+```
+
+**Step 4:** Initialize the submodule:
+
+```bash
+git submodule update --init --recursive
+```
+
+### Method 2: Upgrade to Level 2 (Smart)
+
+Requires: **Node.js 18+**
+
+```bash
+# Check
+node --version
+
+# If missing → download from nodejs.org
+# macOS: brew install node
+```
+
+Then:
+
+```bash
+npx --yes forgenexus analyze "$(pwd)"
+```
+
+Wait 1-2 minutes (first time). Done!
+
+### Method 3: Add memory (Level 3)
+
+Requires: **Python 3.8+**
+
+```bash
+# Check
+python3 --version
+```
+
+Then:
+
+```bash
+bash .antigravity/plugins/production-grade/scripts/ensure-mem0.sh "$(pwd)"
+```
+
+### Method 4: Install MCP server (Level 4)
+
+Run one command:
+
+```bash
+bash .antigravity/plugins/production-grade/scripts/mcp-generate.sh
+```
+
+Then restart Cursor/VS Code.
+
+### Verify your installation
+
+```bash
+echo "=== Verification ==="
+echo "Skills: $(ls .antigravity/plugins/production-grade/skills/ -1 2>/dev/null | wc -l | tr -d ' ')"
+echo "ForgeNexus: $([ -f .antigravity/plugins/production-grade/forgenexus/dist/cli/index.js ] && echo 'OK' || echo 'MISSING')"
+echo "MCP: $([ -d .forgewright/mcp-server ] && echo 'OK' || echo 'MISSING')"
+echo "Memory: $([ -f .forgewright/memory.jsonl ] && echo 'OK' || echo 'MISSING')"
+```
 
 ---
 
 ## Optional Enhancements
+
+### Research — NotebookLM CLI (v0.5.19)
+
+> **AI research that never gets it wrong.** Use Google NotebookLM to read documents, create summaries, quizzes, flashcards, podcasts, reports, slides, and more.
+
+```bash
+# Install (uv recommended)
+pipx install notebooklm-mcp-cli
+
+# Authenticate (launches browser, extracts cookies automatically)
+nlm login
+
+# Check status
+nlm auth status        # Shows "Authenticated" with notebook count
+nlm notebook list      # List all notebooks
+nlm --ai              # Full AI-optimized documentation
+```
+
+**35+ tools:** notebook, source, research, studio, audio, video, report, quiz, flashcards, mindmap, slides, infographic, data-table, batch, cross-notebook, pipelines, tags, drive-sync, sharing, aliases.
 
 ### Web Scraping (crawl4ai)
 
@@ -737,18 +958,11 @@ cd paperclip && pnpm dev
 # Dashboard: http://localhost:3100
 ```
 
-### Research (NotebookLM MCP)
-
-```bash
-pip install notebooklm-mcp
-# Add to MCP config for grounded AI with zero hallucinations
-```
-
 ---
 
-## Quality Gate — Automated Validation
+## Quality Gate — Automatic Scoring
 
-Run anytime to score your project 0–100:
+Run anytime to score your project 0-100:
 
 ```bash
 bash scripts/forge-validate.sh
@@ -764,39 +978,39 @@ bash scripts/forge-validate.sh --json
 |-------|-------|---------|
 | 90–100 | A | Production ready |
 | 80–89 | B | Minor issues |
-| 70–79 | C | Review recommended |
-| 60–69 | D | Fix issues before deploy |
-| < 60 | F | Unacceptable — block deploy |
+| 70–79 | C | Should review |
+| 60–69 | D | Fix before deploy |
+| < 60 | F | Not acceptable — blocks deploy |
 
 ---
 
 ## Troubleshooting
 
-| Problem | Solution |
-|---------|----------|
-| `forgenexus: command not found` | Run `npx forgenexus` instead |
+| Issue | Solution |
+|-------|----------|
+| `forgenexus: command not found` | Use `npx forgenexus` instead of `forgenexus` |
 | `npm install` fails in submodule | Check `node --version` (needs 18+) |
-| MCP tools not showing up | Restart AI client after any config change |
-| Index is stale | `npx forgenexus analyze "$(pwd)"` |
+| Can't see MCP tools | Restart Cursor/VS Code after config change |
+| Stale index | Run `npx forgenexus analyze "$(pwd)"` |
 | Submodule not initialized | `git submodule update --init --recursive` |
-| `realpath` not found on macOS | `brew install coreutils` |
-| `python3` not found | Install Python 3.8+ for memory features |
-| Windows: `bash` not found | Use PowerShell equivalent commands |
-| Mermaid diagrams not rendering | Ensure viewer uses **mermaid 10+**. GitHub/GitLab current versions support it. |
-| `better-sqlite3` build error after merge | Run `cd forgenexus && npm install` to install `kuzu` instead |
+| `realpath` not found (macOS) | `brew install coreutils` |
+| `python3` not found | Install Python 3.8+ for memory feature |
+| Windows: `bash` not found | Use equivalent PowerShell commands |
+| Mermaid diagrams not showing | Make sure viewer uses **mermaid 10+**. GitHub/GitLab supported. |
+| `better-sqlite3` error after merge | Run `cd forgenexus && npm install` to install `kuzu` instead |
 
 ---
 
 ## Available Workflow Shortcuts
 
-| Command | What It Does |
-|---------|-------------|
-| `/setup` | First-time install as git submodule |
-| `/update` | Check + install Digital-Nervous updates (safe, preserves project changes) |
-| `/pipeline` | Show full pipeline reference, modes, and skill list |
-| `/onboard` | Deep project analysis — creates `.Digital-Nervous/project-profile.json` |
+| Command | What it does |
+|---------|--------------|
+| `/setup` | First-time setup as git submodule |
+| `/update` | Check for and install updates (safe, keeps your changes) |
+| `/pipeline` | View full pipeline, modes, and skills list |
+| `/onboard` | Deep project analysis — creates `.forgewright/project-profile.json` |
 | `/mcp` | Generate or regenerate MCP server config |
-| `/setup-mobile-test` | Set up plug-and-play mobile testing (Android/iOS) |
+| `/setup-mobile-test` | Set up mobile testing for Android/iOS |
 
 ---
 
@@ -804,10 +1018,10 @@ bash scripts/forge-validate.sh --json
 
 1. Fork the repo
 2. Create branch: `git checkout -b feature/your-feature`
-3. Commit with [Conventional Commits](https://www.conventionalcommits.org/): `feat(skill): add new capability`
+3. Commit using [Conventional Commits](https://www.conventionalcommits.org/): `feat(skill): add new capability`
 4. Open a Pull Request
 
-**Adding a skill:** Create `skills/your-skill-name/SKILL.md`. See any existing skill as a reference.
+**Adding a new skill:** Create a file at `skills/your-skill-name/SKILL.md`. See existing skills for examples.
 
 ---
 
@@ -817,17 +1031,19 @@ MIT
 
 ---
 
-## Give me a coffee
+## Support the Project
 
-If Digital-Nervous helps you ship faster, you can support the project here:
+If Forgewright helps you ship faster, you can support here:
 
-<img src="assets/donate/give-me-a-coffee-international.png" width="240" />
+<p align="center">
+  <img src="assets/donate/give-me-a-coffee-international.png" width="280" alt="Buy Me a Coffee" />
+</p>
 
 ---
 
 <p align="center">
-  <strong>Digital-Nervous — 52 AI skills. 22 modes. 15 protocols. Persistent Memory. Code Intelligence. SaaS to AAA games.</strong>
+  <strong>Forgewright — 55 AI skills. 22 modes. Persistent Memory. Code Intelligence. SaaS to AAA games.</strong>
 </p>
 <p align="center">
-  <em>Plan with precision. Build with confidence. Scale with intelligence.</em>
+  <em>Plan precisely. Build confidently. Scale intelligently.</em>
 </p>

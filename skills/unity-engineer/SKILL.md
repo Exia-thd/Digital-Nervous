@@ -1,4 +1,4 @@
-﻿---
+---
 name: unity-engineer
 description: >
   [production-grade internal] Builds Unity games with production-quality C# architecture —
@@ -6,7 +6,7 @@ description: >
   and platform optimization. Implements gameplay systems from Game Designer specs.
   Routed via the production-grade orchestrator (Game Build mode).
 version: 1.0.0
-author: Digital-Nervous
+author: forgewright
 tags: [unity, c-sharp, scriptable-objects, dots, game-development, editor-tools, urp, hdrp]
 ---
 
@@ -22,13 +22,13 @@ tags: [unity, c-sharp, scriptable-objects, dots, game-development, editor-tools,
 !`cat skills/_shared/protocols/quality-gate.md 2>/dev/null || true`
 !`cat skills/_shared/protocols/task-validator.md 2>/dev/null || true`
 !`cat .production-grade.yaml 2>/dev/null || echo "No config — using defaults"`
-!`cat .Digital-Nervous/codebase-context.md 2>/dev/null || true`
+!`cat .forgewright/codebase-context.md 2>/dev/null || true`
 
 **Fallback (if protocols not loaded):** Use notify_user with options (never open-ended), "Chat about this" last, recommended first. Work continuously. Print progress constantly.
 
 ## Aesthetic Foundation
 
-Unity rendering quality depends on deliberate setup. This skill references **Digital-Nervous Game Visual Foundations** (`skills/_shared/game-visual-foundations.md`) for:
+Unity rendering quality depends on deliberate setup. This skill references **Forgewright Game Visual Foundations** (`skills/_shared/game-visual-foundations.md`) for:
 
 - **Visual hierarchy** (how URP/HDRP renders scene emphasis)
 - **Lighting setup** (Unity's lighting system for emotional atmosphere)
@@ -36,7 +36,7 @@ Unity rendering quality depends on deliberate setup. This skill references **Dig
 
 ## Engagement Mode
 
-!`cat .Digital-Nervous/settings.md 2>/dev/null || echo "No settings — using Standard"`
+!`cat .forgewright/settings.md 2>/dev/null || echo "No settings — using Standard"`
 
 | Mode | Behavior |
 |------|----------|
@@ -47,7 +47,7 @@ Unity rendering quality depends on deliberate setup. This skill references **Dig
 
 ## Brownfield Awareness
 
-If `.Digital-Nervous/codebase-context.md` exists and mode is `brownfield`:
+If `.forgewright/codebase-context.md` exists and mode is `brownfield`:
 - **READ existing Unity project** — detect render pipeline, input system, existing SO patterns, folder structure
 - **MATCH existing architecture** — if they use singletons, don't force SO-first. Migrate gradually.
 - **ADD alongside existing systems** — don't restructure their hierarchy
@@ -65,9 +65,9 @@ This skill runs AFTER the Game Designer (GDD + mechanic specs) in Game Build mod
 
 | Input | Status | What Unity Engineer Needs |
 |-------|--------|--------------------------|
-| `.Digital-Nervous/game-designer/` | Critical | GDD, mechanic specs, state machines, balance tables |
-| `.Digital-Nervous/game-designer/mechanics/` | Critical | Per-mechanic specs with timing, edge cases |
-| `.Digital-Nervous/game-designer/economy/` | Degraded | Economy design for game data |
+| `.forgewright/game-designer/` | Critical | GDD, mechanic specs, state machines, balance tables |
+| `.forgewright/game-designer/mechanics/` | Critical | Per-mechanic specs with timing, edge cases |
+| `.forgewright/game-designer/economy/` | Degraded | Economy design for game data |
 | Level Designer output | Optional | Level requirements (if Level Designer has run) |
 | Technical Artist output | Optional | Shader/VFX requirements |
 
@@ -180,7 +180,7 @@ Assets/
 ├── Packages/                        # Unity Package Manager
 └── ProjectSettings/
 
-.Digital-Nervous/unity-engineer/
+.forgewright/unity-engineer/
 ├── architecture.md                  # Architecture decisions and patterns used
 ├── so-schema.md                     # ScriptableObject schema documentation
 ├── editor-tools.md                  # Custom Editor tool documentation
@@ -355,15 +355,143 @@ public class GameEventListener : MonoBehaviour
 
 ---
 
-## Integration with Unity Skills MCP
+## Integration with Unity-MCP
 
-If the `unity-skills` MCP server is available, leverage it for:
-- **Automated scene setup** — create GameObjects, set components, assign materials via REST API
-- **Prefab creation** — assemble prefabs programmatically
-- **Material assignment** — set up materials without opening Unity Editor
-- **Light setup** — configure lighting via API
+Forgewright Unity Engineer dùng Unity-MCP (IvanMurzak/Unity-MCP) cho Editor automation khi cần thao tác với Unity Editor trực tiếp. Unity-MCP cung cấp 100+ MCP tools để create/modify GameObjects, assets, scenes, và run tests.
 
-Check availability: `list_resources(ServerName="unity-skills")`
+### Prerequisites
+
+1. **Unity-MCP Plugin** đã được cài trong Unity project
+2. **MCP Server** đang chạy (stdio hoặc http transport)
+3. **Unity Editor** đang mở (cho Editor tools)
+
+**Installation:**
+```bash
+# 1. Install CLI
+npm install -g unity-mcp-cli
+
+# 2. Install plugin vào Unity project
+unity-mcp-cli install-plugin ./MyUnityProject
+
+# 3. Mở Unity project (plugin sẽ auto-generate skills)
+```
+
+### Tool Mapping
+
+| Forgewright Task | Unity-MCP Tool | When to Use |
+|------------------|----------------|-------------|
+| Tạo scene objects | `gameobject-create` | Placeholder GameObjects |
+| Setup prefabs | `assets-prefab-create` | Convert scene → prefab |
+| Assign materials | `assets-material-create` | Create materials |
+| Thêm components | `gameobject-component-add` | Attach scripts |
+| Modify components | `gameobject-component-modify` | Change component values |
+| Chạy tests | `tests-run` | PlayMode/EditMode tests |
+| Debug errors | `console-get-logs` | Error investigation |
+| Script iteration | `script-execute` | Test code với Roslyn (không cần save) |
+
+### Combined Workflow
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│ Step 1: Architecture (Forgewright - NO Unity Editor)           │
+│ ├── SO framework design                                        │
+│ ├── Event channel architecture                                  │
+│ ├── Component responsibilities                                   │
+│ └── Generate .cs files                                          │
+└─────────────────────────────────────────────────────────────────┘
+                              ↓
+┌─────────────────────────────────────────────────────────────────┐
+│ Step 2: Scene Setup (Unity-MCP - Editor Automation)             │
+│ ├── Tạo empty GameObjects cho hierarchy                        │
+│ ├── Assign prefabs từ SO references                            │
+│ └── Setup materials và textures                                 │
+└─────────────────────────────────────────────────────────────────┘
+                              ↓
+┌─────────────────────────────────────────────────────────────────┐
+│ Step 3: Code Implementation (Forgewright - NO Unity Editor)     │
+│ ├── MonoBehaviour implementations                               │
+│ ├── SO event wiring                                             │
+│ └── Gameplay logic                                              │
+└─────────────────────────────────────────────────────────────────┘
+                              ↓
+┌─────────────────────────────────────────────────────────────────┐
+│ Step 4: Testing (Unity-MCP - Editor Automation)                 │
+│ ├── Run PlayMode tests                                          │
+│ ├── Capture screenshots                                         │
+│ └── Console log analysis                                        │
+└─────────────────────────────────────────────────────────────────┘
+                              ↓
+┌─────────────────────────────────────────────────────────────────┐
+│ Step 5: Quality Gate (Forgewright)                             │
+│ ├── Architecture compliance check                               │
+│ ├── SO-first pattern verification                               │
+│ └── Brownfield safety validation                                │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+### When to Use Unity-MCP Tools
+
+| Use Case | Approach | Why |
+|----------|----------|-----|
+| Architecture design | Forgewright only | Không cần Editor, cần type safety |
+| SO framework creation | Forgewright only | Cần project-specific patterns |
+| Scene object placement | Unity-MCP | Cần visual feedback |
+| Prefab assembly | Unity-MCP | Cần drag-drop workflow |
+| Component wiring | Both | Forgewright code + Unity-MCP verify |
+| Material setup | Unity-MCP | Cần visual preview |
+| Testing & debugging | Unity-MCP | Console logs, screenshots |
+| Gameplay logic | Forgewright only | Cần complex logic |
+
+### When NOT to Use Unity-MCP Tools
+
+| Use Case | Approach | Why |
+|----------|----------|-----|
+| Greenfield architecture | Forgewright | Unity-MCP không có architecture guidance |
+| Complex gameplay logic | Forgewright | Cần type safety, refactoring support |
+| Refactoring lớn | Forgewright | Tool-based refactor dễ break |
+| Brownfield migration | Forgewright + Unity-MCP | Forgewright analyze, Unity-MCP apply |
+
+### Runtime AI (In-Game)
+
+Unity-MCP hỗ trợ AI bên trong compiled game cho dynamic features.
+
+**Use Cases:**
+
+| Use Case | Description |
+|----------|-------------|
+| NPC Bot | LLM điều khiển NPC decision-making (VD: chess bot) |
+| Dynamic Dialogue | Generate dialogue at runtime |
+| Procedural Content | AI tạo content theo context |
+| In-Game Debug | AI phân tích game state |
+
+**Implementation:**
+```csharp
+// Build MCP plugin
+var mcpPlugin = UnityMcpPluginRuntime.Initialize(builder =>
+{
+    builder.WithConfig(config =>
+    {
+        config.Host = "http://localhost:8080";
+        config.Token = "your-token";
+    });
+    builder.WithToolsFromAssembly(Assembly.GetExecutingAssembly());
+})
+.Build();
+
+await mcpPlugin.Connect();
+```
+
+**When to Use Runtime AI:**
+- Game có NPC thông minh (strategy, puzzle)
+- Dialogue system cần dynamic responses
+- Procedural generation cần AI guidance
+- Debugging trong editor với AI assistance
+
+**When NOT to Use Runtime AI:**
+- Deterministic gameplay (fighting game, rhythm games)
+- Performance-critical paths
+- Simple AI patterns (patrol, chase)
+- Mobile games với network dependency
 
 ---
 

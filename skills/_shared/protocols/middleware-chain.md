@@ -1,4 +1,4 @@
-﻿# Middleware Chain Protocol
+# Middleware Chain Protocol
 
 > **Purpose:** Guarantee deterministic, ordered execution of cross-cutting concerns before and after every skill invocation. Replaces the current ad-hoc protocol reading pattern with a fixed-order chain. Inspired by DeerFlow 2.0's 12-middleware architecture.
 
@@ -56,8 +56,9 @@ Result / Next Skill
 | ⑥ | **QualityGate** | quality-gate.md | `after_skill()` | Run 4-level validation, calculate 0-100 score |
 | ⑦ | **BrownfieldSafety** | brownfield-safety.md | `after_skill()` | Regression check, protected path enforcement, change manifest |
 | ⑧ | **TaskTracking** | session-lifecycle.md §Hooks | `after_skill()` | Emit SKILL_COMPLETED event, update task.md |
-| ⑨ | **Memory** | memory-manager.md §Hooks + session-lifecycle §Per-request | `after_skill()` **and** `turn_close()` | After each skill: extract decisions/blockers → mem0. **After each completed user request:** mandatory Turn-Close `add` (session + optional decisions/architecture/blockers) — not optional unless `MEM0_DISABLED` / `Digital-Nervous_SKIP_MEM0` |
+| ⑨ | **Memory** | memory-manager.md §Hooks + session-lifecycle §Per-request | `after_skill()` **and** `turn_close()` | After each skill: extract decisions/blockers → mem0. **After each completed user request:** mandatory Turn-Close `add` (session + optional decisions/architecture/blockers) — not optional unless `MEM0_DISABLED` / `FORGEWRIGHT_SKIP_MEM0` |
 | ⑩ | **GracefulFailure** | graceful-failure.md | `on_error()` | Detect stuck states, manage retry counts, trigger exit |
+| ⑪ | **CircuitBreaker** | circuit-breaker.md | `after_skill()` | Update circuit state, transition based on outcome |
 
 ## Execution Rules
 
@@ -166,6 +167,11 @@ middleware:
       enabled: true
     - name: graceful-failure
       enabled: true
+    - name: circuit-breaker
+      enabled: true
+      failure_threshold: 3
+      timeout_duration: 60
+      recovery_timeout: 120
 ```
 
 ## Integration with Existing Protocols

@@ -1,4 +1,4 @@
-﻿---
+---
 name: xlsx-engineer
 description: >
   [production-grade internal] Creates, edits, analyzes, and validates Excel spreadsheet
@@ -10,7 +10,7 @@ description: >
   API integration, or standalone Python script — even if tabular data is involved.
   Routed via the production-grade orchestrator (Feature/Custom mode).
 version: 1.0.0
-author: Digital-Nervous
+author: forgewright
 tags: [excel, xlsx, csv, spreadsheet, financial-model, openpyxl, pandas, data-report]
 ---
 

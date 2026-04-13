@@ -1,4 +1,4 @@
-﻿# Game Test Protocol
+# Game Test Protocol
 
 **Game-specific testing pipeline integrated with the universal Quality Gate and Task Validator.** Applies to ALL game engines (Unity, Unreal, Godot, Roblox) and Game Build mode.
 
@@ -718,7 +718,7 @@ After all workers complete:
 
 ### Game Test Report Format
 
-After each game test run, produce a report at `.Digital-Nervous/game-tests/report-{timestamp}.json`:
+After each game test run, produce a report at `.forgewright/game-tests/report-{timestamp}.json`:
 
 ```json
 {

@@ -1,8 +1,8 @@
-﻿---
-description: Check for and install Digital-Nervous updates
+---
+description: Check for and install Forgewright updates
 ---
 
-# Update Digital-Nervous
+# Update Forgewright
 
 ## Steps
 
@@ -36,7 +36,7 @@ cat .antigravity/plugins/production-grade/VERSION
 6. Stage and commit the update:
 ```bash
 git add .antigravity/plugins/production-grade
-git commit -m "chore: update Digital-Nervous to $(cat .antigravity/plugins/production-grade/VERSION)"
+git commit -m "chore: update Forgewright to $(cat .antigravity/plugins/production-grade/VERSION)"
 ```
 
 ## Notes

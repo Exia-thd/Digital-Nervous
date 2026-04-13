@@ -1,4 +1,4 @@
-﻿# Context Summarization Protocol
+# Context Summarization Protocol
 
 > **Purpose:** Prevent token limit exhaustion during long pipeline sessions by automatically compressing completed sub-task context. Inspired by DeerFlow 2.0's summarization middleware which maintains conversation coherence at scale.
 
@@ -19,7 +19,7 @@ summarization:
   threshold: 0.7                # compress when > 70% of max context used
   keep_recent: 5                # keep last 5 message pairs intact (question + answer)
   strategy: structured_summary  # structured_summary | truncate | offload_filesystem
-  offload_path: .Digital-Nervous/context-cache/
+  offload_path: .forgewright/context-cache/
   min_messages_before_trigger: 10  # don't summarize very short conversations
 ```
 
@@ -78,10 +78,10 @@ Best for Full Build pipelines where future skills may need older context.
 Trigger: context_tokens > threshold × max_context_tokens
 
 Procedure:
-  1. Write full conversation to: .Digital-Nervous/context-cache/{session-id}-{timestamp}.md
+  1. Write full conversation to: .forgewright/context-cache/{session-id}-{timestamp}.md
   2. Apply Strategy 1 (structured summary) to active context
   3. Add filesystem reference:
-     "[Full context saved to .Digital-Nervous/context-cache/{filename}]"
+     "[Full context saved to .forgewright/context-cache/{filename}]"
   4. Any future skill can read the offloaded file if needed
 ```
 

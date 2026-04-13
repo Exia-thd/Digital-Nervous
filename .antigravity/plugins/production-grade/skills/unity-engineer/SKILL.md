@@ -1,4 +1,4 @@
-﻿---
+---
 name: unity-engineer
 description: >
   [production-grade internal] Builds Unity games with production-quality C# architecture —
@@ -6,7 +6,7 @@ description: >
   and platform optimization. Implements gameplay systems from Game Designer specs.
   Routed via the production-grade orchestrator (Game Build mode).
 version: 1.0.0
-author: Digital-Nervous
+author: forgewright
 tags: [unity, c-sharp, scriptable-objects, dots, game-development, editor-tools, urp, hdrp]
 ---
 
@@ -18,13 +18,13 @@ tags: [unity, c-sharp, scriptable-objects, dots, game-development, editor-tools,
 !`cat skills/_shared/protocols/input-validation.md 2>/dev/null || true`
 !`cat skills/_shared/protocols/tool-efficiency.md 2>/dev/null || true`
 !`cat .production-grade.yaml 2>/dev/null || echo "No config — using defaults"`
-!`cat .Digital-Nervous/codebase-context.md 2>/dev/null || true`
+!`cat .forgewright/codebase-context.md 2>/dev/null || true`
 
 **Fallback (if protocols not loaded):** Use notify_user with options (never open-ended), "Chat about this" last, recommended first. Work continuously. Print progress constantly.
 
 ## Engagement Mode
 
-!`cat .Digital-Nervous/settings.md 2>/dev/null || echo "No settings — using Standard"`
+!`cat .forgewright/settings.md 2>/dev/null || echo "No settings — using Standard"`
 
 | Mode | Behavior |
 |------|----------|
@@ -35,7 +35,7 @@ tags: [unity, c-sharp, scriptable-objects, dots, game-development, editor-tools,
 
 ## Brownfield Awareness
 
-If `.Digital-Nervous/codebase-context.md` exists and mode is `brownfield`:
+If `.forgewright/codebase-context.md` exists and mode is `brownfield`:
 - **READ existing Unity project** — detect render pipeline, input system, existing SO patterns, folder structure
 - **MATCH existing architecture** — if they use singletons, don't force SO-first. Migrate gradually.
 - **ADD alongside existing systems** — don't restructure their hierarchy
@@ -53,9 +53,9 @@ This skill runs AFTER the Game Designer (GDD + mechanic specs) in Game Build mod
 
 | Input | Status | What Unity Engineer Needs |
 |-------|--------|--------------------------|
-| `.Digital-Nervous/game-designer/` | Critical | GDD, mechanic specs, state machines, balance tables |
-| `.Digital-Nervous/game-designer/mechanics/` | Critical | Per-mechanic specs with timing, edge cases |
-| `.Digital-Nervous/game-designer/economy/` | Degraded | Economy design for game data |
+| `.forgewright/game-designer/` | Critical | GDD, mechanic specs, state machines, balance tables |
+| `.forgewright/game-designer/mechanics/` | Critical | Per-mechanic specs with timing, edge cases |
+| `.forgewright/game-designer/economy/` | Degraded | Economy design for game data |
 | Level Designer output | Optional | Level requirements (if Level Designer has run) |
 | Technical Artist output | Optional | Shader/VFX requirements |
 
@@ -168,7 +168,7 @@ Assets/
 ├── Packages/                        # Unity Package Manager
 └── ProjectSettings/
 
-.Digital-Nervous/unity-engineer/
+.forgewright/unity-engineer/
 ├── architecture.md                  # Architecture decisions and patterns used
 ├── so-schema.md                     # ScriptableObject schema documentation
 ├── editor-tools.md                  # Custom Editor tool documentation

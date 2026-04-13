@@ -1,4 +1,4 @@
-﻿# Onboard Mode — Codebase Understanding
+# Onboard Mode — Codebase Understanding
 
 Load this mode when the user needs to understand an unfamiliar codebase, project, or system.
 
@@ -56,7 +56,7 @@ Read specific files the user wants to understand. Explain the code, the patterns
 
 ## Output
 
-Write to `.Digital-Nervous/polymath/context/repo-map.md`:
+Write to `.forgewright/polymath/context/repo-map.md`:
 
 ```markdown
 # Repo Map — [project name]

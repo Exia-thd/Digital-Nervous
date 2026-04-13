@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BA Evaluation & Estimation - Hệ thống Sự kiện</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; color: #334155; line-height: 1.6; }
+        .gradient-bg { background: linear-gradient(135deg, #0f172a, #334155); }
+        h2 { color: #0f172a; margin-bottom: 1rem; border-bottom: 2px solid #e2e8f0; padding-bottom: 0.5rem; margin-top: 2rem; font-size: 1.5rem; font-weight: 700; }
+        h3 { color: #1e293b; margin-bottom: 0.75rem; margin-top: 1.75rem; font-size: 1.25rem; font-weight: 600; }
+        h4 { color: #334155; margin-bottom: 0.5rem; margin-top: 1.25rem; font-size: 1.1rem; font-weight: 600; }
+        .section-card { background: white; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); padding: 2rem; margin-bottom: 1.5rem; }
+        table { width: 100%; border-collapse: collapse; margin-top: 1rem; margin-bottom: 1.5rem; font-size: 0.95rem; }
+        th { background-color: #f1f5f9; color: #475569; font-weight: 600; text-align: left; padding: 12px 16px; border-bottom: 2px solid #cbd5e1; white-space: nowrap; }
+        td { padding: 12px 16px; border-bottom: 1px solid #e2e8f0; vertical-align: top; }
+        tr:hover { background-color: #f8fafc; }
+        .badge { display: inline-block; padding: 4px 10px; border-radius: 9999px; font-size: 0.85rem; font-weight: 600; }
+        .badge-ready { background-color: #dcfce7; color: #15803d; }
+        .badge-incomplete { background-color: #fef3c7; color: #b45309; }
+        pre { background: #1e293b; color: #f8fafc; padding: 1.5rem; border-radius: 8px; overflow-x: auto; font-family: 'Consolas', monospace; margin: 1rem 0; font-size: 0.95rem; line-height: 1.5; }
+        ul { list-style-type: none; padding-left: 0; margin-bottom: 1rem; }
+        ul li { position: relative; padding-left: 1.75rem; margin-bottom: 0.5rem; }
+        ul li::before { content: "\f0da"; font-family: "Font Awesome 6 Free"; font-weight: 900; position: absolute; left: 0; top: 0.1rem; color: #64748b; }
+        .gap-list li::before { content: "\f071"; color: #eab308; }
+        .check-list li::before { content: "\f00c"; color: #10b981; }
+        blockquote { border-left: 4px solid #f59e0b; background-color: #fffbeb; padding: 1rem; margin: 1.5rem 0; border-radius: 0 8px 8px 0; color: #92400e; font-weight: 500; }
+    </style>
+</head>
+<body class="px-4 py-8">
+
+<div class="max-w-5xl mx-auto space-y-6">
+    <!-- Header -->
+    <div class="gradient-bg text-white rounded-2xl p-8 shadow-lg">
+        <div class="flex items-center space-x-4 mb-4">
+            <i class="fa-solid fa-clipboard-check text-4xl text-blue-400"></i>
+            <h1 class="text-3xl font-bold">BA Evaluation & Estimation</h1>
+        </div>
+        <p class="text-slate-300 text-lg mb-6">Hệ thống Trải nghiệm Sự kiện Đa Trạm</p>
+        <div class="flex flex-wrap gap-3 text-sm">
+            <span class="bg-white/10 border border-white/20 px-4 py-2 rounded-lg"><i class="fa-regular fa-calendar mr-2"></i><strong>Ngày phân tích:</strong> 2026-04-10</span>
+            <span class="bg-white/10 border border-white/20 px-4 py-2 rounded-lg"><i class="fa-solid fa-layer-group mr-2"></i><strong>Loại:</strong> Full Build — greenfield, multi-station event tech</span>
+            <span class="bg-white/10 border border-white/20 px-4 py-2 rounded-lg"><i class="fa-solid fa-user-tie mr-2"></i><strong>Người phân tích:</strong> Business Analyst (Digital-Nervous)</span>
+        </div>
+    </div>
+
+    <!-- 1. Tóm tắt hệ thống -->
+    <div class="section-card">
+        <h2><i class="fa-solid fa-sitemap mr-2 text-blue-500"></i>1. Tóm tắt hệ thống (System Overview)</h2>
+        <p>Đây là một <strong>hệ thống trải nghiệm tương tác tại sự kiện</strong> gồm <strong>4 trạm vật lý + 1 trạm số</strong>, hoạt động theo mô hình:</p>
+<pre>
+Tablet/PG (nhập liệu)  →  Server/Backend  →  LED/TV (hiển thị)
+                              ↕
+                       Khách nhận QR (download)
+</pre>
+        <table>
+            <thead>
+                <tr>
+                    <th>Trạm</th>
+                    <th>Tên</th>
+                    <th>Kênh đầu vào</th>
+                    <th>Kênh đầu ra</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>1</td><td>Quay video nhắn gửi</td><td>Tablet (PG nhập SĐT + khách quay)</td><td>TV/LED Gallery</td></tr>
+                <tr><td>2</td><td>Lan tỏa từ khóa</td><td>Tablet (chọn từ khóa)</td><td>TV (animation)</td></tr>
+                <tr><td>4</td><td>Chụp ảnh filter</td><td>Camera vật lý + Tablet (PG nhập SĐT)</td><td>LED 4 khung</td></tr>
+                <tr><td>Nhận ảnh</td><td>Download</td><td>Tablet/Điện thoại khách (nhập SĐT)</td><td>QR → tải về</td></tr>
+                <tr><td>Admin</td><td>Web quản trị</td><td>Browser</td><td>Bảng danh sách + export Excel</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 2. Phân tích Yêu cầu 6W1H -->
+    <div class="section-card">
+        <h2><i class="fa-solid fa-magnifying-glass-chart mr-2 text-blue-500"></i>2. Phân tích Yêu cầu 6W1H (Requirements Analysis)</h2>
+        
+        <!-- Trạm 1 -->
+        <h3>2.1 Trạm 1 — Quay video nhắn gửi</h3>
+        <table>
+            <thead>
+                <tr><th>6W1H</th><th>Nội dung</th><th>Trạng thái</th></tr>
+            </thead>
+            <tbody>
+                <tr><td><strong>Who</strong></td><td>PG vận hành tablet; khách hàng quay video</td><td>✅ Rõ</td></tr>
+                <tr><td><strong>What</strong></td><td>Quay video tối đa 30s, liên kết với SĐT, đẩy lên TV</td><td>✅ Rõ</td></tr>
+                <tr><td><strong>Why</strong></td><td>Khách để lại thông điệp, hiển thị trên màn hình lớn tạo trải nghiệm</td><td>✅ Rõ</td></tr>
+                <tr><td><strong>Where</strong></td><td>Tablet tại trạm 1 → TV Gallery chung</td><td>✅ Rõ</td></tr>
+                <tr><td><strong>When</strong></td><td>Sau khi PG nhập SĐT → bấm bắt đầu → tối đa 30s</td><td>✅ Rõ</td></tr>
+                <tr><td><strong>Which</strong></td><td>Video mới ưu tiên hiển thị; fallback về brand video</td><td>✅ Rõ</td></tr>
+                <tr><td><strong>How</strong></td><td>Camera tablet → upload server → stream/push lên TV</td><td>⚠️ Chưa rõ (xem gaps)</td></tr>
+            </tbody>
+        </table>
+        <p class="mb-4"><strong>Score: <span class="badge badge-ready">6/7 — Ready</span></strong> (cần làm rõ cơ chế push lên TV)</p>
+        
+        <div class="bg-amber-50 p-5 rounded-lg border border-amber-200 mb-8">
+            <h4 class="text-amber-800 mt-0"><i class="fa-solid fa-triangle-exclamation mr-2"></i>⚠️ Gaps Trạm 1:</h4>
+            <ul class="gap-list text-amber-900 mb-0">
+                <li><strong>Cơ chế hiển thị TV</strong>: TV chạy browser (web app)? hay app native? Pull (polling) hay WebSocket push?</li>
+                <li><strong>Video brand mặc định</strong>: Có sẵn hay client cung cấp? Format? Loop vô tận?</li>
+                <li><strong>Trình tự Gallery</strong>: FIFO (video mới lên sau)? hay video mới lên đầu? Bao nhiêu video cùng hiển thị?</li>
+                <li><strong>Thời gian một video chiếu</strong>: Chiếu đủ video (30s) rồi chuyển? hay chỉ preview ngắn?</li>
+                <li><strong>Chất lượng video</strong>: Compress trước khi upload? Giới hạn dung lượng?</li>
+                <li><strong>Trạm 3 bị thiếu</strong>: Spec nhảy từ Trạm 2 → Trạm 4. Trạm 3 không được mô tả — có thực sự không có không?</li>
+            </ul>
+        </div>
+
+        <!-- Trạm 2 -->
+        <h3>2.2 Trạm 2 — Lan tỏa từ khóa</h3>
+        <table>
+            <thead>
+                <tr><th>6W1H</th><th>Nội dung</th><th>Trạng thái</th></tr>
+            </thead>
+            <tbody>
+                <tr><td><strong>Who</strong></td><td>PG/khách chọn từ khóa trên tablet</td><td>✅ Rõ</td></tr>
+                <tr><td><strong>What</strong></td><td>Từ khóa "bay" từ tablet lên màn hình TV với hiệu ứng chuyển động</td><td>✅ Rõ</td></tr>
+                <tr><td><strong>Why</strong></td><td>Tạo bầu không khí tương tác, lan tỏa thông điệp</td><td>✅ Rõ</td></tr>
+                <tr><td><strong>Where</strong></td><td>Tablet → TV</td><td>✅ Rõ</td></tr>
+                <tr><td><strong>When</strong></td><td>Sau khi chọn từ khóa</td><td>✅ Rõ</td></tr>
+                <tr><td><strong>Which</strong></td><td>Danh sách từ khóa có sẵn (cố định)</td><td>⚠️ Chưa rõ số lượng/nội dung</td></tr>
+                <tr><td><strong>How</strong></td><td>Animation: tablet "bay" lên TV — cơ chế kỹ thuật chưa mô tả</td><td>⚠️ Chưa rõ</td></tr>
+            </tbody>
+        </table>
+        <p class="mb-4"><strong>Score: <span class="badge badge-incomplete">5/7 — Incomplete</span></strong></p>
+        
+        <div class="bg-amber-50 p-5 rounded-lg border border-amber-200 mb-8">
+            <h4 class="text-amber-800 mt-0"><i class="fa-solid fa-triangle-exclamation mr-2"></i>⚠️ Gaps Trạm 2:</h4>
+            <ul class="gap-list text-amber-900 mb-0">
+                <li><strong>"Bay" từ tablet lên TV</strong> nghĩa là gì kỹ thuật? Animation chạy trên tablet rồi TV tiếp tục? hay tablet trigger → TV hiển thị animation?</li>
+                <li><strong>Bao nhiêu từ khóa</strong> trong danh sách? Có thể thêm/sửa qua admin không?</li>
+                <li><strong>TV hiển thị từ khóa như thế nào after animation</strong>? Tích lũy thành word cloud? hay biến mất?</li>
+                <li><strong>Nhiều người chọn đồng thời</strong>: queue hay hiển thị cùng lúc?</li>
+                <li><strong>Kết nối tablet - TV</strong>: cùng mạng LAN? hay qua internet?</li>
+            </ul>
+        </div>
+
+        <!-- Trạm 4 -->
+        <h3>2.3 Trạm 4 — Chụp ảnh filter</h3>
+        <table>
+            <thead>
+                <tr><th>6W1H</th><th>Nội dung</th><th>Trạng thái</th></tr>
+            </thead>
+            <tbody>
+                <tr><td><strong>Who</strong></td><td>Khách chụp; PG nhập SĐT</td><td>✅ Rõ</td></tr>
+                <tr><td><strong>What</strong></td><td>4 camera, 4 khung LED, filter cố định, realtime preview, chụp → hiển thị LED</td><td>✅ Rõ</td></tr>
+                <tr><td><strong>Why</strong></td><td>Trải nghiệm chụp ảnh sự kiện có filter, nhận ảnh về</td><td>✅ Rõ</td></tr>
+                <tr><td><strong>Where</strong></td><td>Camera vật lý tại 4 vị trí → LED 4 khung</td><td>✅ Rõ</td></tr>
+                <tr><td><strong>When</strong></td><td>Realtime khi không có ai chụp; snapshot khi PG nhấn Submit</td><td>✅ Rõ</td></tr>
+                <tr><td><strong>Which</strong></td><td>Filter cố định theo từng camera (khác nhau hay giống nhau?)</td><td>⚠️ Chưa rõ</td></tr>
+                <tr><td><strong>How</strong></td><td>Camera stream → web/app → apply filter → LED</td><td>⚠️ Nhiều gaps kỹ thuật</td></tr>
+            </tbody>
+        </table>
+        <p class="mb-4"><strong>Score: <span class="badge badge-incomplete">5/7 — Incomplete</span></strong></p>
+        
+        <div class="bg-amber-50 p-5 rounded-lg border border-amber-200 mb-8">
+            <h4 class="text-amber-800 mt-0"><i class="fa-solid fa-triangle-exclamation mr-2"></i>⚠️ Gaps Trạm 4:</h4>
+            <ul class="gap-list text-amber-900 mb-0">
+                <li><strong>Camera là gì?</strong> Webcam USB? IP Camera? Điện thoại? → ảnh hưởng lớn đến architecture</li>
+                <li><strong>Filter hoạt động ở đâu?</strong> Client-side (WebGL/CSS)? Server-side (ML)? Hay filter cứng từ phần cứng camera?</li>
+                <li><strong>"LED chia thành 4 khung"</strong>: LED wall vật lý hay màn hình TV? Resolution? Ai quản lý layout 4 khung?</li>
+                <li><strong>4 camera hoạt động đồng thời realtime</strong> → cần server/rendering mạnh</li>
+                <li><strong>Option 1 "toàn thân"</strong> → có Option 2 không? Spec chỉ mô tả Option 1</li>
+                <li><strong>Preview "xem nhanh ảnh"</strong>: Hiển thị trên tablet PG hay trên màn hình lớn?</li>
+                <li><strong>Submit flow</strong>: Ảnh upload lên server. Từ server push lên LED đúng khung — cơ chế?</li>
+                <li><strong>Sau 5-10s</strong>: LED khung đó trở về realtime camera — transition effect?</li>
+            </ul>
+        </div>
+
+        <!-- Trạm Nhận ảnh -->
+        <h3>2.4 Trạm Nhận ảnh</h3>
+        <table>
+            <thead>
+                <tr><th>6W1H</th><th>Nội dung</th><th>Trạng thái</th></tr>
+            </thead>
+            <tbody>
+                <tr><td><strong>Who</strong></td><td>Khách tự thao tác</td><td>✅ Rõ</td></tr>
+                <tr><td><strong>What</strong></td><td>Nhập SĐT → nhận QR → scan → xem/tải ảnh+video từ Trạm 1+4</td><td>✅ Rõ</td></tr>
+                <tr><td><strong>Why</strong></td><td>Khách giữ kỷ niệm từ trải nghiệm</td><td>✅ Rõ</td></tr>
+                <tr><td><strong>Where</strong></td><td>Trạm riêng (tablet/kiosk?) hoặc điện thoại cá nhân</td><td>⚠️ Chưa rõ</td></tr>
+                <tr><td><strong>When</strong></td><td>Sau khi đã quay video/chụp ảnh</td><td>✅ Rõ</td></tr>
+                <tr><td><strong>Which</strong></td><td>QR link tới trang web cá nhân hóa theo SĐT</td><td>✅ Hợp lý</td></tr>
+                <tr><td><strong>How</strong></td><td>Server tổng hợp media theo SĐT → generate QR → display</td><td>✅ Rõ</td></tr>
+            </tbody>
+        </table>
+        <p class="mb-4"><strong>Score: <span class="badge badge-ready">6/7 — Ready</span></strong></p>
+        
+        <div class="bg-amber-50 p-5 rounded-lg border border-amber-200 mb-8">
+            <h4 class="text-amber-800 mt-0"><i class="fa-solid fa-triangle-exclamation mr-2"></i>⚠️ Gaps Trạm Nhận ảnh:</h4>
+            <ul class="gap-list text-amber-900 mb-0">
+                <li><strong>QR link tới đâu?</strong> Web app public? hay link download trực tiếp?</li>
+                <li><strong>Thời gian media available</strong>: Ngay lập tức sau khi quay/chụp? hay cần xử lý?</li>
+                <li><strong>Lưu ảnh/video bao lâu?</strong> Sau sự kiện có xóa không? Data retention policy?</li>
+                <li><strong>Nếu SĐT trùng</strong> (nhiều lần quay/chụp cùng một SĐT): hiển thị tất cả hay chỉ lần gần nhất?</li>
+            </ul>
+        </div>
+
+        <!-- Web Quản trị Admin -->
+        <h3>2.5 Web Quản trị Admin</h3>
+        <table>
+            <thead>
+                <tr><th>6W1H</th><th>Status</th><th>Notes</th></tr>
+            </thead>
+            <tbody>
+                <tr><td><strong>Who</strong></td><td>Admin/Org team</td><td>✅</td></tr>
+                <tr><td><strong>What</strong></td><td>Xem danh sách SĐT + video/ảnh, export Excel</td><td>✅</td></tr>
+                <tr><td><strong>Why</strong></td><td>Theo dõi dữ liệu sự kiện</td><td>✅</td></tr>
+                <tr><td><strong>Where</strong></td><td>Web browser</td><td>✅</td></tr>
+                <tr><td><strong>When</strong></td><td>Realtime trong sự kiện</td><td>✅</td></tr>
+                <tr><td><strong>Which</strong></td><td>Excel export — format?</td><td>⚠️</td></tr>
+                <tr><td><strong>How</strong></td><td>Web app kết nối backend</td><td>✅</td></tr>
+            </tbody>
+        </table>
+        <p class="mb-4"><strong>Score: <span class="badge badge-ready">6/7 — Ready</span></strong></p>
+        
+        <div class="bg-amber-50 p-5 rounded-lg border border-amber-200 mb-8">
+            <h4 class="text-amber-800 mt-0"><i class="fa-solid fa-triangle-exclamation mr-2"></i>⚠️ Gaps Admin:</h4>
+            <ul class="gap-list text-amber-900 mb-0">
+                <li><strong>Authentication?</strong> Ai được truy cập? Username/password? hay open?</li>
+                <li><strong>Realtime</strong> nghĩa là websocket live update hay F5 manual?</li>
+                <li><strong>Excel export</strong>: Gồm cột nào? Có bao gồm link ảnh/video không?</li>
+                <li><strong>Moderation</strong>: Admin có thể xóa video/ảnh không phù hợp không?</li>
+            </ul>
+        </div>
+
+        <!-- OTP Zalo -->
+        <h3>2.6 OTP Zalo (Optional)</h3>
+        <blockquote>
+            <i class="fa-solid fa-circle-exclamation mr-2"></i>⚠️ Được đánh dấu "(Optional)" nhưng có ảnh hưởng lớn đến architecture nếu implement.
+        </blockquote>
+        <ul class="mb-0">
+            <li>Zalo OTP API cần đăng ký Official Account (chi phí + thời gian)</li>
+            <li>Nếu không có Zalo OTP: SĐT không được xác thực → dễ giả mạo</li>
+            <li><strong>Khuyến nghị</strong>: Xác định ngay đây là Must-Have hay Skip hoàn toàn để tránh re-architecture</li>
+        </ul>
+    </div>
+
+    <!-- 3. Kiến trúc Kỹ thuật -->
+    <div class="section-card">
+        <h2><i class="fa-solid fa-network-wired mr-2 text-blue-500"></i>3. Kiến trúc Kỹ thuật Đề xuất (High-Level Architecture)</h2>
+<pre>
+┌─────────────────────────────────────────────────────────┐
+│                    DEVICES AT EVENT                      │
+│                                                          │
+│  [Tablet PG - T1]  [Tablet PG - T4]  [Kiosk Nhận ảnh]  │
+│   (Camera quay)    (4x Camera IP)     (SĐT → QR)        │
+│       └──────────────────┴──────────────┘               │
+│                          │ WebSocket / HTTP              │
+│                    ┌─────▼──────┐                        │
+│                    │  Backend   │                        │
+│                    │  Server    │                        │
+│                    │ (Node.js/  │                        │
+│                    │  Python)   │                        │
+│                    └─────┬──────┘                        │
+│           ┌──────────────┼────────────────┐              │
+│      ┌────▼────┐  ┌──────▼────┐  ┌───────▼────┐         │
+│      │TV/LED   │  │  Storage  │  │  Admin Web  │         │
+│      │Gallery  │  │(Video/Img)│  │  Dashboard  │         │
+│      │(Browser)│  │  + DB     │  │             │         │
+│      └─────────┘  └───────────┘  └────────────┘         │
+└─────────────────────────────────────────────────────────┘
+</pre>
+        <h4 class="mt-6">Tech Stack đề xuất:</h4>
+        <table>
+            <thead>
+                <tr><th>Layer</th><th>Options</th><th>Đề xuất</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Frontend (Tablet/TV)</td><td>React, Vue, plain HTML</td><td><strong>React + WebSocket</strong></td></tr>
+                <tr><td>Backend</td><td>Node.js, Python FastAPI</td><td><strong>Node.js + Express</strong></td></tr>
+                <tr><td>Realtime</td><td>WebSocket, SSE</td><td><strong>Socket.io</strong></td></tr>
+                <tr><td>Video Recording</td><td>MediaRecorder API</td><td>Browser native</td></tr>
+                <tr><td>Video Storage</td><td>Local server, S3, Cloudflare R2</td><td><strong>Cloudflare R2 / MinIO</strong></td></tr>
+                <tr><td>Database</td><td>PostgreSQL, SQLite</td><td><strong>PostgreSQL</strong></td></tr>
+                <tr><td>Image Filter</td><td>CSS/WebGL, OpenCV</td><td><strong>CSS canvas filter</strong> (client)</td></tr>
+                <tr><td>QR Generation</td><td>qrcode.js</td><td>✅</td></tr>
+                <tr><td>Admin</td><td>React + table</td><td>✅</td></tr>
+                <tr><td>Excel Export</td><td>xlsx.js</td><td>✅</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 4. Risk Register -->
+    <div class="section-card">
+        <h2><i class="fa-solid fa-shield-halved mr-2 text-blue-500"></i>4. Risk Register</h2>
+        <table>
+            <thead>
+                <tr><th>#</th><th>Rủi ro</th><th>Mức độ</th><th>Tác động</th><th>Mitigation</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>R1</td><td><strong>Camera/Network tại sự kiện không ổn định</strong></td><td class="text-red-600 font-bold">🔴 Cao</td><td>Trạm 4 crash real-time</td><td>Test kỹ mạng LAN, offline mode</td></tr>
+                <tr><td>R2</td><td><strong>Video upload chậm</strong> (30s video = ~50-100MB)</td><td class="text-red-600 font-bold">🔴 Cao</td><td>TV chờ lâu, UX kém</td><td>Compress trước upload, progressive stream</td></tr>
+                <tr><td>R3</td><td><strong>LED/TV là nhiều thiết bị</strong> — sync trạng thái phức tạp</td><td class="text-amber-500 font-bold">🟠 TB</td><td>Khung sai, loop sai</td><td>WebSocket room-based</td></tr>
+                <tr><td>R4</td><td><strong>SĐT trùng</strong> — nhiều khách cùng số</td><td class="text-amber-500 font-bold">🟠 TB</td><td>Media bị gộp nhầm</td><td>Cho phép nhiều session/SĐT</td></tr>
+                <tr><td>R5</td><td><strong>4 camera stream đồng thời</strong> — bandwidth cao</td><td class="text-amber-500 font-bold">🟠 TB</td><td>Lag realtime</td><td>Giảm resolution preview</td></tr>
+                <tr><td>R6</td><td><strong>Zalo OTP</strong> — approval process Zalo chậm</td><td class="text-emerald-500 font-bold">🟡 Thấp</td><td>Delay launch nếu opt → req</td><td>Xác định sớm, skip nếu optional</td></tr>
+                <tr><td>R7</td><td><strong>Content không phù hợp</strong> trong video</td><td class="text-emerald-500 font-bold">🟡 Thấp</td><td>Brand risk</td><td>PG review trước Submit, moderation admin</td></tr>
+                <tr><td>R8</td><td><strong>Thiếu Trạm 3</strong> trong spec</td><td class="text-emerald-500 font-bold">🟡 Thấp</td><td>Confusion khi build</td><td>Làm rõ với client</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 5. Estimation -->
+    <div class="section-card">
+        <h2><i class="fa-solid fa-clock-rotate-left mr-2 text-blue-500"></i>5. Estimation (Ước lượng công sức)</h2>
+        
+        <h3>5.1 Breakdown theo Module</h3>
+        <table>
+            <thead>
+                <tr><th>Module</th><th>Complexity</th><th>Frontend</th><th>Backend</th><th>Infra</th><th>Total</th></tr>
+            </thead>
+            <tbody>
+                <tr><td><strong>Trạm 1 — Video Recording</strong></td><td class="text-red-600 font-bold">🔴 Cao</td><td>3d</td><td>2d</td><td>1d</td><td><strong>6 ngày</strong></td></tr>
+                <tr><td><strong>Trạm 2 — Keyword Broadcast</strong></td><td class="text-emerald-500 font-bold">🟡 Thấp</td><td>2d</td><td>1d</td><td>0.5d</td><td><strong>3.5 ngày</strong></td></tr>
+                <tr><td><strong>Trạm 4 — Photo Filter</strong></td><td class="text-red-600 font-bold">🔴 Cao</td><td>4d</td><td>2d</td><td>1d</td><td><strong>7 ngày</strong></td></tr>
+                <tr><td><strong>Trạm Nhận ảnh</strong></td><td class="text-amber-500 font-bold">🟠 TB</td><td>2d</td><td>1d</td><td>0.5d</td><td><strong>3.5 ngày</strong></td></tr>
+                <tr><td><strong>TV/LED Gallery Display</strong></td><td class="text-red-600 font-bold">🔴 Cao</td><td>3d</td><td>1d</td><td>0.5d</td><td><strong>4.5 ngày</strong></td></tr>
+                <tr><td><strong>Admin Web Dashboard</strong></td><td class="text-amber-500 font-bold">🟠 TB</td><td>2d</td><td>1.5d</td><td>0.5d</td><td><strong>4 ngày</strong></td></tr>
+                <tr><td><strong>Auth + Infrastructure Setup</strong></td><td class="text-amber-500 font-bold">🟠 TB</td><td>0</td><td>1d</td><td>2d</td><td><strong>3 ngày</strong></td></tr>
+                <tr><td><strong>Zalo OTP (Optional)</strong></td><td class="text-emerald-500 font-bold">🟡 Thấp</td><td>0.5d</td><td>1d</td><td>0.5d</td><td><strong>2 ngày</strong></td></tr>
+                <tr><td><strong>QA & Testing</strong></td><td>—</td><td>—</td><td>—</td><td>—</td><td><strong>4 ngày</strong></td></tr>
+                <tr><td><strong>Deployment + Event dry-run</strong></td><td>—</td><td>—</td><td>—</td><td>—</td><td><strong>2 ngày</strong></td></tr>
+            </tbody>
+        </table>
+
+        <h3>5.2 Tổng estimation</h3>
+        <table>
+            <thead>
+                <tr><th>Scenario</th><th>Timeline</th><th>Lưu ý</th></tr>
+            </thead>
+            <tbody>
+                <tr><td><strong>Solo developer (full-stack)</strong></td><td><strong>~37 ngày</strong> (~8 tuần)</td><td>Không tính OTP Zalo</td></tr>
+                <tr><td><strong>2 developers (FE + BE)</strong></td><td><strong>~22 ngày</strong> (~5 tuần)</td><td>Parallel work</td></tr>
+                <tr><td><strong>2 devs + Zalo OTP</strong></td><td><strong>~24 ngày</strong> (~5-6 tuần)</td><td>Cộng thêm Zalo</td></tr>
+                <tr><td><strong>1 dev, MVP scope</strong></td><td><strong>~20 ngày</strong></td><td>Bỏ realtime 4-camera, bỏ animation bay</td></tr>
+            </tbody>
+        </table>
+        
+        <blockquote class="bg-red-50 border-red-500 text-red-800">
+            <i class="fa-solid fa-triangle-exclamation mr-2 text-red-600"></i><strong>Lưu ý quan trọng:</strong> Estimation này <strong>giả định requirements đã rõ ràng</strong>. Với các gaps hiện tại (camera type, filter mechanism, LED topology), con số có thể tăng <strong>+20-40%</strong> nếu phát hiện thêm complexity.
+        </blockquote>
+
+        <h3>5.3 Breakdown theo Phase</h3>
+<pre>
+Phase 1 — Setup & Infrastructure    (3-4 ngày)
+  └── Server, DB, Storage, CI/CD
+
+Phase 2 — Core Backend APIs          (5-6 ngày)
+  └── Upload, SĐT linking, WebSocket, QR gen
+
+Phase 3 — Tablet Apps (PG)           (7-8 ngày)
+  └── T1 recorder, T4 camera+filter, T-receive
+
+Phase 4 — Display Apps (TV/LED)      (5-6 ngày)
+  └── Gallery loop, keyword animation, 4-grid LED
+
+Phase 5 — Admin Dashboard            (4 ngày)
+  └── List, realtime, Excel export
+
+Phase 6 — Integration & QA           (4-5 ngày)
+  └── End-to-end test, on-site network test
+
+Phase 7 — Deployment & Dry-run       (2-3 ngày)
+  └── Deploy, rehearse tại venue
+</pre>
+    </div>
+
+    <!-- 6. Câu hỏi bắt buộc làm rõ -->
+    <div class="section-card border-t-4 border-red-500">
+        <h2 class="text-red-700 !border-red-200"><i class="fa-solid fa-circle-question mr-2"></i>6. Câu hỏi bắt buộc làm rõ trước khi bắt đầu</h2>
+        <p class="mb-6 font-medium">❗ Những câu hỏi dưới đây là <strong>blockers</strong> — nếu chưa có câu trả lời, estimation có thể sai lệch đáng kể.</p>
+        
+        <h4 class="text-red-600 font-bold mb-4">🔴 Critical (phải có trước khi code):</h4>
+        <ol class="list-decimal list-outside ml-5 space-y-3 font-medium text-slate-800 mb-8">
+            <li><strong>Camera ở Trạm 4 là gì?</strong> Webcam USB? IP Camera (RTSP)? Điện thoại Android/iOS?</li>
+            <li><strong>TV Gallery + LED 4 khung</strong> là thiết bị gì? Chạy OS gì? Có thể cài browser/app không?</li>
+            <li><strong>Mạng sự kiện:</strong> LAN nội bộ hay internet? Có server on-premise hay cloud?</li>
+            <li><strong>Trạm 3</strong> có thực sự không có không? (spec nhảy từ 2 → 4)</li>
+            <li><strong>Zalo OTP:</strong> Optional có nghĩa là bỏ hoàn toàn, hay làm sau?</li>
+        </ol>
+
+        <h4 class="text-amber-600 font-bold mb-4">🟠 Important (ảnh hưởng đến design):</h4>
+        <ol class="list-decimal list-outside ml-5 space-y-3 font-medium text-slate-800" start="6">
+            <li><strong>Filter Trạm 4</strong> là CSS/overlay đơn giản hay AI-based filter (như Snapchat)?</li>
+            <li><strong>Từ khóa Trạm 2</strong> — bao nhiêu từ khóa? Ai có thể thêm/sửa?</li>
+            <li><strong>TV Gallery:</strong> Một video chiếu bao lâu trước khi chuyển video tiếp theo?</li>
+            <li><strong>Admin auth:</strong> Open hay có login?</li>
+            <li><strong>SĐT trùng:</strong> Cho phép nhiều lần hay chỉ lần cuối?</li>
+        </ol>
+    </div>
+
+    <!-- 7. Nhận xét tổng thể -->
+    <div class="section-card mb-12">
+        <h2><i class="fa-solid fa-clipboard-check mr-2 text-blue-500"></i>7. Nhận xét tổng thể</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+            <div>
+                <h4 class="text-emerald-600 font-bold"><i class="fa-solid fa-circle-check mr-2"></i>✅ Điểm mạnh của yêu cầu:</h4>
+                <ul class="check-list mt-3">
+                    <li>Flow nghiệp vụ rõ ràng (PG → khách → TV → tải về)</li>
+                    <li>Phân tách trạm hợp lý</li>
+                    <li>Fallback logic đã nghĩ (video brand mặc định, realtime camera khi không có ảnh mới)</li>
+                    <li>Admin requirements cơ bản đủ</li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-amber-600 font-bold"><i class="fa-solid fa-triangle-exclamation mr-2"></i>⚠️ Điểm cần chú ý:</h4>
+                <ul class="gap-list mt-3">
+                    <li><strong>Thiếu Trạm 3</strong> (hoặc đây là Trạm 5 bị đánh nhầm số?)</li>
+                    <li><strong>Phần cứng chưa xác định</strong> — đây là yếu tố rủi ro cao nhất</li>
+                    <li><strong>"Bay" từ tablet lên TV</strong> — cần clarify UX cụ thể để thiết kế đúng</li>
+                    <li><strong>Realtime 4 camera đồng thời</strong> — nặng hơn vẻ ngoài rất nhiều</li>
+                </ul>
+            </div>
+        </div>
+
+        <h4 class="text-blue-600 font-bold"><i class="fa-solid fa-bullseye mr-2"></i>🎯 Khuyến nghị:</h4>
+        <ol class="list-decimal list-outside ml-5 space-y-2 mb-8 font-medium">
+            <li>Làm MVP với <strong>Trạm 1 + Trạm Nhận ảnh</strong> trước (core value, ít rủi ro nhất)</li>
+            <li>Thêm <strong>Trạm 4</strong> (phức tạp hardware nhất — cần test thực tế)</li>
+            <li>Thêm <strong>Trạm 2</strong> và <strong>Admin</strong> sau</li>
+            <li><strong>Dry-run thực tế</strong> tại venue ít nhất 1 lần trước event thật</li>
+        </ol>
+
+        <div class="bg-blue-50 border border-blue-200 rounded-xl p-6">
+            <h4 class="text-blue-800 font-bold mt-0 mb-4"><i class="fa-solid fa-thumbtack mr-2"></i>📌 Kết luận Estimation:</h4>
+            <table class="mb-0">
+                <tbody>
+                    <tr><td class="font-bold w-1/3">Tổng effort (2 devs)</td><td class="font-bold text-blue-700">~22-24 ngày dev</td></tr>
+                    <tr><td class="font-bold">Timeline thực tế</td><td class="font-bold text-blue-700">5-6 tuần (buffer included)</td></tr>
+                    <tr><td class="font-bold">Complexity rating</td><td><span class="text-red-600 font-bold">🔴 Cao</span> (hardware + realtime + multi-display)</td></tr>
+                    <tr><td class="font-bold">Rủi ro cao nhất</td><td>Camera/network on-site, video upload speed</td></tr>
+                    <tr><td class="font-bold border-b-0">Gaps cần làm rõ</td><td class="border-b-0">10 câu hỏi (5 critical, 5 important)</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,4 +1,4 @@
-﻿---
+---
 name: performance-engineer
 description: >
   [production-grade internal] Performance testing, profiling, and optimization —
@@ -6,7 +6,7 @@ description: >
   Core Web Vitals, and capacity planning.
   Routed via the production-grade orchestrator (Optimize mode).
 version: 1.0.0
-author: Digital-Nervous
+author: forgewright
 tags: [performance, load-testing, profiling, optimization, latency, core-web-vitals, k6, artillery]
 ---
 
@@ -113,7 +113,7 @@ export const options = {
 ## Output Structure
 
 ```
-.Digital-Nervous/performance-engineer/
+.forgewright/performance-engineer/
 ├── baseline-report.md               # Current performance baseline
 ├── profiling-results.md             # Bottleneck analysis
 ├── load-test/

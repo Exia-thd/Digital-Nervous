@@ -1,4 +1,4 @@
-﻿# HARDEN Phase — Dispatcher
+# HARDEN Phase — Dispatcher
 
 This phase manages tasks T5 (QA), T6a (Security), T6b (Code Review). Supports both **parallel** and **sequential** execution with strict authority boundaries.
 
@@ -12,7 +12,7 @@ Enforce these boundaries strictly:
 
 ## Execution Mode Check
 
-Read `.Digital-Nervous/settings.md` to determine execution mode.
+Read `.forgewright/settings.md` to determine execution mode.
 
 **If `Execution: parallel`:**
 
@@ -52,7 +52,7 @@ Context:
 - Read protocols from: skills/_shared/protocols/
 - Read .production-grade.yaml for paths.tests and paths.services.
 - Write tests to project root: tests/
-- Write workspace artifacts to: .Digital-Nervous/qa-engineer/
+- Write workspace artifacts to: .forgewright/qa-engineer/
 - Run integration, e2e, and performance tests.
 - Distinguish test bugs (fix immediately) from implementation bugs (log as findings).
 
@@ -71,7 +71,7 @@ Context:
 - Read all implementation code: services/, frontend/, infrastructure/
 - Read protocols from: skills/_shared/protocols/
 - Perform STRIDE threat modeling + OWASP Top 10 audit + dependency scan.
-- Write findings to: .Digital-Nervous/security-engineer/
+- Write findings to: .forgewright/security-engineer/
 - Auto-fix Critical/High issues with regression tests.
 - Document Medium/Low for remediation plan.
 
@@ -92,7 +92,7 @@ Context:
 - Read implementation: services/, frontend/
 - Read protocols from: skills/_shared/protocols/
 - Review: SOLID/DRY/KISS, performance, N+1 queries, resource leaks, test quality.
-- Write findings to: .Digital-Nervous/code-reviewer/
+- Write findings to: .forgewright/code-reviewer/
 - READ-ONLY: produce findings only, do NOT modify source code.
 
 Update task.md: T6b status → completed
@@ -117,7 +117,7 @@ After all HARDEN tasks complete:
 6. **Run aggregate quality scoring** — compute HARDEN phase quality score
 7. **Call session lifecycle hook** — `PHASE_COMPLETE("HARDEN", summary)`
    - **Memory save:** `python3 scripts/mem0-cli.py add "HARDEN complete: [N] tests, [M] security findings ([X] auto-fixed). Quality: [score]/100" --category tasks`
-8. **Update quality metrics** — write to `.Digital-Nervous/quality-metrics.json`
+8. **Update quality metrics** — write to `.forgewright/quality-metrics.json`
 9. Print HARDEN summary:
 ```
 ━━━ HARDEN Summary ━━━━━━━━━━━━━━━━━━━━━━

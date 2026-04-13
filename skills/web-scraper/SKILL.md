@@ -1,4 +1,4 @@
-﻿---
+---
 name: web-scraper
 description: >
   [production-grade internal] Security-first web scraping and data extraction —
@@ -6,7 +6,7 @@ description: >
   CSS-first extraction, and browser isolation. Library-only mode (no Docker API).
   Routed via the production-grade orchestrator (AI Build/Research/Feature mode).
 version: 1.0.0
-author: Digital-Nervous
+author: forgewright
 tags: [web-scraping, crawl4ai, data-extraction, security, crawler, rag, research]
 ---
 

@@ -1,4 +1,4 @@
-﻿---
+---
 name: data-engineer
 description: >
   [production-grade internal] Builds data infrastructure — ETL/ELT pipelines,
@@ -6,7 +6,7 @@ description: >
   and analytics engineering (dbt).
   Routed via the production-grade orchestrator (Feature/Full Build mode).
 version: 1.0.0
-author: Digital-Nervous
+author: forgewright
 tags: [data, etl, pipeline, warehouse, spark, airflow, dbt, streaming, data-quality]
 ---
 

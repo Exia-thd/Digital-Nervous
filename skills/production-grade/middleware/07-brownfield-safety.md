@@ -1,4 +1,4 @@
-﻿# Middleware 07 — BrownfieldSafety
+# Middleware 07 — BrownfieldSafety
 
 > **Source:** `skills/_shared/protocols/brownfield-safety.md`
 > **Hook:** `after_skill()`
@@ -9,15 +9,15 @@
 ```
 1. Regression check (brownfield only)
    → Run existing test suite
-   → Compare with baseline from .Digital-Nervous/baseline-{session}.json
+   → Compare with baseline from .forgewright/baseline-{session}.json
    → If previously-passing test now fails → REGRESSION → STOP
    
 2. Protected paths enforcement
-   → Check .Digital-Nervous/project-profile.json → risk.protected_paths
+   → Check .forgewright/project-profile.json → risk.protected_paths
    → Verify no modifications to protected files
    
 3. Change manifest update
-   → Log all file operations to .Digital-Nervous/change-manifest-{session}.json
+   → Log all file operations to .forgewright/change-manifest-{session}.json
    
 4. Merge readiness check (pre-Gate 3)
    → Full regression + quality check

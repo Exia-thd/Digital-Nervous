@@ -1,4 +1,4 @@
-﻿---
+---
 name: parallel-dispatch
 description: >
   Orchestrates parallel task execution using git worktrees. Analyzes
@@ -12,7 +12,7 @@ description: >
 
 ## Overview
 
-Manages the parallel execution of independent tasks in the Digital-Nervous pipeline. Uses **git worktrees** for process isolation, **Task Contracts** for explicit input/output boundaries, and **automated validation** to prevent hallucination and ensure clean architecture.
+Manages the parallel execution of independent tasks in the Forgewright pipeline. Uses **git worktrees** for process isolation, **Task Contracts** for explicit input/output boundaries, and **automated validation** to prevent hallucination and ensure clean architecture.
 
 **Max concurrent workers:** 4 (configurable via `MAX_WORKERS` env var)
 
@@ -23,11 +23,11 @@ Manages the parallel execution of independent tasks in the Digital-Nervous pipel
 The production-grade orchestrator invokes this skill when:
 1. User selected **Parallel** execution strategy
 2. The current phase has **2+ independent tasks** (e.g., BUILD: T3a + T3b + T3c + T4)
-3. Execution mode is set to `parallel` in `.Digital-Nervous/settings.md`
+3. Execution mode is set to `parallel` in `.forgewright/settings.md`
 
 ## Parallel Groups
 
-Based on the Digital-Nervous task dependency graph, these groups can run in parallel:
+Based on the Forgewright task dependency graph, these groups can run in parallel:
 
 ```
 ┌─────────────────────────────────────────────────────┐
@@ -53,7 +53,7 @@ Based on the Digital-Nervous task dependency graph, these groups can run in para
 ### Phase 1 — Dependency Analysis
 
 ```
-1. Read .Digital-Nervous/settings.md
+1. Read .forgewright/settings.md
    - Confirm execution: parallel
    - Read engagement mode
 
@@ -120,12 +120,12 @@ T5 (QA):
 
 T6a (Security):
   inputs: ALL implementation code (read-only)
-  outputs: workspace only (.Digital-Nervous/security-engineer/)
+  outputs: workspace only (.forgewright/security-engineer/)
   forbidden: ALL source code (read-only audit)
 
 T6b (Code Review):
   inputs: ALL implementation + architecture (read-only)
-  outputs: workspace only (.Digital-Nervous/code-reviewer/)
+  outputs: workspace only (.forgewright/code-reviewer/)
   forbidden: ALL source code (read-only review)
 ```
 
@@ -156,7 +156,7 @@ Context Isolation Rules:
     ✅ Its CONTRACT.json (task-specific inputs/outputs/constraints)
     ✅ Its SKILL.md (skill instructions only)
     ✅ Shared API contracts (api/, schemas/ — read-only)
-    ✅ .Digital-Nervous/code-conventions.md (pattern consistency)
+    ✅ .forgewright/code-conventions.md (pattern consistency)
     ✅ Compressed pipeline summary (from Summarization middleware ⑤)
        → Max 2K tokens, covering completed phase decisions only
 
@@ -201,7 +201,7 @@ for task in T3a T3b T3c; do
   cat > "${worktree_path}/WORKER_INSTRUCTIONS.md" <<INSTRUCTIONS
   # Worker Instructions for ${task}
 
-  You are a parallel worker in the Digital-Nervous pipeline.
+  You are a parallel worker in the Forgewright pipeline.
 
   ## Your Contract
   Read CONTRACT.json in this directory. It defines:
@@ -358,7 +358,7 @@ Read `skills/_shared/protocols/merge-arbiter.md` and follow merge protocol:
 1. Merge in dependency order (infrastructure → backend → frontend → mobile)
 2. Run post-merge validation after each merge
 3. Run full integration test after all merges
-4. Log to .Digital-Nervous/merge-log.md
+4. Log to .forgewright/merge-log.md
 5. Clean up worktrees: scripts/worktree-manager.sh cleanup-all
 ```
 
@@ -409,7 +409,7 @@ scripts/worktree-manager.sh resume T3a
 
 ## Progress Tracking
 
-Update `.Digital-Nervous/task.md` with parallel status:
+Update `.forgewright/task.md` with parallel status:
 
 ```markdown
 ## BUILD Phase (Parallel)

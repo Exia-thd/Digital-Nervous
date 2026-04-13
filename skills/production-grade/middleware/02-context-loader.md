@@ -1,4 +1,4 @@
-﻿# Middleware 02 — ContextLoader
+# Middleware 02 — ContextLoader
 
 > **Source:** `skills/_shared/protocols/session-lifecycle.md` §Step 4 + memory-manager
 > **Hook:** `before_skill()`
@@ -12,10 +12,10 @@
    
    → If store empty or no results: run mem0-cli.py refresh once, then search again
    
-2. Load .Digital-Nervous/code-conventions.md
+2. Load .forgewright/code-conventions.md
    → If exists: inject into context for all skills
    
-3. Load .Digital-Nervous/codebase-context.md (brownfield only)
+3. Load .forgewright/codebase-context.md (brownfield only)
    → Provides brownfield-specific rules for all agents
 ```
 
@@ -29,4 +29,4 @@
 
 - If mem0 unavailable → WARN, continue without memory
 - If code-conventions.md missing → skip, no blocking
-- Check `Digital-Nervous_SKIP_MEM0` env var to disable
+- Check `FORGEWRIGHT_SKIP_MEM0` env var to disable

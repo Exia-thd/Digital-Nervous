@@ -1,10 +1,10 @@
-﻿# ADR-003: Parallel Pre-Commit Hook (2-Wave Architecture)
+# ADR-003: Parallel Pre-Commit Hook (2-Wave Architecture)
 
 ## Status
 Accepted
 
 ## Context
-Digital-Nervous's pre-commit hook ran four checks sequentially:
+Forgewright's pre-commit hook ran four checks sequentially:
 1. ESLint
 2. Prettier
 3. TypeScript type check

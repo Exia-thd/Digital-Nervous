@@ -1,4 +1,4 @@
-﻿---
+---
 name: mobile-tester
 description: >
   [production-grade internal] AI-powered mobile device testing specialist.
@@ -7,7 +7,7 @@ description: >
   Activated when user wants to test on real mobile devices.
   Routed via the production-grade orchestrator.
 version: 1.0.0
-author: Digital-Nervous
+author: forgewright
 tags: [mobile-testing, android, ios, midscene, adb, wda, vision-testing, e2e]
 ---
 

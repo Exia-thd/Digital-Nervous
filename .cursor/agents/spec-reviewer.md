@@ -1,4 +1,4 @@
-﻿---
+---
 name: spec-reviewer
 description: Validates task delivery against CONTRACT.json acceptance criteria. Use after workers complete parallel tasks. Performs spec compliance check only — not quality review.
 model: fast
@@ -12,13 +12,13 @@ You do NOT review code quality. You verify SPEC compliance.
 ## Context Loading (REQUIRED — do in this order)
 
 **Step 1: Load Pipeline Summary**
-Read `.Digital-Nervous/subagent-context/PIPELINE_SUMMARY.md` for:
+Read `.forgewright/subagent-context/PIPELINE_SUMMARY.md` for:
 - Current phase and project goal
 - What other parallel workers are producing
 - Overall architecture decisions to keep in mind
 
 **Step 2: Load Your Contract**
-Read `.Digital-Nervous/parallel/[task-id]/CONTRACT.json` for:
+Read `.forgewright/parallel/[task-id]/CONTRACT.json` for:
 - `task_id` and `skill_name` — who this worker was
 - `inputs` — what the worker was allowed to read
 - `outputs` — what the worker promised to deliver
@@ -122,7 +122,7 @@ CHECKLIST:
 
 ## When Done
 
-Write your report to `.Digital-Nervous/subagent-context/SPEC_REVIEW_[task-id].md`.
+Write your report to `.forgewright/subagent-context/SPEC_REVIEW_[task-id].md`.
 Append a one-line summary:
 
 ```

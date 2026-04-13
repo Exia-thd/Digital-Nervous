@@ -1,4 +1,4 @@
-﻿---
+---
 name: MCP Generator
 description: Auto-generates a project-specific MCP server that exposes codebase intelligence (ForgeNexus graph, project profile, conventions) as MCP Tools, Resources, and Prompts — enabling any MCP-compatible AI client to understand the project.
 ---
@@ -7,7 +7,7 @@ description: Auto-generates a project-specific MCP server that exposes codebase 
 
 **Generates a project-specific MCP server powered by ForgeNexus code intelligence.**
 
-When Digital-Nervous is installed as a submodule and the project is onboarded, this skill auto-generates an MCP (Model Context Protocol) server at `.Digital-Nervous/mcp-server/`. Any MCP-compatible client (Claude Desktop, Cursor, VS Code, Antigravity) can connect and gain deep project understanding.
+When Forgewright is installed as a submodule and the project is onboarded, this skill auto-generates an MCP (Model Context Protocol) server at `.forgewright/mcp-server/`. Any MCP-compatible client (Claude Desktop, Cursor, VS Code, Antigravity) can connect and gain deep project understanding.
 
 ## When to Invoke
 
@@ -44,10 +44,10 @@ When Digital-Nervous is installed as a submodule and the project is onboarded, t
 
 ### Step 2 — Scaffold MCP Server
 
-Create `.Digital-Nervous/mcp-server/` directory with the following structure:
+Create `.forgewright/mcp-server/` directory with the following structure:
 
 ```
-.Digital-Nervous/mcp-server/
+.forgewright/mcp-server/
 ├── server.ts              # Single-file entry — all tools, resources, prompts
 ├── package.json           # Dependencies: @modelcontextprotocol/sdk, forgenexus, zod
 ├── tsconfig.json          # TypeScript config
@@ -81,7 +81,7 @@ Write `mcp-config.json` documenting which tools/resources are active.
 ### Step 4 — Install Dependencies
 
 ```bash
-cd .Digital-Nervous/mcp-server/
+cd .forgewright/mcp-server/
 npm install
 ```
 
@@ -105,7 +105,7 @@ Antigravity / Claude Desktop:
     "mcpServers": {
       "<project-name>": {
         "command": "npx",
-        "args": ["tsx", "<project-root>/.Digital-Nervous/mcp-server/server.ts"]
+        "args": ["tsx", "<project-root>/.forgewright/mcp-server/server.ts"]
       }
     }
   }
@@ -115,7 +115,7 @@ Cursor (.cursor/mcp.json):
     "mcpServers": {
       "<project-name>": {
         "command": "npx",
-        "args": ["tsx", "<project-root>/.Digital-Nervous/mcp-server/server.ts"]
+        "args": ["tsx", "<project-root>/.forgewright/mcp-server/server.ts"]
       }
     }
   }
@@ -131,7 +131,7 @@ Add to `project-profile.json`:
 {
   "mcp_server": {
     "generated": true,
-    "path": ".Digital-Nervous/mcp-server/",
+    "path": ".forgewright/mcp-server/",
     "tools_count": 9,
     "resources_count": 3,
     "prompts_count": 3,
@@ -195,7 +195,7 @@ IF code-conventions.md missing:
 When the project changes significantly (new onboarding, architecture changes):
 
 ```
-1. Delete .Digital-Nervous/mcp-server/
+1. Delete .forgewright/mcp-server/
 2. Re-run Steps 1–6
 3. Client configs remain the same (path unchanged)
 ```

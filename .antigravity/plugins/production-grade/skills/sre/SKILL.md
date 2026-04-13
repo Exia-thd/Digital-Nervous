@@ -1,4 +1,4 @@
-﻿---
+---
 name: sre
 description: >
   [production-grade internal] Makes systems reliable in production —
@@ -14,7 +14,7 @@ description: >
 !`cat skills/_shared/protocols/input-validation.md 2>/dev/null || true`
 !`cat skills/_shared/protocols/tool-efficiency.md 2>/dev/null || true`
 !`cat .production-grade.yaml 2>/dev/null || echo "No config — using defaults"`
-!`cat .Digital-Nervous/codebase-context.md 2>/dev/null || true`
+!`cat .forgewright/codebase-context.md 2>/dev/null || true`
 
 ## Brownfield Awareness
 
@@ -25,7 +25,7 @@ If codebase context indicates `brownfield` mode:
 
 ## Engagement Mode
 
-!`cat .Digital-Nervous/settings.md 2>/dev/null || echo "No settings — using Standard"`
+!`cat .forgewright/settings.md 2>/dev/null || echo "No settings — using Standard"`
 
 | Mode | Behavior |
 |------|----------|
@@ -105,7 +105,7 @@ docs/runbooks/<service-name>/
 
 ### Workspace (Assessment & Analysis)
 ```
-.Digital-Nervous/sre/
+.forgewright/sre/
     production-readiness/  (checklist.md, findings.md, remediation.md)
     slo/                   (sli-definitions.yaml, slo-dashboard.json, error-budget-policy.md, burn-rate-alerts.yaml)
     chaos/                 (scenarios/*.yaml, game-day-playbook.md, steady-state-hypothesis.md)

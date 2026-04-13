@@ -1,7 +1,7 @@
-﻿---
+---
 name: skill-maker
 description: >
-  Creates and improves Digital-Nervous skills through interview, writing, testing,
+  Creates and improves Forgewright skills through interview, writing, testing,
   and iteration. Use when user asks to create, improve, or audit skills.
   Triggers on: "make a skill", "build a skill", "create a skill for...",
   "improve this skill", "audit skills", "skill quality check".

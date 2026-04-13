@@ -1,4 +1,4 @@
-﻿---
+---
 name: devops
 description: >
   [production-grade internal] Sets up deployment and infrastructure —
@@ -14,13 +14,13 @@ description: >
 !`cat skills/_shared/protocols/input-validation.md 2>/dev/null || true`
 !`cat skills/_shared/protocols/tool-efficiency.md 2>/dev/null || true`
 !`cat .production-grade.yaml 2>/dev/null || echo "No config — using defaults"`
-!`cat .Digital-Nervous/codebase-context.md 2>/dev/null || true`
+!`cat .forgewright/codebase-context.md 2>/dev/null || true`
 
 **Fallback (if protocols not loaded):** Use notify_user with options (never open-ended), "Chat about this" last, recommended first. Work continuously. Print progress constantly. Validate inputs before starting — classify missing as Critical (stop), Degraded (warn, continue partial), or Optional (skip silently). Use parallel tool calls for independent reads. Use view_file_outline before full Read.
 
 ## Engagement Mode
 
-!`cat .Digital-Nervous/settings.md 2>/dev/null || echo "No settings — using Standard"`
+!`cat .forgewright/settings.md 2>/dev/null || echo "No settings — using Standard"`
 
 | Mode | Behavior |
 |------|----------|
@@ -31,7 +31,7 @@ description: >
 
 ## Brownfield Awareness
 
-If `.Digital-Nervous/codebase-context.md` exists and mode is `brownfield`:
+If `.forgewright/codebase-context.md` exists and mode is `brownfield`:
 - **READ existing infrastructure first** — check for Dockerfiles, CI configs, Terraform, K8s manifests
 - **EXTEND, don't replace** — add new services to existing docker-compose, add jobs to existing CI
 - **Don't overwrite** existing Dockerfile, workflows, or Terraform state — these contain production-critical configuration that, if lost, can cause deployment failures or infrastructure drift
@@ -39,7 +39,7 @@ If `.Digital-Nervous/codebase-context.md` exists and mode is `brownfield`:
 
 ## Overview
 
-Full DevOps pipeline generator: from infrastructure design to production-ready deployment with monitoring and security. Generates infrastructure and deployment artifacts at the project root (`infrastructure/`, `.github/workflows/`, Dockerfiles) with planning notes in `.Digital-Nervous/devops/`.
+Full DevOps pipeline generator: from infrastructure design to production-ready deployment with monitoring and security. Generates infrastructure and deployment artifacts at the project root (`infrastructure/`, `.github/workflows/`, Dockerfiles) with planning notes in `.forgewright/devops/`.
 
 > **Zero-Touch Deployments (Non-Tech Mode):** If running for a non-technical user (Express Mode), bypass heavy infrastructure (Terraform/K8s) immediately. Generate direct Vercel/Railway configurations and GitHub Actions auto-deploy workflows. Let the PaaS handle the heavy lifting.
 
@@ -477,7 +477,7 @@ docker-compose.test.yml     # Project root
 ### Workspace Output (Planning & Assessment)
 
 ```
-.Digital-Nervous/devops/
+.forgewright/devops/
 ├── deployment-plan.md          # Deployment planning notes
 ├── infrastructure-assessment.md # Infrastructure assessment documents
 └── decisions.md                # DevOps decision log

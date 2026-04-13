@@ -1,6 +1,6 @@
-﻿# Digital-Nervous Flow Test Plan
+# Forgewright Flow Test Plan
 
-> **Mục tiêu:** Verify toàn bộ Digital-Nervous flows hoạt động đúng — từ user request → classification → routing → skill execution → quality gate.
+> **Mục tiêu:** Verify toàn bộ Forgewright flows hoạt động đúng — từ user request → classification → routing → skill execution → quality gate.
 >
 > **Phương pháp:** Black-box testing — giả lập user requests, verify routing logic, check middleware chain, validate outputs.
 
@@ -25,7 +25,7 @@
 ### L0-T1: Auto-Initialization — ForgeNexus Missing
 
 ```
-Setup:   Xóa .Digital-Nervous/mcp-server/mcp-config.json (nếu có)
+Setup:   Xóa .forgewright/mcp-server/mcp-config.json (nếu có)
 Request:  "Build a React app"
 Expect:   Tự động chạy npx forgenexus analyze + mcp-generate.sh
          Thông báo: "ℹ Auto-initialized ForgeNexus index..."
@@ -36,7 +36,7 @@ Status:   ⬜
 ### L0-T2: Auto-Initialization — ForgeNexus Exists
 
 ```
-Setup:   .Digital-Nervous/mcp-server/mcp-config.json tồn tại
+Setup:   .forgewright/mcp-server/mcp-config.json tồn tại
 Request:  "Build a React app"
 Expect:   Không chạy analyze lại, tiếp tục bình thường
          Không có thông báo auto-init
@@ -48,7 +48,7 @@ Status:   ⬜
 ```
 Setup:   So sánh VERSION file vs GitHub remote
 Request:  Bất kỳ request nào
-Expect:   Nếu có update: thông báo "Digital-Nervous update available (vX.X.X → vY.Y.Y). Run /update to upgrade."
+Expect:   Nếu có update: thông báo "Forgewright update available (vX.X.X → vY.Y.Y). Run /update to upgrade."
          Nếu không: im lặng
 Status:   ⬜
 ```
@@ -290,7 +290,7 @@ Status:   ⬜
 ### L3-T7: Parallel Dispatch — Worktree Created
 
 ```
-Setup:   .Digital-Nervous/settings.md = "Execution: parallel"
+Setup:   .forgewright/settings.md = "Execution: parallel"
 Request:  "Build a full-stack app"
 Expected: Worktrees được tạo cho T3a, T3b
          Chạy song song
@@ -319,7 +319,7 @@ Status:   ⬜
 Request:  "Design a tycoon game"
 Expected: game-designer skill được load
          game-designer/SKILL.md được đọc
-         Output: .Digital-Nervous/game-designer/
+         Output: .forgewright/game-designer/
 Status:   ⬜
 ```
 
@@ -417,7 +417,7 @@ Status:   ⬜
 ### L5-T4: Brownfield Config Override
 
 ```
-Setup:   .Digital-Nervous/codebase-context.md tồn tại
+Setup:   .forgewright/codebase-context.md tồn tại
 Request:  "Add feature X"
 Expected: Brownfield mode kích hoạt
          Skills detect và match existing patterns
@@ -458,7 +458,7 @@ Status:   ⬜
 
 | Test | Subject | Result | Details |
 |------|---------|--------|---------|
-| L0-T1 | ForgeNexus MCP config | ✅ PASS | `.Digital-Nervous/mcp-server/mcp-config.json` exists |
+| L0-T1 | ForgeNexus MCP config | ✅ PASS | `.forgewright/mcp-server/mcp-config.json` exists |
 | L0-T2 | NotebookLM MCP in Cursor | ✅ PASS | `notebooklm-mcp` in `~/.cursor/mcp.json` |
 | L0-T3 | VERSION file | ✅ PASS | VERSION = 7.8.1 |
 
@@ -567,5 +567,5 @@ Status:   ⬜
 |-----|----------|-------------|---------------|
 | No live routing test | LOW | Document-level verification only | Would need Claude Code session to fully test |
 | `.production-grade.yaml` missing | INFO | Optional — defaults apply | Create per-project if custom paths needed |
-| `.Digital-Nervous/codebase-context.md` missing | INFO | Optional — greenfield mode | Create when onboarding existing project |
+| `.forgewright/codebase-context.md` missing | INFO | Optional — greenfield mode | Create when onboarding existing project |
 | NotebookLM MCP requires login | INFO | Auth required for research flows | Re-authenticate each session if cookies expire |

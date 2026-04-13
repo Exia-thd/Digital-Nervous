@@ -1,4 +1,4 @@
-﻿---
+---
 description: Run a comprehensive security audit on existing code using Harden mode with full compliance
 ---
 
@@ -75,7 +75,7 @@ overrides:
 
 ## Expected Output
 ```
-.Digital-Nervous/security-engineer/
+.forgewright/security-engineer/
 ├── threat-model/          # STRIDE analysis
 ├── code-audit/            # OWASP findings
 ├── auth-review/           # Auth flow analysis

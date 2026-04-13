@@ -1,4 +1,4 @@
-﻿---
+---
 name: unreal-technical-artist
 description: >
   [production-grade internal] Creates Unreal Engine visual systems — Niagara VFX,
@@ -6,7 +6,7 @@ description: >
   and art pipeline automation.
   Routed via the production-grade orchestrator (Game Build mode).
 version: 1.0.0
-author: Digital-Nervous
+author: forgewright
 tags: [unreal, niagara, materials, lumen, nanite, vfx, shaders, tech-art]
 ---
 
@@ -25,7 +25,7 @@ tags: [unreal, niagara, materials, lumen, nanite, vfx, shaders, tech-art]
 
 ## Aesthetic Foundation
 
-Unreal's rendering power requires disciplined artistic direction. This skill references **Digital-Nervous Game Visual Foundations** (`skills/_shared/game-visual-foundations.md`) for:
+Unreal's rendering power requires disciplined artistic direction. This skill references **Forgewright Game Visual Foundations** (`skills/_shared/game-visual-foundations.md`) for:
 
 - **Lighting aesthetics** (Lumen as emotional tool, color temperature per genre, atmospheric depth)
 - **Post-processing philosophy** (LUT-based color grading, when post-processing reinforces vs. masks poor lighting)

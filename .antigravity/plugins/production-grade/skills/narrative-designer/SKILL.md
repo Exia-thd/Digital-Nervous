@@ -1,4 +1,4 @@
-﻿---
+---
 name: narrative-designer
 description: >
   [production-grade internal] Designs narrative systems — branching dialogue,
@@ -6,7 +6,7 @@ description: >
   narrative-gameplay integration. Uses Ink/Yarn/generic dialogue formats.
   Routed via the production-grade orchestrator (Game Build mode).
 version: 1.0.0
-author: Digital-Nervous
+author: forgewright
 tags: [narrative, dialogue, branching, lore, character-voice, ink, yarn, storytelling]
 ---
 
@@ -23,7 +23,7 @@ tags: [narrative, dialogue, branching, lore, character-voice, ink, yarn, storyte
 
 ## Engagement Mode
 
-!`cat .Digital-Nervous/settings.md 2>/dev/null || echo "No settings — using Standard"`
+!`cat .forgewright/settings.md 2>/dev/null || echo "No settings — using Standard"`
 
 | Mode | Behavior |
 |------|----------|
@@ -51,7 +51,7 @@ Runs AFTER Game Designer (design pillars, mechanics) and alongside Level Designe
 ## Output Structure
 
 ```
-.Digital-Nervous/narrative-designer/
+.forgewright/narrative-designer/
 ├── story-bible.md                   # World, history, factions, rules
 ├── narrative-structure.md           # Acts, beats, branching overview
 ├── characters/

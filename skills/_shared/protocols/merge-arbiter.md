@@ -1,4 +1,4 @@
-﻿# Merge Arbiter Protocol
+# Merge Arbiter Protocol
 
 **Manages the merge of validated parallel worker branches into the main branch. Handles conflicts, integration testing, and rollback.**
 
@@ -81,7 +81,7 @@ npm test  # or equivalent
 If post-merge validation fails:
 
 1. `git revert HEAD` — undo the merge
-2. Log the failure reason in `.Digital-Nervous/merge-log.md`
+2. Log the failure reason in `.forgewright/merge-log.md`
 3. Return task to CEO agent for re-dispatch
 
 ## Integration Test Phase
@@ -123,7 +123,7 @@ If integration tests fail after all merges:
 
 ## Merge Log Format
 
-Write to `.Digital-Nervous/merge-log.md`:
+Write to `.forgewright/merge-log.md`:
 
 ```markdown
 # Parallel Merge Log
@@ -163,6 +163,6 @@ git branch -D parallel/T3a-backend parallel/T3b-frontend \
 
 Worker workspace artifacts (reports, logs) are NOT merged via git. Instead:
 
-1. Copy from each worktree's `.Digital-Nervous/<skill>/` to main workspace
+1. Copy from each worktree's `.forgewright/<skill>/` to main workspace
 2. These are informational — no conflict risk
 3. Done after code merge succeeds

@@ -1,4 +1,4 @@
-﻿---
+---
 name: memory-manager
 description: >
   Persistent project memory using JSONL (git-committed). TF-IDF search,
@@ -25,7 +25,7 @@ description: >
 |----------|----------|-------------|
 | **decisions** | "Chose PostgreSQL because..." | 10 |
 | **architecture** | "Using Next.js + Prisma + PostgreSQL" | 8 |
-| **project** | "Digital-Nervous v7.1 — 47 skills, 19 modes" | 8 |
+| **project** | "Forgewright v7.1 — 47 skills, 19 modes" | 8 |
 | **blockers** | "Waiting on API key from vendor" | 7 |
 | **session** | "Session completed: built auth module" | 6 |
 | **tasks** | "BUILD complete: 3 services, 142 tests pass" | 5 |
@@ -128,7 +128,7 @@ MEM0_REDACT_SECRETS=true          # auto-redact API keys, passwords
 MEM0_DISABLED=false               # set true to skip all ops
 ```
 
-## Integration with Digital-Nervous Pipeline
+## Integration with Forgewright Pipeline
 
 ### Active Lifecycle Hooks
 
@@ -145,7 +145,7 @@ The orchestrator calls memory-manager at specific lifecycle points. All hooks ar
 
 ### Context Integration with Project Profile
 
-Memory works alongside `.Digital-Nervous/project-profile.json`:
+Memory works alongside `.forgewright/project-profile.json`:
 - **Project Profile** = structural facts (stack, health, patterns) — always loaded
 - **Memory** = temporal facts (decisions, blockers, progress) — searched contextually
 - Together they provide full project context without re-scanning
@@ -190,13 +190,13 @@ Recency factor: today=1.0, 30 days ago=0.7, 90+ days ago=0.1.
 ## File Layout
 
 ```
-Digital-Nervous/
+forgewright/
 ├── skills/memory-manager/
 │   └── SKILL.md              ← this file
 ├── scripts/
 │   └── mem0-cli.py           ← CLI tool (TF-IDF, JSONL, zero deps)
 ├── .memignore                ← exclusion patterns
-└── .Digital-Nervous/
+└── .forgewright/
     ├── memory.jsonl          ← source of truth (committed to git)
     ├── project-profile.json  ← project fingerprint (committed)
     ├── code-conventions.md   ← detected patterns (committed)
