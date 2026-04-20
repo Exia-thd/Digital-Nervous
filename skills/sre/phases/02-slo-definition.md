@@ -11,7 +11,7 @@ Read Phase 1 findings from `production-readiness/findings.md` to understand know
 ## Inputs
 
 - `infrastructure/monitoring/` — existing Prometheus rules, Grafana dashboards
-- `.forgewright/product-manager/` or requirements — availability promises, user expectations
+- `.Digital-Nervous/product-manager/` or requirements — availability promises, user expectations
 - Architecture docs — request flow, critical paths, dependency chains
 - Phase 1 findings — known reliability risks
 
@@ -147,3 +147,4 @@ Before proceeding to Phase 3, verify:
 ## Quality Bar
 
 SLOs must be based on user-observable impact, not internal metrics. Internal services get lower targets than user-facing services. Every SLO must have a documented consequence for budget exhaustion — SLOs without enforcement are aspirational fiction.
+

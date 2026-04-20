@@ -1,7 +1,7 @@
 ---
 name: skill-maker
 description: >
-  Creates and improves Forgewright skills through interview, writing, testing,
+  Creates and improves Digital-Nervous skills through interview, writing, testing,
   and iteration. Use when user asks to create, improve, or audit skills.
   Triggers on: "make a skill", "build a skill", "create a skill for...",
   "improve this skill", "audit skills", "skill quality check".
@@ -322,3 +322,4 @@ Fixes applied:
 | Not placing in skills/ directory | Skills go in `skills/<name>/SKILL.md` for auto-loading |
 | Overfitting to test cases | Generalize patterns, explain WHY, not just WHAT |
 | All caps instructions (MUST/NEVER) | Yellow flag — reframe as explanations with rationale |
+

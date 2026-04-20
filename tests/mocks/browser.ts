@@ -1,7 +1,7 @@
 /**
  * MSW Mock Browser Setup
  * Service Worker-based API mocking for Playwright E2E tests
- * For forgewright project
+ * For Digital-Nervous project
  */
 import { setupWorker } from 'msw/browser';
 import { handlers } from './handlers/index.js';

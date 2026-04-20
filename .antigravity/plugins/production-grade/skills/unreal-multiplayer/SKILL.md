@@ -6,7 +6,7 @@ description: >
   and session management.
   Routed via the production-grade orchestrator (Game Build mode).
 version: 1.0.0
-author: forgewright
+author: Digital-Nervous
 tags: [unreal, multiplayer, replication, dedicated-server, networking, gas, prediction]
 ---
 
@@ -106,3 +106,4 @@ bool ServerRequestDamage_Validate(AActor* Target, float DmgAmt, FGameplayTag Dmg
 - [ ] Dedicated server build strips rendering code
 - [ ] Connection/disconnection handling
 - [ ] Network profiling with NetTrace
+

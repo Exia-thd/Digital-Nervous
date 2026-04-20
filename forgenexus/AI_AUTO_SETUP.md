@@ -18,8 +18,8 @@ You are working with ForgeNexus, a self-hosted code intelligence tool. Follow th
 ### 0) Important facts (read first)
 
 - **Public npm:** The package name `forgenexus` may return **404 Not Found** on registry.npmjs.org. That is expected until it is published. **Do not** assume `npm install forgenexus` works.
-- **Source of truth:** ForgeNexus lives in the **Forgewright** monorepo under the folder `forgenexus/` (e.g. GitHub: `buiphucminhtam/forgewright`).
-- **⚠️ Pull before you start:** Before ANY setup or update, always pull the **latest** `main` branch first. Several bugs (lock conflict, wrong stats, duplicate nodes) were fixed in recent commits — running stale code will hit those bugs. Run: `git pull origin main` from the forgewright root, then reinstall + rebuild.
+- **Source of truth:** ForgeNexus lives in the **Digital-Nervous** monorepo under the folder `forgenexus/` (e.g. GitHub: `buiphucminhtam/Digital-Nervous`).
+- **⚠️ Pull before you start:** Before ANY setup or update, always pull the **latest** `main` branch first. Several bugs (lock conflict, wrong stats, duplicate nodes) were fixed in recent commits — running stale code will hit those bugs. Run: `git pull origin main` from the Digital-Nervous root, then reinstall + rebuild.
 - **Wrong path:** Do **not** try to build ForgeNexus from `.antigravity/plugins/production-grade` or other plugin folders — that is **not** ForgeNexus and will fail (e.g. unrelated `husky` / dependency issues).
 - **Built output:** The repo does **not** ship `dist/` in git. After installing from Git, you **must** run `npm run build` inside the installed `forgenexus` package so `dist/cli/index.js` exists.
 - **Where to put this doc:** Do not copy this file under `.next/` (Next.js build output is ephemeral). Keep a copy under `docs/` or link to the upstream raw URL.
@@ -46,15 +46,15 @@ Use the **subdirectory** install form so npm only installs the `forgenexus` pack
 Replace `YOUR_ORG/YOUR_REPO` if the user’s fork differs; default upstream:
 
 ```bash
-npm install "git+https://github.com/buiphucminhtam/forgewright.git#main:forgenexus" --save-dev
+npm install "git+https://github.com/buiphucminhtam/Digital-Nervous.git#main:forgenexus" --save-dev
 ```
 
 **Alternatives:**
 
-- **pnpm:** `pnpm add -D "git+https://github.com/buiphucminhtam/forgewright.git#main:forgenexus"`
-- **yarn (berry):** `yarn add -D "git+https://github.com/buiphucminhtam/forgewright.git#main:forgenexus"`
+- **pnpm:** `pnpm add -D "git+https://github.com/buiphucminhtam/Digital-Nervous.git#main:forgenexus"`
+- **yarn (berry):** `yarn add -D "git+https://github.com/buiphucminhtam/Digital-Nervous.git#main:forgenexus"`
 - **Local clone:** clone the repo, then from the **target project**:  
-  `npm install /absolute/path/to/forgewright/forgenexus --save-dev`
+  `npm install /absolute/path/to/Digital-Nervous/forgenexus --save-dev`
 
 ### Step 3b: Build after Git / file install (required)
 
@@ -282,7 +282,7 @@ GEMINI_API_KEY=...
 ### When `npm install forgenexus` returns 404
 
 ```bash
-npm install "git+https://github.com/buiphucminhtam/forgewright.git#main:forgenexus" --save-dev
+npm install "git+https://github.com/buiphucminhtam/Digital-Nervous.git#main:forgenexus" --save-dev
 cd node_modules/forgenexus && npm install --include=dev && npm run build && cd ../..
 node node_modules/forgenexus/dist/cli/index.js setup
 node node_modules/forgenexus/dist/cli/index.js analyze
@@ -295,7 +295,7 @@ node node_modules/forgenexus/dist/cli/index.js status
 # Always pull latest first (bug fixes are in main)
 git pull origin main
 # then reinstall + rebuild
-npm install "git+https://github.com/buiphucminhtam/forgewright.git#main:forgenexus" --save-dev
+npm install "git+https://github.com/buiphucminhtam/Digital-Nervous.git#main:forgenexus" --save-dev
 cd node_modules/forgenexus && npm install --include=dev && npm run build && cd ../..
 ```
 
@@ -309,4 +309,5 @@ node node_modules/forgenexus/dist/cli/index.js analyze --force
 
 ### Raw URL for agents (replace branch if needed)
 
-`https://raw.githubusercontent.com/buiphucminhtam/forgewright/main/forgenexus/AI_AUTO_SETUP.md`
+`https://raw.githubusercontent.com/buiphucminhtam/Digital-Nervous/main/forgenexus/AI_AUTO_SETUP.md`
+

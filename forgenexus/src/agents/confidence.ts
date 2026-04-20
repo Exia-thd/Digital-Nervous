@@ -1,5 +1,5 @@
 /**
- * Confidence Module for ForgeWright Anti-Hallucination System
+ * Confidence Module for Digital-Nervous Anti-Hallucination System
  * 
  * Provides confidence calculation based on multiple signals including
  * relevance, spread, evidence strength, and behavioral thresholds.

@@ -16,7 +16,7 @@ One-command setup to enable AI-powered testing on Android/iOS devices. After thi
 ### Step 1: Run the setup script
 // turbo
 ```bash
-bash forgewright/scripts/mobile-test-setup.sh
+bash Digital-Nervous/scripts/mobile-test-setup.sh
 ```
 
 This will automatically:
@@ -102,7 +102,7 @@ console.log(data);
 
 To see what's installed/missing without making changes:
 ```bash
-bash forgewright/scripts/mobile-test-setup.sh --check-only
+bash Digital-Nervous/scripts/mobile-test-setup.sh --check-only
 ```
 
 ## Troubleshooting
@@ -114,3 +114,4 @@ bash forgewright/scripts/mobile-test-setup.sh --check-only
 | iOS: "WebDriverAgent not responding" | Open Xcode → Start a Simulator first |
 | "Cannot find module @midscene/android" | Run `npm install @midscene/android --save-dev` |
 | Test hangs at "Connecting..." | Check if device screen is unlocked |
+

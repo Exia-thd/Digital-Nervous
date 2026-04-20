@@ -17,14 +17,14 @@ param(
 $ErrorActionPreference = "Stop"
 
 # Configuration
-$RepoUrl = "https://github.com/buiphucminhtam/forgewright.git"
+$RepoUrl = "https://github.com/buiphucminhtam/Digital-Nervous.git"
 $SubmodulePath = ".antigravity/plugins/production-grade"
 $Branch = "main"
 
 function Write-Header {
     Write-Host ""
     Write-Host "  ╔══════════════════════════════════════════════════════════╗" -ForegroundColor Cyan
-    Write-Host "  ║  Forgewright — 52 Skills for Antigravity              ║" -ForegroundColor Cyan
+    Write-Host "  ║  Digital-Nervous — 52 Skills for Antigravity              ║" -ForegroundColor Cyan
     Write-Host "  ╚══════════════════════════════════════════════════════════╝" -ForegroundColor Cyan
     Write-Host ""
 }
@@ -217,3 +217,4 @@ switch ($Command) {
         Write-Host ""
     }
 }
+

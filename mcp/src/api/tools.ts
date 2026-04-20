@@ -16,7 +16,7 @@ export function registerTools(server: Server) {
         {
           name: 'fw_start_pipeline',
           description:
-            'Initialize the Forgewright pipeline for a new project/session. Use this when the user specifies a goal (e.g. Build a SaaS, add a feature).',
+            'Initialize the Digital-Nervous pipeline for a new project/session. Use this when the user specifies a goal (e.g. Build a SaaS, add a feature).',
           inputSchema: {
             type: 'object',
             properties: {
@@ -32,7 +32,7 @@ export function registerTools(server: Server) {
         {
           name: 'fw_get_current_phase',
           description:
-            'Get the current phase of the Forgewright pipeline and its locked status. Use this to determine which skill to load.',
+            'Get the current phase of the Digital-Nervous pipeline and its locked status. Use this to determine which skill to load.',
           inputSchema: {
             type: 'object',
             properties: {},

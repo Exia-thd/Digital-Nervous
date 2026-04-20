@@ -1,7 +1,7 @@
 /**
  * MSW Mock Handlers
  * Organized by domain — add new handlers here as API grows
- * For forgewright project
+ * For Digital-Nervous project
  */
 import { http, HttpResponse } from 'msw';
 

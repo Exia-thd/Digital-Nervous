@@ -6,7 +6,7 @@ description: >
   Maintains visual fidelity within hard performance constraints.
   Routed via the production-grade orchestrator (Game Build mode).
 version: 1.0.0
-author: forgewright
+author: Digital-Nervous
 tags: [shaders, vfx, lod, performance, hlsl, shader-graph, niagara, materials, tech-art]
 ---
 
@@ -23,7 +23,7 @@ tags: [shaders, vfx, lod, performance, hlsl, shader-graph, niagara, materials, t
 
 ## Engagement Mode
 
-!`cat .forgewright/settings.md 2>/dev/null || echo "No settings — using Standard"`
+!`cat .Digital-Nervous/settings.md 2>/dev/null || echo "No settings — using Standard"`
 
 | Mode | Behavior |
 |------|----------|
@@ -52,7 +52,7 @@ Runs AFTER Game Designer and engine engineers have core systems. Produces visual
 ## Output Structure
 
 ```
-.forgewright/technical-artist/
+.Digital-Nervous/technical-artist/
 ├── art-pipeline.md                  # Asset pipeline standards and workflow
 ├── performance-budget.md            # Per-platform performance budgets
 ├── shaders/
@@ -283,3 +283,4 @@ Runs AFTER Game Designer and engine engineers have core systems. Produces visual
 - [ ] LOD validation script/tool available
 - [ ] Artist tools catalog documented
 - [ ] All custom shaders under instruction budget
+

@@ -1,6 +1,6 @@
 # Unity Project Quickstart Guide
 
-> **Purpose:** Hướng dẫn bắt đầu Unity project hiệu quả với Forgewright và Unity-MCP.
+> **Purpose:** Hướng dẫn bắt đầu Unity project hiệu quả với Digital-Nervous và Unity-MCP.
 > **Audience:** Developers, AI coding assistants, và các IDE agents cần setup Unity project.
 
 ---
@@ -11,7 +11,7 @@
 2. [Prerequisites](#prerequisites)
 3. [Project Setup](#project-setup)
 4. [Architecture Foundation](#architecture-foundation)
-5. [Workflow: Forgewright vs Unity-MCP](#workflow-forgewright-vs-unity-mcp)
+5. [Workflow: Digital-Nervous vs Unity-MCP](#workflow-Digital-Nervous-vs-unity-mcp)
 6. [Core ScriptableObject Patterns](#core-scriptableobject-patterns)
 7. [Common Patterns & Anti-Patterns](#common-patterns--anti-patterns)
 8. [Unity-MCP Tools Reference](#unity-mcp-tools-reference)
@@ -25,7 +25,7 @@
 
 Hướng dẫn này cung cấp **best practices** để bắt đầu Unity project với:
 
-- **Forgewright**: AI orchestrator với 55+ skills cho game development
+- **Digital-Nervous**: AI orchestrator với 55+ skills cho game development
 - **Unity-MCP**: Model Context Protocol tools cho Unity Editor automation
 - **ScriptableObject-first architecture**: Data-driven design pattern
 
@@ -181,13 +181,13 @@ Assets/
 
 ---
 
-## Workflow: Forgewright vs Unity-MCP
+## Workflow: Digital-Nervous vs Unity-MCP
 
 ### Phân Chia Responsibilities
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│  FORGEWRIGHT HANDLE                                         │
+│  Digital-Nervous HANDLE                                         │
 │  (AI-powered C# architecture - Không cần Unity Editor)     │
 ├─────────────────────────────────────────────────────────────┤
 │  • Architecture design (SO framework)                       │
@@ -217,7 +217,7 @@ Assets/
 
 ```
 ┌────────────────────────────────────────────────────────────────────┐
-│ STEP 1: Architecture Design (Forgewright)                         │
+│ STEP 1: Architecture Design (Digital-Nervous)                         │
 │ ├── Design SO Framework                                           │
 │ ├── Plan Event Channel architecture                               │
 │ ├── Define Component responsibilities                              │
@@ -232,7 +232,7 @@ Assets/
 └────────────────────────────────────────────────────────────────────┘
                                 ↓
 ┌────────────────────────────────────────────────────────────────────┐
-│ STEP 3: Code Implementation (Forgewright)                        │
+│ STEP 3: Code Implementation (Digital-Nervous)                        │
 │ ├── MonoBehaviour implementations                                 │
 │ ├── SO event wiring                                              │
 │ └── Gameplay logic                                               │
@@ -246,7 +246,7 @@ Assets/
 └────────────────────────────────────────────────────────────────────┘
                                 ↓
 ┌────────────────────────────────────────────────────────────────────┐
-│ STEP 5: Quality Gate (Forgewright)                               │
+│ STEP 5: Quality Gate (Digital-Nervous)                               │
 │ ├── Architecture compliance check                                 │
 │ ├── SO-first pattern verification                                 │
 │ └── Brownfield safety validation                                  │
@@ -257,17 +257,17 @@ Assets/
 
 | Use Case | Approach | Reason |
 |----------|----------|--------|
-| Architecture design | Forgewright | Không cần Editor, cần type safety |
-| SO framework creation | Forgewright | Cần project-specific patterns |
+| Architecture design | Digital-Nervous | Không cần Editor, cần type safety |
+| SO framework creation | Digital-Nervous | Cần project-specific patterns |
 | Scene object placement | Unity-MCP | Cần visual feedback |
 | Prefab assembly | Unity-MCP | Cần drag-drop workflow |
-| Component wiring | Both | Forgewright code + Unity-MCP verify |
+| Component wiring | Both | Digital-Nervous code + Unity-MCP verify |
 | Material setup | Unity-MCP | Cần visual preview |
 | Testing & debugging | Unity-MCP | Console logs, screenshots |
-| Gameplay logic | Forgewright | Cần complex logic |
-| Greenfield architecture | Forgewright | Unity-MCP không có architecture guidance |
-| Complex gameplay logic | Forgewright | Cần type safety, refactoring support |
-| Refactoring lớn | Forgewright | Tool-based refactor dễ break |
+| Gameplay logic | Digital-Nervous | Cần complex logic |
+| Greenfield architecture | Digital-Nervous | Unity-MCP không có architecture guidance |
+| Complex gameplay logic | Digital-Nervous | Cần type safety, refactoring support |
+| Refactoring lớn | Digital-Nervous | Tool-based refactor dễ break |
 
 ---
 
@@ -587,7 +587,7 @@ public class ChaseStateSO : StateSO
 
 #### Scene & GameObject
 
-| Tool | Description | Forgewright Use Case |
+| Tool | Description | Digital-Nervous Use Case |
 |------|-------------|---------------------|
 | `gameobject-create` | Tạo new GameObject | Create spawn points, managers |
 | `gameobject-find` | Find GameObject by info | Locate scene objects |
@@ -599,7 +599,7 @@ public class ChaseStateSO : StateSO
 
 #### Scene Management
 
-| Tool | Description | Forgewright Use Case |
+| Tool | Description | Digital-Nervous Use Case |
 |------|-------------|---------------------|
 | `scene-create` | Tạo new scene | Add gameplay scenes |
 | `scene-open` | Open scene file | Load gameplay scene |
@@ -609,7 +609,7 @@ public class ChaseStateSO : StateSO
 
 #### Assets & Prefabs
 
-| Tool | Description | Forgewright Use Case |
+| Tool | Description | Digital-Nervous Use Case |
 |------|-------------|---------------------|
 | `assets-prefab-create` | Scene → Prefab | Convert assembled objects |
 | `assets-prefab-instantiate` | Spawn prefab | Runtime spawning |
@@ -619,7 +619,7 @@ public class ChaseStateSO : StateSO
 
 #### Scripting & Testing
 
-| Tool | Description | Forgewright Use Case |
+| Tool | Description | Digital-Nervous Use Case |
 |------|-------------|---------------------|
 | `script-update-or-create` | Write/update C# file | Generate code |
 | `script-execute` | Run C# with Roslyn | Quick test (no save) |
@@ -629,7 +629,7 @@ public class ChaseStateSO : StateSO
 
 #### Visual Verification
 
-| Tool | Description | Forgewright Use Case |
+| Tool | Description | Digital-Nervous Use Case |
 |------|-------------|---------------------|
 | `screenshot-game-view` | Capture Game View | Visual verification |
 | `screenshot-scene-view` | Capture Scene View | Scene documentation |
@@ -736,7 +736,7 @@ openupm add com.ivanmurzak.unity.probuilder
 |----------|-----|
 | Unity-MCP GitHub | https://github.com/IvanMurzak/Unity-MCP |
 | Unity-MCP Documentation | https://github.com/IvanMurzak/Unity-MCP/blob/main/docs/default-mcp-tools.md |
-| Forgewright Unity Engineer | `skills/unity-engineer/SKILL.md` |
+| Digital-Nervous Unity Engineer | `skills/unity-engineer/SKILL.md` |
 | Unity Documentation | https://docs.unity.com/ |
 
 ---
@@ -806,4 +806,5 @@ Assets/
 
 **Version:** 1.0.0
 **Last Updated:** 2026-04-13
-**Maintainer:** Forgewright
+**Maintainer:** Digital-Nervous
+

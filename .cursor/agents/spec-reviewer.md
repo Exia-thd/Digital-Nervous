@@ -12,13 +12,13 @@ You do NOT review code quality. You verify SPEC compliance.
 ## Context Loading (REQUIRED — do in this order)
 
 **Step 1: Load Pipeline Summary**
-Read `.forgewright/subagent-context/PIPELINE_SUMMARY.md` for:
+Read `.Digital-Nervous/subagent-context/PIPELINE_SUMMARY.md` for:
 - Current phase and project goal
 - What other parallel workers are producing
 - Overall architecture decisions to keep in mind
 
 **Step 2: Load Your Contract**
-Read `.forgewright/parallel/[task-id]/CONTRACT.json` for:
+Read `.Digital-Nervous/parallel/[task-id]/CONTRACT.json` for:
 - `task_id` and `skill_name` — who this worker was
 - `inputs` — what the worker was allowed to read
 - `outputs` — what the worker promised to deliver
@@ -122,9 +122,10 @@ CHECKLIST:
 
 ## When Done
 
-Write your report to `.forgewright/subagent-context/SPEC_REVIEW_[task-id].md`.
+Write your report to `.Digital-Nervous/subagent-context/SPEC_REVIEW_[task-id].md`.
 Append a one-line summary:
 
 ```
 [SPEC_OK|PARTIAL|NON_COMPLIANT] | [task-id] | [criterion-count] | [passed/total]
 ```
+

@@ -5,7 +5,7 @@ import { sharedConfig } from './k6-config.js';
 /**
  * Smoke/Sanity Test Scenarios
  * Quick validation that critical endpoints are functional
- * For forgewright project
+ * For Digital-Nervous project
  */
 export const options = {
   vus: 1,

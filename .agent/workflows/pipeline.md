@@ -1,8 +1,8 @@
 ---
-description: Show Forgewright pipeline reference, available modes, and skill list
+description: Show Digital-Nervous pipeline reference, available modes, and skill list
 ---
 
-# Forgewright Pipeline Reference
+# Digital-Nervous Pipeline Reference
 
 ## Pipeline Phases
 
@@ -46,3 +46,4 @@ Examples:
 - "Write Playwright tests for my login flow"
 - "Design a UI system for a fintech dashboard"
 - "Help me think about building a restaurant management platform"
+

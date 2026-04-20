@@ -2,7 +2,7 @@
 set -euo pipefail
 
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-# Forgewright Local Memory Manager
+# Digital-Nervous Local Memory Manager
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 #
 # Zero-dependency local-first memory. Falls back to Mem0 if configured.
@@ -15,21 +15,21 @@ set -euo pipefail
 #   memory-local.sh clear                         — clear all memories
 #   memory-local.sh help                          — show this help
 #
-# Storage: .forgewright/memory.json
+# Storage: .Digital-Nervous/memory.json
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-FORGEWRIGHT_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
+Digital-Nervous_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
 
-if [[ -d "$FORGEWRIGHT_DIR/.forgewright" ]]; then
-  PROJECT_ROOT="$FORGEWRIGHT_DIR"
-elif [[ -d "$FORGEWRIGHT_DIR/../.forgewright" ]]; then
-  PROJECT_ROOT="$(cd "$FORGEWRIGHT_DIR/.." && pwd)"
+if [[ -d "$Digital-Nervous_DIR/.Digital-Nervous" ]]; then
+  PROJECT_ROOT="$Digital-Nervous_DIR"
+elif [[ -d "$Digital-Nervous_DIR/../.Digital-Nervous" ]]; then
+  PROJECT_ROOT="$(cd "$Digital-Nervous_DIR/.." && pwd)"
 else
   PROJECT_ROOT="$(pwd)"
 fi
 
-WORKSPACE="$PROJECT_ROOT/.forgewright"
+WORKSPACE="$PROJECT_ROOT/.Digital-Nervous"
 MEMORY_FILE="$WORKSPACE/memory.json"
 MEM0_CLI="$SCRIPT_DIR/mem0-cli.py"
 
@@ -242,3 +242,4 @@ case "$CMD" in
   help)    head -17 "$0" | tail -13 ;;
   *)       echo "Unknown: $CMD. Run: memory-local.sh help"; exit 1 ;;
 esac
+

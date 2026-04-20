@@ -6,7 +6,7 @@ description: >
   avatar systems, monetization, and moderation.
   Routed via the production-grade orchestrator (Game Build mode).
 version: 1.0.0
-author: forgewright
+author: Digital-Nervous
 tags: [roblox, luau, roblox-studio, experience, datastore, avatar, game-development]
 ---
 
@@ -144,3 +144,4 @@ src/
 - [ ] Chat moderation (TextService filter)
 - [ ] Performance optimization (< 60ms frame time)
 - [ ] Published with proper settings and age rating
+

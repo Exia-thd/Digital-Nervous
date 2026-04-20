@@ -1,5 +1,5 @@
 /**
- * Binding Verification Module for ForgeWright
+ * Binding Verification Module for Digital-Nervous
  * 
  * Multi-pass verification of symbol bindings to catch errors early.
  */
@@ -165,7 +165,7 @@ function pass3TypeInconsistencies(bindings: Map<string, Binding>): BindingIssue[
  */
 async function pass4CircularDependencies(
   bindings: Map<string, Binding>,
-  context: VerificationContext
+  _context: VerificationContext
 ): Promise<BindingIssue[]> {
   const issues: BindingIssue[] = [];
 

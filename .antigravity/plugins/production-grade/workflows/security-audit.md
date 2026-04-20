@@ -75,7 +75,7 @@ overrides:
 
 ## Expected Output
 ```
-.forgewright/security-engineer/
+.Digital-Nervous/security-engineer/
 ├── threat-model/          # STRIDE analysis
 ├── code-audit/            # OWASP findings
 ├── auth-review/           # Auth flow analysis
@@ -85,3 +85,4 @@ overrides:
 ├── pen-test/              # Pen test plan
 └── remediation/           # Fix plan + applied fixes
 ```
+

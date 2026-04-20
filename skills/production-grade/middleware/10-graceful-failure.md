@@ -24,7 +24,7 @@
      
 4. Graceful exit format
    → Structured report with all context for next session
-   → Saved to .forgewright/session-log.json
+   → Saved to .Digital-Nervous/session-log.json
 ```
 
 ## Failure Categories
@@ -39,3 +39,4 @@
 ## Note
 
 This prevents skills from looping indefinitely on impossible tasks.
+

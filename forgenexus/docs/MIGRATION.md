@@ -1,10 +1,10 @@
-# Migration Guide: ForgeWright Anti-Hallucination System
+# Migration Guide: Digital-Nervous Anti-Hallucination System
 
 ## Upgrading from v1.0 to v2.0
 
 ### Overview
 
-This guide helps you migrate from the basic ForgeWright system to the Anti-Hallucination system.
+This guide helps you migrate from the basic Digital-Nervous system to the Anti-Hallucination system.
 
 ### Breaking Changes
 
@@ -12,12 +12,12 @@ This guide helps you migrate from the basic ForgeWright system to the Anti-Hallu
 
 **Before:**
 ```typescript
-import { analyze } from 'forgewright';
+import { analyze } from 'Digital-Nervous';
 ```
 
 **After:**
 ```typescript
-import { createSkepticAgent, calculateConfidence } from 'forgewright/agents';
+import { createSkepticAgent, calculateConfidence } from 'Digital-Nervous/agents';
 ```
 
 #### 2. Verification is Now Default
@@ -71,7 +71,7 @@ const result = await analyze(repoPath);
 #### 1. Skeptic Agent
 
 ```typescript
-import { createSkepticAgent } from 'forgewright/agents';
+import { createSkepticAgent } from 'Digital-Nervous/agents';
 
 const skeptic = createSkepticAgent({
   llm: anthropicClient,
@@ -87,7 +87,7 @@ const verification = await skeptic.verifyClaim({
 #### 2. Confidence Scoring
 
 ```typescript
-import { calculateConfidence } from 'forgewright/agents';
+import { calculateConfidence } from 'Digital-Nervous/agents';
 
 const confidence = calculateConfidence({
   type: 'wiki',
@@ -104,7 +104,7 @@ const confidence = calculateConfidence({
 #### 3. Freshness Warnings
 
 ```typescript
-import { checkStaleness, warnIfStale } from 'forgewright/data/freshness';
+import { checkStaleness, warnIfStale } from 'Digital-Nervous/data/freshness';
 
 const freshness = checkStaleness(metadata);
 
@@ -120,7 +120,7 @@ if (freshness.staleness !== 'fresh') {
 
 ```json
 {
-  "forgewright": {
+  "Digital-Nervous": {
     "llm": "claude"
   }
 }
@@ -130,7 +130,7 @@ if (freshness.staleness !== 'fresh') {
 
 ```json
 {
-  "forgewright": {
+  "Digital-Nervous": {
     "llm": "claude",
     "antiHallucination": {
       "verification": {
@@ -156,33 +156,33 @@ if (freshness.staleness !== 'fresh') {
 #### Before
 
 ```bash
-forgewright analyze
-forgewright wiki auth
+Digital-Nervous analyze
+Digital-Nervous wiki auth
 ```
 
 #### After
 
 ```bash
 # Verification enabled by default
-forgewright analyze
-forgewright wiki auth
+Digital-Nervous analyze
+Digital-Nervous wiki auth
 
 # Explicit verification
-forgewright analyze --verify
-forgewright wiki auth --verify
+Digital-Nervous analyze --verify
+Digital-Nervous wiki auth --verify
 
 # Skip verification (fast mode)
-forgewright analyze --no-verify
-forgewright wiki auth --no-verify
+Digital-Nervous analyze --no-verify
+Digital-Nervous wiki auth --no-verify
 
 # Strict mode (fail on low confidence)
-forgewright wiki auth --strict
+Digital-Nervous wiki auth --strict
 
 # Check freshness
-forgewright status
+Digital-Nervous status
 
 # Run evaluation
-forgewright evaluate
+Digital-Nervous evaluate
 ```
 
 ### Step-by-Step Migration
@@ -190,22 +190,22 @@ forgewright evaluate
 #### Step 1: Update Dependencies
 
 ```bash
-npm install forgewright@2.0
+npm install Digital-Nervous@2.0
 ```
 
 #### Step 2: Update Imports
 
 ```typescript
 // Old
-import { analyze, query, impact } from 'forgewright';
+import { analyze, query, impact } from 'Digital-Nervous';
 
 // New
-import { analyze, query, impact } from 'forgewright';
+import { analyze, query, impact } from 'Digital-Nervous';
 import { 
   createSkepticAgent,
   calculateConfidence,
   checkStaleness 
-} from 'forgewright/agents';
+} from 'Digital-Nervous/agents';
 ```
 
 #### Step 3: Add LLM Configuration
@@ -255,11 +255,11 @@ If you encounter issues, rollback is supported:
 
 ```bash
 # Disable verification globally
-FORCE_NO_VERIFY=1 forgewright analyze
+FORCE_NO_VERIFY=1 Digital-Nervous analyze
 
 # Or in config
 {
-  "forgewright": {
+  "Digital-Nervous": {
     "antiHallucination": {
       "verification": {
         "enabled": false
@@ -285,7 +285,7 @@ const content = `
 #### Issue: "Confidence too low"
 
 **Solutions:**
-1. Ensure graph data is fresh: `forgewright analyze --force`
+1. Ensure graph data is fresh: `Digital-Nervous analyze --force`
 2. Lower threshold: `--threshold 0.6`
 3. Disable verification: `--no-verify`
 
@@ -293,14 +293,15 @@ const content = `
 
 **Solution:**
 ```bash
-forgewright analyze --force
+Digital-Nervous analyze --force
 ```
 
 ### Support
 
 For issues, run:
 ```bash
-forgewright evaluate --verbose > debug.log
+Digital-Nervous evaluate --verbose > debug.log
 ```
 
 Then file an issue with the debug log attached.
+

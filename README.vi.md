@@ -1,13 +1,13 @@
-# Forgewright — Adaptive AI Orchestrator
+# Digital-Nervous — Adaptive AI Orchestrator
 
 > **This is the Vietnamese version.** For English documentation, see [README.md](./README.md)
 
 <p align="center">
   <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT" /></a>
-  <img src="https://img.shields.io/badge/version-7.9.0-blue.svg" alt="Version" />
-  <img src="https://img.shields.io/badge/skills-55-brightgreen.svg" alt="Skills" />
-  <img src="https://img.shields.io/badge/modes-22-blueviolet.svg" alt="Modes" />
-  <img src="https://img.shields.io/badge/protocols-15-00CED1.svg" alt="Protocols" />
+  <img src="https://img.shields.io/badge/version-8.0.0-blue.svg" alt="Version" />
+  <img src="https://img.shields.io/badge/skills-56-brightgreen.svg" alt="Skills" />
+  <img src="https://img.shields.io/badge/modes-24-blueviolet.svg" alt="Modes" />
+  <img src="https://img.shields.io/badge/protocols-29-00CED1.svg" alt="Protocols" />
   <img src="https://img.shields.io/badge/Game_Dev-Unity·Unreal·Godot·Roblox-FF4500.svg" alt="Game Dev" />
   <img src="https://img.shields.io/badge/Code_Intelligence-ForgeNexus·GitNexus-4B0082.svg" alt="Code Intelligence" />
   <img src="https://img.shields.io/badge/Memory-Persistent%20(mem0)-00CED1.svg" alt="Memory" />
@@ -16,11 +16,11 @@
 
 ---
 
-## TL;DR — Forgewright là gì?
+## TL;DR — Digital-Nervous là gì?
 
-**Tưởng tượng:** Bạn có một đội ngũ 55 chuyên gia AI. Mỗi người giỏi một việc khác nhau — viết code, kiểm tra bảo mật, thiết kế game, tối ưu tốc độ. Forgewright là "người quản lý" — khi bạn nói "tôi muốn build một app bán hàng", nó tự biết cần gọi chuyên gia nào, theo thứ tự nào, và kiểm tra chất lượng ra sao.
+**Tưởng tượng:** Bạn có một đội ngũ 56 chuyên gia AI. Mỗi người giỏi một việc khác nhau — viết code, kiểm tra bảo mật, thiết kế game, tối ưu tốc độ. Digital-Nervous là "người quản lý" — khi bạn nói "tôi muốn build một app bán hàng", nó tự biết cần gọi chuyên gia nào, theo thứ tự nào, và kiểm tra chất lượng ra sao.
 
-> **Một câu:** Forgewright tự động chọn đúng chuyên gia AI cho đúng việc, từ ý tưởng đến sản phẩm.
+> **Một câu:** Digital-Nervous tự động chọn đúng chuyên gia AI cho đúng việc, từ ý tưởng đến sản phẩm.
 
 ### Ví dụ cụ thể
 
@@ -29,7 +29,7 @@ Bạn nói:  "Build cho tôi một website bán áo thun"
 
     ↓
 
-Forgewright tự động làm:
+Digital-Nervous tự động làm:
     1. Phân tích thị trường (Business Analyst)
     2. Lên kế hoạch tính năng (Product Manager)
     3. Thiết kế kiến trúc database & API (Solution Architect)
@@ -51,7 +51,7 @@ flowchart LR
     subgraph L1["⚡ Level 1 — Basic"]
         direction TB
         L1A["✅ Đã có gì"]
-        L1B["• 55 kỹ năng AI"]
+        L1B["• 56 kỹ năng AI"]
         L1C["• Pipeline tự động"]
         L1D["• Mặc định khi cài đặt"]
     end
@@ -150,7 +150,7 @@ node --version
 
 ---
 
-## The Flow — Forgewright làm việc thế nào?
+## The Flow — Digital-Nervous làm việc thế nào?
 
 > Tất cả sơ đồ dưới đây hiển thị tốt trên GitHub, GitLab, và mọi trình xem mermaid.
 > Nếu không thấy hình — đảm bảo trình xem dùng **mermaid 10+**.
@@ -161,7 +161,7 @@ node --version
 flowchart TD
     START(["Bạn nói: 'Build app bán hàng'"])
     CHAT_INT{{"Chat Interpreter<br/>(chat-interpreter)"}}
-    ORCH(["Forgewright<br/>(người quản lý)"])
+    ORCH(["Digital-Nervous<br/>(người quản lý)"])
 
     START --> CHAT_INT
     CHAT_INT --> |"intent parsed"| ORCH
@@ -206,7 +206,7 @@ flowchart TD
     START --> CHAT_INT
     CHAT_INT --> ORCH
 
-    ORCH --> MODE{{"Classify Request<br/>22 Modes"}}
+    ORCH --> MODE{{"Classify Request<br/>23 Modes"}}
 
     MODE --> |"Full Build"| PHASE_DEFINE["DEFINE Phase<br/>BA → PM → Architect"]
     MODE --> |"Feature"| PHASE_FEATURE["FEATURE Phase<br/>PM → BE/FE → QA"]
@@ -301,7 +301,7 @@ sequenceDiagram
 
     User->>Orch: New Session Start
 
-    Orch->>Orch: Step 0.5: Load .forgewright/ context
+    Orch->>Orch: Step 0.5: Load .Digital-Nervous/ context
     Orch->>Orch: Step 1: Load project-profile.json
     Orch->>Orch: Step 2: Load session-log.json
     Orch->>Orch: Step 3: mem0 search + code-conventions
@@ -674,7 +674,7 @@ flowchart TD
     style G3 fill:#d35400,stroke:#e67e22,color:#fff
 ```
 
-### 22 Modes — Bạn nói gì, Forgewright chọn cái đó
+### 23 Modes — Bạn nói gì, Digital-Nervous chọn cái đó
 
 ```mermaid
 flowchart LR
@@ -836,7 +836,7 @@ flowchart TD
 **Bước 1:** Mở Terminal, chạy từ thư mục gốc dự án của bạn:
 
 ```bash
-git submodule add -b main https://github.com/buiphucminhtam/forgewright.git \
+git submodule add -b main https://github.com/buiphucminhtam/Digital-Nervous.git \
   .antigravity/plugins/production-grade
 ```
 
@@ -851,7 +851,7 @@ cp .antigravity/plugins/production-grade/CLAUDE.md .
 
 ```bash
 git add .gitmodules .antigravity AGENTS.md CLAUDE.md
-git commit -m "feat: add forgewright"
+git commit -m "feat: add Digital-Nervous"
 ```
 
 **Bước 4:** Khởi tạo submodule:
@@ -911,8 +911,8 @@ Sau đó khởi động lại Cursor/VS Code.
 echo "=== Kiểm tra ==="
 echo "Skills: $(ls .antigravity/plugins/production-grade/skills/ -1 2>/dev/null | wc -l | tr -d ' ')"
 echo "ForgeNexus: $([ -f .antigravity/plugins/production-grade/forgenexus/dist/cli/index.js ] && echo 'OK' || echo 'MISSING')"
-echo "MCP: $([ -d .forgewright/mcp-server ] && echo 'OK' || echo 'MISSING')"
-echo "Memory: $([ -f .forgewright/memory.jsonl ] && echo 'OK' || echo 'MISSING')"
+echo "MCP: $([ -d .Digital-Nervous/mcp-server ] && echo 'OK' || echo 'MISSING')"
+echo "Memory: $([ -f .Digital-Nervous/memory.jsonl ] && echo 'OK' || echo 'MISSING')"
 ```
 
 ---
@@ -1010,7 +1010,7 @@ bash scripts/forge-validate.sh --json
 | `/setup` | Cài đặt lần đầu như git submodule |
 | `/update` | Kiểm tra & cài cập nhật mới (an toàn, giữ thay đổi) |
 | `/pipeline` | Xem toàn bộ pipeline, modes, và danh sách skills |
-| `/onboard` | Phân tích sâu dự án — tạo `.forgewright/project-profile.json` |
+| `/onboard` | Phân tích sâu dự án — tạo `.Digital-Nervous/project-profile.json` |
 | `/mcp` | Tạo hoặc tạo lại MCP server config |
 | `/setup-mobile-test` | Cài đặt mobile testing cho Android/iOS |
 
@@ -1035,7 +1035,7 @@ MIT
 
 ## Ủng hộ dự án
 
-Nếu Forgewright giúp bạn ship nhanh hơn, bạn có thể ủng hộ tại đây:
+Nếu Digital-Nervous giúp bạn ship nhanh hơn, bạn có thể ủng hộ tại đây:
 
 <p align="center">
   <img src="assets/donate/give-me-a-coffee-international.png" width="280" alt="Buy Me a Coffee" />
@@ -1044,8 +1044,9 @@ Nếu Forgewright giúp bạn ship nhanh hơn, bạn có thể ủng hộ tại 
 ---
 
 <p align="center">
-  <strong>Forgewright — 55 AI skills. 22 modes. Persistent Memory. Code Intelligence. SaaS to AAA games.</strong>
+  <strong>Digital-Nervous — 55 AI skills. 23 modes. Persistent Memory. Code Intelligence. SaaS to AAA games.</strong>
 </p>
 <p align="center">
   <em>Lên kế hoạch chính xác. Build với tự tin. Mở rộng thông minh.</em>
 </p>
+

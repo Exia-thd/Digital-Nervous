@@ -5,7 +5,7 @@ All notable changes to Forge17 (formerly Production Grade Plugin).
 ## [7.0.0] — 2026-03-14
 
 ### Added — New Protocols (5)
-- **Project Onboarding** (`project-onboarding.md`) — 5-phase deep project analysis: fingerprint → health check → pattern analysis → risk assessment → profile generation. Produces `.forgewright/project-profile.json` and `.forgewright/code-conventions.md`.
+- **Project Onboarding** (`project-onboarding.md`) — 5-phase deep project analysis: fingerprint → health check → pattern analysis → risk assessment → profile generation. Produces `.Digital-Nervous/project-profile.json` and `.Digital-Nervous/code-conventions.md`.
 - **Session Lifecycle** (`session-lifecycle.md`) — Cross-session continuity with start/save/end hooks. Resume interrupted sessions, detect drift, memory integration.
 - **Quality Gate** (`quality-gate.md`) — Universal per-skill validation: 4 levels (Build, Regression, Standards, Traceability), 0-100 quality scoring, configurable thresholds. Works in sequential AND parallel modes.
 - **Brownfield Safety** (`brownfield-safety.md`) — Safety net: auto git branching, baseline snapshots, protected paths, change manifest, regression checks, rollback.
@@ -15,7 +15,7 @@ All notable changes to Forge17 (formerly Production Grade Plugin).
 - `/onboard` — Run deep project analysis without starting pipeline.
 
 ### Added — Project State
-- `.forgewright/` directory for persistent project state (profile, conventions, session logs, quality reports).
+- `.Digital-Nervous/` directory for persistent project state (profile, conventions, session logs, quality reports).
 
 ### Changed — Orchestrator
 - **Session lifecycle pre-flight (Step 0.5)** — Loads project profile, session state, memory context, quality trends before work begins.
@@ -180,3 +180,4 @@ All notable changes to Forge17 (formerly Production Grade Plugin).
 - 12 specialized agent skills coordinated through dependency graph.
 - 3 approval gates, autonomous execution between gates.
 - DEFINE > BUILD > HARDEN > SHIP > SUSTAIN pipeline.
+

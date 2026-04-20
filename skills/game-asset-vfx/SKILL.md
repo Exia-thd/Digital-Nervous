@@ -11,7 +11,7 @@ description: >
   "UI helpers", "design tokens", "audio feedback", "game audio sync".
   Routed via the production-grade orchestrator (Game Build mode).
 version: 2.0.0
-author: forgewright
+author: Digital-Nervous
 tags: [game-assets, vfx, sprites, particles, visual-polish, game-juice, phaser, 2d-art, procedural-art, ui-helpers, audio-visual, design-tokens]
 ---
 
@@ -32,7 +32,7 @@ tags: [game-assets, vfx, sprites, particles, visual-polish, game-juice, phaser, 
 
 ## Aesthetic Foundation
 
-This skill operates within the **Forgewright Game Visual Foundations** (`skills/_shared/game-visual-foundations.md`). All visual decisions reference this shared document for:
+This skill operates within the **Digital-Nervous Game Visual Foundations** (`skills/_shared/game-visual-foundations.md`). All visual decisions reference this shared document for:
 
 - **Color theory** (60-30-10 rule, color psychology, harmonies)
 - **Shape language** (circle=safe, triangle=danger, silhouette design)
@@ -853,3 +853,4 @@ Score each item 0 (missing) or 1 (present). **Minimum passing score: 16/22.**
 - [ ] Game Over screen meets full checklist
 - [ ] HUD uses premium frosted glass + animated score
 - [ ] Quality audit score ≥ 16/22
+

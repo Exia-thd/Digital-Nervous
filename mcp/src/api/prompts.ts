@@ -15,13 +15,13 @@ export function registerPrompts(server: Server) {
         {
           name: 'fw_orchestrator',
           description:
-            'Load Forgewright Orchestrator — the main skill that routes all requests to the correct domain skill.',
+            'Load Digital-Nervous Orchestrator — the main skill that routes all requests to the correct domain skill.',
           arguments: [],
         },
         // Then all domain skills
         ...skills.map((skill) => ({
           name: `fw_skill_${skill.name}`,
-          description: `Load Forgewright Skill: ${skill.name}. ${skill.description}`,
+          description: `Load Digital-Nervous Skill: ${skill.name}. ${skill.description}`,
           arguments: [] as { name: string; description: string }[],
         })),
       ],
@@ -43,7 +43,7 @@ export function registerPrompts(server: Server) {
               role: 'user',
               content: {
                 type: 'text',
-                text: `Please operate as the Forgewright Orchestrator. Load and follow the production-grade skill instructions.
+                text: `Please operate as the Digital-Nervous Orchestrator. Load and follow the production-grade skill instructions.
 
 ${orchestratorSkill.content}`,
               },
@@ -64,13 +64,13 @@ ${orchestratorSkill.content}`,
             role: 'user',
             content: {
               type: 'text',
-              text: `Please operate as the following Forgewright Skill:\n\n${skill.content}\n\nExecute the duties for this role based on the current context.`,
+              text: `Please operate as the following Digital-Nervous Skill:\n\n${skill.content}\n\nExecute the duties for this role based on the current context.`,
             },
           },
         ],
       };
     }
 
-    throw new Error(`Forgewright Skill or Prompt not found: ${promptName}`);
+    throw new Error(`Digital-Nervous Skill or Prompt not found: ${promptName}`);
   });
 }

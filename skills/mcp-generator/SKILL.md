@@ -7,7 +7,7 @@ description: Auto-generates a project-specific MCP server that exposes codebase 
 
 **Generates a project-specific MCP server powered by ForgeNexus code intelligence.**
 
-When Forgewright is installed as a submodule and the project is onboarded, this skill auto-generates an MCP (Model Context Protocol) server at `.forgewright/mcp-server/`. Any MCP-compatible client (Claude Desktop, Cursor, VS Code, Antigravity) can connect and gain deep project understanding.
+When Digital-Nervous is installed as a submodule and the project is onboarded, this skill auto-generates an MCP (Model Context Protocol) server at `.Digital-Nervous/mcp-server/`. Any MCP-compatible client (Claude Desktop, Cursor, VS Code, Antigravity) can connect and gain deep project understanding.
 
 ## When to Invoke
 
@@ -44,10 +44,10 @@ When Forgewright is installed as a submodule and the project is onboarded, this 
 
 ### Step 2 — Scaffold MCP Server
 
-Create `.forgewright/mcp-server/` directory with the following structure:
+Create `.Digital-Nervous/mcp-server/` directory with the following structure:
 
 ```
-.forgewright/mcp-server/
+.Digital-Nervous/mcp-server/
 ├── server.ts              # Single-file entry — all tools, resources, prompts
 ├── package.json           # Dependencies: @modelcontextprotocol/sdk, forgenexus, zod
 ├── tsconfig.json          # TypeScript config
@@ -81,11 +81,53 @@ Write `mcp-config.json` documenting which tools/resources are active.
 ### Step 4 — Install Dependencies
 
 ```bash
-cd .forgewright/mcp-server/
+cd .Digital-Nervous/mcp-server/
 npm install
 ```
 
-### Step 5 — Generate Client Config Snippets
+### Step 5 — Generate `.antigravity/mcp-manifest.json`
+
+Create the manifest that enables Antigravity workspace isolation:
+
+```bash
+# Create .antigravity directory
+mkdir -p "${PROJECT_ROOT}/.antigravity"
+
+# Generate manifest
+cat > "${PROJECT_ROOT}/.antigravity/mcp-manifest.json" << 'MANIFEST_EOF'
+{
+  "manifest_version": "1.0",
+  "workspace": "${PROJECT_ROOT}",
+  "generated_at": "${GENERATED_AT}",
+  "generated_by": "Digital-Nervous/mcp-generator",
+  "Digital-Nervous_version": "${Digital-Nervous_VERSION}",
+  "servers": [
+    {
+      "name": "${PROJECT_SLUG}-Digital-Nervous",
+      "type": "Digital-Nervous-mcp-server",
+      "enabled": true,
+      "description": "Digital-Nervous project intelligence — code graph, project profile, filesystem tools"
+    },
+    {
+      "name": "forgenexus",
+      "type": "forgenexus",
+      "enabled": true,
+      "description": "Code intelligence — query, context, impact, blast-radius analysis",
+      "config": {
+        "forgenexus_path": "${FORGENEXUS_PATH}"
+      }
+    }
+  ]
+}
+MANIFEST_EOF
+```
+
+> **Why `.antigravity/` instead of `.Digital-Nervous/`?**
+> - Antigravity reads from `.antigravity/` for its MCP integration
+> - `.Digital-Nervous/` remains project-internal (committed to repo)
+> - `.antigravity/` can be gitignored separately
+
+### Step 6 — Generate Client Config Snippets
 
 Output integration configs for popular clients:
 
@@ -105,7 +147,7 @@ Antigravity / Claude Desktop:
     "mcpServers": {
       "<project-name>": {
         "command": "npx",
-        "args": ["tsx", "<project-root>/.forgewright/mcp-server/server.ts"]
+        "args": ["tsx", "<project-root>/.Digital-Nervous/mcp-server/server.ts"]
       }
     }
   }
@@ -115,7 +157,7 @@ Cursor (.cursor/mcp.json):
     "mcpServers": {
       "<project-name>": {
         "command": "npx",
-        "args": ["tsx", "<project-root>/.forgewright/mcp-server/server.ts"]
+        "args": ["tsx", "<project-root>/.Digital-Nervous/mcp-server/server.ts"]
       }
     }
   }
@@ -123,7 +165,7 @@ Cursor (.cursor/mcp.json):
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ```
 
-### Step 6 — Update Project Profile
+### Step 7 — Update Project Profile
 
 Add to `project-profile.json`:
 
@@ -131,7 +173,8 @@ Add to `project-profile.json`:
 {
   "mcp_server": {
     "generated": true,
-    "path": ".forgewright/mcp-server/",
+    "path": ".Digital-Nervous/mcp-server/",
+    "manifest_path": ".antigravity/mcp-manifest.json",
     "tools_count": 9,
     "resources_count": 3,
     "prompts_count": 3,
@@ -140,6 +183,62 @@ Add to `project-profile.json`:
   }
 }
 ```
+
+### Step 8 — Workspace Isolation Summary
+
+Print a summary explaining the workspace isolation:
+
+```
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ ✅ MCP Workspace Isolation Ready
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+ Manifest: .antigravity/mcp-manifest.json
+ Servers:  2 active (Digital-Nervous + forgenexus)
+ Transport: stdio
+
+ 🔒 How it works:
+    Antigravity reads .antigravity/mcp-manifest.json
+    from the current workspace automatically.
+    No global config conflicts.
+
+    Each workspace has its own MCP config
+    committed to the project repository.
+
+    Switch workspaces → MCP servers follow
+    automatically.
+
+ 📋 Next steps:
+    1. Commit .antigravity/mcp-manifest.json
+    2. Update Antigravity global config:
+       → See section "Antigravity Global Config"
+    3. Restart Antigravity
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+```
+
+Also output the Antigravity global config update:
+
+```
+📋 Antigravity Global Config (replace claude_desktop_config.json):
+
+{
+  "mcpServers": {
+    "Digital-Nervous-workspace": {
+      "command": "bash",
+      "args": [
+        "/path/to/Digital-Nervous/scripts/Digital-Nervous-mcp-launcher.sh"
+      ],
+      "env": {
+        "Digital-Nervous_WORKSPACE": "${workspaceFolder}"
+      }
+    }
+  }
+}
+```
+
+> Replace `/path/to/Digital-Nervous/` with the absolute path to your
+> Digital-Nervous submodule in the host project.
 
 ## MCP Primitives Reference
 
@@ -195,7 +294,7 @@ IF code-conventions.md missing:
 When the project changes significantly (new onboarding, architecture changes):
 
 ```
-1. Delete .forgewright/mcp-server/
+1. Delete .Digital-Nervous/mcp-server/
 2. Re-run Steps 1–6
 3. Client configs remain the same (path unchanged)
 ```
@@ -205,6 +304,71 @@ When the project changes significantly (new onboarding, architecture changes):
 - **project-onboarding.md** — Phase 1.6 triggers this skill
 - **session-lifecycle.md** — MCP server can re-index at session start/end
 - **code-intelligence.md** — Shares ForgeNexus data source
+
+## Workspace Isolation (Zero-Friction)
+
+> **Problem solved:** When Digital-Nervous is a submodule in multiple projects, each project needs its own MCP config. Previously, a global `claude_desktop_config.json` with hardcoded paths caused conflicts when switching workspaces.
+
+### Architecture
+
+```
+Antigravity global config (SINGLE entry):
+  Digital-Nervous-workspace → Digital-Nervous-mcp-launcher.sh
+
+Per-workspace manifest:
+  <project>/.antigravity/mcp-manifest.json
+    → Lists allowed MCP servers
+    → Workspace-relative paths
+
+Launcher reads manifest:
+  → Resolves absolute paths
+  → Auto-installs deps if needed
+  → Returns MCP config to Antigravity
+```
+
+### Manifest Format
+
+```json
+{
+  "manifest_version": "1.0",
+  "workspace": "/absolute/path/to/project",
+  "generated_at": "2026-04-18T...",
+  "generated_by": "Digital-Nervous/mcp-generator",
+  "Digital-Nervous_version": "7.0.0",
+  "servers": [
+    {
+      "name": "myproject-Digital-Nervous",
+      "type": "Digital-Nervous-mcp-server",
+      "enabled": true,
+      "description": "..."
+    },
+    {
+      "name": "forgenexus",
+      "type": "forgenexus",
+      "enabled": true,
+      "config": {
+        "forgenexus_path": "optional/override/path.js"
+      }
+    }
+  ]
+}
+```
+
+### Allowed Server Types (Allowlist)
+
+Only these server types are permitted in manifests:
+
+| Type | Description |
+|------|-------------|
+| `Digital-Nervous-mcp-server` | Auto-generated project MCP server |
+| `forgenexus` | Code intelligence graph |
+| `notebooklm-mcp` | NotebookLM integration |
+
+### Security
+
+- **Path validation:** All paths are validated for traversal (`..`) and blocked for `.git`, `.env`
+- **Allowlist only:** Arbitrary commands cannot be added — only pre-approved server types
+- **Repo-committed:** Manifest travels with the project, auditable by git
 
 ---
 
@@ -282,6 +446,7 @@ Unity projects benefit from game-specific queries:
 └─────────────────────────────────────────────────────────────────┘
                               ↓
 ┌─────────────────────────────────────────────────────────────────┐
-│ 5. Forgewright Unity skills can now leverage Unity-MCP tools    │
+│ 5. Digital-Nervous Unity skills can now leverage Unity-MCP tools    │
 └─────────────────────────────────────────────────────────────────┘
 ```
+

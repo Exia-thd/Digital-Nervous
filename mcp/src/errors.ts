@@ -35,14 +35,14 @@ export interface ErrorContext {
   [key: string]: unknown;
 }
 
-export class ForgewrightError extends Error {
+export class Digital-NervousError extends Error {
   public readonly code: ErrorCode;
   public readonly recoverable: boolean;
   public readonly context: ErrorContext;
 
   constructor(code: ErrorCode, message: string, context: ErrorContext = {}, recoverable = true) {
     super(message);
-    this.name = 'ForgewrightError';
+    this.name = 'Digital-NervousError';
     this.code = code;
     this.recoverable = recoverable;
     this.context = context;
@@ -67,28 +67,28 @@ export class ForgewrightError extends Error {
 
 // ─── Specialized Errors ──────────────────────────────────────────────
 
-export class StateError extends ForgewrightError {
+export class StateError extends Digital-NervousError {
   constructor(code: ErrorCode, message: string, context: ErrorContext = {}, recoverable = true) {
     super(code, message, context, recoverable);
     this.name = 'StateError';
   }
 }
 
-export class PipelineError extends ForgewrightError {
+export class PipelineError extends Digital-NervousError {
   constructor(code: ErrorCode, message: string, context: ErrorContext = {}, recoverable = false) {
     super(code, message, context, recoverable);
     this.name = 'PipelineError';
   }
 }
 
-export class ToolError extends ForgewrightError {
+export class ToolError extends Digital-NervousError {
   constructor(code: ErrorCode, message: string, context: ErrorContext = {}, recoverable = false) {
     super(code, message, context, recoverable);
     this.name = 'ToolError';
   }
 }
 
-export class SkillError extends ForgewrightError {
+export class SkillError extends Digital-NervousError {
   constructor(code: ErrorCode, message: string, context: ErrorContext = {}, recoverable = true) {
     super(code, message, context, recoverable);
     this.name = 'SkillError';
@@ -97,12 +97,12 @@ export class SkillError extends ForgewrightError {
 
 // ─── Helpers ─────────────────────────────────────────────────────────
 
-export function isForgewrightError(value: unknown): value is ForgewrightError {
-  return value instanceof ForgewrightError;
+export function isDigital-NervousError(value: unknown): value is Digital-NervousError {
+  return value instanceof Digital-NervousError;
 }
 
 export function getErrorMessage(error: unknown): string {
-  if (isForgewrightError(error)) {
+  if (isDigital-NervousError(error)) {
     return error.toString();
   }
   if (error instanceof Error) {

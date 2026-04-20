@@ -27,7 +27,7 @@ export async function startMCPServer(repoPath?: string) {
 
   // RC4 fix: always chdir to the target project root so that relative
   // path operations (e.g. git diff, git status) resolve correctly.
-  // This prevents forgewright from accidentally operating on the wrong
+  // This prevents Digital-Nervous from accidentally operating on the wrong
   // project when running as a submodule inside another repo.
   if (process.cwd() !== indexRoot) {
     try {

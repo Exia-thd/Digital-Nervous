@@ -147,7 +147,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      - uses: buiphucminhtam/forgewright/.github/actions/pr-review@main
+      - uses: buiphucminhtam/Digital-Nervous/.github/actions/pr-review@main
         with:
           openapi-enabled: 'true'
           fail-on-critical: 'true'
@@ -189,7 +189,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      - uses: buiphucminhtam/forgewright/.github/actions/auto-wiki@main
+      - uses: buiphucminhtam/Digital-Nervous/.github/actions/auto-wiki@main
         with:
           publish_to: 'file'
           model: 'minimax-sonar'
@@ -229,7 +229,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      - uses: buiphucminhtam/forgewright/.github/actions/auto-reindex@main
+      - uses: buiphucminhtam/Digital-Nervous/.github/actions/auto-reindex@main
         with:
           mode: 'incremental'
 ```
@@ -260,7 +260,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      - uses: buiphucminhtam/forgewright/.github/actions/contract-verification@main
+      - uses: buiphucminhtam/Digital-Nervous/.github/actions/contract-verification@main
 ```
 
 **Features:**
@@ -322,7 +322,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      - uses: buiphucminhtam/forgewright/.github/actions/multi-repo-impact@main
+      - uses: buiphucminhtam/Digital-Nervous/.github/actions/multi-repo-impact@main
         with:
           direction: 'upstream'
 ```
@@ -446,7 +446,7 @@ on:
 ### 1. Install ForgeNexus
 
 ```bash
-npm install "git+https://github.com/buiphucminhtam/forgewright.git#main:forgenexus" --save-dev
+npm install "git+https://github.com/buiphucminhtam/Digital-Nervous.git#main:forgenexus" --save-dev
 cd node_modules/forgenexus && npm install && npm run build
 ```
 
@@ -479,12 +479,13 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - uses: buiphucminhtam/forgewright/.github/actions/pr-review@main
+      - uses: buiphucminhtam/Digital-Nervous/.github/actions/pr-review@main
 ```
 
 ---
 
 ## Support
 
-- GitHub Issues: https://github.com/buiphucminhtam/forgewright/issues
-- Documentation: https://github.com/buiphucminhtam/forgewright/wiki
+- GitHub Issues: https://github.com/buiphucminhtam/Digital-Nervous/issues
+- Documentation: https://github.com/buiphucminhtam/Digital-Nervous/wiki
+

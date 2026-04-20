@@ -6,7 +6,7 @@ description: >
   and art pipeline automation.
   Routed via the production-grade orchestrator (Game Build mode).
 version: 1.0.0
-author: forgewright
+author: Digital-Nervous
 tags: [unreal, niagara, materials, lumen, nanite, vfx, shaders, tech-art]
 ---
 
@@ -89,3 +89,4 @@ Gameplay VFX per Technical Artist catalog:
 - [ ] Custom post-process materials for gameplay feedback
 - [ ] Performance profiling: GPU time per material, particle count limits
 - [ ] All visual systems respect platform performance budgets
+

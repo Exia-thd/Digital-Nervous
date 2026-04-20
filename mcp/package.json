@@ -1,7 +1,7 @@
 {
-  "name": "forgewright-mcp-global",
+  "name": "Digital-Nervous-mcp-global",
   "version": "1.0.0",
-  "description": "Global MCP Server for Forgewright — works across all projects",
+  "description": "Global MCP Server for Digital-Nervous — works across all projects",
   "type": "module",
   "main": "build/index.js",
   "scripts": {
@@ -40,3 +40,4 @@
     "minimatch": "^9.0.5"
   }
 }
+

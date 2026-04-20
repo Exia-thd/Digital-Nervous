@@ -6,7 +6,7 @@ description: >
   color contrast, ARIA patterns, and assistive technology testing.
   Routed via the production-grade orchestrator (Harden mode).
 version: 1.0.0
-author: forgewright
+author: Digital-Nervous
 tags: [accessibility, a11y, wcag, aria, screen-reader, keyboard, compliance, inclusive]
 ---
 
@@ -84,7 +84,7 @@ Runs in **Harden** mode (alongside Security, QA). Also invoked as sub-step in **
 ## Output Structure
 
 ```
-.forgewright/accessibility-engineer/
+.Digital-Nervous/accessibility-engineer/
 ├── audit-report.md                  # Full WCAG audit findings
 ├── remediation-plan.md              # Prioritized fix plan
 ├── aria-patterns.md                 # ARIA implementation guide
@@ -123,3 +123,4 @@ Runs in **Harden** mode (alongside Security, QA). Also invoked as sub-step in **
 - [ ] Zoom to 400% works without horizontal scrolling
 - [ ] CI integration with axe-core configured
 - [ ] Accessibility statement page created
+

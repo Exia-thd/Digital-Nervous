@@ -1,6 +1,6 @@
 # Feature Plan: AI Game Integration
 
-> Integrate AI services (ChatGPT, Claude, image generation) into Forgewright game builder.
+> Integrate AI services (ChatGPT, Claude, image generation) into Digital-Nervous game builder.
 
 ## Metadata
 
@@ -105,3 +105,4 @@ gantt
     section Polish
     Testing & Docs   :2026-04-16, 10h
 ```
+

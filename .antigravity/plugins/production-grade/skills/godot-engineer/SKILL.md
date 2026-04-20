@@ -6,7 +6,7 @@ description: >
   multiplayer networking, and export configuration.
   Routed via the production-grade orchestrator (Game Build mode).
 version: 1.0.0
-author: forgewright
+author: Digital-Nervous
 tags: [godot, gdscript, scene-tree, signals, shaders, multiplayer, game-development]
 ---
 
@@ -170,3 +170,4 @@ func _physics_process(delta: float) -> void:
 - [ ] GPU Particles for gameplay VFX
 - [ ] Export presets configured for target platforms
 - [ ] All scripts have type hints
+

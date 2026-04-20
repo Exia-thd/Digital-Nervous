@@ -26,8 +26,9 @@
 
 - Quality scorecard per skill
 - Aggregate scorecard at each gate
-- Machine-readable: `.forgewright/quality-report-{session}.json`
+- Machine-readable: `.Digital-Nervous/quality-report-{session}.json`
 
 ## Note
 
 This middleware runs AFTER every skill in ANY mode — Full Build, Feature, Harden, etc.
+

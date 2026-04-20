@@ -1,10 +1,10 @@
 /**
- * Agent Prompts for ForgeWright Anti-Hallucination System
+ * Agent Prompts for Digital-Nervous Anti-Hallucination System
  * 
  * Prompts and prompt templates for various agents.
  */
 
-import type { Guardrails, ConfidenceConfig, VerificationStatus } from './types.js';
+import type { Guardrails, VerificationStatus } from './types.js';
 
 // ============================================================================
 // System Prompts

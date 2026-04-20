@@ -12,7 +12,7 @@ After Phase 2 (LLM Optimization), only for LLM-Powered Apps and AI-First Product
 
 - Source code with LLM API calls (from Phase 1 audit)
 - Prompt templates currently in codebase
-- `.forgewright/data-scientist/llm-optimization/` — token analysis and caching strategy
+- `.Digital-Nervous/data-scientist/llm-optimization/` — token analysis and caching strategy
 - BRD/PRD — user-facing quality requirements
 
 ## Actions
@@ -157,7 +157,7 @@ Implement safety and quality guardrails:
 ## Output
 
 ```
-.forgewright/data-scientist/
+.Digital-Nervous/data-scientist/
     prompt-engineering/
         prompt-audit.md              # Inventory of all prompts with current quality scores
         optimization-report.md       # Before/after comparison for each optimized prompt
@@ -180,3 +180,4 @@ services/<service>/prompts/          # Versioned prompt library (co-located with
 - [ ] All guardrails are implemented and tested
 - [ ] No PII in prompt templates, few-shot examples, or eval test cases
 - [ ] Cost projections include prompt token counts at 2x, 5x, 10x scale
+

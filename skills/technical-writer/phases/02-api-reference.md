@@ -13,7 +13,7 @@ Generate comprehensive API documentation from OpenAPI/AsyncAPI specs and source 
 | Auth middleware | `services/*/src/middleware/auth*` | Authentication methods, token formats |
 | Error handler | `services/*/src/middleware/error*` | Error codes, HTTP status mappings |
 | Rate limit config | `services/*/src/middleware/rate-limit*` | Rate tiers, limit values |
-| Content inventory | `.forgewright/technical-writer/content-inventory.md` | Phase 1 gap analysis results |
+| Content inventory | `.Digital-Nervous/technical-writer/content-inventory.md` | Phase 1 gap analysis results |
 
 ## 2.2 — Authentication Documentation
 
@@ -136,3 +136,4 @@ Before moving to Phase 3:
 - Every code example includes expected output or response
 - Error table has resolution steps, not just descriptions
 - Rate limiting section includes backoff code, not just prose
+

@@ -5,7 +5,7 @@ description: >
   custom render passes, URP/HDRP materials, procedural effects, and post-processing.
   Routed via the production-grade orchestrator (Game Build mode).
 version: 1.0.0
-author: forgewright
+author: Digital-Nervous
 tags: [unity, shaders, shader-graph, hlsl, urp, hdrp, materials, post-processing, vfx]
 ---
 
@@ -24,7 +24,7 @@ tags: [unity, shaders, shader-graph, hlsl, urp, hdrp, materials, post-processing
 
 ## Aesthetic Foundation
 
-Shader art defines the game's visual soul. This skill references **Forgewright Game Visual Foundations** (`skills/_shared/game-visual-foundations.md`) for:
+Shader art defines the game's visual soul. This skill references **Digital-Nervous Game Visual Foundations** (`skills/_shared/game-visual-foundations.md`) for:
 
 - **Lighting aesthetics** (emotional temperature, color grading philosophy, three-point setup)
 - **Post-processing as artistic intent** (when to use bloom, vignette, chromatic aberration vs. overuse)
@@ -133,7 +133,7 @@ Sau khi tạo shaders, dùng Unity-MCP để verify visual output mà không c�
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
-│ 1. Create shader (Forgewright)                                  │
+│ 1. Create shader (Digital-Nervous)                                  │
 │    └── Write Shader Graph hoặc HLSL code                        │
 └─────────────────────────────────────────────────────────────────┘
                               ↓
@@ -169,7 +169,7 @@ Sau khi tạo shaders, dùng Unity-MCP để verify visual output mà không c�
 ### Example: Create và Test Dissolve Shader
 
 ```bash
-# 1. Create dissolve shader (Forgewright - code generation)
+# 1. Create dissolve shader (Digital-Nervous - code generation)
 # Tạo SG_Dissolve.shadergraph trong Assets/_Project/Shaders/
 
 # 2. Create material via Unity-MCP
@@ -223,3 +223,4 @@ Unity-MCP có extensions cho visual-specific tasks:
 - [ ] All shaders under instruction budget per platform
 - [ ] Shader variants configured for quality levels
 - [ ] Materials render correctly in Scene + Game view
+

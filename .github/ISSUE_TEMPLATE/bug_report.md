@@ -28,7 +28,7 @@ What actually happened.
 
 - OS: [e.g. macOS 14, Ubuntu 22.04]
 - Node.js version: [e.g. 22.x]
-- Forgewright version: [e.g. 7.7.0]
+- Digital-Nervous version: [e.g. 7.7.0]
 
 ## Relevant Log Output
 
@@ -45,3 +45,4 @@ Add any other context about the problem here.
 - [ ] I have searched for similar issues
 - [ ] I can reproduce the bug with a minimal example
 - [ ] I have included all relevant information
+

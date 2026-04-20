@@ -1,5 +1,5 @@
 /**
- * Performance Optimization Module for ForgeWright
+ * Performance Optimization Module for Digital-Nervous
  * 
  * Provides caching, memoization, and performance monitoring.
  */

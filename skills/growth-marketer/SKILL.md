@@ -6,7 +6,7 @@ description: >
   email sequences, social content, and analytics tracking.
   Activated in the GROW phase after SHIP. Routed via the production-grade orchestrator.
 version: 1.0.0
-author: forgewright
+author: Digital-Nervous
 tags: [marketing, seo, content, launch, copywriting, analytics, growth]
 ---
 
@@ -23,7 +23,7 @@ tags: [marketing, seo, content, launch, copywriting, analytics, growth]
 
 ## Engagement Mode
 
-!`cat .forgewright/settings.md 2>/dev/null || echo "No settings — using Standard"`
+!`cat .Digital-Nervous/settings.md 2>/dev/null || echo "No settings — using Standard"`
 
 | Mode | Behavior |
 |------|----------|
@@ -101,7 +101,7 @@ marketing/
     └── creatives/
         └── ad-copy-variants.md     # A/B ad copy variations
 
-.forgewright/growth-marketer/
+.Digital-Nervous/growth-marketer/
 ├── marketing-plan.md               # Master marketing plan
 ├── channel-analysis.md             # Channel effectiveness assessment
 └── findings.md                     # Marketing audit findings
@@ -312,3 +312,4 @@ Execute each phase sequentially. Each phase builds on the outputs of the previou
 - [ ] Analytics tracking plan with event specification
 - [ ] KPI dashboard specification with North Star metric
 - [ ] All marketing assets written to `marketing/` directory
+

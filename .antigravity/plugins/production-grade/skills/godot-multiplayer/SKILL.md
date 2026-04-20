@@ -6,7 +6,7 @@ description: >
   server-authoritative logic, client prediction, and lobby systems.
   Routed via the production-grade orchestrator (Game Build mode).
 version: 1.0.0
-author: forgewright
+author: Digital-Nervous
 tags: [godot, multiplayer, networking, enet, websocket, prediction, replication]
 ---
 
@@ -145,3 +145,4 @@ func send_input(input: Dictionary, tick: int) -> void:
 - [ ] Network stats display (ping, packet loss)
 - [ ] Dedicated server build (headless)
 - [ ] Stress tested with bots
+

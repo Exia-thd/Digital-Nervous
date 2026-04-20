@@ -40,7 +40,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      - uses: buiphucminhtam/forgewright/.github/actions/pr-review@main
+      - uses: buiphucminhtam/Digital-Nervous/.github/actions/pr-review@main
         with:
           openapi-enabled: 'true'
           openapi-specs: 'openapi.yaml api/spec.yaml'
@@ -55,7 +55,7 @@ jobs:
   forge-review:
     runs-on: ubuntu-latest
     steps:
-      - uses: buiphucminhtam/forgewright/.github/actions/pr-review@main
+      - uses: buiphucminhtam/Digital-Nervous/.github/actions/pr-review@main
         with:
           dry-run: 'true'  # ← Không post comment, chỉ phân tích
           fail-on-critical: 'true'
@@ -78,7 +78,7 @@ on:
 
 jobs:
   forge-review:
-    uses: buiphucminhtam/forgewright/.github/workflows/reusable/pr-review.yml@main
+    uses: buiphucminhtam/Digital-Nervous/.github/workflows/reusable/pr-review.yml@main
     with:
       openapi-enabled: true
       min-risk-level: MEDIUM
@@ -92,7 +92,7 @@ jobs:
 # .github/workflows/forge-review.yml
 jobs:
   forge-review:
-    uses: https://github.com/buiphucminhtam/forgewright/.github/workflows/reusable/pr-review.yml@main
+    uses: https://github.com/buiphucminhtam/Digital-Nervous/.github/workflows/reusable/pr-review.yml@main
     with:
       openapi-enabled: false
 ```
@@ -150,11 +150,11 @@ jobs:
 
 ```bash
 # Option A: Git submodule
-git submodule add https://github.com/buiphucminhtam/forgewright.git .forgewright
+git submodule add https://github.com/buiphucminhtam/Digital-Nervous.git .Digital-Nervous
 
 # Option B: Copy action vào repo của bạn
 mkdir -p .github/actions/forge-review
-curl -sSL https://raw.githubusercontent.com/buiphucminhtam/forgewright/main/.github/actions/pr-review/action.yml \
+curl -sSL https://raw.githubusercontent.com/buiphucminhtam/Digital-Nervous/main/.github/actions/pr-review/action.yml \
   > .github/actions/forge-review/action.yml
 ```
 
@@ -179,7 +179,7 @@ on:
 
 jobs:
   forge-review:
-    uses: buiphucminhtam/forgewright/.github/workflows/reusable/pr-review.yml@main
+    uses: buiphucminhtam/Digital-Nervous/.github/workflows/reusable/pr-review.yml@main
     with:
       fail-on-critical: 'true'
 ```
@@ -224,7 +224,7 @@ Chạy `forgenexus analyze` trong CI trước:
 Kiểm tra đường dẫn spec:
 
 ```yaml
-- uses: buiphucminhtam/forgewright/.github/actions/pr-review@main
+- uses: buiphucminhtam/Digital-Nervous/.github/actions/pr-review@main
   with:
     openapi-specs: 'docs/openapi.yaml services/api/spec.yml'
 ```
@@ -241,3 +241,4 @@ permissions:
 ## License
 
 MIT — Commercial use via AkonLabs
+

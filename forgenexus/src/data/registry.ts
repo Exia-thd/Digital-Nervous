@@ -1,6 +1,6 @@
 /**
  * Global repository registry — tracks all indexed repos.
- * Stored in {forgewright_root}/.forgenexus/registry.kuzu
+ * Stored in {Digital-Nervous_root}/.forgenexus/registry.kuzu
  *
  * Migration from SQLite: uses KuzuDB with RepoRegistry node table.
  */
@@ -22,9 +22,9 @@ function unwrapResult(result: any): any {
   return Array.isArray(result) ? result[0] : result
 }
 
-// Find the forgewright root (parent of forgenexus/)
-function findForgewrightRoot(): string {
-  const envRoot = process.env.FORGEWRIGHT_ROOT
+// Find the Digital-Nervous root (parent of forgenexus/)
+function findDigital-NervousRoot(): string {
+  const envRoot = process.env.Digital-Nervous_ROOT
   if (envRoot && existsSync(envRoot)) return envRoot
 
   let dir = dirname(fileURLToPath(import.meta.url))
@@ -57,7 +57,7 @@ export class Registry {
   readonly dbPath: string
 
   constructor() {
-    this.root = findForgewrightRoot()
+    this.root = findDigital-NervousRoot()
     ensureNexusDataDirMigrated(this.root)
     const nexusDir = nexusDataDir(this.root)
     if (!existsSync(nexusDir)) {

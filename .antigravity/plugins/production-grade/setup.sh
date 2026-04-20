@@ -12,7 +12,7 @@
 set -euo pipefail
 
 # Configuration
-REPO_URL="https://github.com/buiphucminhtam/forgewright.git"
+REPO_URL="https://github.com/buiphucminhtam/Digital-Nervous.git"
 SUBMODULE_PATH=".antigravity/plugins/production-grade"
 BRANCH="main"
 
@@ -28,7 +28,7 @@ BOLD='\033[1m'
 print_header() {
     echo ""
     echo -e "${CYAN}╔══════════════════════════════════════════════════════════╗${NC}"
-    echo -e "${CYAN}║${NC}  ${BOLD}Forgewright${NC} — 52 Skills for Antigravity              ${CYAN}║${NC}"
+    echo -e "${CYAN}║${NC}  ${BOLD}Digital-Nervous${NC} — 52 Skills for Antigravity              ${CYAN}║${NC}"
     echo -e "${CYAN}╚══════════════════════════════════════════════════════════╝${NC}"
     echo ""
 }
@@ -107,7 +107,7 @@ cmd_install() {
     echo -e "  ${BOLD}Intelligence:${NC}     ForgeNexus indexed + MCP server active"
     echo ""
     echo -e "  ${BOLD}Next steps:${NC}"
-    echo -e "  1. Commit the setup: ${CYAN}git add . && git commit -m 'feat: add forgewright v$version'${NC}"
+    echo -e "  1. Commit the setup: ${CYAN}git add . && git commit -m 'feat: add Digital-Nervous v$version'${NC}"
     echo -e "  2. Start building: ${CYAN}\"Build a production-grade SaaS for [your idea]\"${NC}"
     echo -e "  3. Analyze project (optional): ${CYAN}Run /onboard to analyze stack & setup profiles${NC}"
     echo -e "  4. Check for updates: ${CYAN}./setup.sh status${NC}"
@@ -281,3 +281,4 @@ case "${1:-help}" in
         echo ""
         ;;
 esac
+

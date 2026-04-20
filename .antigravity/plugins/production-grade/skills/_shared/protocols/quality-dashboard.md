@@ -6,7 +6,7 @@
 
 ### After Each Skill
 
-Update `.forgewright/quality-metrics.json` with the latest quality gate results (from quality-gate.md).
+Update `.Digital-Nervous/quality-metrics.json` with the latest quality gate results (from quality-gate.md).
 
 Display mini-status in task_boundary:
 ```
@@ -87,14 +87,14 @@ Generated at pipeline completion. Replaces the existing `Final Summary Template`
 
 ## Machine-Readable Report
 
-Write `.forgewright/quality-report-{session}.json` at pipeline completion:
+Write `.Digital-Nervous/quality-report-{session}.json` at pipeline completion:
 
 ```json
 {
   "schema_version": "1.0",
   "session_id": "session-20260314-1324",
   "generated_at": "ISO-8601",
-  "forgewright_version": "7.0.0",
+  "Digital-Nervous_version": "7.0.0",
   "mode": "Full Build",
   "overall": {
     "score": 91,
@@ -140,7 +140,7 @@ Write `.forgewright/quality-report-{session}.json` at pipeline completion:
     "files_created": 87,
     "files_modified": 12,
     "files_deleted": 0,
-    "session_branch": "forgewright/session-20260314-1324"
+    "session_branch": "Digital-Nervous/session-20260314-1324"
   },
   "per_task_scores": [
     { "task_id": "T3a", "skill": "software-engineer", "score": 92, "grade": "A" },
@@ -152,7 +152,7 @@ Write `.forgewright/quality-report-{session}.json` at pipeline completion:
 
 ## Quality Trend (Cross-Session)
 
-Append each session's quality summary to `.forgewright/quality-history.json`:
+Append each session's quality summary to `.Digital-Nervous/quality-history.json`:
 
 ```json
 {
@@ -215,3 +215,4 @@ IF cumulative average drops below block_score (default 60):
 The Quality Dashboard REPLACES the Final Summary Template in the orchestrator (the `╔══════╗` banner). The new dashboard includes all the same information plus quality metrics. The orchestrator should use this protocol's template instead of its built-in one.
 
 The existing HARDEN Summary banner is KEPT as a phase-level summary. The Quality Dashboard is the pipeline-level summary that appears at the very end or at Gate 3.
+

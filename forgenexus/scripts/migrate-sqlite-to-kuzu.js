@@ -59,7 +59,7 @@ function findSqliteDb(repoPath) {
     join(repoPath, '.forgenexus', 'forgenexus.db'),
     join(repoPath, '.forgenexus', 'forgenexus.sqlite'),
     join(repoPath, '.forgenexus', 'data.db'),
-    join(repoPath, '.forgewright', 'forgenexus.db'),
+    join(repoPath, '.Digital-Nervous', 'forgenexus.db'),
     join(repoPath, 'forgenexus.db'),
   ];
   for (const p of paths) {

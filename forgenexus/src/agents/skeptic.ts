@@ -1,5 +1,5 @@
 /**
- * Skeptic Agent for ForgeWright Anti-Hallucination System
+ * Skeptic Agent for Digital-Nervous Anti-Hallucination System
  * 
  * A verification agent that critically examines claims and validates them
  * against provided evidence.
@@ -10,7 +10,6 @@ import type {
   DocumentVerification,
   ClaimVerification,
   Evidence,
-  SourceReference,
   GuardedResult,
   GroundingContext,
   VerificationStatus,

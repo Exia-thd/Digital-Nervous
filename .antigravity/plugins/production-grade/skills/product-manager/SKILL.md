@@ -20,7 +20,7 @@ description: >
 
 ## Engagement Mode
 
-!`cat .forgewright/settings.md 2>/dev/null || echo "No settings — using Standard"`
+!`cat .Digital-Nervous/settings.md 2>/dev/null || echo "No settings — using Standard"`
 
 Read engagement mode and adapt interview depth:
 
@@ -40,7 +40,7 @@ You MUST translate technical tradeoffs into business impact (Cost, Time, Quality
 
 ## Config Paths
 
-Read `.production-grade.yaml` at startup. Use `paths.brd` if defined to override the default BRD location. Default: `.forgewright/product-manager/BRD/`.
+Read `.production-grade.yaml` at startup. Use `paths.brd` if defined to override the default BRD location. Default: `.Digital-Nervous/product-manager/BRD/`.
 
 ## When to Use
 
@@ -84,8 +84,8 @@ digraph pm_flow {
 Before starting the CEO interview, check for existing context:
 
 ```bash
-cat .forgewright/polymath/handoff/context-package.md 2>/dev/null
-cat .forgewright/business-analyst/handoff/ba-package.md 2>/dev/null
+cat .Digital-Nervous/polymath/handoff/context-package.md 2>/dev/null
+cat .Digital-Nervous/business-analyst/handoff/ba-package.md 2>/dev/null
 ```
 
 **Polymath context** — If a context package exists, read it first. It contains:
@@ -219,13 +219,13 @@ Always create at the **project root** (the git repository root). If not in a git
 
 The canonical BRD file path is:
 ```
-.forgewright/product-manager/BRD/brd.md
+.Digital-Nervous/product-manager/BRD/brd.md
 ```
 
 If `paths.brd` is defined in `.production-grade.yaml`, use that path instead.
 
 ```
-.forgewright/product-manager/BRD/
+.Digital-Nervous/product-manager/BRD/
   INDEX.md                          # Living table of contents
   brd.md                            # Canonical BRD document
 ```
@@ -432,3 +432,4 @@ Every BRD should define success metrics using the **AARRR funnel:**
 | Usage | [Regular use] | [Core feature] | [Limitations] | [Enhancement] |
 | Advocacy | [Sharing/referral] | [Share mechanism] | [Barrier] | [Incentive] |
 ```
+

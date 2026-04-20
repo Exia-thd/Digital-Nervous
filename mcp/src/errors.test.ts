@@ -1,12 +1,12 @@
 import { describe, it, expect } from 'vitest';
 import {
-  ForgewrightError,
+  Digital-NervousError,
   StateError,
   PipelineError,
   ToolError,
   SkillError,
   ErrorCode,
-  isForgewrightError,
+  isDigital-NervousError,
   getErrorMessage,
 } from './errors.js';
 
@@ -41,31 +41,31 @@ describe('ErrorCode', () => {
   });
 });
 
-describe('ForgewrightError', () => {
+describe('Digital-NervousError', () => {
   it('should create error with code and message', () => {
-    const err = new ForgewrightError(ErrorCode.TOOL_NOT_FOUND, 'Tool not found: test');
+    const err = new Digital-NervousError(ErrorCode.TOOL_NOT_FOUND, 'Tool not found: test');
     expect(err.code).toBe('FW301');
     expect(err.message).toBe('Tool not found: test');
-    expect(err.name).toBe('ForgewrightError');
+    expect(err.name).toBe('Digital-NervousError');
     expect(err.recoverable).toBe(true);
   });
 
   it('should include optional context', () => {
-    const err = new ForgewrightError(ErrorCode.STATE_SAVE_ERROR, 'Save failed', {
+    const err = new Digital-NervousError(ErrorCode.STATE_SAVE_ERROR, 'Save failed', {
       file: '/path/state.json',
     });
     expect(err.context).toEqual({ file: '/path/state.json' });
   });
 
   it('should allow non-recoverable errors', () => {
-    const err = new ForgewrightError(ErrorCode.TOOL_EXECUTION_ERROR, 'Execution failed', {}, false);
+    const err = new Digital-NervousError(ErrorCode.TOOL_EXECUTION_ERROR, 'Execution failed', {}, false);
     expect(err.recoverable).toBe(false);
   });
 
   it('should serialize to JSON correctly', () => {
-    const err = new ForgewrightError(ErrorCode.SKILL_NOT_FOUND, 'Skill missing', { skill: 'test' });
+    const err = new Digital-NervousError(ErrorCode.SKILL_NOT_FOUND, 'Skill missing', { skill: 'test' });
     const json = err.toJSON();
-    expect(json).toHaveProperty('name', 'ForgewrightError');
+    expect(json).toHaveProperty('name', 'Digital-NervousError');
     expect(json).toHaveProperty('code', 'FW401');
     expect(json).toHaveProperty('message', 'Skill missing');
     expect(json).toHaveProperty('context');
@@ -74,21 +74,21 @@ describe('ForgewrightError', () => {
   });
 
   it('should format to string with context', () => {
-    const err = new ForgewrightError(ErrorCode.STATE_SAVE_ERROR, 'Save failed', {
+    const err = new Digital-NervousError(ErrorCode.STATE_SAVE_ERROR, 'Save failed', {
       file: '/path.json',
     });
     expect(err.toString()).toBe('[FW003] Save failed ({"file":"/path.json"})');
   });
 
   it('should format to string without context', () => {
-    const err = new ForgewrightError(ErrorCode.TOOL_NOT_FOUND, 'Tool missing');
+    const err = new Digital-NervousError(ErrorCode.TOOL_NOT_FOUND, 'Tool missing');
     expect(err.toString()).toBe('[FW301] Tool missing');
   });
 
   it('should be instanceof Error', () => {
-    const err = new ForgewrightError(ErrorCode.MCP_SERVER_ERROR, 'Server error');
+    const err = new Digital-NervousError(ErrorCode.MCP_SERVER_ERROR, 'Server error');
     expect(err).toBeInstanceOf(Error);
-    expect(err).toBeInstanceOf(ForgewrightError);
+    expect(err).toBeInstanceOf(Digital-NervousError);
   });
 });
 
@@ -140,29 +140,29 @@ describe('SkillError', () => {
   });
 });
 
-describe('isForgewrightError', () => {
-  it('should return true for ForgewrightError instances', () => {
-    expect(isForgewrightError(new ForgewrightError(ErrorCode.MCP_SERVER_ERROR, 'test'))).toBe(true);
-    expect(isForgewrightError(new StateError(ErrorCode.STATE_SAVE_ERROR, 'test'))).toBe(true);
-    expect(isForgewrightError(new PipelineError(ErrorCode.PIPELINE_INVALID_MODE, 'test'))).toBe(
+describe('isDigital-NervousError', () => {
+  it('should return true for Digital-NervousError instances', () => {
+    expect(isDigital-NervousError(new Digital-NervousError(ErrorCode.MCP_SERVER_ERROR, 'test'))).toBe(true);
+    expect(isDigital-NervousError(new StateError(ErrorCode.STATE_SAVE_ERROR, 'test'))).toBe(true);
+    expect(isDigital-NervousError(new PipelineError(ErrorCode.PIPELINE_INVALID_MODE, 'test'))).toBe(
       true,
     );
-    expect(isForgewrightError(new ToolError(ErrorCode.TOOL_NOT_FOUND, 'test'))).toBe(true);
-    expect(isForgewrightError(new SkillError(ErrorCode.SKILL_NOT_FOUND, 'test'))).toBe(true);
+    expect(isDigital-NervousError(new ToolError(ErrorCode.TOOL_NOT_FOUND, 'test'))).toBe(true);
+    expect(isDigital-NervousError(new SkillError(ErrorCode.SKILL_NOT_FOUND, 'test'))).toBe(true);
   });
 
-  it('should return false for non-ForgewrightError values', () => {
-    expect(isForgewrightError(new Error('plain error'))).toBe(false);
-    expect(isForgewrightError('string error')).toBe(false);
-    expect(isForgewrightError({ code: 'FW001', message: 'test' })).toBe(false);
-    expect(isForgewrightError(null)).toBe(false);
-    expect(isForgewrightError(undefined)).toBe(false);
+  it('should return false for non-Digital-NervousError values', () => {
+    expect(isDigital-NervousError(new Error('plain error'))).toBe(false);
+    expect(isDigital-NervousError('string error')).toBe(false);
+    expect(isDigital-NervousError({ code: 'FW001', message: 'test' })).toBe(false);
+    expect(isDigital-NervousError(null)).toBe(false);
+    expect(isDigital-NervousError(undefined)).toBe(false);
   });
 });
 
 describe('getErrorMessage', () => {
-  it('should return ForgewrightError.toString() for ForgewrightError', () => {
-    const err = new ForgewrightError(ErrorCode.TOOL_NOT_FOUND, 'Tool not found', { tool: 'fake' });
+  it('should return Digital-NervousError.toString() for Digital-NervousError', () => {
+    const err = new Digital-NervousError(ErrorCode.TOOL_NOT_FOUND, 'Tool not found', { tool: 'fake' });
     expect(getErrorMessage(err)).toBe('[FW301] Tool not found ({"tool":"fake"})');
   });
 

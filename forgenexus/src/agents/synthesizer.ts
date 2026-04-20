@@ -1,5 +1,5 @@
 /**
- * Synthesizer Agent for ForgeWright Anti-Hallucination System
+ * Synthesizer Agent for Digital-Nervous Anti-Hallucination System
  * 
  * Generates accurate content based on verified evidence.
  */

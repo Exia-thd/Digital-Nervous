@@ -6,7 +6,7 @@ description: >
   and mix management. Creates immersive soundscapes that reinforce gameplay.
   Routed via the production-grade orchestrator (Game Build mode).
 version: 1.0.0
-author: forgewright
+author: Digital-Nervous
 tags: [audio, sound-design, music, wwise, fmod, spatial-audio, adaptive-music, mix]
 ---
 
@@ -23,7 +23,7 @@ tags: [audio, sound-design, music, wwise, fmod, spatial-audio, adaptive-music, m
 
 ## Engagement Mode
 
-!`cat .forgewright/settings.md 2>/dev/null || echo "No settings — using Standard"`
+!`cat .Digital-Nervous/settings.md 2>/dev/null || echo "No settings — using Standard"`
 
 | Mode | Behavior |
 |------|----------|
@@ -52,7 +52,7 @@ Runs AFTER Game Designer (feedback spec) and engine engineers (trigger events). 
 ## Output Structure
 
 ```
-.forgewright/game-audio-engineer/
+.Digital-Nervous/game-audio-engineer/
 ├── audio-design-document.md         # Complete audio vision
 ├── sfx/
 │   ├── sfx-catalog.md               # All sound effects with triggers
@@ -293,3 +293,4 @@ Runs AFTER Game Designer (feedback spec) and engine engineers (trigger events). 
 - [ ] Ducking rules for dialogue, combat, cinematics
 - [ ] Voice pipeline defined (if applicable)
 - [ ] Platform-specific mix adjustments documented
+

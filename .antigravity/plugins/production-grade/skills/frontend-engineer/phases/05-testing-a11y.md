@@ -6,7 +6,7 @@ Establish comprehensive testing coverage and accessibility compliance — compon
 
 ## Context Bridge
 
-Read Phase 3 component inventory from `.forgewright/frontend-engineer/docs/component-inventory.md`. Read Phase 4 pages from `frontend/app/pages/` for route coverage.
+Read Phase 3 component inventory from `.Digital-Nervous/frontend-engineer/docs/component-inventory.md`. Read Phase 4 pages from `frontend/app/pages/` for route coverage.
 
 ## Workflow
 
@@ -46,7 +46,7 @@ Produce E2E tests in `frontend/tests/e2e/` and `frontend/playwright.config.ts`.
 - Color contrast: 4.5:1 normal text, 3:1 large text
 - Motion: `prefers-reduced-motion` respected
 
-Produce `.forgewright/frontend-engineer/docs/a11y-audit.md`.
+Produce `.Digital-Nervous/frontend-engineer/docs/a11y-audit.md`.
 
 ### Step 4: Performance Budget (Core Web Vitals)
 
@@ -63,7 +63,7 @@ Define and enforce via Lighthouse CI:
 
 Configure `lighthouserc.json` with minScore assertions (performance 0.9, accessibility 0.95, best-practices 0.9) and numeric thresholds for LCP, TTI, CLS.
 
-Produce `frontend/lighthouserc.json` and `.forgewright/frontend-engineer/docs/performance-budget.md`.
+Produce `frontend/lighthouserc.json` and `.Digital-Nervous/frontend-engineer/docs/performance-budget.md`.
 
 ### Step 5: Visual Regression Testing
 
@@ -82,7 +82,7 @@ Produce visual regression configs in `frontend/tests/visual/`.
 | Mobile Chrome | Latest | Playwright emulation | P0 |
 | Mobile Safari | Latest | Playwright emulation | P0 |
 
-Produce `.forgewright/frontend-engineer/docs/browser-support.md`.
+Produce `.Digital-Nervous/frontend-engineer/docs/browser-support.md`.
 
 ## Output Files
 
@@ -91,9 +91,9 @@ Produce `.forgewright/frontend-engineer/docs/browser-support.md`.
 - `frontend/tests/visual/` (visual regression)
 - `frontend/playwright.config.ts`
 - `frontend/lighthouserc.json`
-- `.forgewright/frontend-engineer/docs/a11y-audit.md`
-- `.forgewright/frontend-engineer/docs/performance-budget.md`
-- `.forgewright/frontend-engineer/docs/browser-support.md`
+- `.Digital-Nervous/frontend-engineer/docs/a11y-audit.md`
+- `.Digital-Nervous/frontend-engineer/docs/performance-budget.md`
+- `.Digital-Nervous/frontend-engineer/docs/browser-support.md`
 
 ## Validation Loop
 
@@ -110,3 +110,4 @@ Before concluding the frontend skill:
 ## Quality Bar
 
 Every component must have at least one accessibility test. "Tests pass" is not acceptable -- "94 component tests (87% branch coverage), 12 E2E flows, zero WCAG 2.1 AA violations, LCP 1.8s (budget: 2.5s), CLS 0.04 (budget: 0.1), bundle 156 KB gzip (budget: 200 KB)" is acceptable.
+

@@ -1,4 +1,4 @@
-# ForgeWright Anti-Hallucination - API Reference
+# Digital-Nervous Anti-Hallucination - API Reference
 
 ## Agents Module
 
@@ -496,3 +496,4 @@ forgenexus evaluate --output json --output-file results.json
 - `--difficulties <d>` - Filter by difficulty
 - `--case-ids <ids>` - Specific cases
 - `--verbose` - Detailed output
+

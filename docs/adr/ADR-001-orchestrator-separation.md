@@ -4,7 +4,7 @@
 Accepted
 
 ## Context
-Forgewright's production-grade orchestrator (`SKILL.md`) grew to 1700+ lines, mixing concerns: CEO routing logic, 19 mode execution flows, 10 middleware definitions, Full Build pipeline, task dependencies, gate patterns, and quality gates.
+Digital-Nervous's production-grade orchestrator (`SKILL.md`) grew to 1700+ lines, mixing concerns: CEO routing logic, 19 mode execution flows, 10 middleware definitions, Full Build pipeline, task dependencies, gate patterns, and quality gates.
 
 This made the file:
 - Hard to navigate (1700+ lines of markdown)
@@ -57,3 +57,4 @@ Split into three layers with clear responsibilities:
 
 ## Notes
 Implemented in v7.8.1 as part of the quality overhaul.
+

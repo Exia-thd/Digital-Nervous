@@ -1,13 +1,13 @@
-# Forgewright Setup — Existing Project (Brownfield)
+# Digital-Nervous Setup — Existing Project (Brownfield)
 
-> Copy & paste this prompt to set up Forgewright in a project that already has code.
+> Copy & paste this prompt to set up Digital-Nervous in a project that already has code.
 
 ---
 
 ## Prompt
 
 ```
-I want to set up Forgewright in my existing project.
+I want to set up Digital-Nervous in my existing project.
 Please do the following in order:
 
 ## Step 1 — Verify Git
@@ -21,13 +21,13 @@ If not, run:
 ```bash
 git init
 git add .
-git commit -m "chore: initial commit before adding Forgewright"
+git commit -m "chore: initial commit before adding Digital-Nervous"
 ```
 
-## Step 2 — Add Forgewright as git submodule
+## Step 2 — Add Digital-Nervous as git submodule
 
 ```bash
-git submodule add -b main https://github.com/buiphucminhtam/forgewright.git .antigravity/plugins/production-grade
+git submodule add -b main https://github.com/buiphucminhtam/Digital-Nervous.git .antigravity/plugins/production-grade
 git submodule update --init --recursive
 ```
 
@@ -36,14 +36,14 @@ git submodule update --init --recursive
 ```bash
 cp .antigravity/plugins/production-grade/AGENTS.md AGENTS.md
 cp .antigravity/plugins/production-grade/CLAUDE.md CLAUDE.md
-cp .antigravity/plugins/production-grade/README.md FORGEWRIGHT.md
+cp .antigravity/plugins/production-grade/README.md Digital-Nervous.md
 ```
 
 ## Step 4 — Commit
 
 ```bash
-git add .gitmodules .antigravity AGENTS.md CLAUDE.md FORGEWRIGHT.md
-git commit -m "feat: add Forgewright v7.8 — 52 skills, ForgeNexus, MCP"
+git add .gitmodules .antigravity AGENTS.md CLAUDE.md Digital-Nervous.md
+git commit -m "feat: add Digital-Nervous v7.8 — 52 skills, ForgeNexus, MCP"
 ```
 
 ## Step 5 — Power Level Setup
@@ -84,10 +84,10 @@ npx forgenexus analyze "$(pwd)" --embeddings
 **Requires:** Python 3.8+
 
 ```bash
-FORGEWRIGHT_ROOT="$(pwd)/.antigravity/plugins/production-grade"
-bash "$FORGEWRIGHT_ROOT/scripts/ensure-mem0.sh" "$(pwd)"
-ls .forgewright/memory.jsonl   # must exist
-python3 "$FORGEWRIGHT_ROOT/scripts/mem0-cli.py" refresh
+Digital-Nervous_ROOT="$(pwd)/.antigravity/plugins/production-grade"
+bash "$Digital-Nervous_ROOT/scripts/ensure-mem0.sh" "$(pwd)"
+ls .Digital-Nervous/memory.jsonl   # must exist
+python3 "$Digital-Nervous_ROOT/scripts/mem0-cli.py" refresh
 ```
 
 ### Level 4 — MCP Tools (12 ForgeNexus tools in AI chat) ⚡⚡⚡⚡
@@ -119,8 +119,8 @@ Restart Cursor after adding the config.
 ```
 
 This creates:
-- `.forgewright/project-profile.json` — project fingerprint (tech stack, architecture, dependencies)
-- `.forgewright/code-conventions.md` — coding style learned from existing codebase
+- `.Digital-Nervous/project-profile.json` — project fingerprint (tech stack, architecture, dependencies)
+- `.Digital-Nervous/code-conventions.md` — coding style learned from existing codebase
 
 The orchestrator uses these files to adapt all skill execution to your project's conventions.
 
@@ -128,13 +128,13 @@ The orchestrator uses these files to adapt all skill execution to your project's
 
 ```bash
 FW_ROOT="$(pwd)/.antigravity/plugins/production-grade"
-echo "=== Forgewright Power Level Check ==="
+echo "=== Digital-Nervous Power Level Check ==="
 echo "Skills: $(ls "$FW_ROOT/skills" -1 2>/dev/null | wc -l | tr -d ' ') / 52"
 echo "ForgeNexus: $([ -f "$FW_ROOT/forgenexus/dist/cli/index.js" ] && echo '✓ built' || echo '✗ missing')"
-echo "MCP server: $([ -d ".forgewright/mcp-server" ] && echo '✓ generated' || echo '✗ missing')"
-echo "Memory: $([ -f ".forgewright/memory.jsonl" ] && echo '✓ initialized' || echo '✗ missing')"
+echo "MCP server: $([ -d ".Digital-Nervous/mcp-server" ] && echo '✓ generated' || echo '✗ missing')"
+echo "Memory: $([ -f ".Digital-Nervous/memory.jsonl" ] && echo '✓ initialized' || echo '✗ missing')"
 echo "ForgeNexus indexed: $([ -d ".forgenexus" ] && echo '✓ yes' || echo '✗ run: npx forgenexus analyze')"
-echo "Project profile: $([ -f ".forgewright/project-profile.json" ] && echo '✓ onboarded' || echo '✗ run: /onboard')"
+echo "Project profile: $([ -f ".Digital-Nervous/project-profile.json" ] && echo '✓ onboarded' || echo '✗ run: /onboard')"
 echo "======================================="
 ```
 
@@ -152,7 +152,7 @@ pip install "crawl4ai>=0.8.0"
 
 ## You're Ready!
 
-For existing projects, Forgewright automatically detects your tech stack and adapts.
+For existing projects, Digital-Nervous automatically detects your tech stack and adapts.
 Try these commands:
 - "Add [feature] to my existing project" — Feature mode
 - "Harden my project for production" — Harden mode
@@ -163,7 +163,7 @@ Try these commands:
 
 Or use workflow shortcuts:
 - `/setup` — Re-run installation
-- `/onboard` — Deep project analysis (creates `.forgewright/project-profile.json`)
+- `/onboard` — Deep project analysis (creates `.Digital-Nervous/project-profile.json`)
 - `/pipeline` — Show full pipeline reference
 - `/mcp` — Regenerate MCP config
 ```
@@ -176,13 +176,13 @@ Or use workflow shortcuts:
 |-----------|--------------|--------------------------------------|
 | **52 Skills** | `.antigravity/plugins/production-grade/skills/` | Auto-detects tech stack from your project |
 | **ForgeNexus (Level 2)** | `.forgenexus/` | Indexes YOUR existing codebase for blast-radius analysis |
-| **Onboarding** | `.forgewright/project-profile.json` | Learns your project's conventions, architecture, dependencies |
-| **Memory (Level 3)** | `.forgewright/memory.jsonl` | Remembers your project decisions across sessions |
+| **Onboarding** | `.Digital-Nervous/project-profile.json` | Learns your project's conventions, architecture, dependencies |
+| **Memory (Level 3)** | `.Digital-Nervous/memory.jsonl` | Remembers your project decisions across sessions |
 | **MCP Tools (Level 4)** | `~/.cursor/mcp.json` | 12 tools for deep code intelligence on YOUR code |
 
 ## Brownfield Safety Net
 
-Forgewright automatically activates **Brownfield Safety** for existing projects:
+Digital-Nervous automatically activates **Brownfield Safety** for existing projects:
 - Auto git branching before any changes
 - Baseline snapshots
 - Protected paths (node_modules, .git, vendor, etc.)
@@ -190,7 +190,7 @@ Forgewright automatically activates **Brownfield Safety** for existing projects:
 - Regression checks after every skill
 - Rollback on gate failure
 
-This means Forgewright will NEVER break your existing codebase.
+This means Digital-Nervous will NEVER break your existing codebase.
 
 ## Power Levels Summary
 
@@ -200,3 +200,4 @@ This means Forgewright will NEVER break your existing codebase.
 | **2** | + ForgeNexus indexes YOUR existing code |
 | **3** | + Persistent memory — remembers YOUR project decisions |
 | **4** | + 12 MCP tools — deep code intelligence on YOUR codebase |
+

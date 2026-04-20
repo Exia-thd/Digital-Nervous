@@ -12,7 +12,7 @@ description: >
 
 !`git status 2>/dev/null || echo "No git repo detected"`
 !`cat CLAUDE.md 2>/dev/null || echo "No CLAUDE.md found"`
-!`ls .forgewright/ 2>/dev/null || echo "No existing workspace"`
+!`ls .Digital-Nervous/ 2>/dev/null || echo "No existing workspace"`
 !`cat .production-grade.yaml 2>/dev/null || echo "No config file — defaults apply"`
 
 ## Overview
@@ -30,7 +30,7 @@ Every skill invocation is wrapped by an ordered middleware chain. Implementation
 ```
 Pre-Skill:  ① SessionData → ② ContextLoader → ③ SkillRegistry → ④ Guardrail → ⑤ Summarization
             ═══ SKILL EXECUTION ═══
-Post-Skill: ⑥ QualityGate → ⑦ BrownfieldSafety → ⑧ TaskTracking → ⑨ Memory → ⑩ GracefulFailure
+Post-Skill: ⑥ QualityGate → ⑦ BrownfieldSafety → ⑧ TaskTracking → ⑨ Memory → ⑩ GracefulFailure → ⑪ CircuitBreaker → ⑫ Bulkhead → ⑬ Verification
 ```
 
 | # | Middleware | File | Hook | Purpose |
@@ -46,12 +46,14 @@ Post-Skill: ⑥ QualityGate → ⑦ BrownfieldSafety → ⑧ TaskTracking → �
 | ⑧ | TaskTracking | `middleware/08-task-tracking.md` | after_skill | Update todos, emit events |
 | ⑨ | Memory | `middleware/09-memory.md` | after_skill + turn_close | Persistent fact extraction |
 | ⑩ | GracefulFailure | `middleware/10-graceful-failure.md` | on_error | Retry logic, stuck detection |
-
+| ⑪ | CircuitBreaker | `skills/_shared/protocols/circuit-breaker.md` | after_skill | Fault isolation + state machine |
+| ⑫ | Bulkhead | `skills/_shared/protocols/bulkhead.md` | after_skill | Resource limits per worker type |
+| ⑬ | Verification | `skills/_shared/protocols/verification.md` | after_skill | Contract + criteria check |
 **Middleware protocol:** `skills/_shared/protocols/middleware-chain.md`
 
 ### Progressive Skill Loading (v8.0 — DeerFlow Pattern)
 
-Skills are loaded on-demand based on classified mode. Read `.forgewright/skills-config.json` for the mode→skill mapping.
+Skills are loaded on-demand based on classified mode. Read `.Digital-Nervous/skills-config.json` for the mode→skill mapping.
 
 ```
 Instead of loading all 52 skill descriptions (~66KB), only load skills relevant to the mode:
@@ -105,7 +107,7 @@ Before ANY skill execution, interpret the user's request:
 
 1. **Extract 9 dimensions** (from chat-interpreter):
    - Task: What they actually want
-   - Target tool: Forgewright mode
+   - Target tool: Digital-Nervous mode
    - Output format: What they expect
    - Constraints: Explicit limits
    - Input: What they're providing
@@ -161,7 +163,7 @@ Before ANY skill execution, interpret the user's request:
 
 **Step 1 — Analyze the request:**
 
-Read `.forgewright/subagent-context/INTERPRETED_REQUEST.md` (from chat-interpreter Step -1) for the authoritative request analysis. The chat-interpreter has already performed 9-dimension extraction and mode detection.
+Read `.Digital-Nervous/subagent-context/INTERPRETED_REQUEST.md` (from chat-interpreter Step -1) for the authoritative request analysis. The chat-interpreter has already performed 9-dimension extraction and mode detection.
 
 If `confidence: HIGH` → use the detected mode directly, skip the classification table.
 If `confidence: MEDIUM` → present 2 most likely modes to the user.
@@ -185,7 +187,7 @@ Override the detected mode only if the user's intent clearly differs from what w
 | **Harden** | "review", "audit", "secure", "harden", "before launch", "production ready" (on EXISTING code) | Security + QA + Code Review (sequential) → Remediation |
 | **Ship** | "deploy", "CI/CD", "containerize", "infrastructure", "terraform", "docker" | DevOps → SRE |
 | **Debug** | "debug", "fix bug", "broken", "investigate", "not working", "error", "trace", "crashes" | Debugger (→ Software/Frontend Engineer for fix) |
-| **AI Build** | "AI feature", "chatbot", "RAG", "embeddings", "LLM", "agent", "prompt", "AI-powered", "scrape", "crawl website" | AI Engineer + Prompt Engineer + Data Scientist + Web Scraper (if web data) + Architect (scoped) → BE/FE |
+| **AI Build** | "AI feature", "chatbot", "RAG", "embeddings", "LLM", "agent", "prompt", "AI-powered" | AI Engineer + Prompt Engineer + Data Scientist + Architect (scoped) → BE/FE |
 | **Migrate** | "migrate", "upgrade", "migration", "database change", "schema change", "refactor DB", "move to" | Database Engineer + Software Engineer → QA |
 | **Test** | "write tests", "test coverage", "test this", "add tests" | QA |
 | **Review** | "review my code", "code review", "code quality", "check my code" | Code Reviewer |
@@ -285,7 +287,7 @@ All skills MUST follow the sensitive file protection protocol:
 ## Mode Execution (Non-Full-Build)
 
 All modes share these behaviors:
-- Bootstrap workspace: `mkdir -p skills/_shared/protocols/ .forgewright/`
+- Bootstrap workspace: `mkdir -p skills/_shared/protocols/ .Digital-Nervous/`
 - Write shared protocols (same as Full Build step 3)
 - Read `.production-grade.yaml` for path overrides
 - Read existing workspace state if present
@@ -747,7 +749,7 @@ Invoke: /chat-interpreter [user's message]
 
 1. **9-Dimension Extraction** — silently extracts: Task, Target tool, Output format, Constraints, Input, Context, Audience, Success criteria, Examples
 
-2. **Mode Detection** — maps the request to Forgewright's 19 modes with confidence level (HIGH/MEDIUM/LOW)
+2. **Mode Detection** — maps the request to Digital-Nervous's 19 modes with confidence level (HIGH/MEDIUM/LOW)
 
 3. **Gap Detection** — identifies missing information (max 3 clarifying questions if needed)
 
@@ -795,7 +797,7 @@ After your answers, I'll route to the right pipeline.
 
 **Chat Interpretation Output:**
 ```
-.forgewright/subagent-context/INTERPRETED_REQUEST.md
+.Digital-Nervous/subagent-context/INTERPRETED_REQUEST.md
   ├── mode: [detected mode]
   ├── confidence: [HIGH/MEDIUM/LOW]
   ├── intent_summary: [1 sentence]
@@ -807,7 +809,7 @@ After your answers, I'll route to the right pipeline.
 ```
 
 **Reading the interpreted request before proceeding:**
-All subsequent pipeline steps read `.forgewright/subagent-context/INTERPRETED_REQUEST.md` as the authoritative source of user intent — not the raw chat message.
+All subsequent pipeline steps read `.Digital-Nervous/subagent-context/INTERPRETED_REQUEST.md` as the authoritative source of user intent — not the raw chat message.
 
 ## Tool-Specific Routing (from prompt-master)
 
@@ -890,16 +892,16 @@ Run silently BEFORE any execution (all modes) to ensure project intelligence is 
 
 **Step 0.1 — MCP & ForgeNexus Check:**
 
-1. Check if the file `.forgewright/mcp-server/mcp-config.json` exists in the project root.
+1. Check if the file `.Digital-Nervous/mcp-server/mcp-config.json` exists in the project root.
 2. **If missing**, silently execute the following terminal commands to auto-initialize it:
    - `npx --yes forgenexus analyze`
-   - `bash <path-to-forgewright-submodule>/scripts/mcp-generate.sh`
+   - `bash <path-to-Digital-Nervous-submodule>/scripts/mcp-generate.sh`
    - Yield a brief message to the user: `ℹ Auto-initialized ForgeNexus index and MCP server (missing setup).`
 3. **If exists**, continue normally without doing anything.
 
 **Step 0.2 — System Requirements + Power Level Check (required):**
 
-Forgewright requires **Node.js 18+** (ForgeNexus) and **Python 3** (mem0). Power level determines which tools are needed.
+Digital-Nervous requires **Node.js 18+** (ForgeNexus) and **Python 3** (mem0). Power level determines which tools are needed.
 
 **Step 0.2.1 — System Requirements Check:**
 
@@ -908,8 +910,8 @@ Run these in parallel:
 ```
 node_check:  node --version 2>/dev/null | grep -oE '[0-9]+' | head -1
 python_check: python3 --version 2>/dev/null
-mem0_check:  [ -f .forgewright/memory.jsonl ] && echo "exists" || echo "missing"
-settings_check: [ -f .forgewright/settings.md ] && echo "exists" || echo "missing"
+mem0_check:  [ -f .Digital-Nervous/memory.jsonl ] && echo "exists" || echo "missing"
+settings_check: [ -f .Digital-Nervous/settings.md ] && echo "exists" || echo "missing"
 ```
 
 **Decision matrix:**
@@ -925,7 +927,7 @@ settings_check: [ -f .forgewright/settings.md ] && echo "exists" || echo "missin
 **If Node.js or Python missing (blocking):**
 ```
 notify_user:
-  "⚠️ Missing required tools for Forgewright:
+  "⚠️ Missing required tools for Digital-Nervous:
 
    Node.js 18+ required for: ForgeNexus code intelligence, MCP server
    Python 3.8+ required for: Cross-session memory (mem0)
@@ -944,10 +946,10 @@ notify_user:
 **If mem0 missing (non-blocking):**
 ```
 # Run silently
-bash <path-to-forgewright>/scripts/ensure-mem0.sh "$(pwd)" 2>/dev/null
+bash <path-to-Digital-Nervous>/scripts/ensure-mem0.sh "$(pwd)" 2>/dev/null
 
 # If failed (no python3)
-Log: "⚠️ mem0 init failed — install Python 3 first. Forcing: FORGEWRIGHT_SKIP_MEM0=1"
+Log: "⚠️ mem0 init failed — install Python 3 first. Forcing: Digital-Nervous_SKIP_MEM0=1"
 # CI/headless exemption auto-applied
 ```
 
@@ -962,7 +964,7 @@ Log: "✓ System requirements verified:
 **Step 0.2.2 — Power Level Check:**
 
 ```
-IF .forgewright/settings.md exists:
+IF .Digital-Nervous/settings.md exists:
   Read engagement + execution from settings
   Log: "✓ Power level loaded: [level]"
   Continue to Step 0.3
@@ -974,7 +976,7 @@ ELSE:
 **Prompt for power level (only if settings missing):**
 ```
 notify_user:
-  "Forgewright has 5 power levels. Choose based on how much capability you need:
+  "Digital-Nervous has 5 power levels. Choose based on how much capability you need:
 
   ⚡ Basic       — 55 skills, full pipeline (Node.js only)
   ⚡⚡ Smart     — + ForgeNexus blast-radius analysis (Node.js only)
@@ -1062,8 +1064,8 @@ IF Basic:
 **Write settings file:**
 
 ```bash
-mkdir -p .forgewright
-cat > .forgewright/settings.md << 'EOF'
+mkdir -p .Digital-Nervous
+cat > .Digital-Nervous/settings.md << 'EOF'
 # Pipeline Settings
 Power_Level: [selected]
 Engagement: [express/standard/thorough/meticulous — default: standard]
@@ -1078,7 +1080,7 @@ Log: "✓ System init complete:
   - Python 3: [version] ✓  
   - mem0: [ready] ✓
   - Power level: [level] ✓
-  - Settings: written to .forgewright/settings.md"
+  - Settings: written to .Digital-Nervous/settings.md"
 ```
 
 ## Auto-Update Check
@@ -1088,7 +1090,7 @@ Run BEFORE any execution (all modes). Silent if current. One prompt max if updat
 **Step 0 — version check:**
 
 1. Check current version from plugin metadata
-2. Use `read_url_content` to fetch `https://raw.githubusercontent.com/buiphucminhtam/forgewright/main/VERSION` → read the version string (this is the remote version)
+2. Use `read_url_content` to fetch `https://raw.githubusercontent.com/buiphucminhtam/Digital-Nervous/main/VERSION` → read the version string (this is the remote version)
 3. **If fetch fails** (offline, timeout, 404) → silently continue. Never block the pipeline over an update check.
 4. **If remote ≤ local** → continue silently (user sees nothing)
 5. **If remote > local** → prompt via notify_user:
@@ -1103,7 +1105,7 @@ production-grade v{remote} is available (you have v{local})
 6. **If skip** → continue pipeline with current version
 7. **If update** → execute in sequence:
    ```bash
-   git clone --depth 1 https://github.com/buiphucminhtam/forgewright.git /tmp/pg-update
+   git clone --depth 1 https://github.com/buiphucminhtam/Digital-Nervous.git /tmp/pg-update
    ```
    - Copy updated files to the skills directory
    - Clean up: `rm -rf /tmp/pg-update`
@@ -1119,26 +1121,26 @@ Run AFTER update check, BEFORE mode classification. Follows `skills/_shared/prot
 **Step 0.5 — session start:**
 
 1. **Load project profile:**
-   - If `.forgewright/project-profile.json` exists and is fresh (<24h) → load context, skip re-onboarding
+   - If `.Digital-Nervous/project-profile.json` exists and is fresh (<24h) → load context, skip re-onboarding
    - If stale → re-run health check only (project-onboarding Phase 2)
    - If missing → run full project onboarding (see `skills/_shared/protocols/project-onboarding.md`)
 
 2. **Load last session state:**
-   - If `.forgewright/session-log.json` exists with interrupted session → offer resume via notify_user
+   - If `.Digital-Nervous/session-log.json` exists with interrupted session → offer resume via notify_user
    - If last session completed → log summary, continue to new request
    - If first session → continue normally
 
 3. **Load memory context (mem0 is required — Step 0.2):**
-   - Run `python3 <path-to-forgewright>/scripts/mem0-cli.py search "<project-name> <user-request-keywords>" --limit 5 --format compact` (or `./scripts/mem0-cli.py` when the project is the Forgewright repo)
+   - Run `python3 <path-to-Digital-Nervous>/scripts/mem0-cli.py search "<project-name> <user-request-keywords>" --limit 5 --format compact` (or `./scripts/mem0-cli.py` when the project is the Digital-Nervous repo)
    - If the store is empty or search returns nothing → run `python3 ... mem0-cli.py refresh` once, then search again
-   - Also read `.forgewright/code-conventions.md` if it exists for extra conventions
+   - Also read `.Digital-Nervous/code-conventions.md` if it exists for extra conventions
 
 4. **Detect manual changes:**
    - If git available → check commits since last session
    - If structural changes detected → re-run onboarding fingerprint + patterns
 
 5. **Display quality trend** (if history exists):
-   - Read `.forgewright/quality-history.json` → show trend of last 5 sessions
+   - Read `.Digital-Nervous/quality-history.json` → show trend of last 5 sessions
 
 Log: `✓ Session context loaded — [project name], last session: [summary or "first session"]`
 
@@ -1148,38 +1150,38 @@ Run AFTER session context is loaded, AFTER chat-interpreter (Step -1), BEFORE an
 
 1. **Ensure subagent context directory exists:**
    ```
-   mkdir -p .forgewright/subagent-context/
+   mkdir -p .Digital-Nervous/subagent-context/
    ```
 
 2. **Read chat-interpreter output:**
    ```
-   Read .forgewright/subagent-context/INTERPRETED_REQUEST.md
+   Read .Digital-Nervous/subagent-context/INTERPRETED_REQUEST.md
    → This is the authoritative source of user intent
    → All skills use this instead of the raw chat message
    ```
 
 3. **Write PIPELINE_SUMMARY.md** (refresh for each new phase): (refresh for each new phase):
-   - Read `.forgewright/project-profile.json` if exists
-   - Read current phase status from `.forgewright/task.md`
+   - Read `.Digital-Nervous/project-profile.json` if exists
+   - Read current phase status from `.Digital-Nervous/task.md`
    - Read approved architecture from `docs/architecture/` (if exists)
    - Read BRD summary from `product-manager/BRD/` (if exists)
    - Compress to ≤ 2,000 tokens
-   - Write to `.forgewright/subagent-context/PIPELINE_SUMMARY.md`
+   - Write to `.Digital-Nervous/subagent-context/PIPELINE_SUMMARY.md`
 
 3. **Write REVIEWER_CONTRACT.md** (per-review, generated dynamically):
    ```
    For each review task, write:
    - REVIEWER_CONTRACT.md with scope, acceptance criteria, forbidden paths
-   - Reference: .forgewright/subagent-context/REVIEWER_CONTRACT_TEMPLATE.md
+   - Reference: .Digital-Nervous/subagent-context/REVIEWER_CONTRACT_TEMPLATE.md
    ```
 
 4. **Update SECURITY_STANDARDS.md** (refresh for HARDEN phase):
    - Run security-engineer skill output through SECURITY_STANDARDS template
-   - Write to `.forgewright/subagent-context/SECURITY_STANDARDS.md`
+   - Write to `.Digital-Nervous/subagent-context/SECURITY_STANDARDS.md`
 
 5. **Log:**
    ```
-   ✓ Subagent context prepared — [N] files in .forgewright/subagent-context/
+   ✓ Subagent context prepared — [N] files in .Digital-Nervous/subagent-context/
    ```
 
 **Cursor Subagent Invocation Convention:**
@@ -1223,7 +1225,7 @@ Project: [extracted from user's message]
 2. **Bootstrap workspace:**
 ```bash
 mkdir -p skills/_shared/protocols/
-mkdir -p .forgewright/
+mkdir -p .Digital-Nervous/
 ```
 
 3. **Write shared protocols** to `skills/_shared/protocols/`:
@@ -1249,7 +1251,7 @@ Read these from the plugin's `skills/_shared/protocols/` directory and copy them
 
 4. **Codebase discovery — detect greenfield vs brownfield:**
 
-   **If project onboarding already ran** (Step 0.5 loaded `.forgewright/project-profile.json`) → use cached fingerprint data. Otherwise, run scans:
+   **If project onboarding already ran** (Step 0.5 loaded `.Digital-Nervous/project-profile.json`) → use cached fingerprint data. Otherwise, run scans:
 
    Run these scans in parallel:
    ```
@@ -1281,13 +1283,13 @@ Read these from the plugin's `skills/_shared/protocols/` directory and copy them
    | Source files exist, no `.production-grade.yaml` | **Brownfield (unmapped)** | Deep onboarding, generate config, adapt |
    | Source files + `.production-grade.yaml` exist | **Brownfield (mapped)** | Use config paths, augment existing code |
 
-   **If Greenfield** → log `✓ Greenfield project — creating from scratch`. Write minimal `.forgewright/project-profile.json` (to be populated progressively). Continue to step 5.
+   **If Greenfield** → log `✓ Greenfield project — creating from scratch`. Write minimal `.Digital-Nervous/project-profile.json` (to be populated progressively). Continue to step 5.
 
    **If Brownfield** → run the enhanced adaptation sequence:
 
    a. **Deep project onboarding** — run full `skills/_shared/protocols/project-onboarding.md` if not already done in Step 0.5. This produces:
-      - `.forgewright/project-profile.json` — full fingerprint, health, patterns, risk
-      - `.forgewright/code-conventions.md` — coding patterns for all skills to follow
+      - `.Digital-Nervous/project-profile.json` — full fingerprint, health, patterns, risk
+      - `.Digital-Nervous/code-conventions.md` — coding patterns for all skills to follow
 
    b. **Structure report** — display from project profile:
    ```
@@ -1317,30 +1319,30 @@ Read these from the plugin's `skills/_shared/protocols/` directory and copy them
 
    d. **Write `.production-grade.yaml`** from discovered structure — map `paths.*` to actual directories found.
 
-   e. **Set brownfield context** — write to `.forgewright/codebase-context.md`:
+   e. **Set brownfield context** — write to `.Digital-Nervous/codebase-context.md`:
    ```markdown
    # Codebase Context
    Mode: brownfield
    Language: [detected]
    Framework: [detected]
    Existing paths: [mapping]
-   Code conventions: .forgewright/code-conventions.md
-   Project profile: .forgewright/project-profile.json
+   Code conventions: .Digital-Nervous/code-conventions.md
+   Project profile: .Digital-Nervous/project-profile.json
 
    ## Rules for all agents
    - Don't overwrite existing files without explicit user approval — blindly replacing files can destroy production-critical configuration or break existing consumers that depend on current signatures
-   - READ .forgewright/code-conventions.md and MATCH existing code style
+   - READ .Digital-Nervous/code-conventions.md and MATCH existing code style
    - ADD to existing directories, don't replace them
    - If a file exists at the target path, create alongside it or extend it
    - Existing tests must still pass after changes (verified by quality-gate)
-   - Check .forgewright/project-profile.json → risk.protected_paths before writing
+   - Check .Digital-Nervous/project-profile.json → risk.protected_paths before writing
    ```
 
    f. **Activate brownfield safety net** — follow `skills/_shared/protocols/brownfield-safety.md`:
-      - Create session branch: `forgewright/session-{timestamp}`
+      - Create session branch: `Digital-Nervous/session-{timestamp}`
       - Snapshot baseline (existing tests pass count)
       - Register protected paths
-      - Log: `✓ Safety net active — branch: forgewright/session-{timestamp}, baseline: [N] tests`
+      - Log: `✓ Safety net active — branch: Digital-Nervous/session-{timestamp}, baseline: [N] tests`
 
    All skills read codebase-context.md and code-conventions.md before executing.
 
@@ -1357,7 +1359,7 @@ How deeply should the pipeline involve you in decisions?
 4. **Meticulous** — Maximum depth. Approve each ADR individually. Review every agent output. Full control.
 ```
 
-Write the choice to `.forgewright/settings.md`:
+Write the choice to `.Digital-Nervous/settings.md`:
 ```markdown
 # Pipeline Settings
 Engagement: [express|standard|thorough|meticulous]
@@ -1516,7 +1518,7 @@ Notify user via notify_user with the analysis:
 
 **Step 5b-7: Save Decision**
 
-Append to `.forgewright/settings.md`:
+Append to `.Digital-Nervous/settings.md`:
 ```markdown
 Execution: [parallel|sequential]
 Max_Workers: 4
@@ -1526,16 +1528,16 @@ Estimated_Time_Parallel: [N]min
 Risk_Level: [LOW|MEDIUM|HIGH]
 ```
 
-Write analysis report to `.forgewright/scope-analysis.md` for future reference.
+Write analysis report to `.Digital-Nervous/scope-analysis.md` for future reference.
 
 When **Parallel** is selected, the BUILD and HARDEN phases use the parallel-dispatch skill (`skills/parallel-dispatch/SKILL.md`) to spawn git worktrees, distribute Task Contracts, and merge results. When **Sequential** is selected, the pipeline behaves as before.
 
-6. **Detect existing workspace & load memory** — if `.forgewright/` has prior state, use session-lifecycle resume protocol. If `.forgewright/session-log.json` has interrupted state, offer resume. Otherwise offer clean start via notify_user.
+6. **Detect existing workspace & load memory** — if `.Digital-Nervous/` has prior state, use session-lifecycle resume protocol. If `.Digital-Nervous/session-log.json` has interrupted state, offer resume. Otherwise offer clean start via notify_user.
    - **Memory load:** Run `python3 scripts/mem0-cli.py search "<project-name> <user-request-keywords>" --limit 5 --format compact` to retrieve relevant project context. Inject results into your context for this session.
    - If no results or memory is empty, run `python3 scripts/mem0-cli.py refresh` once to bootstrap memory from project files.
 
 7. **Polymath pre-flight check:**
-   - If `.forgewright/polymath/handoff/context-package.md` exists → read it, pass to PM as pre-loaded context. Log: `✓ Polymath context loaded — skipping redundant discovery`
+   - If `.Digital-Nervous/polymath/handoff/context-package.md` exists → read it, pass to PM as pre-loaded context. Log: `✓ Polymath context loaded — skipping redundant discovery`
    - If no polymath context, assess the user's request for knowledge gaps:
      - **Vague scope** (no specific problem domain), **no constraints** (scale, budget, team), **complex domain with no domain language**, **contradictory signals**
      - If gaps detected → read `skills/polymath/SKILL.md` and follow its instructions for pre-flight consultation before proceeding. The polymath will research, clarify with the user, and write a context package when ready.
@@ -1549,14 +1551,14 @@ When **Parallel** is selected, the BUILD and HARDEN phases use the parallel-disp
    - **Greenfield Full Build — BA is mandatory (no silent skip):**
      - Do **not** skip BA because the model self-scored 6W1H ≥ 6/7. Self-scores are optimistic; greenfield needs **documented client answers**.
      - **MUST** read `skills/business-analyst/SKILL.md` and run through at least **one full elicitation cycle** (stakeholder + structured questions per engagement depth: Express minimum **3** client-answered items, Standard **3–5**, Thorough **5+** with **2 rounds** if gaps remain) until:
-       - `.forgewright/business-analyst/handoff/ba-package.md` exists **and**
+       - `.Digital-Nervous/business-analyst/handoff/ba-package.md` exists **and**
        - Open gaps are either resolved or explicitly logged as **client-acknowledged assumptions** (not BA guesses).
      - Log: `⧖ Greenfield Full Build — mandatory BA before PM`
      - **Escape hatches (only these):** (1) `.production-grade.yaml` → `features.skip_define_ba: true`, or (2) `notify_user` with explicit option **"Skip BA — I accept incomplete requirements risk"** (user must choose; never auto-skip), or (3) `ba-package.md` already present from **this session** with completeness sign-off.
 
    **Brownfield Full Build** (existing meaningful codebase):
 
-   - If `.forgewright/business-analyst/handoff/ba-package.md` exists → read it, pass to PM. Log: `✓ BA package loaded — requirements pre-validated`
+   - If `.Digital-Nervous/business-analyst/handoff/ba-package.md` exists → read it, pass to PM. Log: `✓ BA package loaded — requirements pre-validated`
    - If no BA package: run 6W1H completeness. If average < 6/7 **or** the request describes a **net-new product/surface** (major scope) → run BA as above (same minimum elicitation as Standard depth).
    - If score ≥ 6/7 **and** incremental change only **and** no net-new product → may skip BA. Log: `✓ Requirements sufficiently complete — proceeding to PM`
 
@@ -1571,7 +1573,7 @@ When **Parallel** is selected, the BUILD and HARDEN phases use the parallel-disp
 
 9. **Create task tracking:**
 
-Create a `task.md` file in `.forgewright/` with all 13 tasks and their statuses. Track dependencies and completion.
+Create a `task.md` file in `.Digital-Nervous/` with all 13 tasks and their statuses. Track dependencies and completion.
 
 10. **Begin Phase 1** — read `phases/define.md` and start immediately. Do NOT ask "should I proceed?"
    - **Memory save (session start):** Run `python3 scripts/mem0-cli.py add "Session started: [mode] mode for [brief request]. Engagement: [level]" --category session`
@@ -1695,11 +1697,11 @@ Invoke: /verifier Confirm all pipeline deliverables are complete and functional 
 ```
 
 The verifier subagent:
-1. Reads `.forgewright/subagent-context/PIPELINE_SUMMARY.md` for scope
+1. Reads `.Digital-Nervous/subagent-context/PIPELINE_SUMMARY.md` for scope
 2. Reads all DELIVERY.json from completed tasks
 3. Runs compilation and tests for each deliverable
 4. Scans for TODOs, secrets, and obvious bugs
-5. Writes report to `.forgewright/subagent-context/VERIFIER_REPORT.md`
+5. Writes report to `.Digital-Nervous/subagent-context/VERIFIER_REPORT.md`
 
 **Step G3.2 — Present Gate 3 options (using verifier report):**
 
@@ -1900,12 +1902,12 @@ When HARDEN skills find Critical/High issues:
 | T11: Tech Writer | ALL workspace + project | `docs/` | `technical-writer/` |
 | T12: Skill Maker | ALL workspace | `skills/` | `skill-maker/` |
 
-**Deliverables** go to project root (respecting `.production-grade.yaml` path overrides). **Workspace artifacts** go to `.forgewright/<skill-name>/`.
+**Deliverables** go to project root (respecting `.production-grade.yaml` path overrides). **Workspace artifacts** go to `.Digital-Nervous/<skill-name>/`.
 
 ## Workspace Architecture
 
 ```
-.forgewright/
+.Digital-Nervous/
 ├── .protocols/              # Shared protocols (written at bootstrap)
 ├── .orchestrator/           # Pipeline state via task.md
 ├── product-manager/         # BRD, research
@@ -1952,7 +1954,7 @@ Every skill execution follows:
 4. **Self-debug** — read errors, identify root cause. After 3 failures: stop and report.
 5. **Quality bar** — no TODOs, no stubs. All code compiles. All tests pass. Quality score ≥ 90.
 6. **TDD enforced** — write test first, watch fail, implement, watch pass, refactor.
-7. **Convention compliance** — read `.forgewright/code-conventions.md` (if brownfield) and match existing patterns.
+7. **Convention compliance** — read `.Digital-Nervous/code-conventions.md` (if brownfield) and match existing patterns.
 
 ## Partial Execution
 
@@ -1980,13 +1982,13 @@ The dashboard includes:
 - **Acceptance** — BRD criteria coverage, traceability
 - **Pipeline stats** — mode, duration, skills run, files changed
 
-**Machine-readable output:** `.forgewright/quality-report-{session}.json`
-**Quality trending:** `.forgewright/quality-history.json` (appended each session)
+**Machine-readable output:** `.Digital-Nervous/quality-report-{session}.json`
+**Quality trending:** `.Digital-Nervous/quality-history.json` (appended each session)
 
 Also display the legacy summary for backward compatibility:
 ```
 ╔══════════════════════════════════════════════════════════════╗
-║          Forgewright v{local_version} — COMPLETE                    ║
+║          Digital-Nervous v{local_version} — COMPLETE                    ║
 ╠══════════════════════════════════════════════════════════════╣
 ║  Project: <name>                                             ║
 ║  Quality Score: [XX]/100 (Grade [A-F])                       ║
@@ -1997,9 +1999,9 @@ Also display the legacy summary for backward compatibility:
 ║  SHIP:    ✓ Docker ✓ CI/CD ✓ Terraform ✓ SRE approved       ║
 ║  SUSTAIN: ✓ Docs ✓ Skills (<N> created) ✓ Learnings captured ║
 ║                                                              ║
-║  Workspace: .forgewright/              ║
+║  Workspace: .Digital-Nervous/              ║
 ║  Config: .production-grade.yaml                              ║
-║  Report: .forgewright/quality-report-{session}.json              ║
+║  Report: .Digital-Nervous/quality-report-{session}.json              ║
 ╚══════════════════════════════════════════════════════════════╝
 ```
 
@@ -2009,7 +2011,7 @@ For ALL brownfield projects (any mode, not just Full Build), activate the safety
 
 | Safety Layer | When | Action |
 |-------------|------|--------|
-| Git branch | Pre-pipeline | Create `forgewright/session-{timestamp}` branch |
+| Git branch | Pre-pipeline | Create `Digital-Nervous/session-{timestamp}` branch |
 | Baseline snapshot | Pre-pipeline | Run existing tests, record pass count |
 | Protected paths | Pre-pipeline | Register paths that must not be modified |
 | Regression checks | After T3a, T3b, T5 | Verify existing tests still pass |
@@ -2036,7 +2038,8 @@ For ALL brownfield projects (any mode, not just Full Build), activate the safety
 | Not leveraging skill architecture | Even though execution is sequential, each skill's internal phase structure ensures quality. Foundations before dependent work. |
 | Duplicating security review | code-reviewer references security-engineer findings |
 | Skipping quality gate | EVERY skill output must pass quality-gate.md — no exceptions, even in sequential mode |
-| Ignoring code conventions in brownfield | Read `.forgewright/code-conventions.md` BEFORE writing code. Match existing patterns. |
+| Ignoring code conventions in brownfield | Read `.Digital-Nervous/code-conventions.md` BEFORE writing code. Match existing patterns. |
 | Modifying protected paths | Check brownfield-safety protected paths before ANY file write |
 | No regression check in brownfield | After EACH build skill, verify existing tests still pass against baseline |
 | Not saving session state | Call session lifecycle hooks at every phase/task/gate completion |
+

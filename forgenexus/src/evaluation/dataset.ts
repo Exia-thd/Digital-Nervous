@@ -1,10 +1,9 @@
 /**
- * Evaluation Dataset for ForgeWright Anti-Hallucination System
+ * Evaluation Dataset for Digital-Nervous Anti-Hallucination System
  * 
  * Contains test cases for evaluating the verification system.
  */
 
-import type { Chunk } from '../agents/types.js';
 
 // ============================================================================
 // Type Definitions

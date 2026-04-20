@@ -9,14 +9,14 @@ Update task.md: T11 status → in_progress
 
 Read skills/technical-writer/SKILL.md and follow its instructions.
 Context:
-- Read ALL workspace folders at .forgewright/ for full project context.
+- Read ALL workspace folders at .Digital-Nervous/ for full project context.
 - Read all project deliverables: api/, services/, frontend/, infrastructure/, tests/, docs/.
 - Read protocols from: skills/_shared/protocols/
 - Read .production-grade.yaml for paths and preferences.
 - Generate: API reference (from OpenAPI specs), developer guides, operational guide, architecture guide, contributing guide.
 - If features.documentation_site is true: scaffold Docusaurus site.
 - Write docs to project root: docs/
-- Write workspace artifacts to: .forgewright/technical-writer/
+- Write workspace artifacts to: .Digital-Nervous/technical-writer/
 
 Update task.md: T11 status → completed
 ```
@@ -32,7 +32,7 @@ Context:
 - Read protocols from: skills/_shared/protocols/
 - Generate 3-5 project-specific skills as SKILL.md files.
 - Install skills to: skills/
-- Write workspace artifacts to: .forgewright/skill-maker/
+- Write workspace artifacts to: .Digital-Nervous/skill-maker/
 
 Update task.md: T12 status → completed
 ```
@@ -47,7 +47,7 @@ Update task.md: T13 status → in_progress
 
 ### Compound Learning
 
-Write to `.forgewright/compound-learnings.md`:
+Write to `.Digital-Nervous/compound-learnings.md`:
 
 ```markdown
 ## Learning: [date] — [project name]
@@ -81,7 +81,7 @@ Optionally append key patterns to project `ANTIGRAVITY.md` for cross-session per
 Code is ready. How would you like to integrate?
 
 1. **Integrate all code (Recommended)** — Copy services, frontend, infra to project root
-2. **Keep in workspace only** — Leave everything in .forgewright/
+2. **Keep in workspace only** — Leave everything in .Digital-Nervous/
 3. **Let me choose what to copy** — Select which components to integrate
 4. **Chat about this** — Discuss integration strategy
 ```
@@ -99,3 +99,4 @@ Mark all tasks as complete.
 ## Pipeline Complete
 
 Print the final summary template from the orchestrator. All tasks should show as completed in task.md.
+

@@ -18,7 +18,7 @@ description: >
 
 ## Engagement Mode
 
-!`cat .forgewright/.orchestrator/settings.md 2>/dev/null || echo "No settings — using Standard"`
+!`cat .Digital-Nervous/.orchestrator/settings.md 2>/dev/null || echo "No settings — using Standard"`
 
 | Mode | Behavior |
 |------|----------|
@@ -157,14 +157,14 @@ Triggered -> Phase 0: Reconnaissance -> Phase 1: Threat Modeling
 
 | Output | Location | Description |
 |--------|----------|-------------|
-| Threat model | `.forgewright/security-engineer/threat-model/` | STRIDE analysis, attack surface, trust boundaries, data flow threats |
-| Code audit | `.forgewright/security-engineer/code-audit/` | OWASP Top 10 report, per-service findings, injection points |
-| Auth review | `.forgewright/security-engineer/auth-review/` | Auth flow analysis, token management, RBAC policy review |
-| Data security | `.forgewright/security-engineer/data-security/` | PII inventory, encryption audit, data retention, GDPR compliance |
-| Supply chain | `.forgewright/security-engineer/supply-chain/` | SBOM, dependency audit, license compliance |
-| Pen test plan | `.forgewright/security-engineer/pen-test/` | Test plan, API fuzzing config, attack scenarios |
-| AI security | `.forgewright/security-engineer/ai-security/` | Prompt injection tests, output filtering rules, PII scan results |
-| Remediation | `.forgewright/security-engineer/remediation/` | Remediation plan, critical fixes with code, timeline |
+| Threat model | `.Digital-Nervous/security-engineer/threat-model/` | STRIDE analysis, attack surface, trust boundaries, data flow threats |
+| Code audit | `.Digital-Nervous/security-engineer/code-audit/` | OWASP Top 10 report, per-service findings, injection points |
+| Auth review | `.Digital-Nervous/security-engineer/auth-review/` | Auth flow analysis, token management, RBAC policy review |
+| Data security | `.Digital-Nervous/security-engineer/data-security/` | PII inventory, encryption audit, data retention, GDPR compliance |
+| Supply chain | `.Digital-Nervous/security-engineer/supply-chain/` | SBOM, dependency audit, license compliance |
+| Pen test plan | `.Digital-Nervous/security-engineer/pen-test/` | Test plan, API fuzzing config, attack scenarios |
+| AI security | `.Digital-Nervous/security-engineer/ai-security/` | Prompt injection tests, output filtering rules, PII scan results |
+| Remediation | `.Digital-Nervous/security-engineer/remediation/` | Remediation plan, critical fixes with code, timeline |
 | Code fixes | `services/`, `frontend/`, etc. | Security fixes applied directly to project code |
 
 ## Severity Classification Standard
@@ -302,3 +302,4 @@ See `skills/web-scraper/SKILL.md` for the full secure integration reference.
 | Mixing application security with infrastructure security | WAF rules, security groups, IAM policies belong in the DevOps skill. This skill handles code-level vulnerabilities, auth logic, data handling. |
 | Ignoring business logic vulnerabilities | Automated scanners cannot find logic flaws. Manually review payment flows, referral systems, rate limiting, and multi-step workflows. |
 | One-time audit mentality | Security is continuous. Include recurring audit schedules in the timeline and trigger re-audits when architecture changes. |
+

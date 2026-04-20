@@ -1,7 +1,7 @@
 /**
  * Shared k6 configuration for performance testing
  * Baseline configuration for all test scenarios
- * For forgewright project
+ * For Digital-Nervous project
  */
 export const options = {
   scenarios: {

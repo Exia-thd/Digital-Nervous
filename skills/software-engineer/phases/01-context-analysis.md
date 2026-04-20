@@ -62,7 +62,7 @@ Use notify_user for anything not covered in the architect's output (batch into 1
 
 Before moving to Phase 2:
 - All mandatory inputs have been read and parsed
-- Implementation Plan document is written to `.forgewright/software-engineer/implementation-plan.md`
+- Implementation Plan document is written to `.Digital-Nervous/software-engineer/implementation-plan.md`
 - User has approved the plan via notify_user
 - Ambiguities have been resolved or documented with chosen defaults
 
@@ -88,3 +88,4 @@ This phase reads from the Solution Architect's outputs:
 | `services/` (scaffolded) | Service names, structure |
 
 **Do NOT modify architecture files** (`api/`, `schemas/`, `docs/architecture/`). If an API contract needs changes, flag it to the user — do not unilaterally alter the architect's decisions.
+

@@ -1,23 +1,23 @@
 #!/bin/bash
 # ============================================================================
-# Forgewright Global Setup — Link any project to the global Forgewright repo
+# Digital-Nervous Global Setup — Link any project to the global Digital-Nervous repo
 #
-# This script sets up Forgewright in ANY project WITHOUT needing a git submodule.
-# It links to the global Forgewright repo at a fixed path.
+# This script sets up Digital-Nervous in ANY project WITHOUT needing a git submodule.
+# It links to the global Digital-Nervous repo at a fixed path.
 #
 # Usage:
-#   ./forgewright/scripts/setup-project.sh           # Setup current directory
-#   ./forgewright/scripts/setup-project.sh /path/to/project  # Setup specific project
+#   ./Digital-Nervous/scripts/setup-project.sh           # Setup current directory
+#   ./Digital-Nervous/scripts/setup-project.sh /path/to/project  # Setup specific project
 #
 # What it does:
-#   1. Creates .forgewright/ directory in the target project
-#   2. Initializes mem0 (.forgewright/memory.jsonl) via mem0-cli.py
+#   1. Creates .Digital-Nervous/ directory in the target project
+#   2. Initializes mem0 (.Digital-Nervous/memory.jsonl) via mem0-cli.py
 #   3. Detects tech stack and generates project-profile.json
 #   4. Runs ForgeNexus analyze to index the project
 #   5. Prints the Cursor MCP config snippet (add to ~/.cursor/mcp.json)
 #
 # Requirements:
-#   - Global Forgewright repo must exist at FORGEWRIGHT_PATH (see below)
+#   - Global Digital-Nervous repo must exist at Digital-Nervous_PATH (see below)
 #   - Node.js >= 18 (for ForgeNexus)
 #   - Git repository (for ForgeNexus)
 # ============================================================================
@@ -25,8 +25,8 @@
 set -euo pipefail
 
 # ─── Configuration ──────────────────────────────────────────────────────
-# Auto-detect Forgewright root from script location (supports any clone path)
-FORGEWRIGHT_PATH="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+# Auto-detect Digital-Nervous root from script location (supports any clone path)
+Digital-Nervous_PATH="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 # ─────────────────────────────────────────────────────────────────────────
 
 # Colors
@@ -45,7 +45,7 @@ log_error() { echo -e "${RED}✗${NC} $1"; }
 print_header() {
     echo ""
     echo -e "${CYAN}╔══════════════════════════════════════════════════════════╗${NC}"
-    echo -e "${CYAN}║${NC}  Forgewright — Global Project Setup                      ${CYAN}║${NC}"
+    echo -e "${CYAN}║${NC}  Digital-Nervous — Global Project Setup                      ${CYAN}║${NC}"
     echo -e "${CYAN}╚══════════════════════════════════════════════════════════╝${NC}"
     echo ""
 }
@@ -69,20 +69,20 @@ check_prerequisites() {
     log_info "Target project: ${TARGET_PROJECT}"
     echo ""
 
-    # Check Forgewright exists
-    if [ ! -d "$FORGEWRIGHT_PATH" ]; then
-        log_error "Forgewright repo not found at: ${FORGEWRIGHT_PATH}"
-        log_info "Edit FORGEWRIGHT_PATH in this script to point to your Forgewright repo."
+    # Check Digital-Nervous exists
+    if [ ! -d "$Digital-Nervous_PATH" ]; then
+        log_error "Digital-Nervous repo not found at: ${Digital-Nervous_PATH}"
+        log_info "Edit Digital-Nervous_PATH in this script to point to your Digital-Nervous repo."
         exit 1
     fi
-    log_ok "Forgewright repo found"
+    log_ok "Digital-Nervous repo found"
 
     # Check skills directory
-    if [ ! -d "$FORGEWRIGHT_PATH/skills" ]; then
-        log_error "Forgewright skills directory not found."
+    if [ ! -d "$Digital-Nervous_PATH/skills" ]; then
+        log_error "Digital-Nervous skills directory not found."
         exit 1
     fi
-    log_ok "Skills directory found ($(find "$FORGEWRIGHT_PATH/skills" -maxdepth 1 -type d | tail -n +2 | wc -l | tr -d '[:space:]') skills)"
+    log_ok "Skills directory found ($(find "$Digital-Nervous_PATH/skills" -maxdepth 1 -type d | tail -n +2 | wc -l | tr -d '[:space:]') skills)"
 
     # Check git repo
     if ! git -C "$TARGET_PROJECT" rev-parse --is-inside-work-tree > /dev/null 2>&1; then
@@ -160,18 +160,18 @@ detect_tech_stack() {
     echo "$lang $framework"
 }
 
-# ─── Create .forgewright Directory ──────────────────────────────────────
+# ─── Create .Digital-Nervous Directory ──────────────────────────────────────
 
-create_forgewright_dir() {
-    local fw_dir="$TARGET_PROJECT/.forgewright"
+create_Digital-Nervous_dir() {
+    local fw_dir="$TARGET_PROJECT/.Digital-Nervous"
     
     if [ -d "$fw_dir" ]; then
-        log_warn ".forgewright/ already exists in this project"
+        log_warn ".Digital-Nervous/ already exists in this project"
         log_info "Skipping profile generation."
         return
     fi
 
-    log_info "Creating .forgewright/ directory..."
+    log_info "Creating .Digital-Nervous/ directory..."
     mkdir -p "$fw_dir"
 
     # Detect tech stack
@@ -188,13 +188,13 @@ create_forgewright_dir() {
   "language": "$lang",
   "framework": "$framework",
   "projectRoot": "$TARGET_PROJECT",
-  "forgewrightRepo": "$FORGEWRIGHT_PATH",
+  "Digital-NervousRepo": "$Digital-Nervous_PATH",
   "generatedAt": "$(date -u +"%Y-%m-%dT%H:%M:%SZ")",
-  "forgewrightVersion": "$(cat "$FORGEWRIGHT_PATH/VERSION" 2>/dev/null || echo "unknown")"
+  "Digital-NervousVersion": "$(cat "$Digital-Nervous_PATH/VERSION" 2>/dev/null || echo "unknown")"
 }
 EOF
 
-    log_ok "Generated .forgewright/project-profile.json"
+    log_ok "Generated .Digital-Nervous/project-profile.json"
 }
 
 # ─── Index with ForgeNexus ─────────────────────────────────────────────────
@@ -214,7 +214,7 @@ run_forgenexus_analyze() {
     if npx --yes forgenexus analyze "$TARGET_PROJECT" > /dev/null 2>&1; then
         log_ok "ForgeNexus analysis complete"
     else
-        log_warn "ForgeNexus analysis failed. Install with: cd ./forgenexus && npm ci && npm run build && npm link"
+        log_warn "ForgeNexus analysis failed. Install with: npm install -g forgenexus"
     fi
 }
 
@@ -225,10 +225,10 @@ print_cursor_config() {
     echo -e " ${YELLOW}Cursor MCP Config${NC}"
     echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
     echo ""
-    echo "  Your global forgewright MCP is already configured at:"
+    echo "  Your global Digital-Nervous MCP is already configured at:"
     echo "  ${CYAN}~/.cursor/mcp.json${NC}"
     echo ""
-    echo "  MCP server path: ${FORGEWRIGHT_PATH}/mcp/build/index.js"
+    echo "  MCP server path: ${Digital-Nervous_PATH}/mcp/build/index.js"
     echo ""
     echo "  ⚠️  Restart Cursor for MCP changes to take effect."
     echo ""
@@ -237,25 +237,25 @@ print_cursor_config() {
 # ─── Main ───────────────────────────────────────────────────────────────
 
 run_mem0_ensure() {
-    if [ "${FORGEWRIGHT_SKIP_MEM0:-}" = "1" ]; then
-        log_info "Skipping mem0 (FORGEWRIGHT_SKIP_MEM0=1)."
+    if [ "${Digital-Nervous_SKIP_MEM0:-}" = "1" ]; then
+        log_info "Skipping mem0 (Digital-Nervous_SKIP_MEM0=1)."
         return
     fi
     if ! command -v python3 &> /dev/null; then
-        log_warn "python3 not found — mem0 not initialized. Install Python 3 and run: bash ${FORGEWRIGHT_PATH}/scripts/ensure-mem0.sh"
+        log_warn "python3 not found — mem0 not initialized. Install Python 3 and run: bash ${Digital-Nervous_PATH}/scripts/ensure-mem0.sh"
         return
     fi
-    log_info "Ensuring Forgewright memory (mem0)..."
-    if bash "${FORGEWRIGHT_PATH}/scripts/ensure-mem0.sh" "$TARGET_PROJECT"; then
-        log_ok "mem0 ready (.forgewright/memory.jsonl)"
+    log_info "Ensuring Digital-Nervous memory (mem0)..."
+    if bash "${Digital-Nervous_PATH}/scripts/ensure-mem0.sh" "$TARGET_PROJECT"; then
+        log_ok "mem0 ready (.Digital-Nervous/memory.jsonl)"
     else
-        log_warn "mem0 setup failed. Fix errors and run: bash ${FORGEWRIGHT_PATH}/scripts/ensure-mem0.sh \"$TARGET_PROJECT\""
+        log_warn "mem0 setup failed. Fix errors and run: bash ${Digital-Nervous_PATH}/scripts/ensure-mem0.sh \"$TARGET_PROJECT\""
     fi
 }
 
 main() {
     check_prerequisites
-    create_forgewright_dir
+    create_Digital-Nervous_dir
     run_mem0_ensure
     run_forgenexus_analyze
     print_cursor_config
@@ -265,7 +265,7 @@ main() {
     echo ""
     echo -e "  ${BOLD}Next steps:${NC}"
     echo -e "  1. Restart Cursor (required for MCP server)"
-    echo -e "  2. Type '${CYAN}/forgewright${NC}' in Cursor chat to activate the skill"
+    echo -e "  2. Type '${CYAN}/Digital-Nervous${NC}' in Cursor chat to activate the skill"
     echo -e "  3. Say '${CYAN}Build a production-grade SaaS for [your idea]${NC}'"
     echo ""
     echo -e "  ${BOLD}For ForgeNexus code intelligence:${NC}"
@@ -274,3 +274,4 @@ main() {
 }
 
 main "$@"
+

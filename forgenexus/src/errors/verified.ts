@@ -1,5 +1,5 @@
 /**
- * Verified Errors Module for ForgeWright Anti-Hallucination System
+ * Verified Errors Module for Digital-Nervous Anti-Hallucination System
  * 
  * Provides structured error types for verification failures.
  */
@@ -8,14 +8,14 @@
 // Error Types
 // ============================================================================
 
-export class ForgeWrightError extends Error {
+export class Digital-NervousError extends Error {
   constructor(
     message: string,
     public code: string,
     public context?: Record<string, unknown>
   ) {
     super(message);
-    this.name = 'ForgeWrightError';
+    this.name = 'Digital-NervousError';
   }
 
   toJSON(): Record<string, unknown> {
@@ -28,7 +28,7 @@ export class ForgeWrightError extends Error {
   }
 }
 
-export class VerificationError extends ForgeWrightError {
+export class VerificationError extends Digital-NervousError {
   constructor(
     message: string,
     public verificationResult?: {
@@ -43,7 +43,7 @@ export class VerificationError extends ForgeWrightError {
   }
 }
 
-export class ConfidenceError extends ForgeWrightError {
+export class ConfidenceError extends Digital-NervousError {
   constructor(
     message: string,
     public score: number,
@@ -55,7 +55,7 @@ export class ConfidenceError extends ForgeWrightError {
   }
 }
 
-export class StaleDataError extends ForgeWrightError {
+export class StaleDataError extends Digital-NervousError {
   constructor(
     message: string,
     public lastIndexed: Date,
@@ -67,7 +67,7 @@ export class StaleDataError extends ForgeWrightError {
   }
 }
 
-export class HallucinationError extends ForgeWrightError {
+export class HallucinationError extends Digital-NervousError {
   constructor(
     message: string,
     public claims: Array<{
@@ -82,7 +82,7 @@ export class HallucinationError extends ForgeWrightError {
   }
 }
 
-export class CitationError extends ForgeWrightError {
+export class CitationError extends Digital-NervousError {
   constructor(
     message: string,
     public citations: Array<{
@@ -122,9 +122,9 @@ export class ErrorHandler {
     };
   }
 
-  handle(error: unknown): { handled: boolean; error?: ForgeWrightError } {
-    if (error instanceof ForgeWrightError) {
-      return this.handleForgeWrightError(error);
+  handle(error: unknown): { handled: boolean; error?: Digital-NervousError } {
+    if (error instanceof Digital-NervousError) {
+      return this.handleDigital-NervousError(error);
     }
 
     if (error instanceof Error) {
@@ -136,7 +136,7 @@ export class ErrorHandler {
     };
   }
 
-  private handleForgeWrightError(error: ForgeWrightError): { handled: boolean; error: ForgeWrightError } {
+  private handleDigital-NervousError(error: Digital-NervousError): { handled: boolean; error: Digital-NervousError } {
     if (this.options.debug) {
       console.error(`[${error.code}] ${error.message}`, error.context);
     }
@@ -176,12 +176,12 @@ export class ErrorHandler {
     return { handled: true, error };
   }
 
-  private handleUnknownError(error: Error): { handled: boolean; error: ForgeWrightError } {
+  private handleUnknownError(error: Error): { handled: boolean; error: Digital-NervousError } {
     if (this.options.debug) {
       console.error('[UNKNOWN_ERROR]', error.message, error.stack);
     }
 
-    const wrapped = new ForgeWrightError(
+    const wrapped = new Digital-NervousError(
       error.message,
       'UNKNOWN_ERROR',
       { originalError: error.stack }
@@ -205,7 +205,7 @@ export interface RecoverySuggestion {
   priority: 'high' | 'medium' | 'low';
 }
 
-export function getRecoverySuggestions(error: ForgeWrightError): RecoverySuggestion[] {
+export function getRecoverySuggestions(error: Digital-NervousError): RecoverySuggestion[] {
   switch (error.code) {
     case 'VERIFICATION_ERROR':
       return [
@@ -268,7 +268,7 @@ export interface ErrorReport {
 export class ErrorReporter {
   private reports: ErrorReport[] = [];
 
-  report(error: ForgeWrightError): string {
+  report(error: Digital-NervousError): string {
     const id = `ERR-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
 
     const report: ErrorReport = {
@@ -329,7 +329,7 @@ export const globalReporter = new ErrorReporter();
 // CLI Error Display
 // ============================================================================
 
-export function displayError(error: ForgeWrightError): void {
+export function displayError(error: Digital-NervousError): void {
   console.error(`
 ╔══════════════════════════════════════════════════════════════╗
 ║  ERROR: ${error.code.padEnd(53)}║

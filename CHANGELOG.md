@@ -1,6 +1,43 @@
 # Changelog
 
-All notable changes to [Forgewright](https://github.com/buiphucminhtam/forgewright).
+All notable changes to [Digital-Nervous](https://github.com/buiphucminhtam/Digital-Nervous).
+
+## [8.0.0] — 2026-04-13
+
+> **v8.0 — Stability, Resilience, Audit, Quality, Timeout**
+
+### Added
+
+- **Circuit Breaker Protocol** (`skills/_shared/protocols/circuit-breaker.md`) — State machine pattern (CLOSED → OPEN → HALF_OPEN) to prevent cascading failures in parallel dispatch workers.
+- **Bulkhead Isolation Protocol** (`skills/_shared/protocols/bulkhead.md`) — Resource limits per worker type (memory, CPU, duration) with failure containment.
+- **Verification Protocol** (`skills/_shared/protocols/verification.md`) — 4-level verification framework (Contract Compliance → Acceptance Criteria → Integration → Quality Score).
+- **Quality History Schema** (`.Digital-Nervous/quality-history.schema.json`) — JSON Schema for tracking quality scores across sessions.
+- **Production Config Template** (`.production-grade.yaml.example`) — Example config with circuit breaker, bulkhead, quality gate, middleware chain, and timeout settings.
+
+### Changed
+
+- **Documentation Count Fix** — Mode count corrected to 23 (from 22) in README.md, README.vi.md, CLAUDE.md, AGENTS.md. Protocol count corrected to 27 (from 15) in README.md and README.vi.md badges.
+- **Skills Count Fix** — AGENTS.md corrected to "55 AI skills" (from 54).
+- **AI Build Mode Simplification** — Removed `"scrape"`, `"crawl website"` triggers and `Web Scraper` skill from AI Build mode. Web Scraper has its own trigger and skill.
+- **DEFINE Phase** — Added investigation timeout management (T0 no limit, T0.5 10min, T1 15min, T1.5 15min, T2 20min).
+- **TASK Contract JSON Schema** (`skills/_shared/protocols/task-contract.md`) — Added JSON Schema block for contract validation.
+- **READ-ONLY Enforcement** (`skills/code-reviewer/SKILL.md`) — Phase 0 enforcement ensuring code-reviewer never modifies source code.
+- **Authority Boundary Checks** (`skills/_shared/protocols/guardrail.md`) — SOLE OWASP and SOLE SLO authority enforcement via guardrail custom rules.
+- **Enhanced Secret Detection** (`skills/security-engineer/SKILL.md`) — JWT `algorithm: none`, AWS v4 signatures, base64-encoded secrets, env var patterns, hardcoded credentials, connection strings with embedded secrets.
+- **Self-Healing Loop** (`skills/production-grade/phases/build.md`) — Error classification → retry protocol (max 3) → rollback → escrow report.
+
+### Security
+
+- Authority boundary enforcement via guardrail custom rules (SOLE OWASP for security-engineer, SOLE SLO for SRE).
+- Secret detection patterns expanded with 20+ regex patterns for API keys, JWTs, credentials, and connection strings.
+
+### Internal
+
+- 15 phase and cross-cutting audits completed with 150+ findings. All P0 issues resolved. Breaking changes: 0.
+
+# Changelog
+
+All notable changes to [Digital-Nervous](https://github.com/buiphucminhtam/Digital-Nervous).
 
 ## [7.8.2] — 2026-04-09
 
@@ -27,10 +64,10 @@ All notable changes to [Forgewright](https://github.com/buiphucminhtam/forgewrig
 ### Fixed
 
 - **husky version** (`package.json`) — Corrected `husky: "^10.0.0"` (non-existent) to `husky: "^9.1.7"`.
-- **typo: `forgwrightVersion`** (`scripts/mcp-generate.sh`, `mcp-generator/templates/`) — Fixed to `forgewrightVersion` in both script and Handlebars template.
+- **typo: `forgwrightVersion`** (`scripts/mcp-generate.sh`, `mcp-generator/templates/`) — Fixed to `Digital-NervousVersion` in both script and Handlebars template.
 - **Version consistency** — `package.json` `version` field bumped to `7.8.1`, matching `VERSION` file.
-- **`mcp-config.json` version** — `forgewright_version` updated from `7.0.0` to `7.8.1`.
-- **MCP server config** — Added `forgewright-forgenexus` entry to `.cursor/mcp.json` pointing to local forgewright repo.
+- **`mcp-config.json` version** — `Digital-Nervous_version` updated from `7.0.0` to `7.8.1`.
+- **MCP server config** — Added `Digital-Nervous-forgenexus` entry to `.cursor/mcp.json` pointing to local Digital-Nervous repo.
 
 ### Dependencies
 
@@ -131,15 +168,15 @@ All notable changes to [Forgewright](https://github.com/buiphucminhtam/forgewrig
 
 ### Added
 
-- **Forge-Nexus MCP Server** (`mcp/`) — Global MCP server v1.0.0 with PipelineManager, SkillParser, PromptEngine. Enables Claude/Cursor AI assistants to interact with Forgewright pipeline across all projects. Listens on stdio via Model Context Protocol SDK.
+- **Forge-Nexus MCP Server** (`mcp/`) — Global MCP server v1.0.0 with PipelineManager, SkillParser, PromptEngine. Enables Claude/Cursor AI assistants to interact with Digital-Nervous pipeline across all projects. Listens on stdio via Model Context Protocol SDK.
 - **GitHub Actions CI/CD** (`.github/workflows/ci.yml`) — Full pipeline: ESLint, Prettier format-check, TypeScript build, Vitest unit tests with v8 coverage, coverage threshold gate, commitlint on PRs.
 - **Dev tooling** (`mcp/`) — ESLint with TypeScript ESLint plugin, Prettier formatting, Vitest test runner, commitlint for Conventional Commits, `.eslintrc.json`, `.prettierrc`, `vitest.config.ts` with pool: forks.
 - **Husky Git hooks** (`.husky/`) — Pre-commit hook (ESLint + Prettier + TypeScript + Vitest), commit-msg hook for commitlint. Root `package.json` with `prepare: husky install` for auto-initialization on clone.
-- **Global Setup Script** (`scripts/setup-project.sh`) — Links Forgewright to any project without git submodule. Detects tech stack, runs ForgeNexus analyze, prints Cursor MCP config snippet.
-- **GitHub Templates** (`.github/`) — Issue templates (bug report, feature request), PR template with Forgewright pipeline checklist.
+- **Global Setup Script** (`scripts/setup-project.sh`) — Links Digital-Nervous to any project without git submodule. Detects tech stack, runs ForgeNexus analyze, prints Cursor MCP config snippet.
+- **GitHub Templates** (`.github/`) — Issue templates (bug report, feature request), PR template with Digital-Nervous pipeline checklist.
 - **Cursor Subagent Review Workflow** (`.cursor/agents/`) — 5 specialized subagents: quality-reviewer, security-auditor, spec-reviewer, verifier, chat-interpreter for structured code review.
 - **ForgeNexus MCP Tools** (via MCP server) — `forgenexus_query`, `forgenexus_context`, `forgenexus_impact`, `forgenexus_detect_changes`, `forgenexus_rename`, `forgenexus_cypher` for code intelligence.
-- **Auto-initialization Check** — MCP server and ForgeNexus index auto-initialize on session start if `.forgewright/mcp-server/mcp-config.json` is missing.
+- **Auto-initialization Check** — MCP server and ForgeNexus index auto-initialize on session start if `.Digital-Nervous/mcp-server/mcp-config.json` is missing.
 - **Antigravity Plugin** (`.antigravity/`) — Production-grade plugin system with 52 skills, 15 shared protocols, preset templates, game dev workflows.
 
 ### Changed
@@ -160,7 +197,7 @@ All notable changes to [Forgewright](https://github.com/buiphucminhtam/forgewrig
 ## [7.0.0] — 2026-03-14
 
 ### Added — New Protocols (5)
-- **Project Onboarding** (`project-onboarding.md`) — 5-phase deep project analysis: fingerprint → health check → pattern analysis → risk assessment → profile generation. Produces `.forgewright/project-profile.json` and `.forgewright/code-conventions.md`.
+- **Project Onboarding** (`project-onboarding.md`) — 5-phase deep project analysis: fingerprint → health check → pattern analysis → risk assessment → profile generation. Produces `.Digital-Nervous/project-profile.json` and `.Digital-Nervous/code-conventions.md`.
 - **Session Lifecycle** (`session-lifecycle.md`) — Cross-session continuity with start/save/end hooks. Resume interrupted sessions, detect drift, memory integration.
 - **Quality Gate** (`quality-gate.md`) — Universal per-skill validation: 4 levels (Build, Regression, Standards, Traceability), 0-100 quality scoring, configurable thresholds. Works in sequential AND parallel modes.
 - **Brownfield Safety** (`brownfield-safety.md`) — Safety net: auto git branching, baseline snapshots, protected paths, change manifest, regression checks, rollback.
@@ -170,7 +207,7 @@ All notable changes to [Forgewright](https://github.com/buiphucminhtam/forgewrig
 - `/onboard` — Run deep project analysis without starting pipeline.
 
 ### Added — Project State
-- `.forgewright/` directory for persistent project state (profile, conventions, session logs, quality reports).
+- `.Digital-Nervous/` directory for persistent project state (profile, conventions, session logs, quality reports).
 
 ### Changed — Orchestrator
 - **Session lifecycle pre-flight (Step 0.5)** — Loads project profile, session state, memory context, quality trends before work begins.
@@ -335,3 +372,4 @@ All notable changes to [Forgewright](https://github.com/buiphucminhtam/forgewrig
 - 12 specialized agent skills coordinated through dependency graph.
 - 3 approval gates, autonomous execution between gates.
 - DEFINE > BUILD > HARDEN > SHIP > SUSTAIN pipeline.
+

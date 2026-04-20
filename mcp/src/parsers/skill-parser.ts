@@ -7,17 +7,17 @@ import { z } from 'zod';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-// Build → parsers → build → mcp → FORGEWRIGHT_ROOT
-const MCP_DIR = __dirname; // FORGEWRIGHT/mcp/build/parsers
-const MCP_BUILD_DIR = dirname(MCP_DIR); // FORGEWRIGHT/mcp/build
-const MCP_ROOT_DIR = dirname(MCP_BUILD_DIR); // FORGEWRIGHT/mcp
-const FORGEWRIGHT_ROOT = dirname(MCP_ROOT_DIR); // FORGEWRIGHT
+// Build → parsers → build → mcp → Digital-Nervous_ROOT
+const MCP_DIR = __dirname; // Digital-Nervous/mcp/build/parsers
+const MCP_BUILD_DIR = dirname(MCP_DIR); // Digital-Nervous/mcp/build
+const MCP_ROOT_DIR = dirname(MCP_BUILD_DIR); // Digital-Nervous/mcp
+const Digital-Nervous_ROOT = dirname(MCP_ROOT_DIR); // Digital-Nervous
 
 let resolvedRoot: string;
 try {
-  resolvedRoot = fs.realpathSync(FORGEWRIGHT_ROOT);
+  resolvedRoot = fs.realpathSync(Digital-Nervous_ROOT);
 } catch {
-  resolvedRoot = FORGEWRIGHT_ROOT;
+  resolvedRoot = Digital-Nervous_ROOT;
 }
 
 export let SKILLS_DIR = join(resolvedRoot, 'skills');
@@ -85,7 +85,7 @@ function findAllSkillFiles(dir: string, fileList: string[] = []): string[] {
 
 export function getAllSkills(): Skill[] {
   if (!fs.existsSync(SKILLS_DIR)) {
-    console.error(`[Forgewright Global MCP] Skills directory not found: ${SKILLS_DIR}`);
+    console.error(`[Digital-Nervous Global MCP] Skills directory not found: ${SKILLS_DIR}`);
     return [];
   }
 
@@ -101,7 +101,7 @@ export function getAllSkills(): Skill[] {
 
       const folderName = basename(dirname(filePath));
       const name = data.name || folderName;
-      const description = data.description || `Forgewright Skill: ${name}`;
+      const description = data.description || `Digital-Nervous Skill: ${name}`;
 
       skills.push({
         name,
@@ -112,7 +112,7 @@ export function getAllSkills(): Skill[] {
         content,
       });
     } catch (e) {
-      console.error(`[Forgewright Global MCP] Failed to read skill: ${filePath}`, e);
+      console.error(`[Digital-Nervous Global MCP] Failed to read skill: ${filePath}`, e);
     }
   }
 
@@ -134,12 +134,12 @@ export function getSharedProtocols(): SharedProtocol[] {
 
       protocols.push({
         name: `protocol-${protocolId}`,
-        description: `Forgewright Shared Protocol: ${protocolId}`,
+        description: `Digital-Nervous Shared Protocol: ${protocolId}`,
         uri: `fw://protocols/${protocolId}`,
         content,
       });
     } catch (e) {
-      console.error(`[Forgewright Global MCP] Failed to read protocol: ${filePath}`, e);
+      console.error(`[Digital-Nervous Global MCP] Failed to read protocol: ${filePath}`, e);
     }
   }
 

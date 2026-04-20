@@ -55,7 +55,7 @@ jobs:
   reindex:
     runs-on: ubuntu-latest
     steps:
-      - uses: buiphucminhtam/forgewright/.github/actions/auto-reindex@main
+      - uses: buiphucminhtam/Digital-Nervous/.github/actions/auto-reindex@main
         with:
           mode: 'full'
           dry_run: 'true'
@@ -100,7 +100,7 @@ jobs:
         with:
           path: ${{ matrix.repo }}
 
-      - uses: buiphucminhtam/forgewright/.github/actions/auto-reindex@main
+      - uses: buiphucminhtam/Digital-Nervous/.github/actions/auto-reindex@main
         with:
           repo: ${{ matrix.repo }}
 ```
@@ -142,3 +142,4 @@ jobs:
 │               Commit to Repo (if LIVE mode)              │
 └──────────────────────────────────────────────────────────┘
 ```
+

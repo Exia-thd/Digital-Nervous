@@ -2,8 +2,8 @@
 
 ## Overview
 
-**Project:** Integrate Unity-MCP (IvanMurzak/Unity-MCP) into Forgewright Unity skills  
-**Goal:** Combine Forgewright's architecture guidance + quality gates with Unity-MCP's Editor automation  
+**Project:** Integrate Unity-MCP (IvanMurzak/Unity-MCP) into Digital-Nervous Unity skills  
+**Goal:** Combine Digital-Nervous's architecture guidance + quality gates with Unity-MCP's Editor automation  
 **Timeline:** 3 phases, estimated 6-8 hours total
 
 ---
@@ -41,14 +41,14 @@
 
 1. Add new section "## Integration với Unity-MCP"
 2. Add prerequisites (Unity-MCP installed in project)
-3. Add tool mapping table (Forgewright task → Unity-MCP tool)
+3. Add tool mapping table (Digital-Nervous task → Unity-MCP tool)
 4. Add combined workflow example
 
 **New Section Content:**
 ```markdown
 ## Integration với Unity-MCP
 
-Forgewright Unity Engineer dùng Unity-MCP cho Editor automation khi cần thao tác với Unity Editor trực tiếp.
+Digital-Nervous Unity Engineer dùng Unity-MCP cho Editor automation khi cần thao tác với Unity Editor trực tiếp.
 
 ### Prerequisites
 1. Unity project đã cài Unity-MCP plugin
@@ -57,7 +57,7 @@ Forgewright Unity Engineer dùng Unity-MCP cho Editor automation khi cần thao 
 
 ### Tool Mapping
 
-| Forgewright Task | Unity-MCP Tool | When to Use |
+| Digital-Nervous Task | Unity-MCP Tool | When to Use |
 |------------------|----------------|-------------|
 | Tạo scene objects | `gameobject-create` | Placeholder objects |
 | Setup prefabs | `assets-prefab-create` | Convert scene to prefab |
@@ -70,7 +70,7 @@ Forgewright Unity Engineer dùng Unity-MCP cho Editor automation khi cần thao 
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
-│ Step 1: Architecture (Forgewright - NO Unity Editor)           │
+│ Step 1: Architecture (Digital-Nervous - NO Unity Editor)           │
 │ ├── SO framework design                                        │
 │ ├── Event channel architecture                                  │
 │ └── Component responsibilities                                   │
@@ -84,7 +84,7 @@ Forgewright Unity Engineer dùng Unity-MCP cho Editor automation khi cần thao 
 └─────────────────────────────────────────────────────────────────┘
                               ↓
 ┌─────────────────────────────────────────────────────────────────┐
-│ Step 3: Code Implementation (Forgewright - NO Unity Editor)    │
+│ Step 3: Code Implementation (Digital-Nervous - NO Unity Editor)    │
 │ ├── MonoBehaviour implementations                               │
 │ ├── SO event wiring                                            │
 │ └── Gameplay logic                                             │
@@ -98,7 +98,7 @@ Forgewright Unity Engineer dùng Unity-MCP cho Editor automation khi cần thao 
 └─────────────────────────────────────────────────────────────────┘
                               ↓
 ┌─────────────────────────────────────────────────────────────────┐
-│ Step 5: Quality Gate (Forgewright)                              │
+│ Step 5: Quality Gate (Digital-Nervous)                              │
 │ ├── Architecture compliance check                               │
 │ ├── SO-first pattern verification                               │
 │ └── Brownfield safety validation                                │
@@ -141,7 +141,7 @@ Shader Created → Unity-MCP screenshot → Review visual output
 
 ### Shader Iteration with Unity-MCP
 
-1. Tạo shader với Forgewright
+1. Tạo shader với Digital-Nervous
 2. Assign vào material via `assets-material-create` hoặc `object-modify`
 3. Apply lên GameObject via `gameobject-modify`
 4. Screenshot via Unity-MCP
@@ -294,7 +294,7 @@ await mcpPlugin.Connect();
 **File:** `docs/unity-mcp-tools-reference.md` (NEW)  
 **Content:**
 
-Full reference of Unity-MCP tools với Forgewright use cases.
+Full reference of Unity-MCP tools với Digital-Nervous use cases.
 
 ---
 
@@ -368,3 +368,4 @@ Full reference of Unity-MCP tools với Forgewright use cases.
 8. docs/unity-mcp-tools-reference.md (P2)
 9. Testing (P3)
 ```
+

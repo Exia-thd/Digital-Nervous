@@ -6,7 +6,7 @@ description: >
   and art pipeline automation.
   Routed via the production-grade orchestrator (Game Build mode).
 version: 1.0.0
-author: forgewright
+author: Digital-Nervous
 tags: [unreal, niagara, materials, lumen, nanite, vfx, shaders, tech-art]
 ---
 
@@ -25,7 +25,7 @@ tags: [unreal, niagara, materials, lumen, nanite, vfx, shaders, tech-art]
 
 ## Aesthetic Foundation
 
-Unreal's rendering power requires disciplined artistic direction. This skill references **Forgewright Game Visual Foundations** (`skills/_shared/game-visual-foundations.md`) for:
+Unreal's rendering power requires disciplined artistic direction. This skill references **Digital-Nervous Game Visual Foundations** (`skills/_shared/game-visual-foundations.md`) for:
 
 - **Lighting aesthetics** (Lumen as emotional tool, color temperature per genre, atmospheric depth)
 - **Post-processing philosophy** (LUT-based color grading, when post-processing reinforces vs. masks poor lighting)
@@ -103,3 +103,4 @@ Gameplay VFX per Technical Artist catalog:
 - [ ] Custom post-process materials for gameplay feedback
 - [ ] Performance profiling: GPU time per material, particle count limits
 - [ ] All visual systems respect platform performance budgets
+

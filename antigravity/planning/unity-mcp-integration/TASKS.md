@@ -145,12 +145,12 @@
 **Content:**
 1. Tool categories overview
 2. Full tool list with descriptions
-3. Forgewright use case mapping
+3. Digital-Nervous use case mapping
 4. Extension tools (Animation, Particle, ProBuilder)
 
 **Acceptance Criteria:**
 - [ ] All 100+ tools referenced
-- [ ] Forgewright use case for each category
+- [ ] Digital-Nervous use case for each category
 - [ ] Extension tools documented
 
 ---
@@ -211,3 +211,4 @@ Task 1.3 ──┘                                     ▼
 - [ ] Task 3.1: Runtime AI section added
 - [ ] Task 3.2: Tools reference created
 - [ ] Task 4.1: Integration verified
+

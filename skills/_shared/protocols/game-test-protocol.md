@@ -718,7 +718,7 @@ After all workers complete:
 
 ### Game Test Report Format
 
-After each game test run, produce a report at `.forgewright/game-tests/report-{timestamp}.json`:
+After each game test run, produce a report at `.Digital-Nervous/game-tests/report-{timestamp}.json`:
 
 ```json
 {
@@ -883,3 +883,4 @@ For Three.js web games:
 ---
 
 > **Derived from:** QA Engineer Skill, Quality Gate Protocol, Task Validator Protocol, Plan Quality Loop Protocol, Self-Healing Execution Protocol.
+

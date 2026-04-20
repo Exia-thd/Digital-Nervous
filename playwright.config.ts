@@ -3,7 +3,7 @@ import { defineConfig, devices } from '@playwright/test';
 /**
  * Playwright E2E Testing Configuration
  * Multi-browser, multi-viewport, accessibility-first testing setup
- * For forgewright project
+ * For Digital-Nervous project
  */
 export default defineConfig({
   testDir: './tests/e2e/ui',

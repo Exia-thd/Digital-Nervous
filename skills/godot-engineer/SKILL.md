@@ -6,7 +6,7 @@ description: >
   multiplayer networking, and export configuration.
   Routed via the production-grade orchestrator (Game Build mode).
 version: 1.0.0
-author: forgewright
+author: Digital-Nervous
 tags: [godot, gdscript, scene-tree, signals, shaders, multiplayer, game-development]
 ---
 
@@ -25,7 +25,7 @@ tags: [godot, gdscript, scene-tree, signals, shaders, multiplayer, game-developm
 
 ## Aesthetic Foundation
 
-Godot's rendering capabilities require intentional visual direction. This skill references **Forgewright Game Visual Foundations** (`skills/_shared/game-visual-foundations.md`) for:
+Godot's rendering capabilities require intentional visual direction. This skill references **Digital-Nervous Game Visual Foundations** (`skills/_shared/game-visual-foundations.md`) for:
 
 - **Art style guidelines** (what Godot 4.x's rendering can achieve vs. limitations)
 - **2D composition** (sprite layering, parallax depth, visual hierarchy in 2D)
@@ -183,3 +183,4 @@ func _physics_process(delta: float) -> void:
 - [ ] GPU Particles for gameplay VFX
 - [ ] Export presets configured for target platforms
 - [ ] All scripts have type hints
+

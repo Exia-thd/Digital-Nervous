@@ -1,4 +1,4 @@
-# ForgeWright Anti-Hallucination System
+# Digital-Nervous Anti-Hallucination System
 
 A comprehensive anti-hallucination system for code analysis and documentation generation.
 
@@ -40,7 +40,7 @@ import {
   createSkepticAgent,
   calculateConfidence,
   checkStaleness 
-} from '@forgewright/anti-hallucination';
+} from '@Digital-Nervous/anti-hallucination';
 
 // Create skeptic agent
 const skeptic = createSkepticAgent({
@@ -65,7 +65,7 @@ const confidence = calculateConfidence({
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│                    ForgeWright System                        │
+│                    Digital-Nervous System                        │
 ├─────────────────────────────────────────────────────────────┤
 │                                                             │
 │  ┌─────────────┐    ┌─────────────┐    ┌─────────────┐  │
@@ -196,3 +196,4 @@ applyBehavior(result: ConfidenceResult): BehaviorAction
 ## License
 
 MIT
+

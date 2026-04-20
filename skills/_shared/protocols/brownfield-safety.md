@@ -32,8 +32,8 @@ IF auto_branch is true AND git repository exists:
        3. **Cancel** — I'll handle it manually
 
   2. Create session branch:
-     git checkout -b forgewright/session-{YYYYMMDD-HHmm}
-     Log: "✓ Working on branch: forgewright/session-{YYYYMMDD-HHmm}"
+     git checkout -b Digital-Nervous/session-{YYYYMMDD-HHmm}
+     Log: "✓ Working on branch: Digital-Nervous/session-{YYYYMMDD-HHmm}"
 
   3. Record branch info in session-log.json
 
@@ -48,11 +48,11 @@ ELSE:
 1. Run existing tests:
    - Detect test command from project-profile.json
    - Execute: capture pass/fail count, test names
-   - Save to .forgewright/baseline-{session}.json:
+   - Save to .Digital-Nervous/baseline-{session}.json:
      {
        "session_id": "...",
        "created_at": "ISO-8601",
-       "git_branch": "forgewright/session-...",
+       "git_branch": "Digital-Nervous/session-...",
        "git_commit": "abc123",
        "tests": {
          "total": 142,
@@ -132,7 +132,7 @@ Run regression checks at these points:
 Track every file operation during the pipeline:
 
 ```json
-// .forgewright/change-manifest-{session}.json
+// .Digital-Nervous/change-manifest-{session}.json
 {
   "session_id": "session-20260314-1324",
   "changes": [
@@ -223,7 +223,7 @@ If issues are found post-pipeline:
 2. Full session rollback:
    - git checkout main
    - Session branch preserved for reference
-   - Log: "Rolled back to pre-pipeline state. Session branch: forgewright/session-..."
+   - Log: "Rolled back to pre-pipeline state. Session branch: Digital-Nervous/session-..."
 
 3. Session branch cleanup:
    - Auto-delete after 7 days (configurable)
@@ -240,3 +240,4 @@ For greenfield projects, this entire protocol is skipped:
 - Git branching still recommended but optional
 
 The quality-gate protocol still runs in full for greenfield — it just skips Level 2 (Regression).
+

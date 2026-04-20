@@ -6,7 +6,7 @@ description: >
   and cross-platform XR (Quest, Vision Pro, WebXR, PCVR).
   Routed via the production-grade orchestrator (Game Build mode).
 version: 1.0.0
-author: forgewright
+author: Digital-Nervous
 tags: [xr, vr, ar, mr, spatial-computing, hand-tracking, visionos, quest, webxr]
 ---
 
@@ -25,7 +25,7 @@ tags: [xr, vr, ar, mr, spatial-computing, hand-tracking, visionos, quest, webxr]
 
 ## Aesthetic Foundation
 
-XR introduces unique visual challenges — spatial UI, comfort, and presence. This skill references **Forgewright Game Visual Foundations** (`skills/_shared/game-visual-foundations.md`) for:
+XR introduces unique visual challenges — spatial UI, comfort, and presence. This skill references **Digital-Nervous Game Visual Foundations** (`skills/_shared/game-visual-foundations.md`) for:
 
 - **Spatial UI aesthetics** (UI in 3D space, depth, readability at virtual distances)
 - **XR accessibility** (text size, contrast, motion comfort)
@@ -155,3 +155,4 @@ public class ComfortVignette : MonoBehaviour
 - [ ] Dynamic resolution scaling enabled
 - [ ] Passthrough/AR configured (if MR)
 - [ ] Multi-input support (controller + hand tracking minimum)
+

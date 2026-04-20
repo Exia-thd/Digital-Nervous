@@ -24,7 +24,7 @@ Execute levels in order. Each level has a severity that determines whether to ST
 2. Score < threshold (default 9.0/10.0) → LEARN + RESEARCH + IMPROVE loop
    - Identify weak criteria
    - Research best practices and codebase patterns for weak areas
-   - Log lessons to .forgewright/plan-lessons.md
+   - Log lessons to .Digital-Nervous/plan-lessons.md
    - Re-plan with lessons + research context (max 3 iterations)
 
 3. Score ≥ threshold → proceed to implementation
@@ -60,7 +60,7 @@ Execute levels in order. Each level has a severity that determines whether to ST
 
 ```
 1. Existing tests still pass
-   - Read baseline test count from .forgewright/project-profile.json
+   - Read baseline test count from .Digital-Nervous/project-profile.json
    - Run existing test suite
    - Compare: pass_count >= baseline_pass_count
    - IF any previously-passing test now fails → REGRESSION DETECTED → STOP
@@ -105,7 +105,7 @@ Execute levels in order. Each level has a severity that determines whether to ST
    - Unresolvable → WARN
 
 4. Convention compliance (brownfield only)
-   - IF .forgewright/code-conventions.md exists:
+   - IF .Digital-Nervous/code-conventions.md exists:
      - Check naming convention matches (high-confidence patterns only)
      - Check file organization matches detected pattern
      - Deviations → WARN with suggestion
@@ -115,7 +115,7 @@ Execute levels in order. Each level has a severity that determines whether to ST
 
 ```
 1. Output maps to requirement
-   - IF BRD exists (.forgewright/product-manager/BRD/):
+   - IF BRD exists (.Digital-Nervous/product-manager/BRD/):
      - Check that skill output addresses at least one acceptance criterion
      - Unmapped output → INFO (logged, not blocking)
 
@@ -125,7 +125,7 @@ Execute levels in order. Each level has a severity that determines whether to ST
      - No test files → WARN: "Implementation without corresponding tests"
 
 3. Documentation exists
-   - Workspace artifacts written to .forgewright/<skill>/
+   - Workspace artifacts written to .Digital-Nervous/<skill>/
    - If workspace directory empty → WARN: "No workspace artifacts produced"
 ```
 
@@ -207,7 +207,7 @@ Overall: 97/100 (A) ████████████████████
 
 ## Metrics Storage
 
-Write quality metrics to `.forgewright/quality-metrics.json` after each run:
+Write quality metrics to `.Digital-Nervous/quality-metrics.json` after each run:
 
 ```json
 {
@@ -229,3 +229,4 @@ Write quality metrics to `.forgewright/quality-metrics.json` after each run:
   ]
 }
 ```
+

@@ -1,6 +1,6 @@
 # Feature Plan: User Authentication System
 
-> OAuth2 + JWT authentication cho Forgewright.
+> OAuth2 + JWT authentication cho Digital-Nervous.
 
 ## Metadata
 
@@ -159,3 +159,4 @@ gantt
 - Architecture: `./ARCHITECTURE.md`
 - Tasks: `./TASKS.md`
 - Decisions: `./DECISIONS.md`
+

@@ -2,7 +2,7 @@
 
 ## Feature Overview
 
-Integrate AI services (LLM + Image Generation) into the Forgewright game builder to enable procedural content generation, NPC dialogues, and AI-assisted design.
+Integrate AI services (LLM + Image Generation) into the Digital-Nervous game builder to enable procedural content generation, NPC dialogues, and AI-assisted design.
 
 ## ✅ In Scope
 
@@ -129,3 +129,4 @@ Integrate AI services (LLM + Image Generation) into the Forgewright game builder
 | AC-03 | Cache hit returns in < 50ms | Unit test |
 | AC-04 | Costs tracked accurately | Integration test |
 | AC-05 | Moderation blocks NSFW | E2E test |
+

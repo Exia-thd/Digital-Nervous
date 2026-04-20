@@ -1,13 +1,16 @@
 #!/usr/bin/env bash
 # ─────────────────────────────────────────────────────────
-# Forgewright MCP Server Generator (Standalone)
+# Digital-Nervous MCP Server Generator (Standalone)
 #
-# Generates .forgewright/mcp-server/ from templates.
+# Generates .Digital-Nervous/mcp-server/ from templates.
+# Also generates .antigravity/mcp-manifest.json for Antigravity
+# workspace isolation (zero config conflicts across projects).
+#
 # No AI session required — runs from CLI directly.
 #
 # Usage:
-#   ./forgewright/scripts/mcp-generate.sh          (from project root)
-#   ./scripts/mcp-generate.sh                      (from forgewright dir)
+#   ./Digital-Nervous/scripts/mcp-generate.sh          (from project root)
+#   ./scripts/mcp-generate.sh                      (from Digital-Nervous dir)
 #
 # Prerequisites:
 #   - Node.js >= 18
@@ -20,18 +23,18 @@ set -euo pipefail
 # ─── Resolve Paths ───────────────────────────────────────
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-FORGEWRIGHT_DIR="$(cd "${SCRIPT_DIR}/.." && pwd)"
+Digital-Nervous_DIR="$(cd "${SCRIPT_DIR}/.." && pwd)"
 
-# Detect project root: either parent of forgewright submodule, or forgewright itself
-if [ -f "${FORGEWRIGHT_DIR}/../.git" ] || [ -d "${FORGEWRIGHT_DIR}/../.git" ]; then
-  PROJECT_ROOT="$(cd "${FORGEWRIGHT_DIR}/.." && pwd)"
+# Detect project root: either parent of Digital-Nervous submodule, or Digital-Nervous itself
+if [ -f "${Digital-Nervous_DIR}/../.git" ] || [ -d "${Digital-Nervous_DIR}/../.git" ]; then
+  PROJECT_ROOT="$(cd "${Digital-Nervous_DIR}/.." && pwd)"
 else
-  PROJECT_ROOT="$FORGEWRIGHT_DIR"
+  PROJECT_ROOT="$Digital-Nervous_DIR"
 fi
 
-TEMPLATE_DIR="${FORGEWRIGHT_DIR}/skills/mcp-generator/templates"
-OUTPUT_DIR="${PROJECT_ROOT}/.forgewright/mcp-server"
-PROFILE_FILE="${PROJECT_ROOT}/.forgewright/project-profile.json"
+TEMPLATE_DIR="${Digital-Nervous_DIR}/skills/mcp-generator/templates"
+OUTPUT_DIR="${PROJECT_ROOT}/.Digital-Nervous/mcp-server"
+PROFILE_FILE="${PROJECT_ROOT}/.Digital-Nervous/project-profile.json"
 
 # ─── Colors ──────────────────────────────────────────────
 
@@ -39,6 +42,7 @@ RED='\033[0;31m'
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
 BLUE='\033[0;34m'
+CYAN='\033[0;36m'
 NC='\033[0m'
 
 log_info()  { echo -e "${BLUE}ℹ${NC} $1"; }
@@ -58,12 +62,12 @@ check_prerequisites() {
   # Templates
   if [ ! -f "${TEMPLATE_DIR}/server.ts.hbs" ]; then
     log_error "Templates not found at ${TEMPLATE_DIR}"
-    log_info  "Ensure Forgewright submodule is up to date."
+    log_info  "Ensure Digital-Nervous submodule is up to date."
     exit 1
   fi
 
   # ForgeNexus (optional but recommended)
-  if [ ! -d "${PROJECT_ROOT}/.forgewright" ]; then
+  if [ ! -d "${PROJECT_ROOT}/.Digital-Nervous" ]; then
     log_warn "ForgeNexus not indexed. Graph tools will be limited."
     log_info "Run: npx forgenexus analyze ${PROJECT_ROOT}"
   fi
@@ -77,7 +81,7 @@ read_project_vars() {
   PROJECT_NAME=$(basename "$PROJECT_ROOT")
   PROJECT_SLUG=$(echo "$PROJECT_NAME" | tr '[:upper:]' '[:lower:]' | tr ' ' '-' | tr -cd 'a-z0-9-')
   GENERATED_AT=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
-  FORGEWRIGHT_VERSION="7.0.0"
+  Digital-Nervous_VERSION="7.0.0"
 
   # Read from project-profile.json if it exists
   if [ -f "$PROFILE_FILE" ]; then
@@ -108,7 +112,7 @@ read_project_vars() {
   fi
 
   HAS_CONVENTIONS="false"
-  if [ -f "${PROJECT_ROOT}/.forgewright/code-conventions.md" ]; then
+  if [ -f "${PROJECT_ROOT}/.Digital-Nervous/code-conventions.md" ]; then
     HAS_CONVENTIONS="true"
   fi
 
@@ -133,7 +137,7 @@ generate_server() {
     sed -i '' "s|{{projectName}}|${PROJECT_NAME}|g" "${OUTPUT_DIR}/${output_name}"
     sed -i '' "s|{{projectSlug}}|${PROJECT_SLUG}|g" "${OUTPUT_DIR}/${output_name}"
     sed -i '' "s|{{generatedAt}}|${GENERATED_AT}|g" "${OUTPUT_DIR}/${output_name}"
-    sed -i '' "s|{{forgewrightVersion}}|${FORGEWRIGHT_VERSION}|g" "${OUTPUT_DIR}/${output_name}"
+    sed -i '' "s|{{Digital-NervousVersion}}|${Digital-Nervous_VERSION}|g" "${OUTPUT_DIR}/${output_name}"
     sed -i '' "s|{{projectLanguage}}|${PROJECT_LANGUAGE}|g" "${OUTPUT_DIR}/${output_name}"
     sed -i '' "s|{{projectFramework}}|${PROJECT_FRAMEWORK}|g" "${OUTPUT_DIR}/${output_name}"
     sed -i '' "s|{{mcpServerPath}}|${MCP_SERVER_PATH}|g" "${OUTPUT_DIR}/${output_name}"
@@ -160,6 +164,59 @@ install_deps() {
   log_ok "Dependencies installed"
 }
 
+# ─── Generate Antigravity MCP Manifest ─────────────────────
+
+generate_manifest() {
+  log_info "Generating Antigravity MCP manifest..."
+
+  local ANTIGRAVITY_DIR="${PROJECT_ROOT}/.antigravity"
+  mkdir -p "$ANTIGRAVITY_DIR"
+
+  # Find forgenexus path
+  local FORGENEXUS_PATH=""
+  local candidates=(
+    "${PROJECT_ROOT}/.antigravity/plugins/production-grade/forgenexus/dist/cli/index.js"
+    "${PROJECT_ROOT}/.Digital-Nervous/plugins/forgenexus/dist/cli/index.js"
+    "${Digital-Nervous_DIR}/forgenexus/dist/cli/index.js"
+    "${HOME}/.Digital-Nervous/forgenexus/dist/cli/index.js"
+  )
+  for candidate in "${candidates[@]}"; do
+    if [ -f "$candidate" ]; then
+      FORGENEXUS_PATH="$candidate"
+      break
+    fi
+  done
+
+  cat > "${ANTIGRAVITY_DIR}/mcp-manifest.json" << EOF
+{
+  "manifest_version": "1.0",
+  "workspace": "${PROJECT_ROOT}",
+  "generated_at": "${GENERATED_AT}",
+  "generated_by": "Digital-Nervous/mcp-generator",
+  "Digital-Nervous_version": "${Digital-Nervous_VERSION}",
+  "servers": [
+    {
+      "name": "${PROJECT_SLUG}-Digital-Nervous",
+      "type": "Digital-Nervous-mcp-server",
+      "enabled": true,
+      "description": "Digital-Nervous project intelligence — code graph, project profile, filesystem tools"
+    },
+    {
+      "name": "forgenexus",
+      "type": "forgenexus",
+      "enabled": true,
+      "description": "Code intelligence — query, context, impact, blast-radius analysis",
+      "config": {
+        "forgenexus_path": "${FORGENEXUS_PATH}"
+      }
+    }
+  ]
+}
+EOF
+
+  log_ok "Generated .antigravity/mcp-manifest.json"
+}
+
 # ─── Print Summary ───────────────────────────────────────
 
 print_summary() {
@@ -168,24 +225,34 @@ print_summary() {
   echo -e " ${GREEN}✓ MCP Server Generated Successfully${NC}"
   echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
   echo ""
-  echo "  Project:   ${PROJECT_NAME}"
-  echo "  Language:  ${PROJECT_LANGUAGE}"
-  echo "  Framework: ${PROJECT_FRAMEWORK}"
-  echo "  Output:    ${OUTPUT_DIR}"
-  echo "  Tools:     9 active"
-  echo "  Resources: 3 active"
-  echo "  Prompts:   3 active"
+  echo "  Project:    ${PROJECT_NAME}"
+  echo "  Language:   ${PROJECT_LANGUAGE}"
+  echo "  Framework:  ${PROJECT_FRAMEWORK}"
+  echo "  MCP Server: .Digital-Nervous/mcp-server/"
+  echo "  Manifest:   .antigravity/mcp-manifest.json"
+  echo "  Tools:      9 active"
+  echo "  Resources:  3 active"
+  echo "  Prompts:    3 active"
   echo ""
-  echo -e " ${YELLOW}To connect your AI client, add:${NC}"
+  echo -e " ${GREEN}🔒 Workspace Isolation: ENABLED${NC}"
+  echo "  Antigravity automatically uses .antigravity/mcp-manifest.json"
+  echo "  from the current workspace — no global config conflicts."
   echo ""
-  echo '  {' 
+  echo -e " ${CYAN}To complete Antigravity setup:${NC}"
+  echo "  Update ~/Library/Application Support/Claude/claude_desktop_config.json"
+  echo "  with a SINGLE entry pointing to the launcher:"
+  echo ""
+  echo "  {"
   echo '    "mcpServers": {'
-  echo "      \"${PROJECT_SLUG}\": {"
-  echo '        "command": "npx",'
-  echo "        \"args\": [\"tsx\", \"${OUTPUT_DIR}/server.ts\"]"
-  echo '      }'
-  echo '    }'
-  echo '  }'
+  echo '      "Digital-Nervous-workspace": {'
+  echo '        "command": "bash",'
+  echo "        \"args\": [\"${Digital-Nervous_DIR}/scripts/Digital-Nervous-mcp-launcher.sh\"]"
+  echo "      }"
+  echo "    }"
+  echo "  }"
+  echo ""
+  echo "  ⚠️  Replace ${Digital-Nervous_DIR} with the absolute path"
+  echo "      to your Digital-Nervous submodule."
   echo ""
   echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 }
@@ -194,14 +261,16 @@ print_summary() {
 
 main() {
   echo ""
-  echo -e "${BLUE}🔧 Forgewright MCP Generator${NC}"
+  echo -e "${BLUE}🔧 Digital-Nervous MCP Generator${NC}"
   echo ""
 
   check_prerequisites
   read_project_vars
   generate_server
   install_deps
+  generate_manifest
   print_summary
 }
 
 main "$@"
+

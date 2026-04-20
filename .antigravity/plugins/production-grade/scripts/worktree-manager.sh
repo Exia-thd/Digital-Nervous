@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 # Worktree Manager — Git worktree lifecycle for parallel dispatch
-# Part of Forgewright Production Grade Plugin
+# Part of Digital-Nervous Production Grade Plugin
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 set -euo pipefail
 
 WORKTREE_BASE=".worktrees"
 MAX_WORKERS="${MAX_WORKERS:-4}"
-LOG_FILE=".forgewright/worktree-log.md"
+LOG_FILE=".Digital-Nervous/worktree-log.md"
 
 # Colors
 RED='\033[0;31m'
@@ -357,3 +357,4 @@ main() {
 }
 
 main "$@"
+

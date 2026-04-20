@@ -7,12 +7,12 @@ Load this mode when the user wants to understand the big picture of what was bui
 Read broadly before presenting — parallel reads across the entire workspace:
 
 ```
-Read(".forgewright/product-manager/BRD/brd.md")
-Read(".forgewright/solution-architect/working-notes.md")
-Read(".forgewright/qa-engineer/test-plan.md")
-Read(".forgewright/security-engineer/...")
-Read(".forgewright/code-reviewer/review-report.md")
-Read(".forgewright/sre/...")
+Read(".Digital-Nervous/product-manager/BRD/brd.md")
+Read(".Digital-Nervous/solution-architect/working-notes.md")
+Read(".Digital-Nervous/qa-engineer/test-plan.md")
+Read(".Digital-Nervous/security-engineer/...")
+Read(".Digital-Nervous/code-reviewer/review-report.md")
+Read(".Digital-Nervous/sre/...")
 Glob("services/**/*")
 Glob("frontend/**/*")
 Glob("docs/**/*")
@@ -20,8 +20,8 @@ Glob("docs/**/*")
 
 Also read polymath's own context:
 ```
-Read(".forgewright/polymath/context/decisions.md")
-Read(".forgewright/polymath/context/domain-research.md")
+Read(".Digital-Nervous/polymath/context/decisions.md")
+Read(".Digital-Nervous/polymath/context/domain-research.md")
 ```
 
 ## Synthesis Frameworks
@@ -103,3 +103,4 @@ Generated: [date]
 ```
 
 This file persists — future polymath sessions can read it to maintain continuity across iterations.
+

@@ -169,10 +169,10 @@ docker-compose.dev.yml             # Full local dev stack
 Makefile                           # Root-level dev commands
 ```
 
-### Workspace Output (`.forgewright/software-engineer/`)
+### Workspace Output (`.Digital-Nervous/software-engineer/`)
 
 ```
-.forgewright/software-engineer/
+.Digital-Nervous/software-engineer/
 ├── implementation-plan.md
 ├── progress.md
 └── logs/
@@ -197,3 +197,4 @@ Before marking the suite as complete:
 - Documented: all ports, URLs, and credentials listed
 - Clean: `.env.example` committed, `.env` gitignored
 - Fast: infrastructure starts in under 60 seconds
+

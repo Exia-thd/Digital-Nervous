@@ -6,7 +6,7 @@ description: >
   compensation, and matchmaking integration.
   Routed via the production-grade orchestrator (Game Build mode).
 version: 1.0.0
-author: forgewright
+author: Digital-Nervous
 tags: [unity, multiplayer, netcode, networking, relay, lobby, prediction, replication]
 ---
 
@@ -120,3 +120,4 @@ public class NetworkedHealth : NetworkBehaviour
 - [ ] Disconnect/reconnect handling
 - [ ] Server validates all client inputs
 - [ ] Networked VFX and audio triggers
+

@@ -3,7 +3,7 @@
 # Memory / embedding caches
 .forge17/
 .embeddings/
-.forgewright/
+.Digital-Nervous/
 .forgenexus/
 .gitnexus/
 
@@ -26,7 +26,7 @@ dist/
 .antigravity/.git/
 .antigravity/.forgenexus/
 .antigravity/.gitnexus/
-.antigravity/.forgewright/
+.antigravity/.Digital-Nervous/
 .antigravity/.forge17/
 .antigravity/.memignore
 

@@ -6,7 +6,7 @@ description: >
   RAG optimization, and agent orchestration at scale.
   Routed via the production-grade orchestrator (AI Build mode).
 version: 1.0.0
-author: forgewright
+author: Digital-Nervous
 tags: [ai, ml, mlops, model-serving, fine-tuning, rag, agents, evaluation, llm]
 ---
 
@@ -115,7 +115,7 @@ Data → Preprocessing → Training/Fine-tuning → Evaluation → Registry → 
 ## Output Structure
 
 ```
-.forgewright/ai-engineer/
+.Digital-Nervous/ai-engineer/
 ├── model-selection.md               # Model benchmarks and selection rationale
 ├── architecture.md                  # AI system architecture
 ├── rag-pipeline.md                  # RAG design (if applicable)
@@ -146,3 +146,4 @@ Data → Preprocessing → Training/Fine-tuning → Evaluation → Registry → 
 - [ ] A/B testing infrastructure
 - [ ] Rate limiting and quota management
 - [ ] Automated regression testing before deployment
+

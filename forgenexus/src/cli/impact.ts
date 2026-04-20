@@ -212,7 +212,7 @@ export async function impactCommand(args: string[]): Promise<void> {
   
   if (options.help) {
     console.log(`
-📊 ForgeWright Impact Analysis
+📊 Digital-Nervous Impact Analysis
 
 Usage:
   forgenexus impact <symbol> [options]

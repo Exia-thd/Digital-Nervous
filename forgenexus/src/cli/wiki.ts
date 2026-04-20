@@ -345,7 +345,7 @@ export async function wikiCommand(args: string[]): Promise<void> {
   
   if (options.help) {
     console.log(`
-📚 ForgeWright Wiki Generator
+📚 Digital-Nervous Wiki Generator
 
 Usage:
   forgenexus wiki [module] [options]

@@ -15,13 +15,13 @@ description: >
 !`cat skills/_shared/protocols/input-validation.md 2>/dev/null || true`
 !`cat skills/_shared/protocols/tool-efficiency.md 2>/dev/null || true`
 !`cat .production-grade.yaml 2>/dev/null || echo "No config — using defaults"`
-!`cat .forgewright/codebase-context.md 2>/dev/null || true`
+!`cat .Digital-Nervous/codebase-context.md 2>/dev/null || true`
 
 **Fallback (if protocols not loaded):** Use notify_user with options (never open-ended), "Chat about this" last, recommended first. Work continuously. Print progress constantly. Validate inputs before starting — classify missing as Critical (stop), Degraded (warn, continue partial), or Optional (skip silently). Use parallel tool calls for independent reads. Use view_file_outline before full Read.
 
 ## Engagement Mode
 
-!`cat .forgewright/settings.md 2>/dev/null || echo "No settings — using Standard"`
+!`cat .Digital-Nervous/settings.md 2>/dev/null || echo "No settings — using Standard"`
 
 | Mode | Behavior |
 |------|----------|
@@ -32,7 +32,7 @@ description: >
 
 ## Brownfield Awareness
 
-If `.forgewright/codebase-context.md` exists and mode is `brownfield`:
+If `.Digital-Nervous/codebase-context.md` exists and mode is `brownfield`:
 - **READ existing schema first** — understand current tables, indexes, constraints, naming conventions
 - **MATCH existing patterns** — if they use `snake_case`, don't switch to `camelCase`
 - **ZERO-DOWNTIME migrations** — always use expand-contract pattern for production databases
@@ -324,7 +324,7 @@ schemas/
 
 ### Workspace
 ```
-.forgewright/database-engineer/
+.Digital-Nervous/database-engineer/
 ├── data-analysis.md           # Access patterns, volume estimates
 ├── schema-design.md           # Design decisions, normalization rationale
 ├── optimization-report.md     # Query analysis, index recommendations
@@ -346,3 +346,4 @@ schemas/
 | No constraints at DB level | "The app validates" — until someone runs a manual SQL script. DB constraints are the last line of defense |
 | Same pool size for all environments | Dev: 2-5, staging: 5-10, prod: 10-20. Don't connect prod pool settings to dev database |
 | No data dictionary | Future developers need to know what `status INT` means. Document every column |
+

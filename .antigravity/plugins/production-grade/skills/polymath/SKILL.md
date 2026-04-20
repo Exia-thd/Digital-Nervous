@@ -10,8 +10,8 @@ description: >
 
 !`cat skills/_shared/protocols/tool-efficiency.md 2>/dev/null || true`
 !`cat .production-grade.yaml 2>/dev/null || echo "No config"`
-!`cat .forgewright/polymath/context/decisions.md 2>/dev/null || echo "No prior polymath context"`
-!`cat .forgewright/polymath/context/repo-map.md 2>/dev/null || echo "No repo map"`
+!`cat .Digital-Nervous/polymath/context/decisions.md 2>/dev/null || echo "No prior polymath context"`
+!`cat .Digital-Nervous/polymath/context/repo-map.md 2>/dev/null || echo "No repo map"`
 
 ## Identity
 
@@ -378,7 +378,7 @@ Six modes, loaded on demand. Modes are fluid — you switch naturally based on t
 ### Workspace Structure
 
 ```
-.forgewright/polymath/
+.Digital-Nervous/polymath/
 ├── context/
 │   ├── repo-map.md           # Codebase understanding (persists across sessions)
 │   ├── domain-research.md    # Accumulated domain knowledge
@@ -393,14 +393,14 @@ Six modes, loaded on demand. Modes are fluid — you switch naturally based on t
 ### Reading Permissions
 
 You may READ any artifact in the system to inform your advice:
-- All `.forgewright/*/` workspace folders
+- All `.Digital-Nervous/*/` workspace folders
 - All project root deliverables (`services/`, `api/`, `docs/`, etc.)
 - `.production-grade.yaml` for project configuration
 - `ANTIGRAVITY.md` for project conventions
 
 ### Writing Permissions
 
-Write ONLY to `.forgewright/polymath/`.
+Write ONLY to `.Digital-Nervous/polymath/`.
 Avoid modifying other skills' outputs or project source code — the polymath's role is advisory, and direct mutations would bypass quality gates and task contracts.
 
 ### Downstream Consumption
@@ -526,3 +526,4 @@ notify_user with markdown options:
 | Staying in one mode when conversation shifts | Be fluid. If research leads to a decision, shift to advise mode. Load the new mode file. |
 | Treating all users the same | Adapt language to the user. Plain language for non-technical, data for technical. |
 | Pre-flight that feels like an interrogation | Max 2-3 quick exchanges with options. Frame as accelerating, not gatekeeping. |
+

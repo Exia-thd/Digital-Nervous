@@ -12,11 +12,11 @@ Enable a new developer to go from zero to productive. Write task-oriented guides
 | CI/CD pipelines | `.github/workflows/` | Build steps, test commands, deploy process |
 | Source structure | `services/`, `frontend/`, `libs/` | Module layout, build files, package managers |
 | Architecture docs | `docs/architecture/` | ADRs, service map, tech stack |
-| Test artifacts | `tests/`, `.forgewright/qa-engineer/test-plan.md` | Test strategy, coverage requirements |
+| Test artifacts | `tests/`, `.Digital-Nervous/qa-engineer/test-plan.md` | Test strategy, coverage requirements |
 | Linter configs | `.eslintrc*`, `.prettierrc*`, `ruff.toml`, etc. | Code style rules, enforced conventions |
 | Git workflow | `.github/PULL_REQUEST_TEMPLATE.md`, branch strategy | PR process, commit conventions |
 | Env example | `.env.example` | All environment variables with defaults |
-| Content inventory | `.forgewright/technical-writer/content-inventory.md` | Phase 1 priorities |
+| Content inventory | `.Digital-Nervous/technical-writer/content-inventory.md` | Phase 1 priorities |
 
 ## 3.2 — Quickstart Guide
 
@@ -60,7 +60,7 @@ Generate `docs/guides/contributing.md`:
 
 Generate `docs/guides/testing-guide.md`:
 
-1. **Testing philosophy** — Testing strategy extracted from `.forgewright/qa-engineer/test-plan.md`
+1. **Testing philosophy** — Testing strategy extracted from `.Digital-Nervous/qa-engineer/test-plan.md`
 2. **Running tests** — Exact commands for each test type (unit, integration, e2e) with expected output
 3. **Writing a new test** — Template and example for each test type
 4. **Coverage requirements** — Minimum thresholds and how to check coverage locally
@@ -142,3 +142,4 @@ Before moving to Phase 4:
 - Every code example is complete and copy-pasteable
 - ADR summaries are plain language, not copy-pasted from raw ADR format
 - Coding conventions reference actual linter configs, not invented rules
+

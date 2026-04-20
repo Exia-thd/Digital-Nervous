@@ -1,10 +1,10 @@
-# Forgewright — Production Grade AI Pipeline
+# Digital-Nervous — Production Grade AI Pipeline
 
-> **This file is read by Antigravity on every new chat.** It tells the AI assistant how to use Forgewright's 52 specialized skills.
+> **This file is read by Antigravity on every new chat.** It tells the AI assistant how to use Digital-Nervous's 52 specialized skills.
 
-## What is Forgewright?
+## What is Digital-Nervous?
 
-Forgewright is an adaptive orchestrator with **52 AI skills** that covers the entire software development lifecycle **plus game development, XR, data engineering, and MLOps**. From a single code review to a full Unity/Unreal/Godot/Roblox game build, it routes to the right skills automatically. Supports **parallel execution** via git worktrees for faster builds.
+Digital-Nervous is an adaptive orchestrator with **52 AI skills** that covers the entire software development lifecycle **plus game development, XR, data engineering, and MLOps**. From a single code review to a full Unity/Unreal/Godot/Roblox game build, it routes to the right skills automatically. Supports **parallel execution** via git worktrees for faster builds.
 
 **Pipeline:** `DEFINE → BUILD → HARDEN → SHIP → SUSTAIN`
 
@@ -57,7 +57,7 @@ Users can invoke these workflows directly:
 - `/pipeline` — Show full pipeline reference and available modes
 - `/setup-mobile-test` — Set up plug-and-play mobile testing (Android/iOS)
 - `/setup-paperclip` — Set up Paperclip multi-agent orchestration (optional)
-- `/onboard` — Run deep project analysis (creates `.forgewright/project-profile.json`)
+- `/onboard` — Run deep project analysis (creates `.Digital-Nervous/project-profile.json`)
 - `/mcp` — Start auto-generated project-specific MCP server
 
 ## Auto-Initialization Check
@@ -66,20 +66,20 @@ Run silently BEFORE any execution (all modes) to ensure project intelligence is 
 
 **Step 0.1 — MCP & ForgeNexus Check:**
 
-1. Check if the file `.forgewright/mcp-server/mcp-config.json` exists in the project root.
+1. Check if the file `.Digital-Nervous/mcp-server/mcp-config.json` exists in the project root.
 2. **If missing**, silently execute the following terminal commands to auto-initialize it:
    - `npx --yes forgenexus analyze`
-   - `bash <path-to-forgewright-submodule>/scripts/mcp-generate.sh`
+   - `bash <path-to-Digital-Nervous-submodule>/scripts/mcp-generate.sh`
    - Yield a brief message to the user: `ℹ Auto-initialized ForgeNexus index and MCP server (missing setup).`
 3. **If exists**, continue normally without doing anything.
 
 **Step 0.2 — Memory (mem0) Check (required):**
 
-Forgewright **requires** local project memory: **`.forgewright/memory.jsonl`**, created by `scripts/mem0-cli.py` (Python 3, stdlib only). **If missing**, run:
+Digital-Nervous **requires** local project memory: **`.Digital-Nervous/memory.jsonl`**, created by `scripts/mem0-cli.py` (Python 3, stdlib only). **If missing**, run:
 
-`bash <path-to-forgewright>/scripts/ensure-mem0.sh`
+`bash <path-to-Digital-Nervous>/scripts/ensure-mem0.sh`
 
-If that fails, install Python 3 and retry. **CI only:** `FORGEWRIGHT_SKIP_MEM0=1` skips this step.
+If that fails, install Python 3 and retry. **CI only:** `Digital-Nervous_SKIP_MEM0=1` skips this step.
 
 ## Auto-Update Check
 
@@ -87,10 +87,10 @@ At the start of each session, silently check if a newer version is available:
 
 ```
 Current version: read VERSION file
-Remote version: compare with https://github.com/buiphucminhtam/forgewright
+Remote version: compare with https://github.com/buiphucminhtam/Digital-Nervous
 ```
 
-If a newer version exists, mention it briefly: *"Forgewright update available (vX.X.X → vY.Y.Y). Run `/update` to upgrade."*
+If a newer version exists, mention it briefly: *"Digital-Nervous update available (vX.X.X → vY.Y.Y). Run `/update` to upgrade."*
 
 ## Skills Directory
 
@@ -180,7 +180,7 @@ Optional: create `.production-grade.yaml` at project root to customize paths, pr
 
 ## Project State (v7.0)
 
-Forgewright maintains project state in the `.forgewright/` directory:
+Digital-Nervous maintains project state in the `.Digital-Nervous/` directory:
 - `memory.jsonl` — Cross-session memory (mem0 / `mem0-cli.py`; **required** after setup — run `scripts/ensure-mem0.sh` if absent)
 - `project-profile.json` — Project fingerprint, health, patterns, risk (committed)
 - `code-conventions.md` — Detected coding patterns for consistency (committed)
@@ -193,7 +193,7 @@ Forgewright maintains project state in the `.forgewright/` directory:
 <!-- forgenexus:start -->
 # ForgeNexus — Code Intelligence
 
-This project is indexed by ForgeNexus as **forgewright** (256 symbols, 383 relationships, 20 execution flows). Use the ForgeNexus MCP tools to understand code, assess impact, and navigate safely.
+This project is indexed by ForgeNexus as **Digital-Nervous** (256 symbols, 383 relationships, 20 execution flows). Use the ForgeNexus MCP tools to understand code, assess impact, and navigate safely.
 
 > If any ForgeNexus tool warns the index is stale, run `npx forgenexus analyze` in terminal first.
 
@@ -209,7 +209,7 @@ This project is indexed by ForgeNexus as **forgewright** (256 symbols, 383 relat
 
 1. `forgenexus_query({query: "<error or symptom>"})` — find execution flows related to the issue
 2. `forgenexus_context({name: "<suspect function>"})` — see all callers, callees, and process participation
-3. `READ forgenexus://repo/forgewright/process/{processName}` — trace the full execution flow step by step
+3. `READ forgenexus://repo/Digital-Nervous/process/{processName}` — trace the full execution flow step by step
 4. For regressions: `forgenexus_detect_changes({scope: "compare", base_ref: "main"})` — see what your branch changed
 
 ## When Refactoring
@@ -248,10 +248,10 @@ This project is indexed by ForgeNexus as **forgewright** (256 symbols, 383 relat
 
 | Resource | Use for |
 |----------|---------|
-| `forgenexus://repo/forgewright/context` | Codebase overview, check index freshness |
-| `forgenexus://repo/forgewright/clusters` | All functional areas |
-| `forgenexus://repo/forgewright/processes` | All execution flows |
-| `forgenexus://repo/forgewright/process/{name}` | Step-by-step execution trace |
+| `forgenexus://repo/Digital-Nervous/context` | Codebase overview, check index freshness |
+| `forgenexus://repo/Digital-Nervous/clusters` | All functional areas |
+| `forgenexus://repo/Digital-Nervous/processes` | All execution flows |
+| `forgenexus://repo/Digital-Nervous/process/{name}` | Step-by-step execution trace |
 
 ## Self-Check Before Finishing
 
@@ -268,3 +268,4 @@ Before completing any code modification task, verify:
 - Generate docs: `npx forgenexus wiki`
 
 <!-- forgenexus:end -->
+

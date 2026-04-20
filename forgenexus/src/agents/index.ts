@@ -1,5 +1,5 @@
 /**
- * ForgeWright Agents - Anti-Hallucination System
+ * Digital-Nervous Agents - Anti-Hallucination System
  * 
  * Main export file for all agent modules.
  */
@@ -26,3 +26,11 @@ export {
   verifyCitations, 
   calculateTokenShapley 
 } from './citations.js';
+
+// Token Tracking
+export { 
+  TokenTracker, 
+  getGlobalTracker,
+  createTracker,
+} from './token-tracker.js';
+export type { TokenUsage, TokenError, TokenSummary } from './token-tracker.js';

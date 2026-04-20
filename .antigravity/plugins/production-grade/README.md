@@ -1,4 +1,4 @@
-# Forgewright — Adaptive AI Orchestrator
+# Digital-Nervous — Adaptive AI Orchestrator
 
 > **Self-contained setup guide for AI agents (Cursor, Claude Code, Windsurf, etc.) and humans.**
 > Read top-to-bottom once, then use `/pipeline`, `/onboard`, `/setup` as shortcuts.
@@ -18,10 +18,10 @@
 
 ## TL;DR — What is this?
 
-**Forgewright** is an AI-powered orchestrator that routes your request through the right skills automatically.
+**Digital-Nervous** is an AI-powered orchestrator that routes your request through the right skills automatically.
 
 - You say: *"Build a production-grade SaaS for X"* or *"Build a Unity game with multiplayer"*
-- Forgewright activates: Business Analyst → Product Manager → Architect → Engineers → QA → Security → DevOps → SRE
+- Digital-Nervous activates: Business Analyst → Product Manager → Architect → Engineers → QA → Security → DevOps → SRE
 - Output: production-ready code, reviewed, tested, scored 0–100
 
 **Pipeline:** `DEFINE → BUILD → HARDEN → SHIP → SUSTAIN → GROW`
@@ -36,22 +36,22 @@ If you are an AI agent reading this file, follow these steps in order. Each step
 ### Step 1 — Determine Your Role
 
 ```bash
-# Check: is this the forgewright repo itself, or a project using forgewright?
+# Check: is this the Digital-Nervous repo itself, or a project using Digital-Nervous?
 pwd
 ```
 
-- **If this IS the forgewright repo** (`/forgewright$`) → Skip to Step 2.
+- **If this IS the Digital-Nervous repo** (`/Digital-Nervous$`) → Skip to Step 2.
 - **If this is a project repo** → Run Step 1a then Step 1b.
 
-#### Step 1a — Clone Forgewright into the project
+#### Step 1a — Clone Digital-Nervous into the project
 
 ```bash
-# From your project root (NOT from inside forgewright repo)
+# From your project root (NOT from inside Digital-Nervous repo)
 cd /path/to/your/project
-git submodule add -b main https://github.com/buiphucminhtam/forgewright.git .antigravity/plugins/production-grade
+git submodule add -b main https://github.com/buiphucminhtam/Digital-Nervous.git .antigravity/plugins/production-grade
 ```
 
-#### Step 1b — Copy required files from forgewright
+#### Step 1b — Copy required files from Digital-Nervous
 
 ```bash
 # Copy AGENTS.md to project root (required for AI auto-discovery)
@@ -65,7 +65,7 @@ cp .antigravity/plugins/production-grade/CLAUDE.md ./CLAUDE.md
 
 ```bash
 git add .gitmodules .antigravity AGENTS.md CLAUDE.md
-git commit -m "feat: add forgewright v7.7 — 52 skills, ForgeNexus, MCP server"
+git commit -m "feat: add Digital-Nervous v7.7 — 52 skills, ForgeNexus, MCP server"
 ```
 
 #### Step 1d — Verify installation
@@ -91,8 +91,8 @@ ls .antigravity/plugins/production-grade/skills/production-grade/SKILL.md  # sho
 # OPTION A — Project-level (recommended): index the current project
 npx --yes forgenexus analyze "$(pwd)"
 
-# OPTION B — If forgenexus not in PATH, run from forgewright directory
-# (from forgewright repo root or submodule path)
+# OPTION B — If forgenexus not in PATH, run from Digital-Nervous directory
+# (from Digital-Nervous repo root or submodule path)
 cd .antigravity/plugins/production-grade
 npx --yes forgenexus analyze /path/to/your/project
 
@@ -111,7 +111,7 @@ npx --yes forgenexus analyze /path/to/your/project
 
 **If ForgeNexus is NOT installed:**
 ```bash
-# Install it first (from forgewright repo or submodule)
+# Install it first (from Digital-Nervous repo or submodule)
 npm install --prefix .antigravity/plugins/production-grade/forgenexus
 ```
 
@@ -129,18 +129,18 @@ npx forgenexus status /path/to/your/project
 > **Time:** 5 seconds.
 
 ```bash
-# From forgewright directory (repo root or submodule)
+# From Digital-Nervous directory (repo root or submodule)
 cd .antigravity/plugins/production-grade
 bash scripts/mcp-generate.sh
 
-# Or from project root if forgewright is a submodule:
+# Or from project root if Digital-Nervous is a submodule:
 bash .antigravity/plugins/production-grade/scripts/mcp-generate.sh
 ```
 
 **What the script does:**
 1. Reads `forgenexus/src/mcp/server.ts`
 2. Compiles TypeScript → JavaScript
-3. Writes MCP config to `.forgewright/mcp-server/mcp-config.json`
+3. Writes MCP config to `.Digital-Nervous/mcp-server/mcp-config.json`
 4. Outputs the exact JSON to add to your AI client's MCP settings
 
 **If the script fails:**
@@ -152,8 +152,8 @@ npm run build 2>&1 || npm run compile 2>&1
 
 **Verify MCP config was generated:**
 ```bash
-cat .forgewright/mcp-server/mcp-config.json
-# Should contain "mcpServers" with forgewright + forgenexus entries
+cat .Digital-Nervous/mcp-server/mcp-config.json
+# Should contain "mcpServers" with Digital-Nervous + forgenexus entries
 ```
 
 ---
@@ -170,7 +170,7 @@ Add to `.cursor/mcp.json` (project-level) or global Cursor settings:
     "forgenexus": {
       "command": "node",
       "args": [
-        "ABSOLUTE_PATH_TO_FORGEWRIGHT/forgenexus/dist/cli/index.js",
+        "ABSOLUTE_PATH_TO_Digital-Nervous/forgenexus/dist/cli/index.js",
         "mcp",
         "ABSOLUTE_PATH_TO_PROJECT"
       ]
@@ -181,18 +181,18 @@ Add to `.cursor/mcp.json` (project-level) or global Cursor settings:
 
 **How to get the correct paths:**
 ```bash
-# Get forgewright path
+# Get Digital-Nervous path
 realpath .antigravity/plugins/production-grade
 
 # Get project path
 pwd
 
 # Use sed to substitute into the config
-FORGEWRIGHT_PATH="$(realpath .antigravity/plugins/production-grade)"
+Digital-Nervous_PATH="$(realpath .antigravity/plugins/production-grade)"
 PROJECT_PATH="$(pwd)"
-sed -e "s|ABSOLUTE_PATH_TO_FORGEWRIGHT|$FORGEWRIGHT_PATH|g" \
+sed -e "s|ABSOLUTE_PATH_TO_Digital-Nervous|$Digital-Nervous_PATH|g" \
     -e "s|ABSOLUTE_PATH_TO_PROJECT|$PROJECT_PATH|g" \
-    .forgewright/mcp-server/mcp-config.json > .cursor/mcp.json
+    .Digital-Nervous/mcp-server/mcp-config.json > .cursor/mcp.json
 ```
 
 #### Claude Code (claude-code)
@@ -205,7 +205,7 @@ Add to `~/.claude/settings.json` (global) or project-level `.claude.json`:
     "forgenexus": {
       "command": "node",
       "args": [
-        "ABSOLUTE_PATH_TO_FORGEWRIGHT/forgenexus/dist/cli/index.js",
+        "ABSOLUTE_PATH_TO_Digital-Nervous/forgenexus/dist/cli/index.js",
         "mcp",
         "ABSOLUTE_PATH_TO_PROJECT"
       ]
@@ -224,7 +224,7 @@ VS Code uses the same MCP config format as Cursor. Add to `.vscode/mcp.json`:
     "forgenexus": {
       "command": "node",
       "args": [
-        "ABSOLUTE_PATH_TO_FORGEWRIGHT/forgenexus/dist/cli/index.js",
+        "ABSOLUTE_PATH_TO_Digital-Nervous/forgenexus/dist/cli/index.js",
         "mcp",
         "ABSOLUTE_PATH_TO_PROJECT"
       ]
@@ -248,10 +248,10 @@ You should see symbol count and index freshness. If not, check:
 node --version
 
 # 2. Verify the forgenexus CLI exists
-ls ABSOLUTE_PATH_TO_FORGEWRIGHT/forgenexus/dist/cli/index.js
+ls ABSOLUTE_PATH_TO_Digital-Nervous/forgenexus/dist/cli/index.js
 
 # 3. Test CLI directly
-node ABSOLUTE_PATH_TO_FORGEWRIGHT/forgenexus/dist/cli/index.js status ABSOLUTE_PATH_TO_PROJECT
+node ABSOLUTE_PATH_TO_Digital-Nervous/forgenexus/dist/cli/index.js status ABSOLUTE_PATH_TO_PROJECT
 ```
 
 ---
@@ -306,7 +306,7 @@ Review the preview. Graph edits are safe. Text-search edits need manual review. 
 
 ### Step 6 — How to Use (Agent Workflow)
 
-After completing Steps 1–5, Forgewright is fully operational. Here's how requests flow:
+After completing Steps 1–5, Digital-Nervous is fully operational. Here's how requests flow:
 
 #### Request → Mode Classification → Skill Routing
 
@@ -364,7 +364,7 @@ Before any skill writes code, it MUST:
 | `/setup` | First-time install as git submodule |
 | `/update` | Check for and install updates |
 | `/pipeline` | Show full pipeline reference, modes, and skill list |
-| `/onboard` | Deep project analysis — creates `.forgewright/project-profile.json` with tech stack, patterns, risk profile |
+| `/onboard` | Deep project analysis — creates `.Digital-Nervous/project-profile.json` with tech stack, patterns, risk profile |
 | `/mcp` | Generate or regenerate MCP server config |
 
 ---
@@ -375,7 +375,7 @@ Before any skill writes code, it MUST:
 |-------|-------------|---------------|
 | ⚡ **Basic** | 52 skills, full pipeline | Steps 1–3 |
 | ⚡⚡ **Smart** | Blast radius analysis, safe refactoring | Step 2 (ForgeNexus) |
-| ⚡⚡⚡ **Persistent** | Cross-session memory (**required** for orchestrator) | `bash scripts/ensure-mem0.sh` (or `python3 scripts/mem0-cli.py setup`) — CI: `FORGEWRIGHT_SKIP_MEM0=1` |
+| ⚡⚡⚡ **Persistent** | Cross-session memory (**required** for orchestrator) | `bash scripts/ensure-mem0.sh` (or `python3 scripts/mem0-cli.py setup`) — CI: `Digital-Nervous_SKIP_MEM0=1` |
 | ⚡⚡⚡⚡ **Research** | NotebookLM MCP — grounded AI, zero hallucinations | `pip install notebooklm-mcp`, add to MCP config |
 | ⚡⚡⚡⚡⚡ **Full Power** | Web crawling, AI vision testing, multi-agent | Steps 5–7 (see below) |
 
@@ -436,8 +436,9 @@ MIT
 ---
 
 <p align="center">
-  <strong>Forgewright — 52 AI skills. 19 modes. 15 protocols. Code Intelligence. SaaS to AAA games. One prompt.</strong>
+  <strong>Digital-Nervous — 52 AI skills. 19 modes. 15 protocols. Code Intelligence. SaaS to AAA games. One prompt.</strong>
 </p>
 <p align="center">
   <em>Understand relationships, not just files. Validate with zero assumptions. Research with zero hallucinations. Build games across 4 engines. Ship with quality scoring. Grow with data.</em>
 </p>
+

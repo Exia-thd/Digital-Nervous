@@ -6,7 +6,7 @@ description: >
   and cross-platform XR (Quest, Vision Pro, WebXR, PCVR).
   Routed via the production-grade orchestrator (Game Build mode).
 version: 1.0.0
-author: forgewright
+author: Digital-Nervous
 tags: [xr, vr, ar, mr, spatial-computing, hand-tracking, visionos, quest, webxr]
 ---
 
@@ -143,3 +143,4 @@ public class ComfortVignette : MonoBehaviour
 - [ ] Dynamic resolution scaling enabled
 - [ ] Passthrough/AR configured (if MR)
 - [ ] Multi-input support (controller + hand tracking minimum)
+

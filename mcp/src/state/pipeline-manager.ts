@@ -2,44 +2,44 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
-// ─── Forgewright Root Detection ──────────────────────────────────────
-// Compiled entry: FORGEWRIGHT/mcp/build/index.js
-// __dirname at runtime: FORGEWRIGHT/mcp/build
-// Navigate up 2 levels to get FORGEWRIGHT
+// ─── Digital-Nervous Root Detection ──────────────────────────────────────
+// Compiled entry: Digital-Nervous/mcp/build/index.js
+// __dirname at runtime: Digital-Nervous/mcp/build
+// Navigate up 2 levels to get Digital-Nervous
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const MCP_BUILD_DIR = __dirname; // FORGEWRIGHT/mcp/build
-const MCP_ROOT_DIR = path.dirname(MCP_BUILD_DIR); // FORGEWRIGHT/mcp
-const FORGEWRIGHT_ROOT = path.dirname(MCP_ROOT_DIR); // FORGEWRIGHT
+const MCP_BUILD_DIR = __dirname; // Digital-Nervous/mcp/build
+const MCP_ROOT_DIR = path.dirname(MCP_BUILD_DIR); // Digital-Nervous/mcp
+const Digital-Nervous_ROOT = path.dirname(MCP_ROOT_DIR); // Digital-Nervous
 
 // Always use absolute, pre-computed path (never recalculate after chdir)
-let _forgewrightRoot: string | null = null;
+let _Digital-NervousRoot: string | null = null;
 let _workspaceRoot: string | null = null;
 
-function _getForgewrightRoot(): string {
-  if (!_forgewrightRoot) {
+function _getDigital-NervousRoot(): string {
+  if (!_Digital-NervousRoot) {
     // Walk up from __dirname until we find package.json (MCP root)
     let dir = __dirname;
     for (let i = 0; i < 10; i++) {
       if (fs.existsSync(path.join(dir, 'package.json'))) {
-        _forgewrightRoot = path.dirname(dir);
-        return _forgewrightRoot;
+        _Digital-NervousRoot = path.dirname(dir);
+        return _Digital-NervousRoot;
       }
       const parent = path.dirname(dir);
       if (parent === dir) break;
       dir = parent;
     }
-    _forgewrightRoot = path.resolve(FORGEWRIGHT_ROOT);
+    _Digital-NervousRoot = path.resolve(Digital-Nervous_ROOT);
   }
-  return _forgewrightRoot;
+  return _Digital-NervousRoot;
 }
 
 // ─── Workspace Detection ────────────────────────────────────────────
 // The workspace is where the agent is currently running (Cursor project)
 
-export function getForgewrightRoot(): string {
-  return _getForgewrightRoot();
+export function getDigital-NervousRoot(): string {
+  return _getDigital-NervousRoot();
 }
 
 export function setWorkspaceRoot(): void {
@@ -52,27 +52,27 @@ export function setWorkspaceRoot(): void {
     process.env.AGENTS_WORKSPACE;
 
   if (!ws) {
-    // Fallback: check if .forgewright exists in cwd
-    const candidate = path.join(process.cwd(), '.forgewright');
+    // Fallback: check if .Digital-Nervous exists in cwd
+    const candidate = path.join(process.cwd(), '.Digital-Nervous');
     if (fs.existsSync(candidate)) {
       ws = process.cwd();
     }
   }
 
   if (!ws) {
-    // Last resort: use FORGEWRIGHT_ROOT itself (dev mode)
+    // Last resort: use Digital-Nervous_ROOT itself (dev mode)
     console.error(
-      `[Forgewright Global MCP] Warning: Could not detect workspace. Using FORGEWRIGHT_ROOT.`,
+      `[Digital-Nervous Global MCP] Warning: Could not detect workspace. Using Digital-Nervous_ROOT.`,
     );
     console.error(
-      `[Forgewright Global MCP] Set CURSOR_WORKSPACE_ROOT env var for multi-project support.`,
+      `[Digital-Nervous Global MCP] Set CURSOR_WORKSPACE_ROOT env var for multi-project support.`,
     );
-    ws = _getForgewrightRoot();
+    ws = _getDigital-NervousRoot();
   }
 
   _workspaceRoot = path.resolve(ws);
   process.chdir(_workspaceRoot);
-  console.error(`[Forgewright Global MCP] Workspace: ${_workspaceRoot}`);
+  console.error(`[Digital-Nervous Global MCP] Workspace: ${_workspaceRoot}`);
 }
 
 export function getWorkspaceRoot(): string {
@@ -120,7 +120,7 @@ function ensureDirSync(dirPath: string) {
 
 function getStateFile(): string {
   const wsRoot = getWorkspaceRoot();
-  const fwDir = path.join(wsRoot, '.forgewright');
+  const fwDir = path.join(wsRoot, '.Digital-Nervous');
   ensureDirSync(fwDir);
   return path.join(fwDir, 'pipeline-state.json');
 }
@@ -162,7 +162,7 @@ export function startPipeline(mode: string): string {
   state.history.push(`Started pipeline in mode: ${mode}`);
   saveState(state);
 
-  return `Successfully started pipeline in ${mode} mode. You are now at Phase 1: Research & Discovery. Follow the Forgewright orchestrator instructions.`;
+  return `Successfully started pipeline in ${mode} mode. You are now at Phase 1: Research & Discovery. Follow the Digital-Nervous orchestrator instructions.`;
 }
 
 export function advancePhase(): string {
@@ -183,7 +183,7 @@ export function advancePhase(): string {
   state.history.push(`Advanced to ${phaseName}`);
   saveState(state);
 
-  return `Successfully advanced to ${phaseName}. Check the Forgewright instructions for roles required in this phase.`;
+  return `Successfully advanced to ${phaseName}. Check the Digital-Nervous instructions for roles required in this phase.`;
 }
 
 export function requestGateApproval(message: string): string {

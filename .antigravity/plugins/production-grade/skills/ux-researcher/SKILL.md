@@ -6,7 +6,7 @@ description: >
   and data-driven design recommendations.
   Routed via the production-grade orchestrator (Design mode).
 version: 1.0.0
-author: forgewright
+author: Digital-Nervous
 tags: [ux, research, usability, personas, journey-mapping, interviews, heuristic]
 ---
 
@@ -95,7 +95,7 @@ Runs in **Design** mode before UI Designer. Also invoked at start of **Full Buil
 ## Output Structure
 
 ```
-.forgewright/ux-researcher/
+.Digital-Nervous/ux-researcher/
 ├── research-plan.md                 # Research questions, methods, participants
 ├── personas/                        # Data-driven user personas
 ├── journey-maps/                    # User journey maps
@@ -118,3 +118,4 @@ Runs in **Design** mode before UI Designer. Also invoked at start of **Full Buil
 - [ ] Usability findings ranked by severity
 - [ ] Recommendations linked to evidence
 - [ ] Research report delivered to design team
+

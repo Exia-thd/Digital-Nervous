@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 /**
- * Forgewright Global MCP Server
+ * Digital-Nervous Global MCP Server
  *
  * Works across ALL projects. The server:
- * - Loads skills from the Forgewright skills/ directory
- * - Stores per-project state in {workspace}/.forgewright/
+ * - Loads skills from the Digital-Nervous skills/ directory
+ * - Stores per-project state in {workspace}/.Digital-Nervous/
  * - Detects the current workspace dynamically
  */
 
@@ -16,7 +16,7 @@ import { setWorkspaceRoot } from './state/pipeline-manager.js';
 
 const server = new Server(
   {
-    name: 'forgewright-mcp-global',
+    name: 'Digital-Nervous-mcp-global',
     version: '1.0.0',
   },
   {
@@ -36,10 +36,10 @@ registerTools(server);
 async function run() {
   const transport = new StdioServerTransport();
   await server.connect(transport);
-  console.error('[Forgewright Global MCP] Running — workspace: ' + process.cwd());
+  console.error('[Digital-Nervous Global MCP] Running — workspace: ' + process.cwd());
 }
 
 run().catch((error) => {
-  console.error('[Forgewright Global MCP] Fatal error:', error);
+  console.error('[Digital-Nervous Global MCP] Fatal error:', error);
   process.exit(1);
 });

@@ -78,7 +78,7 @@ Identify the blocker type to focus research:
    - Search technology + "best practice"
    - Search "how to [specific task] [framework]"
 
-2. **Forgewright Knowledge** (for architectural/tooling)
+2. **Digital-Nervous Knowledge** (for architectural/tooling)
    - Check `skills/*/SKILL.md` for related patterns
    - Check `skills/_shared/protocols/` for existing solutions
    - Check `antigravity/docs/` for design references
@@ -86,7 +86,7 @@ Identify the blocker type to focus research:
 3. **Codebase Search** (for existing patterns)
    - `forgenexus_query({query: "related pattern"})`
    - Search for similar implementations
-   - Check `.forgewright/` for past solutions
+   - Check `.Digital-Nervous/` for past solutions
 
 4. **Documentation** (for unknown blockers)
    - Official docs for the technology
@@ -168,7 +168,7 @@ Example:
 - **Example:** `useEffect(() => { fetchData(id) }, [id])`
 ```
 
-### Also append to `.forgewright/execution-lessons.md`:
+### Also append to `.Digital-Nervous/execution-lessons.md`:
 
 ```markdown
 ## [Date] — [Skill Name]
@@ -238,8 +238,8 @@ The Execution Blocker Loop complements the Plan Quality Loop:
 | Blocker Type | Research Priority |
 |--------------|-------------------|
 | Technical | Web search → Docs |
-| Architectural | Forgewright skills → Docs |
-| Tooling | Forgewright protocols → Web |
+| Architectural | Digital-Nervous skills → Docs |
+| Tooling | Digital-Nervous protocols → Web |
 | External | Web search → Alternatives |
 | Performance | Profiling → Optimization patterns |
 | Unknown | Broader web search → Experiment |
@@ -251,3 +251,4 @@ The Execution Blocker Loop complements the Plan Quality Loop:
 - ❌ Applying random changes hoping something works
 - ❌ Not documenting the solution
 - ❌ Repeating the same failed approach
+

@@ -1,5 +1,5 @@
 /**
- * Consistency Checks Module for ForgeWright
+ * Consistency Checks Module for Digital-Nervous
  * 
  * Runs various consistency checks on the codebase graph.
  */

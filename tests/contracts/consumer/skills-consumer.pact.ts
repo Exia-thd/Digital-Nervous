@@ -1,15 +1,15 @@
 /**
  * Pact Contract Testing Consumer Tests
  * Consumer-driven contract tests for API providers
- * For forgewright project
+ * For Digital-Nervous project
  */
 import { describe, it, expect, beforeAll, afterAll } from 'vitest';
 import { PactV3 } from '@pact-foundation/pact';
 import path from 'path';
 
 const provider = new PactV3({
-  consumer: 'forgewright-tests',
-  provider: 'forgewright-api',
+  consumer: 'Digital-Nervous-tests',
+  provider: 'Digital-Nervous-api',
   dir: path.resolve(__dirname, '../pacts'),
   logLevel: 'warn',
   spec: 3,

@@ -1,4 +1,4 @@
-# ForgeWright Anti-Hallucination - Launch Checklist
+# Digital-Nervous Anti-Hallucination - Launch Checklist
 
 ## Pre-Launch Checklist
 
@@ -114,7 +114,7 @@ FORCE_NO_VERIFY=1 forgenexus wiki
 2. In config:
 ```json
 {
-  "forgewright": {
+  "Digital-Nervous": {
     "antiHallucination": {
       "verification": {
         "enabled": false
@@ -180,3 +180,4 @@ FORCE_NO_VERIFY=1 forgenexus wiki
 | Version | Date | Changes |
 |---------|------|---------|
 | 1.0.0 | TBD | Initial release |
+

@@ -1,10 +1,12 @@
-# Forgewright — Adaptive AI Orchestrator
+# Digital-Nervous — Adaptive AI Orchestrator
 
 <p align="center">
   <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT" /></a>
-  <img src="https://img.shields.io/badge/version-7.9.0-blue.svg" alt="Version" />
-  <img src="https://img.shields.io/badge/skills-55-brightgreen.svg" alt="Skills" />
-  <img src="https://img.shields.io/badge/modes-23-blueviolet.svg" alt="Modes" />
+  <img src="https://img.shields.io/badge/version-8.1.0-blue.svg" alt="Version" />
+  <img src="https://img.shields.io/badge/skills-56-brightgreen.svg" alt="Skills" />
+  <img src="https://img.shields.io/badge/templates-55-brightgreen.svg" alt="Templates" />
+  <img src="https://img.shields.io/badge/features-3-brightgreen.svg" alt="New Features" />
+  <img src="https://img.shields.io/badge/modes-24-blueviolet.svg" alt="Modes" />
   <img src="https://img.shields.io/badge/protocols-29-00CED1.svg" alt="Protocols" />
   <img src="https://img.shields.io/badge/Game_Dev-Unity·Unreal·Godot·Roblox-FF4500.svg" alt="Game Dev" />
   <img src="https://img.shields.io/badge/Code_Intelligence-ForgeNexus·GitNexus-4B0082.svg" alt="Code Intelligence" />
@@ -14,11 +16,11 @@
 
 ---
 
-## TL;DR — What is Forgewright?
+## TL;DR — What is Digital-Nervous?
 
-**Imagine:** You have a team of 55 AI experts. Each one excels at a different task — writing code, security auditing, game design, performance optimization. Forgewright is the "manager" — when you say "I want to build an e-commerce app", it automatically knows which experts to call, in what order, and how to validate quality.
+**Imagine:** You have a team of 56 AI experts. Each one excels at a different task — writing code, security auditing, game design, performance optimization. Digital-Nervous is the "manager" — when you say "I want to build an e-commerce app", it automatically knows which experts to call, in what order, and how to validate quality.
 
-> **One sentence:** Forgewright automatically selects the right AI expert for the right job, from idea to production.
+> **One sentence:** Digital-Nervous automatically selects the right AI expert for the right job, from idea to production.
 
 ### Concrete Example
 
@@ -27,7 +29,7 @@ You say:  "Build me a t-shirt selling website"
 
     ↓
 
-Forgewright automatically does:
+Digital-Nervous automatically does:
     1. Market analysis (Business Analyst)
     2. Feature planning (Product Manager)
     3. Database & API architecture design (Solution Architect)
@@ -49,7 +51,7 @@ flowchart LR
     subgraph L1["⚡ Level 1 — Basic"]
         direction TB
         L1A["✅ What's included"]
-        L1B["• 55 AI skills"]
+        L1B["• 56 AI skills"]
         L1C["• Automated pipeline"]
         L1D["• Default on install"]
     end
@@ -99,7 +101,7 @@ flowchart TD
     START(["Hey, where do I start?"])
 
     START --> Q1{"Are you a developer?"}
-    Q1 --> |"No / Just starting"| EASY["✅ Level 1 — Basic<br/>Just install and go<br/>52 skills ready"]
+    Q1 --> |"No / Just starting"| EASY["✅ Level 1 — Basic<br/>Just install and go<br/>55 skills ready"]
     Q1 --> |"Yes, want smarter"| SMART["✅ Level 2 — Smart<br/>Add code analysis<br/>Ask anything"]
 
     SMART --> Q2{"Need memory across chats?"}
@@ -124,31 +126,209 @@ flowchart TD
     style Q2 fill:#533483,stroke:#9b59b6,color:#fff
 ```
 
-### Quick Setup (no bash knowledge needed)
+### Quick Setup — Copy, Paste, Done
 
-#### If you're using Cursor / VS Code
-
-1. Open Cursor or VS Code
-2. Type your question or request
-3. **Done!** No additional installation needed — Level 1 is already working
-
-#### If you want to get smarter (Level 2+)
-
-Open **Terminal** (or Command Prompt) and run:
+**Step 1: Open your project in terminal**
 
 ```bash
-# Check Node.js
-node --version
+# Navigate to your project folder
+cd /path/to/your/project
 
-# If you see a version (e.g. v20.x.x) → you're good
-# If you get "command not found" → install Node.js first
-#   macOS: brew install node
-#   Windows: download from nodejs.org
+# If you don't have a project yet, create one
+mkdir my-project && cd my-project
+git init
+```
+
+**Step 2: Clone Digital-Nervous (choose ONE way)**
+
+```bash
+# Way A — Clone as a standalone tool (recommended)
+git clone https://github.com/buiphucminhtam/Digital-Nervous.git
+
+# Way B — Add as git submodule inside your project
+git submodule add https://github.com/buiphucminhtam/Digital-Nervous.git Digital-Nervous
+
+# Way C — Clone anywhere, use Antigravity plugin from any project
+git clone https://github.com/buiphucminhtam/Digital-Nervous.git ~/.Digital-Nervous-home
+```
+
+**Step 3: Run MCP Setup (Level 4 — enables 12 AI tools in your IDE)**
+
+```bash
+# If you cloned Digital-Nervous standalone (Way A) — run from Digital-Nervous directory:
+cd Digital-Nervous
+bash scripts/Digital-Nervous-mcp-setup.sh
+
+# If you added as submodule (Way B) — run from your project directory:
+bash Digital-Nervous/scripts/Digital-Nervous-mcp-setup.sh
+
+# If you used Antigravity plugin (Way C):
+bash ~/.Digital-Nervous-home/.antigravity/plugins/production-grade/scripts/Digital-Nervous-mcp-setup.sh
+```
+
+**Step 4: Restart your IDE**
+
+After setup completes, **restart Cursor / VS Code / Claude Desktop** to load the MCP server.
+
+**Step 5: Verify**
+
+```bash
+# Check MCP status
+bash scripts/Digital-Nervous-mcp-setup.sh --check
 ```
 
 ---
 
-## The Flow — How Forgewright Works
+### IDE-Specific Setup
+
+#### Cursor
+
+1. **Clone Digital-Nervous into your project** (Way A or B above)
+2. **Run setup:**
+   ```bash
+   bash scripts/Digital-Nervous-mcp-setup.sh   # from Digital-Nervous/ directory
+   ```
+3. **Restart Cursor** — the MCP server auto-loads from `~/.cursor/mcp.json`
+4. **Done.** Type your first request and Digital-Nervous's 56 skills activate automatically.
+
+#### Claude Desktop
+
+1. Clone Digital-Nervous (Way A or B):
+   ```bash
+   git clone https://github.com/buiphucminhtam/Digital-Nervous.git
+   cd Digital-Nervous
+   ```
+2. Run setup:
+   ```bash
+   bash scripts/Digital-Nervous-mcp-setup.sh
+   ```
+3. **Restart Claude Desktop**
+4. The MCP server is registered in `~/Library/Application Support/Claude/claude_desktop_config.json`
+
+#### VS Code (with Claude Extension)
+
+1. Install the Claude extension from the VS Code marketplace
+2. Clone Digital-Nervous and run setup (same commands as Cursor)
+3. Restart VS Code
+
+---
+
+### Quick Reference — What Gets Installed
+
+| What | Where | Purpose |
+|------|-------|---------|
+| `Digital-Nervous-mcp-setup.sh` | `scripts/` | One-command MCP setup |
+| `mcp-server/` | `.Digital-Nervous/` | Project-specific AI tools |
+| `mcp-manifest.json` | `.antigravity/` | Workspace isolation config |
+| `project-profile.json` | `.Digital-Nervous/` | Auto-generated on first chat |
+
+### Troubleshooting
+
+| Problem | Fix |
+|---------|-----|
+| `Digital-Nervous-mcp-setup.sh: not found` | Make sure you're in the right directory. Check with `ls scripts/` |
+| MCP tools not showing after restart | Run `bash scripts/Digital-Nervous-mcp-setup.sh --diagnose` |
+| Need to reset everything | `bash scripts/Digital-Nervous-mcp-setup.sh --force` |
+| Want to remove MCP | `bash scripts/Digital-Nervous-mcp-setup.sh --uninstall` |
+| `node: command not found` | Install Node.js 18+: [nodejs.org](https://nodejs.org) |
+
+---
+
+## AgentScope-Inspired Features
+
+Inspired by [AgentScope Studio](https://github.com/agentscope-ai/agentscope), these 3 features enhance Digital-Nervous's developer experience.
+
+### 1. Digital-Nervous Studio — Real-time Pipeline Monitor
+
+Visual monitoring for pipeline execution, inspired by AgentScope's trajectory tracing.
+
+```mermaid
+flowchart LR
+    WS["WebSocket Server<br/>Port 7891"]
+    UI["Studio UI<br/>React Dashboard"]
+    EVENTS["Pipeline Events<br/>skill:start · progress · complete"]
+
+    WS <-->|real-time| UI
+    EVENTS --> WS
+
+    style WS fill:#0f3460,stroke:#3498db,color:#fff
+    style UI fill:#1e8449,stroke:#2ecc71,color:#fff
+    style EVENTS fill:#d35400,stroke:#e67e22
+```
+
+**Features:** Phase progress, Memory trace timeline, Token/cost tracker, Session history.
+
+### 2. Tool Sandboxing — Security Isolation
+
+Isolated execution environments for AI-generated code. Zero-trust security with policy enforcement.
+
+```mermaid
+flowchart TD
+    OP["Operation<br/>read/write/network/exec"]
+    PE["Policy Engine<br/>Allowlist + Denylist"]
+    BD["Bypass Detector<br/>Escape Vector Detection"]
+    AL["Audit Logger<br/>JSONL trail"]
+
+    OP --> PE
+    PE -->|allow| BD
+    PE -->|deny| AL
+    BD -->|blocked| AL
+
+    style OP fill:#0f3460,stroke:#e94560,color:#fff
+    style PE fill:#1a5276,stroke:#3498db,color:#fff
+    style BD fill:#c0392b,stroke:#e74c3c,color:#fff
+    style AL fill:#1e8449,stroke:#2ecc71,color:#fff
+```
+
+**Sandbox types:** Filesystem, Network, Shell. Default: dry-run mode (preview before execute).
+
+### 3. Template System — 55 Templates for Fast Scaffolding
+
+Pre-built templates for Docker, CI/CD, SRE, Config, Cursor rules, Game engine scaffolding. Generate via CLI.
+
+```mermaid
+flowchart TB
+    REQ["Generate template"]
+    CLI["scripts/generate-template.ts"]
+    TEMPLATES["templates/"]
+
+    subgraph TEMPLATES["templates/"]
+        DOCKER["docker/"]
+        CI["ci/"]
+        CONFIG["config/"]
+        SRE["sre/"]
+        CURSOR["cursor/"]
+        SKILLS["skills/"]
+        GAME["game/"]
+    end
+
+    REQ --> CLI
+    CLI --> TEMPLATES
+
+    style CLI fill:#1a5276,stroke:#3498db,color:#fff
+    style TEMPLATES fill:#0f3460,stroke:#3498db,color:#fff
+```
+
+**Generate a template:**
+```bash
+npx ts-node scripts/generate-template.ts \
+  --template ci/github-ci \
+  --output ./.github/workflows/ci.yml \
+  --data '{"project": "my-app"}'
+```
+
+**55 templates included:**
+- Docker: multi-stage Dockerfile, docker-compose dev/test/game, .dockerignore
+- CI/CD: GitHub Actions CI, CD staging/production, PR checks, commit lint, scheduled
+- Config: Jest, Prettier v3, ESLint, TSConfig base, .env.example, Makefile, EditorConfig
+- SRE: war room checklist, incident comms, on-call rotation, escalation policy, RCA
+- Cursor: rule templates, file-specific rules, agent prompts, rules index
+- Skills: DevOps checklist, SRE runbook, SWE patterns, DB migration, mobile assertions
+- Game: Godot lobby, NetworkManager, SyncVar, server-authoritative loop
+
+---
+
+## The Flow — How Digital-Nervous Works
 
 > All diagrams below render well on GitHub, GitLab, and any mermaid viewer.
 > If you don't see the diagrams — make sure your viewer uses **mermaid 10+**.
@@ -159,7 +339,7 @@ node --version
 flowchart TD
     START(["You say: 'Build an e-commerce app'"])
     CHAT_INT{{"Chat Interpreter<br/>(chat-interpreter)"}}
-    ORCH(["Forgewright<br/>(the manager)"])
+    ORCH(["Digital-Nervous<br/>(the manager)"])
 
     START --> CHAT_INT
     CHAT_INT --> |"intent parsed"| ORCH
@@ -204,7 +384,7 @@ flowchart TD
     START --> CHAT_INT
     CHAT_INT --> ORCH
 
-    ORCH --> MODE{{"Classify Request<br/>22 Modes"}}
+    ORCH --> MODE{{"Classify Request<br/>24 Modes"}}
 
     MODE --> |"Full Build"| PHASE_DEFINE["DEFINE Phase<br/>BA → PM → Architect"]
     MODE --> |"Feature"| PHASE_FEATURE["FEATURE Phase<br/>PM → BE/FE → QA"]
@@ -299,7 +479,7 @@ sequenceDiagram
 
     User->>Orch: New Session Start
 
-    Orch->>Orch: Step 0.5: Load .forgewright/ context
+    Orch->>Orch: Step 0.5: Load .Digital-Nervous/ context
     Orch->>Orch: Step 1: Load project-profile.json
     Orch->>Orch: Step 2: Load session-log.json
     Orch->>Orch: Step 3: mem0 search + code-conventions
@@ -672,7 +852,7 @@ flowchart TD
     style G3 fill:#d35400,stroke:#e67e22,color:#fff
 ```
 
-### 22 Modes — What You Say, Forgewright Chooses
+### 24 Modes — What You Say, Digital-Nervous Chooses
 
 ```mermaid
 flowchart LR
@@ -698,6 +878,7 @@ flowchart LR
     INPUT --> F18["Design Architecture<br/>API/Data Model"]
     INPUT --> F19["Write Docs"]
     INPUT --> F20["Improve Prompts<br/>Prompt Engineering"]
+    INPUT --> F21["Autonomous Testing<br/>Self-Healing E2E"]
 
     F1 --> M1{{"Full Build"}}
     F2 --> M2{{"Feature"}}
@@ -719,6 +900,7 @@ flowchart LR
     F18 --> M18{{"Architect"}}
     F19 --> M19{{"Document"}}
     F20 --> M20{{"Prompt"}}
+    F21 --> M21{{"Autonomous"}}
 
     M1 --> SK1["BA → PM → Architect →<br/>BE → FE → QA →<br/>Security → DevOps → SRE"]
     M2 --> SK2["PM → Architect →<br/>BE/FE → QA"]
@@ -740,6 +922,7 @@ flowchart LR
     M18 --> SK18["Solution Architect"]
     M19 --> SK19["Technical Writer"]
     M20 --> SK20["Prompt Engineer →<br/>chat-interpreter →<br/>prompt-techniques → templates"]
+    M21{{"Autonomous"}} --> SK21["Autonomous Testing →<br/>Self-Healing E2E →<br/>Vitest + Playwright + Applitools"]
 
     style INPUT fill:#1a1a2e,stroke:#e94560,color:#fff
     style M1 fill:#533483,stroke:#9b59b6,color:#fff
@@ -762,6 +945,8 @@ flowchart LR
     style M18 fill:#533483,stroke:#9b59b6,color:#fff
     style M19 fill:#533483,stroke:#9b59b6,color:#fff
     style M20 fill:#8e44ad,stroke:#9b59b6,color:#fff
+    style M21 fill:#8e44ad,stroke:#9b59b6,color:#fff
+    style F21 fill:#1a5276,stroke:#3498db,color:#fff
     style SK1 fill:#0f3460,stroke:#3498db,color:#fff
     style SK2 fill:#0f3460,stroke:#3498db,color:#fff
     style SK3 fill:#0f3460,stroke:#3498db,color:#fff
@@ -782,25 +967,28 @@ flowchart LR
     style SK18 fill:#0f3460,stroke:#3498db,color:#fff
     style SK19 fill:#0f3460,stroke:#3498db,color:#fff
     style SK20 fill:#8e44ad,stroke:#3498db,color:#fff
+    style SK21 fill:#8e44ad,stroke:#3498db,color:#fff
 ```
 
 ---
 
-## 55 Skills — Which One, When?
+## 56 Skills — Which One, When?
 
 ```mermaid
 flowchart TD
     USER["What do you want to do?"]
 
-    USER --> |"Build new website/app"| SaaS["📦 Core Engineering<br/>22 skills"]
+    USER --> |"Build new website/app"| SaaS["📦 Core Engineering<br/>23 skills"]
     USER --> |"Build game (Unity/Unreal/Godot)"| GAME["🎮 Game Development<br/>18 skills"]
+    USER --> |"Autonomous Testing"| AUT["🤖 Autonomous Testing<br/>Self-Healing E2E"]
     USER --> |"Optimize / debug code"| OPT["🔧 Optimization & Debug<br/>Performance · Debugger · QA"]
     USER --> |"Research / data analysis"| DATA["📊 Data & AI<br/>AI Engineer · Data Scientist · NotebookLM"]
     USER --> |"Deploy / CI/CD / infra"| DEVOPS["🚀 DevOps & Ship<br/>DevOps · SRE · Database"]
     USER --> |"Marketing / growth"| GROW["📈 Growth<br/>Growth Marketer · Conversion Optimizer"]
     USER --> |"Design / UX"| DESIGN["🎨 Design & UX<br/>UX Researcher · UI Designer"]
 
-    SaaS --> SaaS_DETAIL["<b>22 skills:</b><br/>Business Analyst · Product Manager<br/>Solution Architect · Software Engineer<br/>Frontend · QA · Security · DevOps · SRE<br/>Database · API Designer · Prompt Engineer"]
+    SaaS --> SaaS_DETAIL["<b>23 skills:</b><br/>Business Analyst · Product Manager<br/>Solution Architect · Software Engineer<br/>Frontend · QA · Security · DevOps · SRE<br/>Database · API Designer · Prompt Engineer"]
+    AUT --> AUT_DETAIL["<b>Autonomous Testing:</b><br/>Vitest · Playwright · Applitools<br/>Self-healing · Auto-fix · Continue"]
     GAME --> GAME_DETAIL["<b>18 skills:</b><br/>Game Designer · Unity/Unreal/Godot/Roblox Engineer<br/>Level Designer · Narrative Designer<br/>Technical Artist · Game Audio Engineer<br/>XR Engineer"]
     OPT --> OPT_DETAIL["<b>Optimize:</b> Performance Engineer<br/><b>Debug:</b> Debugger → Software Engineer<br/><b>Test:</b> QA Engineer"]
     DATA --> DATA_DETAIL["<b>AI:</b> AI Engineer · Prompt Engineer · Data Scientist<br/><b>Research:</b> NotebookLM Researcher<br/><b>Web:</b> Web Scraper · XLSX Engineer"]
@@ -810,6 +998,7 @@ flowchart TD
 
     style USER fill:#1a1a2e,stroke:#e94560,color:#fff
     style SaaS fill:#1a5276,stroke:#3498db,color:#fff
+    style AUT fill:#1e8449,stroke:#2ecc71,color:#fff
     style GAME fill:#1a5276,stroke:#3498db,color:#fff
     style OPT fill:#1a5276,stroke:#3498db,color:#fff
     style DATA fill:#1a5276,stroke:#3498db,color:#fff
@@ -817,6 +1006,7 @@ flowchart TD
     style GROW fill:#1a5276,stroke:#3498db,color:#fff
     style DESIGN fill:#1a5276,stroke:#3498db,color:#fff
     style SaaS_DETAIL fill:#0f3460,stroke:#3498db,color:#fff
+    style AUT_DETAIL fill:#1e8449,stroke:#2ecc71,color:#fff
     style GAME_DETAIL fill:#0f3460,stroke:#3498db,color:#fff
     style OPT_DETAIL fill:#0f3460,stroke:#3498db,color:#fff
     style DATA_DETAIL fill:#0f3460,stroke:#3498db,color:#fff
@@ -834,7 +1024,7 @@ flowchart TD
 **Step 1:** Open Terminal, run from your project root:
 
 ```bash
-git submodule add -b main https://github.com/buiphucminhtam/forgewright.git \
+git submodule add -b main https://github.com/buiphucminhtam/Digital-Nervous.git \
   .antigravity/plugins/production-grade
 ```
 
@@ -849,7 +1039,7 @@ cp .antigravity/plugins/production-grade/CLAUDE.md .
 
 ```bash
 git add .gitmodules .antigravity AGENTS.md CLAUDE.md
-git commit -m "feat: add forgewright"
+git commit -m "feat: add Digital-Nervous"
 ```
 
 **Step 4:** Initialize the submodule:
@@ -895,13 +1085,36 @@ bash .antigravity/plugins/production-grade/scripts/ensure-mem0.sh "$(pwd)"
 
 ### Method 4: Install MCP server (Level 4)
 
-Run one command:
+**ONE command — does everything:**
 
 ```bash
-bash .antigravity/plugins/production-grade/scripts/mcp-generate.sh
+# Standard way (from project using Digital-Nervous as submodule)
+bash Digital-Nervous/scripts/Digital-Nervous-mcp-setup.sh
+
+# Or via Antigravity plugin (universal, works from any project)
+bash .antigravity/plugins/production-grade/scripts/Digital-Nervous-mcp-setup.sh
 ```
 
+This single command:
+- Detects Digital-Nervous location automatically
+- Generates the MCP server
+- Creates the workspace manifest
+- Updates your global config (Cursor/Claude)
+- Verifies the installation
+
 Then restart Cursor/VS Code.
+
+**Check status anytime:**
+
+```bash
+bash Digital-Nervous/scripts/Digital-Nervous-mcp-setup.sh --check
+```
+
+**Diagnose problems:**
+
+```bash
+bash Digital-Nervous/scripts/Digital-Nervous-mcp-setup.sh --diagnose
+```
 
 ### Verify your installation
 
@@ -909,8 +1122,8 @@ Then restart Cursor/VS Code.
 echo "=== Verification ==="
 echo "Skills: $(ls .antigravity/plugins/production-grade/skills/ -1 2>/dev/null | wc -l | tr -d ' ')"
 echo "ForgeNexus: $([ -f .antigravity/plugins/production-grade/forgenexus/dist/cli/index.js ] && echo 'OK' || echo 'MISSING')"
-echo "MCP: $([ -d .forgewright/mcp-server ] && echo 'OK' || echo 'MISSING')"
-echo "Memory: $([ -f .forgewright/memory.jsonl ] && echo 'OK' || echo 'MISSING')"
+echo "MCP: $([ -d .Digital-Nervous/mcp-server ] && echo 'OK' || echo 'MISSING')"
+echo "Memory: $([ -f .Digital-Nervous/memory.jsonl ] && echo 'OK' || echo 'MISSING')"
 ```
 
 ---
@@ -989,7 +1202,7 @@ bash scripts/forge-validate.sh --json
 | Issue | Solution |
 |-------|----------|
 | `forgenexus: command not found` | Use `npx forgenexus` instead of `forgenexus` |
-| `npm install` fails in submodule | Check `node --version` (needs 18+) |
+| MCP setup fails | Run `bash Digital-Nervous/scripts/Digital-Nervous-mcp-setup.sh --diagnose` |
 | Can't see MCP tools | Restart Cursor/VS Code after config change |
 | Stale index | Run `npx forgenexus analyze "$(pwd)"` |
 | Submodule not initialized | `git submodule update --init --recursive` |
@@ -998,6 +1211,16 @@ bash scripts/forge-validate.sh --json
 | Windows: `bash` not found | Use equivalent PowerShell commands |
 | Mermaid diagrams not showing | Make sure viewer uses **mermaid 10+**. GitHub/GitLab supported. |
 | `better-sqlite3` error after merge | Run `cd forgenexus && npm install` to install `kuzu` instead |
+| Multi-project MCP conflicts | Use `Digital-Nervous-mcp-setup.sh` — one config per workspace |
+
+**Quick diagnostics:**
+```bash
+# Check MCP status
+bash Digital-Nervous/scripts/Digital-Nervous-mcp-setup.sh --check
+
+# Diagnose issues
+bash Digital-Nervous/scripts/Digital-Nervous-mcp-setup.sh --diagnose
+```
 
 ---
 
@@ -1008,8 +1231,9 @@ bash scripts/forge-validate.sh --json
 | `/setup` | First-time setup as git submodule |
 | `/update` | Check for and install updates (safe, keeps your changes) |
 | `/pipeline` | View full pipeline, modes, and skills list |
-| `/onboard` | Deep project analysis — creates `.forgewright/project-profile.json` |
-| `/mcp` | Generate or regenerate MCP server config |
+| `/onboard` | Deep project analysis — creates `.Digital-Nervous/project-profile.json` |
+| `/mcp` | Check or regenerate MCP setup |
+| `/setup-mcp` | One-command MCP setup for any project |
 | `/setup-mobile-test` | Set up mobile testing for Android/iOS |
 
 ---
@@ -1033,7 +1257,7 @@ MIT
 
 ## Support the Project
 
-If Forgewright helps you ship faster, you can support here:
+If Digital-Nervous helps you ship faster, you can support here:
 
 <p align="center">
   <img src="assets/donate/give-me-a-coffee-international.png" width="280" alt="Buy Me a Coffee" />
@@ -1042,8 +1266,9 @@ If Forgewright helps you ship faster, you can support here:
 ---
 
 <p align="center">
-  <strong>Forgewright — 55 AI skills. 22 modes. Persistent Memory. Code Intelligence. SaaS to AAA games.</strong>
+  <strong>Digital-Nervous — 56 AI skills. 24 modes. Persistent Memory. Code Intelligence. Real-time Studio. Sandboxed Execution. 55 Templates.</strong>
 </p>
 <p align="center">
   <em>Plan precisely. Build confidently. Scale intelligently.</em>
 </p>
+

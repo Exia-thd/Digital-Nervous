@@ -4,7 +4,7 @@
 Accepted
 
 ## Context
-Forgewright's pre-commit hook ran four checks sequentially:
+Digital-Nervous's pre-commit hook ran four checks sequentially:
 1. ESLint
 2. Prettier
 3. TypeScript type check
@@ -49,3 +49,4 @@ GitHub Actions CI also parallelized:
 
 ## Notes
 Pre-commit runs only on `mcp/` directory (TypeScript source). Production skills (`skills/`) are markdown files and don't require linting.
+

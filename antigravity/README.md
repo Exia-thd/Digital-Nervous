@@ -1,4 +1,4 @@
-# Antigravity — Forgewright Planning System
+# Antigravity — Digital-Nervous Planning System
 
 > **Strategic planning layer cho những features phức tạp.** Antigravity tạo planning documents có cấu trúc trước khi bắt đầu implementation.
 
@@ -24,7 +24,7 @@ vim PLAN.md SCOPE.md TASKS.md
 
 ## Overview
 
-Antigravity là nơi lưu trữ tất cả các kế hoạch, tài liệu thiết kế, và documentation cho các features lớn của Forgewright.
+Antigravity là nơi lưu trữ tất cả các kế hoạch, tài liệu thiết kế, và documentation cho các features lớn của Digital-Nervous.
 
 ### Khi nào cần Antigravity?
 
@@ -171,6 +171,7 @@ antigravity/
 
 ## Liên quan
 
-- **Forgewright Pipeline**: `skills/production-grade/SKILL.md`
+- **Digital-Nervous Pipeline**: `skills/production-grade/SKILL.md`
 - **Plan Quality Loop**: `skills/_shared/protocols/plan-quality-loop.md`
 - **Chat Interpreter**: `.cursor/agents/chat-interpreter.md`
+

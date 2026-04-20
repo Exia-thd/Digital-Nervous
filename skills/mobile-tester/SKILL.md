@@ -8,7 +8,7 @@ description: >
   Activated when user wants to test on real mobile devices.
   Routed via the production-grade orchestrator.
 version: 1.1.0
-author: forgewright
+author: Digital-Nervous
 tags: [mobile-testing, android, ios, midscene, adb, wda, vision-testing, e2e, appium, webdriverio]
 ---
 
@@ -284,3 +284,4 @@ Open: ./midscene_run/report/index.html
 - [ ] Critical user flows have test scripts
 - [ ] Visual replay report generated and reviewed
 - [ ] Test results documented in `tests/e2e/mobile/reports/`
+

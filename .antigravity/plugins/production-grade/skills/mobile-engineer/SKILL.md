@@ -19,13 +19,13 @@ tags: [mobile, react-native, flutter, ios, android, cross-platform, app-store]
 !`cat skills/_shared/protocols/input-validation.md 2>/dev/null || true`
 !`cat skills/_shared/protocols/tool-efficiency.md 2>/dev/null || true`
 !`cat .production-grade.yaml 2>/dev/null || echo "No config — using defaults"`
-!`cat .forgewright/codebase-context.md 2>/dev/null || true`
+!`cat .Digital-Nervous/codebase-context.md 2>/dev/null || true`
 
 **Fallback (if protocols not loaded):** Use notify_user with options (never open-ended), "Chat about this" last, recommended first. Work continuously. Print progress constantly. Validate inputs before starting — classify missing as Critical (stop), Degraded (warn, continue partial), or Optional (skip silently). Use parallel tool calls for independent reads. Use view_file_outline before full Read.
 
 ## Engagement Mode
 
-!`cat .forgewright/settings.md 2>/dev/null || echo "No settings — using Standard"`
+!`cat .Digital-Nervous/settings.md 2>/dev/null || echo "No settings — using Standard"`
 
 | Mode | Behavior |
 |------|----------|
@@ -36,7 +36,7 @@ tags: [mobile, react-native, flutter, ios, android, cross-platform, app-store]
 
 ## Brownfield Awareness
 
-If `.forgewright/codebase-context.md` exists and mode is `brownfield`:
+If `.Digital-Nervous/codebase-context.md` exists and mode is `brownfield`:
 - **READ existing mobile project** — detect framework (RN, Flutter, Kotlin, Swift), existing navigation library, state management
 - **MATCH existing patterns** — if they use React Navigation, don't introduce go_router. If they use Zustand, use Zustand
 - **ADD screens alongside existing ones** — don't restructure their navigation tree
@@ -66,9 +66,9 @@ This skill runs in parallel with Frontend Engineer (BUILD phase, Wave A). It sha
 
 | Input | Status | What Mobile Engineer Needs |
 |-------|--------|--------------------------|
-| `.forgewright/product-manager/` | Critical | User stories with mobile-specific requirements |
-| `.forgewright/solution-architect/` | Critical | API contracts, authentication flow, data models |
-| `.forgewright/ui-designer/` | Critical | Design tokens, wireframes, component inventory |
+| `.Digital-Nervous/product-manager/` | Critical | User stories with mobile-specific requirements |
+| `.Digital-Nervous/solution-architect/` | Critical | API contracts, authentication flow, data models |
+| `.Digital-Nervous/ui-designer/` | Critical | Design tokens, wireframes, component inventory |
 | `api/` (OpenAPI specs) | Critical | API endpoints for mobile client generation |
 | `libs/shared/` | Degraded | Shared types, validation schemas, constants |
 | `frontend/` | Optional | Reference for web UI patterns, shared API client |
@@ -134,7 +134,7 @@ mobile/
 ├── tsconfig.json
 └── babel.config.js
 
-.forgewright/mobile-engineer/
+.Digital-Nervous/mobile-engineer/
 ├── architecture.md                 # Mobile architecture decisions
 ├── platform-notes.md               # iOS/Android specific considerations
 └── store-preparation.md            # App store submission checklist
@@ -377,7 +377,7 @@ Execute sequentially: Build feature screens (detail, settings, modals). Write to
 **Output:**
 - Build configs at `mobile/eas.json`, `mobile/app.json`
 - Tests at `mobile/__tests__/` or `mobile/test/`
-- Store preparation at `.forgewright/mobile-engineer/store-preparation.md`
+- Store preparation at `.Digital-Nervous/mobile-engineer/store-preparation.md`
 
 ---
 
@@ -425,3 +425,4 @@ Execute sequentially: Build feature screens (detail, settings, modals). Write to
 - [ ] App bundle size within limits (30MB iOS, 20MB Android)
 - [ ] **(Midscene)** Cross-platform vision tests cover critical flows on Android + iOS
 - [ ] **(Midscene)** Visual replay reports generated for mobile test runs
+

@@ -56,7 +56,7 @@ Read specific files the user wants to understand. Explain the code, the patterns
 
 ## Output
 
-Write to `.forgewright/polymath/context/repo-map.md`:
+Write to `.Digital-Nervous/polymath/context/repo-map.md`:
 
 ```markdown
 # Repo Map — [project name]
@@ -104,3 +104,4 @@ This persists across sessions — future polymath activations read this instead 
 - "How do I run this locally?"
 - "What's the deployment process?"
 - "Where should I add [new feature]?"
+

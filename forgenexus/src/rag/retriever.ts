@@ -1,5 +1,5 @@
 /**
- * RAG Module - Retriever for ForgeWright
+ * RAG Module - Retriever for Digital-Nervous
  * 
  * Main retrieval interface that combines hybrid search with citations.
  */
@@ -338,7 +338,7 @@ export class MockDocumentStore implements DocumentStore {
     lineEnd?: number;
     text: string;
   }>) {
-    this.documents = documents.map((d, i) => ({
+    this.documents = documents.map((d) => ({
       id: `${d.file}:${d.lineStart ?? 0}`,
       file: d.file,
       lineStart: d.lineStart ?? 0,

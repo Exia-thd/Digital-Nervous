@@ -6,7 +6,7 @@ description: >
   Core Web Vitals, and capacity planning.
   Routed via the production-grade orchestrator (Optimize mode).
 version: 1.0.0
-author: forgewright
+author: Digital-Nervous
 tags: [performance, load-testing, profiling, optimization, latency, core-web-vitals, k6, artillery]
 ---
 
@@ -113,7 +113,7 @@ export const options = {
 ## Output Structure
 
 ```
-.forgewright/performance-engineer/
+.Digital-Nervous/performance-engineer/
 ├── baseline-report.md               # Current performance baseline
 ├── profiling-results.md             # Bottleneck analysis
 ├── load-test/
@@ -139,3 +139,4 @@ export const options = {
 - [ ] Lighthouse CI integrated in PR pipeline
 - [ ] Production monitoring dashboards deployed
 - [ ] Alerting configured for latency/error/memory thresholds
+

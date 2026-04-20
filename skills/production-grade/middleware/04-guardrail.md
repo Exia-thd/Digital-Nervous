@@ -12,7 +12,7 @@
    BLOCKED operations:
    - rm -rf /, chmod 777, destructive git operations
    - .env, .key, .pem, credentials.json reads
-   - .forgewright/protected_paths writes
+   - .Digital-Nervous/protected_paths writes
    
 2. Scan staged files for API keys, tokens, passwords
    
@@ -26,3 +26,4 @@
 - If blocked tool called → DENY and explain why
 - If sensitive file detected → WARN with redaction recommendation
 - Never silently allow destructive operations
+

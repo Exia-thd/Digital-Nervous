@@ -2,7 +2,7 @@
 
 ## Overview
 
-Integration architecture connecting Forgewright's production-quality Unity skills with Unity-MCP's Editor automation tools.
+Integration architecture connecting Digital-Nervous's production-quality Unity skills with Unity-MCP's Editor automation tools.
 
 ---
 
@@ -10,7 +10,7 @@ Integration architecture connecting Forgewright's production-quality Unity skill
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
-│                     Forgewright Pipeline                        │
+│                     Digital-Nervous Pipeline                        │
 ├─────────────────────────────────────────────────────────────────┤
 │  Game Designer → Unity Engineer → Unity Shader Artist          │
 │                → Unity Multiplayer → QA                        │
@@ -20,7 +20,7 @@ Integration architecture connecting Forgewright's production-quality Unity skill
 ┌─────────────────────────────────────────────────────────────────┐
 │                   Unity-MCP Bridge                             │
 ├─────────────────────────────────────────────────────────────────┤
-│  Forgewright Tasks              Unity-MCP Tools                 │
+│  Digital-Nervous Tasks              Unity-MCP Tools                 │
 │  ─────────────────             ─────────────────                │
 │  Architecture Design     →     (No Editor needed)              │
 │  Scene Setup            →     gameobject-create/modify         │
@@ -49,7 +49,7 @@ Integration architecture connecting Forgewright's production-quality Unity skill
 ### Flow 1: Architecture-First (No Editor)
 
 ```
-Forgewright                  Unity-MCP              Unity Editor
+Digital-Nervous                  Unity-MCP              Unity Editor
     │                           │                       │
     │  Design SO framework      │                       │
     │──────────────────────────>│                       │
@@ -68,7 +68,7 @@ Forgewright                  Unity-MCP              Unity Editor
 ### Flow 2: Editor Automation
 
 ```
-Forgewright                  Unity-MCP              Unity Editor
+Digital-Nervous                  Unity-MCP              Unity Editor
     │                           │                       │
     │  Define scene structure   │                       │
     │──────────────────────────>│                       │
@@ -88,7 +88,7 @@ Forgewright                  Unity-MCP              Unity Editor
 ### Flow 3: Testing & Verification
 
 ```
-Forgewright                  Unity-MCP              Unity Editor
+Digital-Nervous                  Unity-MCP              Unity Editor
     │                           │                       │
     │  Define test scenarios     │                       │
     │──────────────────────────>│                       │
@@ -111,9 +111,9 @@ Forgewright                  Unity-MCP              Unity Editor
 
 ## Component Interactions
 
-### 1. Forgewright Skills → Unity-MCP
+### 1. Digital-Nervous Skills → Unity-MCP
 
-| Forgewright Component | Unity-MCP Interaction |
+| Digital-Nervous Component | Unity-MCP Interaction |
 |---------------------|----------------------|
 | `unity-engineer` | Scene setup, component wiring, prefab creation |
 | `unity-shader-artist` | Material creation, shader assignment, visual verification |
@@ -132,7 +132,7 @@ Forgewright                  Unity-MCP              Unity Editor
 ### 3. Quality Gates
 
 ```
-Unity-MCP Results ──► Forgewright Quality Gate
+Unity-MCP Results ──► Digital-Nervous Quality Gate
        │                         │
        ▼                         ▼
   Test results            Architecture compliance
@@ -173,23 +173,23 @@ unity-game-developer://
 
 ## Integration Patterns
 
-### Pattern 1: Forgewright-First, Unity-MCP-Second
+### Pattern 1: Digital-Nervous-First, Unity-MCP-Second
 
 **Workflow:**
-1. Forgewright: Design architecture (no Editor)
-2. Forgewright: Generate SO framework code
+1. Digital-Nervous: Design architecture (no Editor)
+2. Digital-Nervous: Generate SO framework code
 3. Unity-MCP: Create scene objects
 4. Unity-MCP: Assign components
-5. Forgewright: Review and validate
+5. Digital-Nervous: Review and validate
 
 **When:** New architecture, greenfield projects
 
-### Pattern 2: Unity-MCP-First, Forgewright-Second
+### Pattern 2: Unity-MCP-First, Digital-Nervous-Second
 
 **Workflow:**
 1. Unity-MCP: Create initial scene structure
-2. Forgewright: Analyze existing code
-3. Forgewright: Extend with SO patterns
+2. Digital-Nervous: Analyze existing code
+3. Digital-Nervous: Extend with SO patterns
 4. Unity-MCP: Apply changes
 
 **When:** Brownfield projects, extending existing code
@@ -197,13 +197,13 @@ unity-game-developer://
 ### Pattern 3: Interleaved (Iterative)
 
 **Workflow:**
-1. Forgewright: Design component
+1. Digital-Nervous: Design component
 2. Unity-MCP: Create GameObject
-3. Forgewright: Implement logic
+3. Digital-Nervous: Implement logic
 4. Unity-MCP: Add components
-5. Forgewright: Connect events
+5. Digital-Nervous: Connect events
 6. Unity-MCP: Test and screenshot
-7. Forgewright: Review and iterate
+7. Digital-Nervous: Review and iterate
 
 **When:** Complex features, visual verification needed
 
@@ -214,7 +214,7 @@ unity-game-developer://
 ### Integration Files
 
 ```
-forgewright/
+Digital-Nervous/
 ├── skills/
 │   ├── unity-engineer/
 │   │   ├── SKILL.md              # Updated with Unity-MCP section
@@ -241,16 +241,16 @@ forgewright/
 
 ### 1. Custom Unity-MCP Tools
 
-Forgewright có thể recommend tạo custom tools cho project-specific automation:
+Digital-Nervous có thể recommend tạo custom tools cho project-specific automation:
 
 ```csharp
 [McpPluginToolType]
-public class Tool_Forgewright
+public class Tool_Digital-Nervous
 {
-    [McpPluginTool("forgewright-create-so-framework")]
+    [McpPluginTool("Digital-Nervous-create-so-framework")]
     public string CreateSOFramework()
     {
-        // Custom tool cho Forgewright-specific patterns
+        // Custom tool cho Digital-Nervous-specific patterns
     }
 }
 ```
@@ -262,7 +262,7 @@ Unity-MCP có extensions cho:
 - `Unity-AI-ParticleSystem`: VFX tools
 - `Unity-AI-ProBuilder`: ProBuilder tools
 
-Forgewright có thể recommend cài đặt these khi cần.
+Digital-Nervous có thể recommend cài đặt these khi cần.
 
 ---
 
@@ -295,3 +295,4 @@ Forgewright có thể recommend cài đặt these khi cần.
 3. **Asset Database Refresh:** Refresh operations có thể chậm
    - ✅ Batch operations khi possible
    - ✅ Refresh chỉ khi cần thiết
+

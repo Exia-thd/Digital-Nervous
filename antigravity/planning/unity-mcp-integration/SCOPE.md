@@ -21,7 +21,7 @@
 
 - Must maintain backward compatibility
 - All changes are documentation/skill updates only
-- No C# code changes to Unity-MCP or Forgewright
+- No C# code changes to Unity-MCP or Digital-Nervous
 
 ## Deliverables
 
@@ -35,3 +35,4 @@
 | 6 | Updated MCP generator skill | `skills/mcp-generator/SKILL.md` |
 | 7 | Setup guide | `docs/unity-mcp-setup.md` |
 | 8 | Tools quick reference | `docs/unity-mcp-tools-reference.md` |
+

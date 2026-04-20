@@ -1,7 +1,7 @@
 /**
  * Pact Contract Testing Configuration
  * Defines provider/consumer setup for API contract validation
- * For forgewright project
+ * For Digital-Nervous project
  */
 import { PactV3, MatchersV3 } from '@pact-foundation/pact';
 
@@ -15,7 +15,7 @@ export const pactConfig = {
 
 export const createProvider = (name: string) =>
   new PactV3({
-    consumer: 'forgewright-client',
+    consumer: 'Digital-Nervous-client',
     provider: name,
     dir: pactConfig.dir,
     logLevel: pactConfig.logLevel,
@@ -25,7 +25,7 @@ export const createProvider = (name: string) =>
 export const createConsumer = (name: string) =>
   new PactV3({
     consumer: name,
-    provider: 'forgewright-api',
+    provider: 'Digital-Nervous-api',
     dir: pactConfig.dir,
     logLevel: pactConfig.logLevel,
     spec: pactConfig.spec,

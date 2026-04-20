@@ -1,10 +1,10 @@
-# Forgewright — Production Grade AI Pipeline
+# Digital-Nervous — Production Grade AI Pipeline
 
-> **This file is read by Antigravity on every new chat.** It tells the AI assistant how to use Forgewright's 54 specialized skills.
+> **This file is read by Antigravity on every new chat.** It tells the AI assistant how to use Digital-Nervous's 56 specialized skills.
 
-## What is Forgewright?
+## What is Digital-Nervous?
 
-Forgewright is an adaptive orchestrator with **55 AI skills** that covers the entire software development lifecycle **plus game development, XR, data engineering, and MLOps**. From a single code review to a full Unity/Unreal/Godot/Phaser 3/Three.js game build, it routes to the right skills automatically. Supports **parallel execution** via git worktrees for faster builds.
+Digital-Nervous is an adaptive orchestrator with **56 AI skills** that covers the entire software development lifecycle **plus game development, XR, data engineering, and MLOps**. From a single code review to a full Unity/Unreal/Godot/Phaser 3/Three.js game build, it routes to the right skills automatically. Supports **parallel execution** via git worktrees for faster builds.
 
 **Pipeline:** `INTERPRET → DEFINE → BUILD → HARDEN → SHIP → SUSTAIN`
 
@@ -17,7 +17,7 @@ Forgewright is an adaptive orchestrator with **55 AI skills** that covers the en
    - Detects vague/confusing requests and asks clarifying questions (MAX 3)
    - Generates a structured request with clear scope and success criteria
    - **DO NOT SKIP THIS STEP** — if the request is unclear, ask before proceeding
-2. **STEP 1 — Classify the request** into one of 23 modes (Full Build, Feature, Harden, Ship, Test, Review, Architect, Document, Explore, Research, Optimize, Design, Mobile, Mobile Test, Marketing, Grow, **Game Build**, **XR Build**, **Analyze**, **Prompt**)
+2. **STEP 1 — Classify the request** into one of 24 modes (Full Build, Feature, Harden, Ship, Test, Review, Architect, Document, Explore, Research, Optimize, Design, Mobile, Mobile Test, Marketing, Grow, **Game Build**, **XR Build**, **Analyze**, **Prompt**, **Autonomous**)
 3. **STEP 2 — PLAN FIRST, ALWAYS** — Before ANY skill does ANY work, it MUST create a plan, score it (8 criteria, threshold ≥ 9.0/10), and improve until passing. See `skills/_shared/protocols/plan-quality-loop.md`
 4. **STEP 3 — Execute the pipeline** as defined in the orchestrator
 
@@ -69,21 +69,48 @@ Users can invoke these workflows directly:
 - `/pipeline` — Show full pipeline reference and available modes
 - `/setup-mobile-test` — Set up plug-and-play mobile testing (Android/iOS)
 - `/setup-paperclip` — Set up Paperclip multi-agent orchestration (optional)
-- `/onboard` — Run deep project analysis (creates `.forgewright/project-profile.json`)
-- `/mcp` — Start auto-generated project-specific MCP server
+- `/onboard` — Run deep project analysis (creates `.Digital-Nervous/project-profile.json`)
+- `/mcp` — Generate MCP workspace isolation config — creates `.antigravity/mcp-manifest.json` for Antigravity conflict-free multi-project support
 
 ## Auto-Initialization Check
 
 Run silently BEFORE any execution (all modes) to ensure project intelligence is fully configured.
 
-**Step 0.1 — ForgeNexus Check:**
+**Step 0.1 — ForgeNexus + MCP Check:**
 
-1. Check if the file `.forgewright/mcp-server/mcp-config.json` exists in the project root.
-2. **If missing**, silently execute the following terminal commands to auto-initialize it:
-   - `npx --yes forgenexus analyze`
-   - `bash <path-to-forgewright-submodule>/scripts/mcp-generate.sh`
-   - Yield a brief message to the user: `ℹ Auto-initialized ForgeNexus index and MCP server (missing setup).`
-3. **If exists**, continue normally without doing anything.
+1. Check if `.antigravity/mcp-manifest.json` exists and is current in the project root.
+2. **If missing or stale**, run ONE command to set up everything:
+
+   **Detect Digital-Nervous path first**, then run:
+
+   ```bash
+   # If Digital-Nervous is a submodule in the project:
+   bash <project-root>/Digital-Nervous/scripts/Digital-Nervous-mcp-setup.sh
+
+   # If Digital-Nervous IS the project:
+   bash scripts/Digital-Nervous-mcp-setup.sh
+
+   # For Antigravity plugin users (universal, works from any project):
+   bash <Digital-Nervous>/.antigravity/plugins/production-grade/scripts/Digital-Nervous-mcp-setup.sh
+   ```
+
+   This single command:
+   - Analyzes the project (ForgeNexus index)
+   - Generates the MCP server
+   - Creates the workspace manifest
+   - Updates global config (Cursor/Claude)
+   - Verifies installation
+
+3. After setup, yield a brief message:
+   `ℹ MCP server ready for this workspace. Restart your AI client to activate.`
+
+4. **If already set up**, continue normally.
+
+**Why a single script?**
+- No more juggling multiple scripts (`mcp-generate.sh`, `mcp-serve.sh`, `mcp-launcher.sh`)
+- No more manual JSON editing
+- No more "which script should I run?" confusion
+- Works consistently across all project types (submodule, standalone, worktree)
 
 ## Auto-Update Check
 
@@ -91,14 +118,14 @@ At the start of each session, silently check if a newer version is available:
 
 ```
 Current version: read VERSION file
-Remote version: compare with https://github.com/buiphucminhtam/forgewright
+Remote version: compare with https://github.com/buiphucminhtam/Digital-Nervous
 ```
 
-If a newer version exists, mention it briefly: *"Forgewright update available (vX.X.X → vY.Y.Y). Run `/update` to upgrade."*
+If a newer version exists, mention it briefly: *"Digital-Nervous update available (vX.X.X → vY.Y.Y). Run `/update` to upgrade."*
 
 ## Skills Directory
 
-All 55 skills are in the `skills/` directory:
+All 56 skills are in the `skills/` directory:
 
 | Skill | Location |
 |-------|----------|
@@ -108,7 +135,7 @@ All 55 skills are in the `skills/` directory:
 | Parallel Dispatch | `skills/parallel-dispatch/SKILL.md` |
 | Memory Manager | `skills/memory-manager/SKILL.md` |
 | Skill Maker | `skills/skill-maker/SKILL.md` |
-| MCP Generator | `skills/mcp-generator/SKILL.md` |
+| MCP Generator | `skills/mcp-generator/SKILL.md` — generates `.antigravity/mcp-manifest.json` for Antigravity workspace isolation |
 | **Planning** | |
 | Antigravity | `antigravity/README.md` |
 | **Engineering** | |
@@ -131,6 +158,7 @@ All 55 skills are in the `skills/` directory:
 | Database Engineer | `skills/database-engineer/SKILL.md` |
 | Debugger | `skills/debugger/SKILL.md` |
 | Prompt Engineer | `skills/prompt-engineer/SKILL.md` |
+| Prompt Optimizer | `skills/prompt-optimizer/SKILL.md` — DSPy-powered algorithmic optimization |
 | **New Engineering (v6.1)** | |
 | AI Engineer | `skills/ai-engineer/SKILL.md` |
 | Accessibility Engineer | `skills/accessibility-engineer/SKILL.md` |
@@ -139,6 +167,8 @@ All 55 skills are in the `skills/` directory:
 | Data Engineer | `skills/data-engineer/SKILL.md` |
 | XLSX Engineer | `skills/xlsx-engineer/SKILL.md` |
 | Project Manager | `skills/project-manager/SKILL.md` |
+| **Testing** | |
+| Autonomous Testing | `skills/autonomous-testing/SKILL.md` — Self-healing E2E workflow |
 | **Growth** | |
 | Growth Marketer | `skills/growth-marketer/SKILL.md` |
 | Conversion Optimizer | `skills/conversion-optimizer/SKILL.md` |
@@ -164,6 +194,7 @@ All 55 skills are in the `skills/` directory:
 | Game Audio Engineer | `skills/game-audio-engineer/SKILL.md` |
 | Unity Shader Artist | `skills/unity-shader-artist/SKILL.md` + Unity-MCP visual feedback |
 | Unity Multiplayer | `skills/unity-multiplayer/SKILL.md` + Unity-MCP testing |
+| Unity MCP | `skills/unity-mcp/SKILL.md` — Editor automation, 100+ tools |
 | Unreal Technical Artist | `skills/unreal-technical-artist/SKILL.md` |
 | Unreal Multiplayer | `skills/unreal-multiplayer/SKILL.md` |
 | XR Engineer | `skills/xr-engineer/SKILL.md` |
@@ -200,7 +231,7 @@ planQuality:
 
 ## Project State (v7.0)
 
-Forgewright maintains project state in the `.forgewright/` directory:
+Digital-Nervous maintains project state in the `.Digital-Nervous/` directory:
 - `project-profile.json` — Project fingerprint, health, patterns, risk (committed)
 - `code-conventions.md` — Detected coding patterns for consistency (committed)
 - `session-log.json` — Session history and resume state (gitignored)
@@ -212,7 +243,13 @@ Forgewright maintains project state in the `.forgewright/` directory:
 <!-- forgenexus:start -->
 # ForgeNexus — Code Intelligence
 
-> **NOTE:** This block describes the self-hosted ForgeNexus engine built into Forgewright. It replaces the previous `forgenexus` npm dependency. Run `forgenexus analyze` to index any codebase.
+<<<<<<< Updated upstream
+> **NOTE:** This block describes the self-hosted ForgeNexus engine built into Digital-Nervous. It replaces the previous `forgenexus` npm dependency. Run `forgenexus analyze` to index any codebase.
+=======
+This project is indexed by GitNexus as **Digital-Nervous** (2868 symbols, 3021 relationships, 25 execution flows). Use the GitNexus MCP tools to understand code, assess impact, and navigate safely.
+
+> If any GitNexus tool warns the index is stale, run `npx gitnexus analyze` in terminal first.
+>>>>>>> Stashed changes
 
 ## Always Do
 
@@ -226,7 +263,7 @@ Forgewright maintains project state in the `.forgewright/` directory:
 
 1. `forgenexus_query({query: "<error or symptom>"})` — find execution flows related to the issue
 2. `forgenexus_context({name: "<suspect function>"})` — see all callers, callees, and process participation
-3. `READ forgenexus://repo/forgewright/process/{processName}` — trace the full execution flow step by step
+3. `READ forgenexus://repo/Digital-Nervous/process/{processName}` — trace the full execution flow step by step
 4. For regressions: `forgenexus_detect_changes({scope: "compare", base_ref: "main"})` — see what your branch changed
 
 ## When Refactoring
@@ -268,10 +305,10 @@ Forgewright maintains project state in the `.forgewright/` directory:
 | Resource | Use for |
 |----------|---------|
 | `forgenexus://repos` | All indexed repositories |
-| `forgenexus://repo/forgewright/context` | Codebase overview, check freshness |
-| `forgenexus://repo/forgewright/clusters` | All functional areas |
-| `forgenexus://repo/forgewright/processes` | All execution flows |
-| `forgenexus://repo/forgewright/process/{name}` | Step-by-step execution trace |
+| `forgenexus://repo/Digital-Nervous/context` | Codebase overview, check freshness |
+| `forgenexus://repo/Digital-Nervous/clusters` | All functional areas |
+| `forgenexus://repo/Digital-Nervous/processes` | All execution flows |
+| `forgenexus://repo/Digital-Nervous/process/{name}` | Step-by-step execution trace |
 | `forgenexus://schema` | Graph schema reference |
 
 ## Self-Check Before Finishing
@@ -283,8 +320,38 @@ Before completing any code modification task, verify:
 4. All d=1 (WILL BREAK) dependents were updated
 
 ## Keeping the Index Fresh
+<<<<<<< Updated upstream
 
 After committing code changes, the ForgeNexus index becomes stale. Re-run analyze to update it:
+=======
+
+After committing code changes, the GitNexus index becomes stale. Re-run analyze to update it:
+
+```bash
+npx gitnexus analyze
+```
+
+If the index previously included embeddings, preserve them by adding `--embeddings`:
+
+```bash
+npx gitnexus analyze --embeddings
+```
+
+To check whether embeddings exist, inspect `.gitnexus/meta.json` — the `stats.embeddings` field shows the count (0 means no embeddings). **Running analyze without `--embeddings` will delete any previously generated embeddings.**
+
+> Claude Code users: A PostToolUse hook handles this automatically after `git commit` and `git merge`.
+
+## CLI
+
+| Task | Read this skill file |
+|------|---------------------|
+| Understand architecture / "How does X work?" | `.claude/skills/gitnexus/gitnexus-exploring/SKILL.md` |
+| Blast radius / "What breaks if I change X?" | `.claude/skills/gitnexus/gitnexus-impact-analysis/SKILL.md` |
+| Trace bugs / "Why is X failing?" | `.claude/skills/gitnexus/gitnexus-debugging/SKILL.md` |
+| Rename / extract / split / refactor | `.claude/skills/gitnexus/gitnexus-refactoring/SKILL.md` |
+| Tools, resources, schema reference | `.claude/skills/gitnexus/gitnexus-guide/SKILL.md` |
+| Index, status, clean, wiki CLI commands | `.claude/skills/gitnexus/gitnexus-cli/SKILL.md` |
+>>>>>>> Stashed changes
 
 ```bash
 npx forgenexus analyze

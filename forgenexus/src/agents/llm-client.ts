@@ -1,5 +1,5 @@
 /**
- * LLM Client with Guardrails for ForgeWright Anti-Hallucination System
+ * LLM Client with Guardrails for Digital-Nervous Anti-Hallucination System
  * 
  * Provides a unified interface for LLM interactions with built-in guardrails,
  * citation extraction, and confidence estimation.
@@ -10,7 +10,6 @@ import type {
   Guardrails,
   GuardedResult,
   Citation,
-  Evidence,
 } from './types.js';
 import { 
   DEFAULT_GUARDRAILS,
@@ -19,6 +18,11 @@ import {
   CITATION_PATTERN, 
   applyGuardrails 
 } from './prompts.js';
+import { 
+  TokenTracker, 
+  getGlobalTracker,
+  type TokenUsage,
+} from './token-tracker.js';
 
 // ============================================================================
 // LLM Client Implementation
@@ -40,7 +44,7 @@ export class BaseLLMClient {
     this.config = config ?? { provider: 'anthropic', model: 'base', maxRetries: 0, timeout: 0 };
   }
   
-  async generate(prompt: string, options?: GenerateOptions): Promise<LLMResponse> {
+  async generate(_prompt: string, _options?: GenerateOptions): Promise<LLMResponse> {
     throw new Error('Not implemented');
   }
   
@@ -68,11 +72,11 @@ export class AnthropicClient extends BaseLLMClient {
     // For now, we'll use a placeholder
   }
   
-  async generate(prompt: string, options?: GenerateOptions): Promise<LLMResponse> {
+  async generate(_prompt: string, _options?: GenerateOptions): Promise<LLMResponse> {
     // In production, this would call the Anthropic API
     // For now, return a mock response
     return {
-      content: `Mock response for: ${prompt.slice(0, 100)}...`,
+      content: `Mock response for: ${_prompt.slice(0, 100)}...`,
       raw: {},
       usage: { inputTokens: 100, outputTokens: 50 },
     };
@@ -89,10 +93,10 @@ export class OpenAIClient extends BaseLLMClient {
     this.config = config;
   }
   
-  async generate(prompt: string, options?: GenerateOptions): Promise<LLMResponse> {
+  async generate(_prompt: string, _options?: GenerateOptions): Promise<LLMResponse> {
     // In production, this would call the OpenAI API
     return {
-      content: `Mock response for: ${prompt.slice(0, 100)}...`,
+      content: `Mock response for: ${_prompt.slice(0, 100)}...`,
       raw: {},
       usage: { inputTokens: 100, outputTokens: 50 },
     };
@@ -113,18 +117,25 @@ export class GuardedLLMClient {
   private client: BaseLLMClient;
   private guardrails: Guardrails;
   private onError?: (error: Error) => void;
+  private tokenTracker: TokenTracker;
   
-  constructor(options: GuardedLLMClientOptions) {
+  constructor(options: GuardedLLMClientOptions & { tokenTracker?: TokenTracker }) {
     this.client = options.client;
     this.guardrails = options.guardrails;
     this.onError = options.onError;
+    this.tokenTracker = options.tokenTracker || getGlobalTracker();
   }
   
   /**
    * Generate content with guardrails applied
    */
-  async generate(prompt: string, options?: GenerateOptions): Promise<GuardedResult> {
+  async generate(
+    prompt: string, 
+    options?: GenerateOptions,
+    metadata?: { skill?: string; mode?: string }
+  ): Promise<GuardedResult> {
     const guardedPrompt = applyGuardrails(prompt, this.guardrails);
+    const startTime = Date.now();
     
     try {
       const response = await this.client.generate(guardedPrompt, {
@@ -133,8 +144,42 @@ export class GuardedLLMClient {
         system: options?.system,
       });
       
+      // Log token usage if available
+      const model = (this.client as any).config?.model || 'unknown';
+      const provider = (this.client as any).config?.provider || 'unknown';
+      
+      if (response.usage && this.tokenTracker.isEnabled()) {
+        const usage: TokenUsage = {
+          timestamp: new Date().toISOString(),
+          project: process.cwd(),
+          projectPath: process.cwd(),
+          model,
+          provider,
+          inputTokens: response.usage.inputTokens,
+          outputTokens: response.usage.outputTokens,
+          latencyMs: Date.now() - startTime,
+          skill: metadata?.skill,
+          mode: metadata?.mode,
+        };
+        this.tokenTracker.log(usage);
+      }
+      
       return this.processResponse(response);
     } catch (error) {
+      // Log error if tracking is enabled
+      if (this.tokenTracker.isEnabled()) {
+        const model = (this.client as any).config?.model || 'unknown';
+        const provider = (this.client as any).config?.provider || 'unknown';
+        this.tokenTracker.logError({
+          timestamp: new Date().toISOString(),
+          project: process.cwd(),
+          projectPath: process.cwd(),
+          model,
+          provider,
+          error: (error as Error).message,
+          errorType: (error as Error).name || 'Error',
+        });
+      }
       this.onError?.(error as Error);
       return this.handleError(error as Error);
     }

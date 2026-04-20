@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 # forge-validate.sh — Quality Gate Validation CLI
-# Part of Forgewright Production Grade Pipeline
+# Part of Digital-Nervous Production Grade Pipeline
 #
 # Automates Quality Gate Levels 1-3:
 #   Level 1: Build & Syntax (critical)
@@ -32,7 +32,7 @@ ISSUES=()
 WARNINGS=()
 
 # Config
-OUTPUT_DIR=".forgewright"
+OUTPUT_DIR=".Digital-Nervous"
 REPORT_FILE=""
 QUIET=false
 JSON_OUTPUT=false
@@ -378,13 +378,13 @@ usage() {
   cat <<EOF
 
   ${BOLD}forge-validate.sh${NC} — Quality Gate Validation CLI
-  Part of Forgewright Production Grade Pipeline
+  Part of Digital-Nervous Production Grade Pipeline
 
   ${BOLD}Usage:${NC} ./scripts/forge-validate.sh [options]
 
   ${BOLD}Options:${NC}
     --quiet, -q       Suppress output (exit code only)
-    --json            Write JSON report to .forgewright/
+    --json            Write JSON report to .Digital-Nervous/
     --report FILE     Write JSON report to specific file
     --strict          Treat Level 3 warnings as failures
     --help, -h        Show this help
@@ -418,7 +418,7 @@ main() {
 
   if ! $QUIET; then
     echo ""
-    echo -e "${BOLD}${CYAN}Forgewright Quality Gate Validation${NC}"
+    echo -e "${BOLD}${CYAN}Digital-Nervous Quality Gate Validation${NC}"
     echo -e "${DIM}Running Level 1-3 automated checks...${NC}"
   fi
 
@@ -429,3 +429,4 @@ main() {
 }
 
 main "$@"
+

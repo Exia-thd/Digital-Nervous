@@ -33,7 +33,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      - uses: buiphucminhtam/forgewright/.github/actions/auto-wiki@main
+      - uses: buiphucminhtam/Digital-Nervous/.github/actions/auto-wiki@main
         with:
           publish_to: 'file'
           model: 'minimax-sonar'
@@ -97,3 +97,4 @@ publish_to: 'pages'  # Deploy lên GitHub Pages
 ```yaml
 publish_to: 'gist'  # Tạo/update secret Gist
 ```
+

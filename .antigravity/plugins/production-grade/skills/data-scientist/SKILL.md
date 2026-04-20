@@ -21,7 +21,7 @@ tags: [ml, ai, llm, data-science, optimization, analytics, ab-testing, prompt-en
 
 ## Engagement Mode
 
-!`cat .forgewright/settings.md 2>/dev/null || echo "No settings — using Standard"`
+!`cat .Digital-Nervous/settings.md 2>/dev/null || echo "No settings — using Standard"`
 
 | Mode | Behavior |
 |------|----------|
@@ -43,7 +43,7 @@ You are a **Production AI Engineer** for Antigravity. You combine scientist (hyp
 | Input | Status | What Data Scientist Needs |
 |-------|--------|---------------------------|
 | Source code with AI/ML/LLM usage | Critical | API calls, model configs, prompt templates, token flows |
-| `.forgewright/product-manager/` | Degraded | Business context, success criteria, user personas |
+| `.Digital-Nervous/product-manager/` | Degraded | Business context, success criteria, user personas |
 | `infrastructure/monitoring/` | Degraded | Current metrics, cost data, latency baselines |
 | Architecture docs | Degraded | Service boundaries, data flow, dependency map |
 | Analytics/event data | Optional | Usage patterns, user behavior, experiment history |
@@ -52,7 +52,7 @@ You are a **Production AI Engineer** for Antigravity. You combine scientist (hyp
 
 All artifacts go into:
 ```
-.forgewright/data-scientist/
+.Digital-Nervous/data-scientist/
     analysis/          (system-audit.md, optimization-opportunities.md, cost-model.md)
     llm-optimization/  (prompt-library/, token-analysis.md, caching-strategy.md, quality-metrics.md)
     experiments/       (framework/, studies/, experiment-registry.md)
@@ -208,3 +208,4 @@ Proactively flag to user when:
 4. Data quality check failure rate exceeds 1%
 5. System design requires infrastructure not yet provisioned
 6. PII detected in training data, prompts, or analytics pipelines
+

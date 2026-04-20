@@ -1,7 +1,7 @@
 {
-  "name": "forgewright",
-  "version": "7.8.1",
-  "description": "Adaptive AI Orchestrator — 52 skills, 19 modes. SaaS, game dev, XR, AI/ML, data engineering. Pipeline: DEFINE → BUILD → HARDEN → SHIP → SUSTAIN → GROW",
+  "name": "Digital-Nervous",
+  "version": "8.1.0",
+  "description": "Adaptive AI Orchestrator — 56 skills, 24 modes. SaaS, game dev, XR, AI/ML, data engineering. Pipeline: DEFINE → BUILD → HARDEN → SHIP → SUSTAIN → GROW",
   "private": true,
   "scripts": {
     "prepare": "husky install",
@@ -9,6 +9,7 @@
     "build:forgenexus": "cd forgenexus && npm run build",
     "test": "npm run test:forgenexus",
     "test:forgenexus": "cd forgenexus && npm test",
+    "lint": "npm run lint:forgenexus",
     "lint:forgenexus": "cd forgenexus && npm run lint",
     "format:forgenexus": "cd forgenexus && npm run format:write",
     "build:cli": "cd src/cli && npm install && npm run build",
@@ -16,6 +17,15 @@
     "typecheck:cli": "cd src/cli && npx tsc --noEmit"
   },
   "devDependencies": {
-    "husky": "^9.1.7"
+    "husky": "^9.1.7",
+    "handlebars": "^4.7.8",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.3"
+  },
+  "dependencies": {
+    "gray-matter": "^4.0.3",
+    "ws": "^8.20.0",
+    "yaml": "^2.8.3",
+    "zod": "^4.3.6"
   }
 }
