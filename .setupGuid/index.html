@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Digital-Nervous v8.0 — Setup Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0a0a0f;--bg2:#12121a;--bg3:#1a1a28;--bg4:#222236;--text:#e4e4ef;--text2:#9898b0;--accent:#6c5ce7;--accent2:#a29bfe;--green:#00b894;--green2:#55efc4;--red:#e17055;--orange:#fdcb6e;--blue:#74b9ff;--cyan:#81ecec;--pink:#fd79a8;--grad1:linear-gradient(135deg,#6c5ce7,#a29bfe);--grad2:linear-gradient(135deg,#00b894,#55efc4);--grad3:linear-gradient(135deg,#e17055,#fdcb6e);--grad4:linear-gradient(135deg,#0984e3,#74b9ff);--radius:12px;--shadow:0 4px 24px rgba(0,0,0,.4)}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;overflow-x:hidden}
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;position:relative;overflow:hidden;background:radial-gradient(ellipse at 50% 0%,rgba(108,92,231,.15),transparent 70%)}
+.hero::before{content:'';position:absolute;width:600px;height:600px;background:radial-gradient(circle,rgba(108,92,231,.08),transparent 70%);top:-200px;right:-100px;border-radius:50%}
+.hero-content{position:relative;z-index:1;max-width:900px;padding:0 2rem}
+.hero h1{font-size:clamp(2.5rem,6vw,4.5rem);font-weight:900;background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:.5rem;letter-spacing:-.02em}
+.hero .ver{font-size:1.1rem;color:var(--accent2);font-weight:600;margin-bottom:1rem;display:inline-block;padding:.3rem 1rem;border:1px solid rgba(162,155,254,.3);border-radius:20px}
+.hero p{font-size:1.15rem;color:var(--text2);max-width:700px;margin:0 auto 2rem}
+.hero-stats{display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap;margin-top:2rem}
+.stat{background:var(--bg2);border:1px solid rgba(255,255,255,.06);border-radius:var(--radius);padding:1rem 1.5rem;min-width:120px;text-align:center;transition:.3s}
+.stat:hover{border-color:var(--accent);transform:translateY(-2px)}
+.stat-num{font-size:2rem;font-weight:800;background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.stat-label{font-size:.8rem;color:var(--text2);margin-top:.2rem}
+nav{position:fixed;top:0;left:0;right:0;z-index:999;background:rgba(10,10,15,.85);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,.05);padding:.8rem 2rem;display:flex;align-items:center;gap:2rem;font-size:.85rem}
+nav .logo{font-weight:800;font-size:1.1rem;background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+nav a{color:var(--text2);text-decoration:none;transition:.2s}
+nav a:hover{color:var(--accent2)}
+.container{max-width:1200px;margin:0 auto;padding:4rem 2rem}
+h2{font-size:2rem;font-weight:800;margin-bottom:1.5rem;position:relative;padding-bottom:.5rem}
+h2::after{content:'';position:absolute;bottom:0;left:0;width:60px;height:3px;background:var(--grad1);border-radius:2px}
+h3{font-size:1.3rem;font-weight:700;margin:2rem 0 1rem;color:var(--accent2)}
+h4{font-size:1.05rem;font-weight:600;margin:1.5rem 0 .8rem;color:var(--green2)}
+.section{padding:5rem 0;border-bottom:1px solid rgba(255,255,255,.04)}
+.card{background:var(--bg2);border:1px solid rgba(255,255,255,.06);border-radius:var(--radius);padding:1.5rem;margin-bottom:1rem;transition:.3s}
+.card:hover{border-color:rgba(108,92,231,.3);box-shadow:0 0 30px rgba(108,92,231,.05)}
+.card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:1rem}
+.card-icon{font-size:2rem;margin-bottom:.8rem}
+.card h4{margin-top:0;color:var(--text)}
+.card p{color:var(--text2);font-size:.9rem}
+.badge{display:inline-block;padding:.2rem .6rem;border-radius:6px;font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em}
+.badge-red{background:rgba(225,112,85,.15);color:var(--red)}
+.badge-green{background:rgba(0,184,148,.15);color:var(--green)}
+.badge-yellow{background:rgba(253,203,110,.15);color:var(--orange)}
+.badge-blue{background:rgba(116,185,255,.15);color:var(--blue)}
+.badge-purple{background:rgba(108,92,231,.15);color:var(--accent2)}
+table{width:100%;border-collapse:collapse;margin:1rem 0;font-size:.88rem}
+th{background:var(--bg3);color:var(--accent2);text-align:left;padding:.8rem 1rem;font-weight:600;border-bottom:2px solid rgba(108,92,231,.2)}
+td{padding:.7rem 1rem;border-bottom:1px solid rgba(255,255,255,.04);color:var(--text2)}
+tr:hover td{background:rgba(108,92,231,.03)}
+pre{background:var(--bg3);border:1px solid rgba(255,255,255,.06);border-radius:8px;padding:1.2rem;overflow-x:auto;font-family:'JetBrains Mono',monospace;font-size:.82rem;line-height:1.6;color:var(--green2);margin:1rem 0}
+code{font-family:'JetBrains Mono',monospace;font-size:.85rem;background:rgba(108,92,231,.1);padding:.15rem .4rem;border-radius:4px;color:var(--accent2)}
+pre code{background:none;padding:0;color:inherit}
+.alert{border-radius:var(--radius);padding:1rem 1.2rem;margin:1rem 0;font-size:.9rem;border-left:4px solid}
+.alert-tip{background:rgba(0,184,148,.08);border-color:var(--green)}
+.alert-warn{background:rgba(225,112,85,.08);border-color:var(--red)}
+.alert-info{background:rgba(108,92,231,.08);border-color:var(--accent)}
+.alert-fire{background:rgba(253,203,110,.08);border-color:var(--orange)}
+.tabs{display:flex;gap:.5rem;margin-bottom:0;border-bottom:2px solid var(--bg3)}
+.tab{padding:.7rem 1.2rem;cursor:pointer;color:var(--text2);font-size:.9rem;font-weight:500;border-bottom:2px solid transparent;margin-bottom:-2px;transition:.2s}
+.tab.active{color:var(--accent2);border-bottom-color:var(--accent)}
+.tab:hover{color:var(--text)}
+.tab-content{display:none;padding:1.5rem 0}
+.tab-content.active{display:block}
+.flow-step{display:flex;align-items:flex-start;gap:1rem;margin:1rem 0;position:relative;padding-left:2.5rem}
+.flow-step::before{content:attr(data-step);position:absolute;left:0;width:2rem;height:2rem;background:var(--grad1);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.8rem;color:#fff}
+.flow-step::after{content:'';position:absolute;left:.95rem;top:2.2rem;width:2px;height:calc(100% - .5rem);background:rgba(108,92,231,.2)}
+.flow-step:last-child::after{display:none}
+.tier{position:relative;padding:1.5rem;border-radius:var(--radius);margin:1rem 0}
+.tier-1{background:linear-gradient(135deg,rgba(225,112,85,.1),rgba(253,203,110,.05));border:1px solid rgba(225,112,85,.2)}
+.tier-2{background:linear-gradient(135deg,rgba(108,92,231,.1),rgba(162,155,254,.05));border:1px solid rgba(108,92,231,.2)}
+.tier-3{background:linear-gradient(135deg,rgba(0,184,148,.1),rgba(85,239,196,.05));border:1px solid rgba(0,184,148,.2)}
+.tree{font-family:'JetBrains Mono',monospace;font-size:.82rem;color:var(--text2);line-height:1.8}
+.tree .highlight{color:var(--green2);font-weight:600}
+.tree .comment{color:var(--text2);opacity:.6}
+.pill-row{display:flex;flex-wrap:wrap;gap:.4rem;margin:.5rem 0}
+.pill{padding:.3rem .7rem;border-radius:20px;font-size:.75rem;font-weight:500;border:1px solid rgba(255,255,255,.1);color:var(--text2)}
+.copy-btn{position:absolute;top:.5rem;right:.5rem;background:var(--bg4);border:1px solid rgba(255,255,255,.1);color:var(--text2);padding:.3rem .6rem;border-radius:6px;cursor:pointer;font-size:.75rem;font-family:'JetBrains Mono',monospace;transition:.2s}
+.copy-btn:hover{background:var(--accent);color:#fff}
+.pre-wrap{position:relative}
+.toc{position:fixed;right:2rem;top:50%;transform:translateY(-50%);z-index:100;display:flex;flex-direction:column;gap:.3rem}
+.toc a{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.15);transition:.3s;display:block}
+.toc a:hover,.toc a.active{background:var(--accent);transform:scale(1.3)}
+@media(max-width:768px){.hero h1{font-size:2rem}.card-grid{grid-template-columns:1fr}.toc{display:none}nav{flex-wrap:wrap;gap:.5rem}.hero-stats{gap:.8rem}.stat{min-width:90px;padding:.7rem 1rem}}
+.fade-in{opacity:0;transform:translateY(20px);transition:.6s}
+.fade-in.visible{opacity:1;transform:translateY(0)}
+</style>
+</head>
+<body>
+
+<nav>
+<span class="logo">⚡ Digital-Nervous</span>
+<a href="#overview">Tổng Quan</a>
+<a href="#architecture">Kiến Trúc</a>
+<a href="#extraction">6 Khối Tinh Hoa</a>
+<a href="#deploy">Triển Khai</a>
+<a href="#skills-map">Skills Map</a>
+<a href="#examples">Ví Dụ</a>
+<a href="#protocols">Protocols</a>
+<a href="#roadmap">Lộ Trình</a>
+</nav>
+
+<section class="hero">
+<div class="hero-content">
+<span class="ver">v8.0.0 — Adaptive AI Orchestrator</span>
+<h1>Digital-Nervous</h1>
+<p>Dây chuyền sản xuất phần mềm tự động bằng AI — 59 chuyên gia AI phối hợp qua 6 giai đoạn, 32 protocols, 13 middleware layers. Hướng dẫn tận dụng cho dự án mới & dự án có sẵn.</p>
+<div class="hero-stats">
+<div class="stat"><div class="stat-num">59</div><div class="stat-label">AI Skills</div></div>
+<div class="stat"><div class="stat-num">32</div><div class="stat-label">Protocols</div></div>
+<div class="stat"><div class="stat-num">24</div><div class="stat-label">Modes</div></div>
+<div class="stat"><div class="stat-num">13</div><div class="stat-label">Middleware</div></div>
+<div class="stat"><div class="stat-num">6</div><div class="stat-label">Phases</div></div>
+</div>
+</div>
+</section>
+
+<div class="container">
+
+<!-- SECTION 1: OVERVIEW -->
+<section id="overview" class="section fade-in">
+<h2>🧠 Cốt Lõi — Digital-Nervous Là Gì?</h2>
+<div class="alert alert-info">
+<strong>KHÔNG</strong> phải code generator đơn thuần. Đây là <strong>AI Pipeline Orchestrator</strong> — 59 chuyên gia AI ảo tự phối hợp: <em>Phân Tích → Thiết Kế → Lập Trình → Kiểm Thử → Triển Khai</em>.
+</div>
+
+<div class="card-grid">
+<div class="card">
+<div class="card-icon">🎯</div>
+<h4>Auto-Classify</h4>
+<p>Bạn nói tự nhiên → hệ thống tự phân loại vào 1/24 modes → gọi đúng skills cần thiết. Không cần biết prompt engineering.</p>
+</div>
+<div class="card">
+<div class="card-icon">🔄</div>
+<h4>Pipeline 6 Phase</h4>
+<p>INTERPRET → DEFINE → BUILD → HARDEN → SHIP → SUSTAIN. Mỗi phase có Quality Gate kiểm tra chất lượng 0-100 điểm.</p>
+</div>
+<div class="card">
+<div class="card-icon">🛡️</div>
+<h4>Anti-Hallucination</h4>
+<p>Skeptic Agent kiểm tra mọi claim, Confidence scoring (0-1), buộc AI trích dẫn nguồn. 99% dự án khác KHÔNG CÓ tính năng này.</p>
+</div>
+<div class="card">
+<div class="card-icon">🔬</div>
+<h4>Code Intelligence</h4>
+<p>ForgeNexus — Tree-Sitter AST + KuzuDB Graph. AI "nhìn thấy" cấu trúc code, blast radius trước khi sửa. Giảm 80% lỗi regression.</p>
+</div>
+</div>
+</section>
+
+<!-- SECTION 2: ARCHITECTURE -->
+<section id="architecture" class="section fade-in">
+<h2>🏗️ Kiến Trúc Hệ Thống</h2>
+
+<h3>Cấu Trúc Thư Mục Chính</h3>
+<div class="pre-wrap"><pre><code class="tree">Digital-Nervous/
+├── <span class="highlight">AGENTS.md</span>              <span class="comment">← Bộ luật tối cao — AI đọc file này đầu tiên</span>
+├── <span class="highlight">skills/</span>                <span class="comment">← 59 AI Agent skills (trái tim hệ thống)</span>
+│   ├── <span class="highlight">_shared/protocols/</span> <span class="comment">← 32 quy trình vàng (quality gate, guardrail...)</span>
+│   ├── production-grade/  <span class="comment">← Orchestrator — giám đốc dự án ảo</span>
+│   ├── software-engineer/ <span class="comment">← Backend engineer</span>
+│   ├── frontend-engineer/ <span class="comment">← Frontend engineer</span>
+│   ├── game-designer/     <span class="comment">← Game design (Unity/Unreal/Godot/Phaser/Three.js)</span>
+│   └── ... (55 skills khác)
+├── <span class="highlight">forgenexus/</span>            <span class="comment">← Code Intelligence engine (AST + KuzuDB Graph)</span>
+│   └── src/
+│       ├── agents/        <span class="comment">← Anti-Hallucination (Skeptic, Confidence, Citations)</span>
+│       ├── analysis/      <span class="comment">← AST Parser, Framework Detection, Import Resolver</span>
+│       ├── rag/           <span class="comment">← Hybrid Search (BM25 + Vector + Reranker)</span>
+│       └── mcp/           <span class="comment">← 12 MCP Tools (query, context, impact, rename...)</span>
+├── <span class="highlight">templates/</span>             <span class="comment">← Handlebars templates (Docker, CI/CD, Config, SRE)</span>
+├── scripts/               <span class="comment">← Utility scripts (worktree, quality-gate, session...)</span>
+├── workflows/             <span class="comment">← 7 pre-built workflows</span>
+├── .forgewright/          <span class="comment">← Skills config (mode→skill mapping)</span>
+├── setup.ps1 / setup.sh   <span class="comment">← Setup scripts</span>
+└── VERSION                <span class="comment">← 8.0.0</span></code></pre></div>
+
+<h3>Luồng Vận Hành (The Flow)</h3>
+<div class="flow-step" data-step="1"><div><strong>Chat Interpreter</strong> — Nhận diện intent: bạn muốn build web, game, mobile, AI, hay chỉ review code?</div></div>
+<div class="flow-step" data-step="2"><div><strong>Classify Mode</strong> — Phân loại vào 1/24 modes: Full Build, Feature, Game Build, Harden, Ship, Debug...</div></div>
+<div class="flow-step" data-step="3"><div><strong>Plan Quality Loop</strong> — Mỗi skill PHẢI lên kế hoạch → chấm điểm 8 tiêu chí → score ≥ 9.0/10 mới được code</div></div>
+<div class="flow-step" data-step="4"><div><strong>Middleware Chain</strong> — 13 layers bọc mỗi skill: SessionData → Guardrail → Execution → QualityGate → Memory</div></div>
+<div class="flow-step" data-step="5"><div><strong>Gate Approval</strong> — 3 cổng kiểm tra: Gate 1 (Plan) → Gate 2 (Code) → Gate 3 (Deploy). Chờ bạn duyệt.</div></div>
+<div class="flow-step" data-step="6"><div><strong>Auto QA</strong> — SAU mỗi thay đổi code: tự viết test → chạy test → verify → report. KHÔNG chờ bạn yêu cầu.</div></div>
+</section>
+
+<!-- SECTION 3: 6 KHỐI TINH HOA -->
+<section id="extraction" class="section fade-in">
+<h2>💎 6 Khối Tinh Hoa — Cốt Lõi Cần Tận Dụng</h2>
+<p style="color:var(--text2);margin-bottom:2rem">Đây là những phần <strong>đỉnh cao nhất</strong> của Digital-Nervous. Bạn không cần dùng hết — chọn theo nhu cầu.</p>
+
+<!-- KHỐI 1 -->
+<div class="tier tier-1">
+<h3>🔴 Khối 1 — Anti-Hallucination Engine <span class="badge badge-red">ĐỘC NHẤT</span></h3>
+<p style="color:var(--text2)"><strong>Đường dẫn:</strong> <code>forgenexus/src/agents/</code></p>
+<p style="color:var(--text2);margin:.5rem 0">99% dự án AI Agent khác KHÔNG CÓ. Tạo "phiên tòa nội bộ" bắt AI chứng minh mọi thứ nó viết.</p>
+<table>
+<tr><th>File</th><th>Chức Năng</th><th>Cách Ứng Dụng</th></tr>
+<tr><td><code>skeptic.ts</code></td><td>Agent hoài nghi — đối chiếu claim vs bằng chứng</td><td>Đẩy output AI qua Skeptic trước khi trả user</td></tr>
+<tr><td><code>confidence.ts</code></td><td>Tính điểm tự tin (0-1) với hành vi theo ngưỡng</td><td>> 0.7: trả kết quả | < 0.5: từ chối trả lời</td></tr>
+<tr><td><code>citations.ts</code></td><td>TokenShapley — buộc AI trích dẫn nguồn</td><td>Dùng cho RAG, tài liệu, fact-checking</td></tr>
+<tr><td><code>semantic-energy.ts</code></td><td>Phát hiện lúc AI không chắc chắn (đang "ấp úng")</td><td>Cảnh báo user khi AI uncertainty cao</td></tr>
+<tr><td><code>multi-agent.ts</code></td><td>Luồng phối hợp Synthesizer ↔ Skeptic</td><td>Copy nguyên luồng vào dự án</td></tr>
+</table>
+<pre><code># Luồng TRƯỚC: User → LLM → Trả kết quả (dễ bịa)
+# Luồng SAU:  User → Synthesizer → Skeptic kiểm tra → Confidence scoring
+#             → Nếu > 0.7: trả kết quả ✅ | Nếu < 0.5: từ chối ❌</code></pre>
+</div>
+
+<!-- KHỐI 2 -->
+<div class="tier tier-2">
+<h3>🔴 Khối 2 — Code Intelligence (AST + Graph DB) <span class="badge badge-purple">XỊN NHẤT</span></h3>
+<p style="color:var(--text2)"><strong>Đường dẫn:</strong> <code>forgenexus/src/analysis/</code></p>
+<p style="color:var(--text2);margin:.5rem 0">AI "nhìn thấy" cấu trúc code thay vì chỉ đọc text. Sửa code ít hỏng hơn chatbot thường.</p>
+<table>
+<tr><th>File</th><th>Chức Năng</th><th>Kích Thước</th></tr>
+<tr><td><code>parser.ts</code></td><td>Tree-Sitter AST parser — 10+ ngôn ngữ</td><td>58KB — file lõi quan trọng nhất</td></tr>
+<tr><td><code>queries.ts</code></td><td>KuzuDB queries — tìm hàm, class, relationships</td><td>55KB — kho query patterns cực giá trị</td></tr>
+<tr><td><code>indexer.ts</code></td><td>Lập chỉ mục toàn bộ project vào Graph DB</td><td>24KB</td></tr>
+<tr><td><code>parallel.ts</code></td><td>Worker pool — quét code đa luồng</td><td>12KB</td></tr>
+<tr><td><code>framework-detection.ts</code></td><td>Tự nhận diện Next.js, FastAPI, Spring...</td><td>9KB</td></tr>
+<tr><td><code>detect-changes.ts</code></td><td>So sánh code trước/sau, dùng cho pre-commit</td><td>10KB</td></tr>
+</table>
+</div>
+
+<!-- KHỐI 3 -->
+<div class="tier tier-3">
+<h3>🟡 Khối 3 — RAG Pipeline <span class="badge badge-yellow">THÔNG MINH</span></h3>
+<p style="color:var(--text2)"><strong>Đường dẫn:</strong> <code>forgenexus/src/rag/</code> — BM25 + Vector + Reranker. Tốt hơn grep rất nhiều.</p>
+<table>
+<tr><th>File</th><th>Chức Năng</th></tr>
+<tr><td><code>hybrid-search.ts</code></td><td>Kết hợp BM25 + Vector cho kết quả chính xác hơn</td></tr>
+<tr><td><code>retriever.ts</code></td><td>Truy xuất context từ codebase kèm citations</td></tr>
+<tr><td><code>reranker.ts</code></td><td>Sắp xếp lại kết quả theo độ liên quan thực tế</td></tr>
+<tr><td><code>chunker.ts</code></td><td>Chia code thành đoạn có ngữ nghĩa (không cắt giữa hàm)</td></tr>
+</table>
+</div>
+
+<!-- KHỐI 4 -->
+<div class="tier tier-1">
+<h3>🔴 Khối 4 — Bộ Protocols (Quy Trình Vàng) <span class="badge badge-red">QUAN TRỌNG NHẤT</span></h3>
+<p style="color:var(--text2)"><strong>Đường dẫn:</strong> <code>skills/_shared/protocols/</code> — Chỉ cần copy các file .md này vào System Prompt là nâng cấp AI Agent ngay lập tức!</p>
+<table>
+<tr><th>#</th><th>File</th><th>Chức Năng</th><th>Ứng Dụng</th></tr>
+<tr><td>1</td><td><code>plan-quality-loop.md</code></td><td>Buộc AI plan → score 8 tiêu chí → ≥ 9.0/10</td><td>AI không bao giờ code bừa nữa</td></tr>
+<tr><td>2</td><td><code>quality-gate.md</code></td><td>Kiểm tra sau code: Build→Regression→Standards</td><td>AI tự kiểm tra code mình viết</td></tr>
+<tr><td>3</td><td><code>guardrail.md</code></td><td>Chặn lệnh nguy hiểm (rm -rf, DROP TABLE...)</td><td>Bảo vệ hệ thống khỏi AI phá hoại</td></tr>
+<tr><td>4</td><td><code>brownfield-safety.md</code></td><td>Bảo vệ code cũ: branch, snapshot, rollback</td><td>RẤT CẦN nếu AI sửa code production</td></tr>
+<tr><td>5</td><td><code>prompt-techniques.md</code></td><td>5 kỹ thuật prompt an toàn + danh sách BỊ CẤM</td><td>Tránh prompt gây hallucination</td></tr>
+<tr><td>6</td><td><code>graceful-failure.md</code></td><td>Retry logic, phát hiện vòng lặp, thoát an toàn</td><td>Tránh AI chạy mãi không dừng</td></tr>
+<tr><td>7</td><td><code>middleware-chain.md</code></td><td>11 bước trước/sau mỗi skill</td><td>Kiến trúc pipeline tham khảo</td></tr>
+<tr><td>8</td><td><code>self-healing-execution.md</code></td><td>AI tự sửa lỗi — retry không lặp lỗi cũ</td><td>Giảm số lần phải can thiệp</td></tr>
+<tr><td>9</td><td><code>session-lifecycle.md</code></td><td>Load context → làm việc → lưu memory</td><td>Cho hệ thống nhiều phiên chat</td></tr>
+<tr><td>10</td><td><code>project-onboarding.md</code></td><td>5-phase phân tích dự án tự động</td><td>Fingerprint project khi bắt đầu</td></tr>
+</table>
+</div>
+
+<!-- KHỐI 5 -->
+<div class="tier tier-3">
+<h3>🟡 Khối 5 — Skill Templates <span class="badge badge-green">PROMPT ENGINEERING</span></h3>
+<p style="color:var(--text2)"><strong>Đường dẫn:</strong> <code>skills/*/SKILL.md</code> — Copy SKILL.md vào System Prompt → AI đóng vai chuyên gia ngay.</p>
+<table>
+<tr><th>Bạn làm...</th><th>Skills nên lấy</th></tr>
+<tr><td>Web Fullstack</td><td><code>production-grade</code>, <code>software-engineer</code>, <code>frontend-engineer</code>, <code>code-reviewer</code>, <code>qa-engineer</code>, <code>debugger</code></td></tr>
+<tr><td>Backend / API</td><td><code>software-engineer</code>, <code>api-designer</code>, <code>database-engineer</code>, <code>code-reviewer</code></td></tr>
+<tr><td>DevOps / SRE</td><td><code>devops</code>, <code>sre</code>, <code>security-engineer</code>, <code>performance-engineer</code></td></tr>
+<tr><td>Game Dev</td><td><code>game-designer</code>, <code>unity-engineer</code> / <code>godot-engineer</code>, <code>level-designer</code>, <code>game-audio-engineer</code></td></tr>
+<tr><td>AI / ML</td><td><code>ai-engineer</code>, <code>data-scientist</code>, <code>prompt-engineer</code></td></tr>
+<tr><td>Mobile</td><td><code>mobile-engineer</code>, <code>mobile-tester</code>, <code>frontend-engineer</code></td></tr>
+<tr><td>Quản lý / BA</td><td><code>business-analyst</code>, <code>product-manager</code>, <code>project-manager</code></td></tr>
+</table>
+</div>
+
+<!-- KHỐI 6 -->
+<div class="tier tier-2">
+<h3>🟢 Khối 6 — MCP Tools Interface <span class="badge badge-blue">TÙY CHỌN</span></h3>
+<p style="color:var(--text2)"><strong>Đường dẫn:</strong> <code>forgenexus/src/mcp/</code> — Expose ForgeNexus cho Claude/Cursor gọi trực tiếp.</p>
+<table>
+<tr><th>File</th><th>Chức Năng</th></tr>
+<tr><td><code>tools.ts</code></td><td>12 MCP tools: query, context, impact, rename, detect_changes...</td></tr>
+<tr><td><code>cypher-executor.ts</code></td><td>Chạy truy vấn Cypher trên Graph DB</td></tr>
+<tr><td><code>resources.ts</code></td><td>Expose Graph data dưới dạng MCP Resources</td></tr>
+</table>
+</div>
+</section>
+
+<!-- SECTION 4: DEPLOYMENT -->
+<section id="deploy" class="section fade-in">
+<h2>🚀 Triển Khai Vào Dự Án</h2>
+
+<div class="tabs">
+<div class="tab active" onclick="switchTab(event,'tab-a')">A. Git Submodule</div>
+<div class="tab" onclick="switchTab(event,'tab-b')">B. Cherry-pick</div>
+<div class="tab" onclick="switchTab(event,'tab-c')">C. Hybrid</div>
+</div>
+
+<div id="tab-a" class="tab-content active">
+<div class="alert alert-tip">Dùng nguyên bộ, theo kịp bản cập nhật. Phù hợp khi muốn nhận update từ nguồn gốc.</div>
+<pre><code># Bước 1 — Thêm submodule
+cd C:\path\to\your-new-project
+git submodule add -b main https://github.com/Exia-thd/Digital-Nervous.git .antigravity/plugins/production-grade
+git submodule update --init --recursive
+
+# Bước 2 — Build ForgeNexus
+cd .antigravity/plugins/production-grade/forgenexus
+npm install && npm run build && npm link
+cd ../../../..
+
+# Bước 3 — Quét dự án
+npx forgenexus analyze .
+
+# Bước 4 — Copy AGENTS.md & Commit
+copy .antigravity\plugins\production-grade\AGENTS.md .\AGENTS.md
+git add . && git commit -m "feat: add Digital-Nervous v8.0"</code></pre>
+</div>
+
+<div id="tab-b" class="tab-content">
+<div class="alert alert-fire">
+<strong>🔥 Cherry-pick — Lấy Tinh Hoa, Tự Custom Hoàn Toàn</strong><br>
+Không dùng submodule. Copy trực tiếp những phần cần thiết. Bạn kiểm soát 100%, nhưng không nhận update tự động từ nguồn gốc.
+</div>
+
+<!-- PREREQUISITES -->
+<h3>📋 Yêu Cầu Trước Khi Bắt Đầu</h3>
+<table>
+<tr><th>Yêu Cầu</th><th>Kiểm Tra</th><th>Ghi Chú</th></tr>
+<tr><td>Node.js 18+</td><td><code>node --version</code></td><td>Cần cho ForgeNexus (Code Intelligence)</td></tr>
+<tr><td>npm 9+</td><td><code>npm --version</code></td><td>Có sẵn khi cài Node.js</td></tr>
+<tr><td>Git</td><td><code>git --version</code></td><td>Version control</td></tr>
+<tr><td>Digital-Nervous source</td><td>Folder <code>E:\Nexus\Digital-Nervous</code></td><td>Đây là nguồn để copy</td></tr>
+</table>
+
+<!-- STEP 1 -->
+<h3>Bước 1️⃣ — Tạo Cấu Trúc Thư Mục</h3>
+<div class="alert alert-info">Đây là bộ xương cho AI Pipeline trong dự án của bạn. Mỗi thư mục có vai trò riêng biệt.</div>
+<pre><code># Mở PowerShell, vào thư mục dự án
+cd C:\path\to\your-project
+
+# Tạo cấu trúc đầy đủ
+mkdir -Force ".ai-pipeline\protocols"     # Quy trình vàng (quality gate, guardrail...)
+mkdir -Force ".ai-pipeline\skills"        # Agent skills (software-engineer, qa...)
+mkdir -Force ".ai-pipeline\forgenexus"    # Code Intelligence engine
+mkdir -Force ".ai-pipeline\templates"     # Templates (Docker, CI/CD, Config) — tùy chọn
+mkdir -Force ".ai-pipeline\workflows"     # Pre-built workflows — tùy chọn
+mkdir -Force ".Digital-Nervous"           # Workspace (project profile, session log)</code></pre>
+
+<!-- STEP 2 -->
+<h3>Bước 2️⃣ — Copy Protocols Cốt Lõi <span class="badge badge-red">BẮT BUỘC</span></h3>
+<div class="alert alert-tip">
+<strong>Tại sao quan trọng nhất?</strong> Protocols là SOP (Standard Operating Procedure) cho AI. Chỉ cần copy các file .md này vào System Prompt là nâng cấp AI Agent ngay lập tức — KHÔNG cần code gì thêm.
+</div>
+<pre><code># Đặt biến source (sửa đường dẫn nếu Digital-Nervous nằm chỗ khác)
+$SRC = "E:\Nexus\Digital-Nervous"
+$PROTO = "$SRC\skills\_shared\protocols"
+
+# ═══════════════════════════════════════════════════
+# NHÓM 1: BẮT BUỘC — Copy ngay, không cần suy nghĩ
+# ═══════════════════════════════════════════════════
+
+# Plan Quality Loop — Buộc AI plan trước khi code, chấm 8 tiêu chí, ≥ 9.0/10
+Copy-Item "$PROTO\plan-quality-loop.md"      ".ai-pipeline\protocols\"
+
+# Quality Gate — Kiểm tra chất lượng sau code (Build→Regression→Standards), chấm 0-100
+Copy-Item "$PROTO\quality-gate.md"           ".ai-pipeline\protocols\"
+
+# Guardrail — Chặn lệnh nguy hiểm (rm -rf, DROP TABLE, npm publish)
+Copy-Item "$PROTO\guardrail.md"              ".ai-pipeline\protocols\"
+
+# Prompt Techniques — 5 kỹ thuật an toàn + danh sách KỸ THUẬT BỊ CẤM
+Copy-Item "$PROTO\prompt-techniques.md"      ".ai-pipeline\protocols\"
+
+# Graceful Failure — Retry logic, phát hiện vòng lặp vô tận, thoát an toàn
+Copy-Item "$PROTO\graceful-failure.md"       ".ai-pipeline\protocols\"
+
+# ═══════════════════════════════════════════════════
+# NHÓM 2: NÊN CÓ — Rất hữu ích cho dự án production
+# ═══════════════════════════════════════════════════
+
+# Brownfield Safety — Bảo vệ code cũ: branch tự động, snapshot test, rollback
+Copy-Item "$PROTO\brownfield-safety.md"      ".ai-pipeline\protocols\"
+
+# Middleware Chain — 11 layers trước/sau mỗi skill
+Copy-Item "$PROTO\middleware-chain.md"       ".ai-pipeline\protocols\"
+
+# Self-Healing — AI tự sửa lỗi, retry thông minh, không lặp lỗi cũ
+Copy-Item "$PROTO\self-healing-execution.md" ".ai-pipeline\protocols\"
+
+# Prompt Templates — Kho template cho từng loại task
+Copy-Item "$PROTO\prompt-templates.md"       ".ai-pipeline\protocols\"
+
+# Session Lifecycle — Quản lý phiên: load context → work → save memory
+Copy-Item "$PROTO\session-lifecycle.md"      ".ai-pipeline\protocols\"
+
+# ═══════════════════════════════════════════════════
+# NHÓM 3: TÙY CHỌN — Nâng cao, dùng khi cần
+# ═══════════════════════════════════════════════════
+
+# Project Onboarding — Auto-analyze project khi bắt đầu
+Copy-Item "$PROTO\project-onboarding.md"     ".ai-pipeline\protocols\"
+
+# Circuit Breaker — Ngăn cascading failures trong parallel dispatch
+Copy-Item "$PROTO\circuit-breaker.md"        ".ai-pipeline\protocols\"
+
+# Verification — 4-level verification framework
+Copy-Item "$PROTO\verification.md"           ".ai-pipeline\protocols\"
+
+# Task Contract — JSON contract cho parallel workers
+Copy-Item "$PROTO\task-contract.md"          ".ai-pipeline\protocols\"</code></pre>
+
+<!-- STEP 3 -->
+<h3>Bước 3️⃣ — Chọn & Copy Skills Theo Nghề <span class="badge badge-purple">CHỌN PHÙ HỢP</span></h3>
+<div class="alert alert-info">
+<strong>Không cần lấy hết 59 skills!</strong> Mỗi skill là một file <code>SKILL.md</code> dạy AI đóng vai chuyên gia. Chọn bộ phù hợp với công việc của bạn.
+</div>
+
+<h4>🌐 Nếu bạn làm Web Fullstack</h4>
+<pre><code>$SRC = "E:\Nexus\Digital-Nervous"
+
+# BẮT BUỘC — Orchestrator (AI manager, tự gọi skill phù hợp)
+Copy-Item -Recurse "$SRC\skills\production-grade"    ".ai-pipeline\skills\"
+
+# CORE — Backend + Frontend + QA
+Copy-Item -Recurse "$SRC\skills\software-engineer"   ".ai-pipeline\skills\"
+Copy-Item -Recurse "$SRC\skills\frontend-engineer"   ".ai-pipeline\skills\"
+Copy-Item -Recurse "$SRC\skills\qa-engineer"         ".ai-pipeline\skills\"
+
+# CHẤT LƯỢNG — Review + Debug + Architecture
+Copy-Item -Recurse "$SRC\skills\code-reviewer"       ".ai-pipeline\skills\"
+Copy-Item -Recurse "$SRC\skills\debugger"            ".ai-pipeline\skills\"
+Copy-Item -Recurse "$SRC\skills\solution-architect"  ".ai-pipeline\skills\"
+
+# TÙY CHỌN — Nếu cần API design hoặc database
+Copy-Item -Recurse "$SRC\skills\api-designer"        ".ai-pipeline\skills\"
+Copy-Item -Recurse "$SRC\skills\database-engineer"   ".ai-pipeline\skills\"
+Copy-Item -Recurse "$SRC\skills\security-engineer"   ".ai-pipeline\skills\"</code></pre>
+
+<h4>🎮 Nếu bạn làm Game Development</h4>
+<pre><code># CORE GAME
+Copy-Item -Recurse "$SRC\skills\production-grade"       ".ai-pipeline\skills\"
+Copy-Item -Recurse "$SRC\skills\game-designer"          ".ai-pipeline\skills\"
+
+# CHỌN 1 ENGINE phù hợp:
+Copy-Item -Recurse "$SRC\skills\unity-engineer"         ".ai-pipeline\skills\"    # Unity
+# Copy-Item -Recurse "$SRC\skills\godot-engineer"       ".ai-pipeline\skills\"    # Godot
+# Copy-Item -Recurse "$SRC\skills\unreal-engineer"      ".ai-pipeline\skills\"    # Unreal
+# Copy-Item -Recurse "$SRC\skills\phaser3-engineer"     ".ai-pipeline\skills\"    # Phaser 3 (web)
+# Copy-Item -Recurse "$SRC\skills\threejs-engineer"     ".ai-pipeline\skills\"    # Three.js (web 3D)
+
+# HỖ TRỢ GAME
+Copy-Item -Recurse "$SRC\skills\level-designer"         ".ai-pipeline\skills\"
+Copy-Item -Recurse "$SRC\skills\game-audio-engineer"    ".ai-pipeline\skills\"
+Copy-Item -Recurse "$SRC\skills\technical-artist"       ".ai-pipeline\skills\"
+Copy-Item -Recurse "$SRC\skills\narrative-designer"     ".ai-pipeline\skills\"</code></pre>
+
+<h4>🤖 Nếu bạn làm AI / ML / RAG</h4>
+<pre><code>Copy-Item -Recurse "$SRC\skills\production-grade"    ".ai-pipeline\skills\"
+Copy-Item -Recurse "$SRC\skills\ai-engineer"         ".ai-pipeline\skills\"
+Copy-Item -Recurse "$SRC\skills\data-scientist"      ".ai-pipeline\skills\"
+Copy-Item -Recurse "$SRC\skills\prompt-engineer"     ".ai-pipeline\skills\"
+Copy-Item -Recurse "$SRC\skills\software-engineer"   ".ai-pipeline\skills\"</code></pre>
+
+<h4>📱 Nếu bạn làm Mobile</h4>
+<pre><code>Copy-Item -Recurse "$SRC\skills\production-grade"    ".ai-pipeline\skills\"
+Copy-Item -Recurse "$SRC\skills\mobile-engineer"     ".ai-pipeline\skills\"
+Copy-Item -Recurse "$SRC\skills\mobile-tester"       ".ai-pipeline\skills\"
+Copy-Item -Recurse "$SRC\skills\frontend-engineer"   ".ai-pipeline\skills\"
+Copy-Item -Recurse "$SRC\skills\qa-engineer"         ".ai-pipeline\skills\"</code></pre>
+
+<h4>🚀 Nếu bạn làm DevOps / Infra</h4>
+<pre><code>Copy-Item -Recurse "$SRC\skills\production-grade"       ".ai-pipeline\skills\"
+Copy-Item -Recurse "$SRC\skills\devops"                 ".ai-pipeline\skills\"
+Copy-Item -Recurse "$SRC\skills\sre"                    ".ai-pipeline\skills\"
+Copy-Item -Recurse "$SRC\skills\security-engineer"      ".ai-pipeline\skills\"
+Copy-Item -Recurse "$SRC\skills\performance-engineer"   ".ai-pipeline\skills\"</code></pre>
+
+<!-- STEP 4 -->
+<h3>Bước 4️⃣ — Copy ForgeNexus (Code Intelligence) <span class="badge badge-yellow">TÙY CHỌN NHƯNG RẤT NÊN</span></h3>
+<div class="alert alert-tip">
+ForgeNexus giúp AI "nhìn thấy" cấu trúc code thay vì chỉ đọc text. Blast radius analysis giảm 80% lỗi regression. <strong>Bỏ qua bước này nếu dự án nhỏ < 20 files.</strong>
+</div>
+<pre><code># Copy engine
+Copy-Item -Recurse "$SRC\forgenexus\*" ".ai-pipeline\forgenexus\"
+
+# Build (cần Node.js 18+)
+cd .ai-pipeline\forgenexus
+npm install
+npm run build
+npm link          # Làm cho lệnh 'forgenexus' có sẵn trên máy
+
+# Quay về project root
+cd ..\..
+
+# Quét dự án → tạo Graph DB
+npx forgenexus analyze .
+
+# Kiểm tra hoạt động
+npx forgenexus status
+# → Phải thấy danh sách symbols, relationship count
+
+# Thử query
+npx forgenexus query "authentication"
+# → Phải trả về kết quả nếu code có liên quan</code></pre>
+
+<!-- STEP 5 -->
+<h3>Bước 5️⃣ — Tạo AGENTS.md <span class="badge badge-red">BẮT BUỘC</span></h3>
+<div class="alert alert-warn">
+<strong>⚠️ File quan trọng nhất!</strong> Đây là file AI đọc ĐẦU TIÊN khi bạn chat. Không có file này = AI không biết phải dùng pipeline. Có 2 cách:
+</div>
+
+<h4>Cách A: Copy nguyên & chỉnh sửa (nhanh)</h4>
+<pre><code># Copy AGENTS.md gốc
+Copy-Item "$SRC\AGENTS.md" ".\AGENTS.md"
+
+# MỞ FILE AGENTS.md VÀ SỬA:
+# 1. Xóa modes/skills bạn không dùng (Game, XR, Mobile nếu không cần)
+# 2. Sửa đường dẫn skills/ → .ai-pipeline/skills/
+# 3. Sửa đường dẫn protocols/ → .ai-pipeline/protocols/
+# 4. Thêm coding standards riêng công ty</code></pre>
+
+<h4>Cách B: Viết mới (kiểm soát hoàn toàn)</h4>
+<pre><code># Tạo AGENTS.md ở gốc dự án với nội dung mẫu:
+
+# ─── Bắt đầu nội dung AGENTS.md ───
+
+# [Tên Dự Án] — AI Pipeline
+
+## Quy Tắc Chung
+1. Mọi request phải qua Orchestrator (`.ai-pipeline/skills/production-grade/SKILL.md`)
+2. PHẢI đọc plan-quality-loop.md TRƯỚC KHI viết code
+3. PHẢI chạy quality-gate.md SAU KHI viết code
+4. Guardrail luôn bật — không được chạy lệnh nguy hiểm
+
+## Đường Dẫn
+- Skills: `.ai-pipeline/skills/`
+- Protocols: `.ai-pipeline/protocols/`
+- ForgeNexus DB: `.forgenexus/` (nếu đã chạy analyze)
+
+## Coding Standards Riêng
+- TypeScript strict mode, no any
+- Prettier + ESLint enforced
+- [Thêm standards công ty bạn ở đây]
+
+## Skills Có Sẵn
+| Skill | Đường dẫn |
+|-------|-----------|
+| Orchestrator | .ai-pipeline/skills/production-grade/SKILL.md |
+| Software Eng | .ai-pipeline/skills/software-engineer/SKILL.md |
+| Frontend Eng | .ai-pipeline/skills/frontend-engineer/SKILL.md |
+| [Thêm các skill bạn đã copy] |
+
+# ─── Kết thúc nội dung AGENTS.md ───</code></pre>
+
+<!-- STEP 6 -->
+<h3>Bước 6️⃣ — Tạo Config (.production-grade.yaml) <span class="badge badge-green">NÊN CÓ</span></h3>
+<pre><code># Tạo file .production-grade.yaml ở gốc dự án:
+
+# ═══════════════════════════════════════
+# .production-grade.yaml — Config cho AI
+# ═══════════════════════════════════════
+
+# Cấp độ coding (ảnh hưởng style code AI sinh ra)
+# 1-3: Junior (comment nhiều, biến tên dài)
+# 4-6: Mid (comment vừa)
+# 7-8: Senior (code terse, ít comment)
+# 9-10: Expert (minimal, chỉ comment cần thiết)
+codingLevel: 8
+
+# Kế hoạch chất lượng
+planQuality:
+  threshold: 9.0        # Điểm tối thiểu (0-10) mới được phép code
+  maxIterations: 3      # Số lần tối đa cải thiện kế hoạch
+
+# Guardrail — bảo vệ hệ thống
+guardrail:
+  enabled: true
+  mode: warn            # warn = cảnh báo | deny = chặn | dry_run = chỉ log
+  customRules: []       # Thêm rules riêng: ["no eval()", "no console.log"]
+
+# Quality Gate — kiểm tra sau code
+quality:
+  minimum_score: 85     # Điểm chất lượng tối thiểu (0-100)
+  levels:               # 4 level kiểm tra
+    - build             # Code compile/run được không?
+    - regression        # Test cũ còn pass không?
+    - standards         # Đúng coding conventions không?
+    - traceability      # Có trace được về requirement không?
+
+# Brownfield — bảo vệ code hiện có
+brownfield:
+  auto_branch: true     # Tự tạo feature branch khi sửa code cũ
+  baseline_tests: true  # Chạy toàn bộ test cũ TRƯỚC KHI sửa
+  protected_paths:      # Thư mục KHÔNG ĐƯỢC sửa tự động
+    - "src/core/"
+    - "config/production/"</code></pre>
+
+<!-- STEP 7 -->
+<h3>Bước 7️⃣ — Kiểm Tra & Xác Nhận ✅</h3>
+<pre><code># ═══════════════ CHECKLIST KIỂM TRA ═══════════════
+
+# 1. Protocols có đủ không?
+Get-ChildItem ".ai-pipeline\protocols" -File | Measure-Object
+# → Kỳ vọng: ít nhất 5 files (nhóm BẮT BUỘC)
+
+# 2. Skills có đủ không?
+Get-ChildItem ".ai-pipeline\skills" -Directory | Select-Object Name
+# → Kỳ vọng: production-grade + skills bạn chọn
+
+# 3. AGENTS.md tồn tại?
+Test-Path ".\AGENTS.md"
+# → True
+
+# 4. Config tồn tại?
+Test-Path ".\.production-grade.yaml"
+# → True
+
+# 5. ForgeNexus hoạt động? (nếu đã cài)
+npx forgenexus status
+# → Phải thấy danh sách symbols
+
+# 6. Thử chat với AI:
+# Mở Cursor/VS Code, gõ: "Review my code quality"
+# → AI phải đọc AGENTS.md → route tới code-reviewer skill</code></pre>
+
+<!-- DIRECTORY STRUCTURE -->
+<h3>📂 Cấu Trúc Thư Mục Hoàn Chỉnh Sau Setup</h3>
+<div class="pre-wrap"><pre><code class="tree">your-project/
+├── <span class="highlight">AGENTS.md</span>                      <span class="comment">← Bộ luật AI đọc đầu tiên ⭐</span>
+├── <span class="highlight">.production-grade.yaml</span>         <span class="comment">← Config chất lượng, guardrail</span>
+├── <span class="highlight">.ai-pipeline/</span>                  <span class="comment">← Tinh hoa Digital-Nervous</span>
+│   ├── protocols/                     <span class="comment">← Quy trình vàng (5-14 files)</span>
+│   │   ├── plan-quality-loop.md       <span class="comment">← Buộc AI plan trước khi code</span>
+│   │   ├── quality-gate.md            <span class="comment">← Kiểm tra chất lượng 0-100</span>
+│   │   ├── guardrail.md               <span class="comment">← Chặn lệnh nguy hiểm</span>
+│   │   ├── prompt-techniques.md       <span class="comment">← Kỹ thuật prompt an toàn</span>
+│   │   ├── graceful-failure.md        <span class="comment">← Retry + thoát an toàn</span>
+│   │   └── ... (protocols bạn chọn)
+│   ├── skills/                        <span class="comment">← AI Agent skills (3-15 thư mục)</span>
+│   │   ├── production-grade/          <span class="comment">← Orchestrator ⭐</span>
+│   │   │   ├── SKILL.md
+│   │   │   ├── middleware/
+│   │   │   └── phases/
+│   │   ├── software-engineer/
+│   │   │   └── SKILL.md
+│   │   ├── frontend-engineer/
+│   │   │   └── SKILL.md
+│   │   └── ... (skills bạn chọn)
+│   └── forgenexus/                    <span class="comment">← Code Intelligence (tùy chọn)</span>
+│       ├── src/
+│       ├── package.json
+│       └── dist/                      <span class="comment">← Build output</span>
+├── <span class="highlight">.Digital-Nervous/</span>               <span class="comment">← Workspace (tự tạo lúc chạy)</span>
+│   ├── project-profile.json           <span class="comment">← Fingerprint dự án</span>
+│   ├── code-conventions.md            <span class="comment">← Coding patterns phát hiện</span>
+│   └── session-log.json               <span class="comment">← Lịch sử phiên</span>
+└── src/                               <span class="comment">← Source code dự án của bạn</span></code></pre></div>
+
+<div class="alert alert-tip">
+<strong>💡 Mẹo:</strong> Lần đầu chat với AI sau khi setup, hệ thống sẽ tự tạo thư mục <code>.Digital-Nervous/</code> chứa <code>project-profile.json</code>. Đây là hành vi bình thường — AI đang "học" cấu trúc dự án của bạn.
+</div>
+</div>
+
+<div id="tab-c" class="tab-content">
+<div class="alert alert-info">Cả hai: nhận update nguồn gốc + custom riêng. Override không bị mất khi update.</div>
+<pre><code># Bước 1 — Cài submodule (giống Cách A)
+git submodule add -b main https://github.com/Exia-thd/Digital-Nervous.git .antigravity/plugins/production-grade
+
+# Bước 2 — Tạo thư mục override
+mkdir -p .ai-overrides/protocols .ai-overrides/skills
+
+# Bước 3 — Custom bằng override (KHÔNG sửa trực tiếp submodule)
+Copy-Item ".antigravity\plugins\production-grade\skills\software-engineer\SKILL.md" `
+           ".ai-overrides\skills\software-engineer-SKILL.md"
+# Sửa file override theo ý bạn → AI đọc override trước, fallback về gốc
+
+# Cập nhật nguồn (custom KHÔNG bị mất):
+git submodule update --remote .antigravity/plugins/production-grade</code></pre>
+</div>
+</section>
+
+<!-- SECTION 5: VÍ DỤ THỰC TẾ -->
+<section id="examples" class="section fade-in">
+<h2>📋 Ví Dụ Thực Tế</h2>
+
+<h3>Ví dụ 1: Dự Án Mới — "Build website bán áo thun"</h3>
+<div class="card">
+<pre><code>Bạn nói:  "Build cho tôi một website bán áo thun"
+
+Digital-Nervous tự động:
+  ① Chat Interpreter → Mode: Full Build (confidence: HIGH)
+  ② Business Analyst → Phân tích thị trường, đối thủ, target user
+  ③ Product Manager → User stories, acceptance criteria, BRD
+  ④ Solution Architect → Database schema, API design, tech stack
+     → Gate 1: Bạn duyệt kế hoạch ✅
+  ⑤ Software Engineer → Backend (API, auth, payment)
+  ⑥ Frontend Engineer → UI/UX (product pages, cart, checkout)
+  ⑦ QA Engineer → Unit test + Integration test (AUTO-RUN)
+     → Gate 2: Bạn duyệt code ✅
+  ⑧ Security Engineer → OWASP audit, SQL injection check
+  ⑨ DevOps → Dockerfile, CI/CD pipeline, deploy
+  ⑩ SRE → SLO definitions, monitoring, alerting
+     → Gate 3: Deploy approved ✅
+
+Kết quả: Website production-ready, score 92/100</code></pre>
+</div>
+
+<h3>Ví dụ 2: Dự Án Có Sẵn — "Add login feature"</h3>
+<div class="card">
+<pre><code>Bạn nói:  "Add authentication vào API có sẵn"
+
+Digital-Nervous tự động:
+  ① Classify → Mode: Feature
+  ② Codebase scan → Phát hiện: Express.js, PostgreSQL, no auth
+  ③ PM (Express) → 2 câu hỏi: "JWT hay Session?" + "Social login?"
+  ④ Architect (scoped) → Thiết kế: JWT + refresh token + middleware
+     → Gate: Bạn confirm scope ✅
+  ⑤ Software Engineer → Viết auth middleware, routes, user model
+  ⑥ QA (AUTO-RUN) → 12 unit tests + 3 integration tests
+  ⑦ Code Reviewer → Kiểm tra patterns, security best practices
+
+Kết quả: Feature complete, 15 tests passing, 0 security issues</code></pre>
+</div>
+
+<h3>Ví dụ 3: Game Development — "Build Unity 2D platformer"</h3>
+<div class="card">
+<pre><code>Bạn nói:  "Build game 2D platformer bằng Unity"
+
+Digital-Nervous tự động:
+  ① Classify → Mode: Game Build → Engine: Unity
+  ② Game Designer → GDD: core loop, mechanics, economy
+     → Gate 1: GDD approved ✅
+  ③ Unity Engineer → C# architecture, ScriptableObjects, player controller
+     → Gate 2: Architecture approved ✅
+  ④ Level Designer → 3 levels, pacing, encounters
+  ⑤ Technical Artist → Shader Graph, VFX, performance budgets
+  ⑥ Game Audio → SFX, adaptive background music
+  ⑦ Game Test Protocol → Mechanics + Balance + Performance validation
+     → Gate 3: Build verified ✅
+
+Kết quả: Playable game build, 60 FPS on target platform</code></pre>
+</div>
+</section>
+
+<!-- SECTION 6: SKILLS MAP -->
+<section id="skills-map" class="section fade-in">
+<h2>🗺️ 59 Skills — Ai Làm Gì</h2>
+
+<h3>Core Engineering (23 skills)</h3>
+<div class="pill-row">
+<span class="pill" style="border-color:var(--accent)">🎯 production-grade</span>
+<span class="pill">📊 business-analyst</span>
+<span class="pill">📋 product-manager</span>
+<span class="pill">🏗️ solution-architect</span>
+<span class="pill">⚙️ software-engineer</span>
+<span class="pill">🎨 frontend-engineer</span>
+<span class="pill">🧪 qa-engineer</span>
+<span class="pill">🔒 security-engineer</span>
+<span class="pill">👁️ code-reviewer</span>
+<span class="pill">🚀 devops</span>
+<span class="pill">📡 sre</span>
+<span class="pill">📝 technical-writer</span>
+<span class="pill">🎨 ui-designer</span>
+<span class="pill">📱 mobile-engineer</span>
+<span class="pill">📲 mobile-tester</span>
+<span class="pill">🔌 api-designer</span>
+<span class="pill">🗄️ database-engineer</span>
+<span class="pill">🐛 debugger</span>
+<span class="pill">🤖 ai-engineer</span>
+<span class="pill">♿ accessibility-engineer</span>
+<span class="pill">⚡ performance-engineer</span>
+<span class="pill">🔬 ux-researcher</span>
+<span class="pill">📊 data-engineer</span>
+</div>
+
+<h3>Game Development (18 skills)</h3>
+<div class="pill-row">
+<span class="pill" style="border-color:var(--red)">🎮 game-designer</span>
+<span class="pill">🔧 unity-engineer</span>
+<span class="pill">🔧 unreal-engineer</span>
+<span class="pill">🔧 godot-engineer</span>
+<span class="pill">🌐 phaser3-engineer</span>
+<span class="pill">🌐 threejs-engineer</span>
+<span class="pill">🎲 roblox-engineer</span>
+<span class="pill">🗺️ level-designer</span>
+<span class="pill">📖 narrative-designer</span>
+<span class="pill">🎨 technical-artist</span>
+<span class="pill">💥 game-asset-vfx</span>
+<span class="pill">🔊 game-audio-engineer</span>
+<span class="pill">✨ unity-shader-artist</span>
+<span class="pill">🌐 unity-multiplayer</span>
+<span class="pill">✨ unreal-technical-artist</span>
+<span class="pill">🌐 unreal-multiplayer</span>
+<span class="pill">🌐 godot-multiplayer</span>
+<span class="pill">🥽 xr-engineer</span>
+</div>
+
+<h3>Meta & Growth (10 skills)</h3>
+<div class="pill-row">
+<span class="pill">🧠 polymath</span>
+<span class="pill">⚡ parallel-dispatch</span>
+<span class="pill">💾 memory-manager</span>
+<span class="pill">🛠️ skill-maker</span>
+<span class="pill">🔌 mcp-generator</span>
+<span class="pill">📈 growth-marketer</span>
+<span class="pill">📉 conversion-optimizer</span>
+<span class="pill">🕷️ web-scraper</span>
+<span class="pill">📓 notebooklm-researcher</span>
+<span class="pill">💡 prompt-engineer</span>
+</div>
+</section>
+
+<!-- SECTION 7: TEMPLATES & SCRIPTS -->
+<section id="protocols" class="section fade-in">
+<h2>📦 Templates & Scripts Sẵn Có</h2>
+
+<h3>Templates (Handlebars .hbs)</h3>
+<div class="card-grid">
+<div class="card"><div class="card-icon">🐳</div><h4>Docker (6 files)</h4><p>Dockerfile multi-stage, docker-compose dev/test/game, .dockerignore</p><code>templates/docker/</code></div>
+<div class="card"><div class="card-icon">🔄</div><h4>CI/CD (6 files)</h4><p>GitHub CI, CD staging/production, PR checks, scheduled jobs, commit lint</p><code>templates/ci/</code></div>
+<div class="card"><div class="card-icon">⚙️</div><h4>Config (8 files)</h4><p>TSConfig, ESLint, Prettier, Jest, EditorConfig, Makefile, env.example</p><code>templates/config/</code></div>
+<div class="card"><div class="card-icon">🚨</div><h4>SRE (6 files)</h4><p>Incident report, RCA, escalation, on-call rotation, war room checklist</p><code>templates/sre/</code></div>
+</div>
+
+<h3>Scripts Hữu Ích</h3>
+<table>
+<tr><th>Script</th><th>Chức Năng</th></tr>
+<tr><td><code>scripts/worktree-manager.sh</code></td><td>Git worktrees — parallel execution cho build nhanh hơn</td></tr>
+<tr><td><code>scripts/quality-gate.sh</code></td><td>Chạy quality gate validation</td></tr>
+<tr><td><code>scripts/generate-template.ts</code></td><td>Generate templates từ Handlebars</td></tr>
+<tr><td><code>scripts/forgewright-mcp-setup.sh</code></td><td>Setup MCP server 1 lệnh duy nhất</td></tr>
+<tr><td><code>scripts/mem0-cli.py</code></td><td>Memory management CLI (persistent across sessions)</td></tr>
+<tr><td><code>scripts/token-analyzer.py</code></td><td>Phân tích token usage, tối ưu chi phí</td></tr>
+</table>
+
+<h3>Workflows Có Sẵn</h3>
+<table>
+<tr><th>Workflow</th><th>File</th></tr>
+<tr><td>Build tính năng AI/RAG/LLM</td><td><code>workflows/ai-feature-build.md</code></td></tr>
+<tr><td>Research sâu với NotebookLM</td><td><code>workflows/deep-research.md</code></td></tr>
+<tr><td>Audit bảo mật toàn diện</td><td><code>workflows/security-audit.md</code></td></tr>
+<tr><td>Deploy SaaS MVP</td><td><code>workflows/ship-saas-mvp.md</code></td></tr>
+<tr><td>Setup mobile testing</td><td><code>workflows/setup-mobile-test.md</code></td></tr>
+</table>
+</section>
+
+<!-- SECTION 8: LỘ TRÌNH -->
+<section id="roadmap" class="section fade-in">
+<h2>📅 Lộ Trình Áp Dụng</h2>
+
+<div class="card" style="border-left:3px solid var(--green)">
+<h4>🟢 Tuần 1 — Nền Tảng (Không cần code)</h4>
+<p>Copy <strong>Khối 4</strong> (Protocols) vào System Prompt. Ưu tiên: <code>plan-quality-loop.md</code> + <code>guardrail.md</code> + <code>prompt-techniques.md</code>. Chọn 3-5 Skill templates phù hợp từ Khối 5.</p>
+</div>
+
+<div class="card" style="border-left:3px solid var(--blue)">
+<h4>🔵 Tuần 2 — Code Intelligence</h4>
+<p>Clone <code>forgenexus/</code> → <code>npm install && npm run build</code> → <code>npx forgenexus analyze</code>. Tích hợp Khối 2 (AST + Graph) vào workflow. Query blast radius trước khi sửa code.</p>
+</div>
+
+<div class="card" style="border-left:3px solid var(--orange)">
+<h4>🟠 Tuần 3 — Anti-Hallucination</h4>
+<p>Tích hợp <strong>Khối 1</strong> (Skeptic + Confidence) vào pipeline AI. Setup ngưỡng: <code>high: 0.9, medium: 0.7, low: 0.5, critical: 0.3</code>. Test các case AI hay bịa đặt.</p>
+</div>
+
+<div class="card" style="border-left:3px solid var(--accent)">
+<h4>🟣 Tuần 4 — RAG + MCP + CI/CD (Tùy chọn)</h4>
+<p>Tích hợp Khối 3 (RAG) nếu cần tìm kiếm code nâng cao. Setup Khối 6 (MCP Server) nếu dùng Claude/Cursor. Copy <code>.github/actions/</code> cho PR review tự động.</p>
+</div>
+
+<h3>Checklist Sau Triển Khai</h3>
+<pre><code># 1. ForgeNexus hoạt động?
+npx forgenexus status
+
+# 2. Config tồn tại?
+Test-Path ".production-grade.yaml"
+
+# 3. AGENTS.md tồn tại?
+Test-Path "AGENTS.md"
+
+# 4. Có ít nhất 1 skill?
+Get-ChildItem ".ai-pipeline/skills" -Directory | Measure-Object</code></pre>
+</section>
+
+<!-- CONFIG TEMPLATE -->
+<section class="section fade-in">
+<h2>⚙️ Config Mẫu (.production-grade.yaml)</h2>
+<pre><code># .production-grade.yaml — đặt ở gốc dự án
+codingLevel: 8          # 1=junior verbose, 8=senior terse, 10=expert minimal
+
+planQuality:
+  threshold: 9.0        # Điểm kế hoạch tối thiểu mới cho code
+  maxIterations: 3
+
+guardrail:
+  enabled: true
+  mode: warn            # warn | deny | dry_run
+
+quality:
+  minimum_score: 90     # Điểm chất lượng tối thiểu (0-100)
+
+brownfield:
+  auto_branch: true     # Tự tạo branch khi sửa code cũ
+  baseline_tests: true  # Chạy test cũ trước khi sửa</code></pre>
+</section>
+
+</div>
+
+<footer style="text-align:center;padding:3rem 2rem;color:var(--text2);font-size:.85rem;border-top:1px solid rgba(255,255,255,.04)">
+<p>Digital-Nervous v8.0.0 — 59 Skills, 32 Protocols, 24 Modes</p>
+<p style="margin-top:.3rem;opacity:.5">Built from <code>.setupGuid/</code> + source analysis + reuse guide</p>
+</footer>
+
+<script>
+function switchTab(e,id){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));e.target.classList.add('active');document.getElementById(id).classList.add('active')}
+const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')})},{threshold:.1});
+document.querySelectorAll('.fade-in').forEach(el=>obs.observe(el));
+document.querySelectorAll('nav a').forEach(a=>{a.addEventListener('click',e=>{e.preventDefault();const t=document.querySelector(a.getAttribute('href'));t&&t.scrollIntoView({behavior:'smooth',block:'start'})})});
+</script>
+</body>
+</html>
