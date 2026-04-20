@@ -196,4 +196,3 @@ Digital-Nervous v8.0 là major release tập trung vào **systematic review và 
 - [ ] Implementation plan drafted
 - [ ] Backward compatibility verified
 - [ ] Documentation inconsistencies fixed
-

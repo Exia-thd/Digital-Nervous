@@ -318,4 +318,3 @@ After T9 completes:
 | Add fix verification | No | New feature |
 
 **Conclusion:** All v8.0 SHIP changes are backward compatible.
-

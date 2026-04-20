@@ -203,4 +203,3 @@ Digital-Nervous/
     ├── session-log.json      ← session history (gitignored)
     └── .gitignore            ← auto-generated
 ```
-

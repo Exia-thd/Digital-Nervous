@@ -308,4 +308,3 @@ Git rollback + escrow report
 | Ensure protected paths config | No | Existing config preserved |
 
 **Conclusion:** All v8.0 BUILD changes are backward compatible.
-

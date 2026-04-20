@@ -641,4 +641,3 @@ Sequential (depends on protocols):
   ├── 2.2 Add bulkhead to worktree manager
   └── 2.3 Integrate bulkhead in dispatch
 ```
-

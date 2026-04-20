@@ -752,4 +752,3 @@ Skill applies:
 ---
 
 *This skill transforms hallucination research into actionable practices. Update based on emerging research and production learnings.*
-

@@ -441,4 +441,3 @@ MIT
 <p align="center">
   <em>Understand relationships, not just files. Validate with zero assumptions. Research with zero hallucinations. Build games across 4 engines. Ship with quality scoring. Grow with data.</em>
 </p>
-

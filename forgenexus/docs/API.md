@@ -496,4 +496,3 @@ forgenexus evaluate --output json --output-file results.json
 - `--difficulties <d>` - Filter by difficulty
 - `--case-ids <ids>` - Specific cases
 - `--verbose` - Detailed output
-

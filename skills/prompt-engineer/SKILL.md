@@ -359,4 +359,3 @@ evaluation/
 | Hardcoding prompts in application code | Store in version-controlled files. Deploy without code changes. |
 | Ignoring cost at scale | $0.01/request × 100K requests/day = $1,000/day. Always model costs. |
 | Evaluating with 5 test cases | Minimum 50 test cases for reliable metrics. Include edge cases. |
-

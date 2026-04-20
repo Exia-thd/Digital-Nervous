@@ -110,4 +110,3 @@ Before concluding the frontend skill:
 ## Quality Bar
 
 Every component must have at least one accessibility test. "Tests pass" is not acceptable -- "94 component tests (87% branch coverage), 12 E2E flows, zero WCAG 2.1 AA violations, LCP 1.8s (budget: 2.5s), CLS 0.04 (budget: 0.1), bundle 156 KB gzip (budget: 200 KB)" is acceptable.
-

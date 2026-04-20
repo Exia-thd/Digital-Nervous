@@ -51,18 +51,7 @@ jobs:
           cache: 'npm'
 
       - name: Install ForgeNexus
-        run: |
-        if [ -d "forgenexus" ]; then
-          cd forgenexus
-        elif [ -d "Digital-Nervous/forgenexus" ]; then
-          cd Digital-Nervous/forgenexus
-        else
-          echo "Error: forgenexus directory not found. Make sure Digital-Nervous is checked out."
-          exit 1
-        fi
-        npm ci
-        npm run build
-        npm link
+        run: npm install -g forgenexus
 
       - name: Setup environment
         id: setup
@@ -132,18 +121,7 @@ jobs:
           node-version: '20'
 
       - name: Install ForgeNexus
-        run: |
-        if [ -d "forgenexus" ]; then
-          cd forgenexus
-        elif [ -d "Digital-Nervous/forgenexus" ]; then
-          cd Digital-Nervous/forgenexus
-        else
-          echo "Error: forgenexus directory not found. Make sure Digital-Nervous is checked out."
-          exit 1
-        fi
-        npm ci
-        npm run build
-        npm link
+        run: npm install -g forgenexus
 
       - name: View Group Contracts
         id: contracts
@@ -186,18 +164,7 @@ jobs:
           node-version: '20'
 
       - name: Install ForgeNexus
-        run: |
-        if [ -d "forgenexus" ]; then
-          cd forgenexus
-        elif [ -d "Digital-Nervous/forgenexus" ]; then
-          cd Digital-Nervous/forgenexus
-        else
-          echo "Error: forgenexus directory not found. Make sure Digital-Nervous is checked out."
-          exit 1
-        fi
-        npm ci
-        npm run build
-        npm link
+        run: npm install -g forgenexus
 
       - name: Check Group Status
         id: status
@@ -238,18 +205,7 @@ jobs:
           node-version: '20'
 
       - name: Install ForgeNexus
-        run: |
-        if [ -d "forgenexus" ]; then
-          cd forgenexus
-        elif [ -d "Digital-Nervous/forgenexus" ]; then
-          cd Digital-Nervous/forgenexus
-        else
-          echo "Error: forgenexus directory not found. Make sure Digital-Nervous is checked out."
-          exit 1
-        fi
-        npm ci
-        npm run build
-        npm link
+        run: npm install -g forgenexus
 
       - name: Search Group
         id: query

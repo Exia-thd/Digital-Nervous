@@ -573,4 +573,3 @@ README.md
 | Ignoring engagement mode | Express: auto-derive. Standard: 2 rounds. Thorough: 4 rounds. Meticulous: full walkthrough. Read settings.md. |
 | Designing for 10M users when there are 100 | Design for current + 10x. Not 1000x. Over-engineering kills velocity. |
 | Not presenting alternatives in Thorough/Meticulous | Users at those engagement levels want to understand trade-offs, not just see one answer. |
-

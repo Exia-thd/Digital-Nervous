@@ -116,4 +116,3 @@ Before proceeding to Phase 2, verify:
 A threat model is NOT complete if it reads like a generic checklist. Every threat must reference specific services, endpoints, or code paths discovered during reconnaissance. "SQL injection is possible" is not a threat -- "The /api/v1/users endpoint in user-service constructs queries via string concatenation at src/routes/users.js:42" is a threat.
 
 **Present the threat model to the user for review before proceeding to Phase 2.**
-

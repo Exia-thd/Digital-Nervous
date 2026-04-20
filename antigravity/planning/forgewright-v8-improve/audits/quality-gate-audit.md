@@ -265,4 +265,3 @@ Total: sum of all points
 | Tune thresholds | No | Configurable defaults |
 
 **Conclusion:** All v8.0 quality gate changes are backward compatible.
-

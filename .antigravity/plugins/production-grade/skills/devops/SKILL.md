@@ -497,4 +497,3 @@ docker-compose.test.yml     # Project root
 | Alert fatigue | SLO-based alerting (SLOs from SRE), aggregate similar alerts, escalation tiers |
 | Generating SLO definitions | SLOs are the SRE's responsibility — DevOps provides monitoring infra only |
 | Writing operational runbooks | Runbooks belong to SRE at docs/runbooks/ — DevOps links alerts to runbook paths |
-

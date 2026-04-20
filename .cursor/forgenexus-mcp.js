@@ -1,5 +1,5 @@
 /**
- * ForgeNexus MCP Server Entry Point — forgewright workspace
+ * ForgeNexus MCP Server Entry Point — Digital-Nervous workspace
  * Points to the local forgenexus dist.
  */
 

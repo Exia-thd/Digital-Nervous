@@ -29,4 +29,3 @@
 | GATE_DECISION | Gate approved/rejected | Save decision to memory |
 | ARCH_DECISION | Architecture approved | Save to mem0 |
 | ERROR | Any error | Save blocker to memory |
-

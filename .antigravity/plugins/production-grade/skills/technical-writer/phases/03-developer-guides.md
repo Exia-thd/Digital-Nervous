@@ -142,4 +142,3 @@ Before moving to Phase 4:
 - Every code example is complete and copy-pasteable
 - ADR summaries are plain language, not copy-pasted from raw ADR format
 - Coding conventions reference actual linter configs, not invented rules
-

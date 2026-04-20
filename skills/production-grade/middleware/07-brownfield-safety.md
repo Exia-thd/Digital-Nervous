@@ -33,4 +33,3 @@
 ## Note
 
 For greenfield projects, Level 2 (Regression) is auto-satisfied — no baseline exists.
-

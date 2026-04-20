@@ -334,4 +334,3 @@ For parallel audits:
 2. **Cross-reference verification** — Links work
 3. **Consistency check** — Same format used
 4. **Evidence trail** — Findings backed by code
-

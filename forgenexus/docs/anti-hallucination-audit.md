@@ -763,4 +763,3 @@ Digital-Nervous has a solid foundation with deterministic indexing pipeline and 
 
 *Report generated using Anti-Hallucination Framework v1.0*  
 *Based on 161 verified research sources (2025-2026)*
-

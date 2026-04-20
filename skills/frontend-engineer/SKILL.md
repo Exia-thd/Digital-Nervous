@@ -258,4 +258,3 @@ Frontend Engineer should enforce these a11y standards throughout all phases (not
 ### Delegation to Accessibility Engineer
 When the `accessibility-engineer` skill is available, delegate deep auditing (screen reader testing, manual keyboard walkthrough, ARIA pattern review) to it. Frontend Engineer handles the implementation; Accessibility Engineer handles the audit.
 
-

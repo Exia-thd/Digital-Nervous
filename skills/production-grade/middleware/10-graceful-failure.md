@@ -39,4 +39,3 @@
 ## Note
 
 This prevents skills from looping indefinitely on impossible tasks.
-

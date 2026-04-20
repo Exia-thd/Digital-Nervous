@@ -182,4 +182,3 @@
 | Add compression | No | Automatic |
 
 **Conclusion:** All v8.0 memory changes are backward compatible.
-

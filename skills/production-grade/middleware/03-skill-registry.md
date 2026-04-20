@@ -26,4 +26,3 @@
 ## Note
 
 This replaces the previous pattern of loading all 52 skill descriptions upfront.
-

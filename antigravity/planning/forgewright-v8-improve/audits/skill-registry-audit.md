@@ -237,4 +237,3 @@
 | Simplify NotebookLM | No | Streamlined workflow |
 
 **Conclusion:** All v8.0 skill changes are backward compatible.
-

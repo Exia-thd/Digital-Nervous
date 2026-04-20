@@ -107,4 +107,3 @@ Source → Ingestion → Raw Layer → Transform → Clean Layer → Marts → C
 - [ ] Alerting configured for failures
 - [ ] Documentation for all models and columns
 - [ ] Backfill capability tested
-

@@ -196,4 +196,3 @@ applyBehavior(result: ConfidenceResult): BehaviorAction
 ## License
 
 MIT
-

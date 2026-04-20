@@ -215,7 +215,7 @@ Chạy `forgenexus analyze` trong CI trước:
 ```yaml
 - name: Setup ForgeNexus
   run: |
-    npm ci --prefix forgenexus && npm run build --prefix forgenexus && npm link --prefix forgenexus
+    npm install -g forgenexus
     forgenexus analyze --no-incremental
 ```
 
@@ -241,4 +241,3 @@ permissions:
 ## License
 
 MIT — Commercial use via AkonLabs
-

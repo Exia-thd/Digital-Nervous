@@ -312,4 +312,3 @@ If blocked, apply:
 | 4 | Tests defined? | ✅ Specific scenarios |
 | 5 | Scope respected? | ✅ Only 3 findings |
 | 6 | Backward compatible? | ✅ No breaking changes |
-

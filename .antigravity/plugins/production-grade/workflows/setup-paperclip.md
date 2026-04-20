@@ -89,4 +89,3 @@ Your Project (git repo)              ← Your codebase
 - Digital-Nervous skills auto-detect Paperclip context via the `paperclip-integration` protocol
 - Budget tracking is handled by Paperclip, not Digital-Nervous
 - To stop Paperclip, just stop the server — your project continues working with Digital-Nervous alone
-

@@ -110,4 +110,3 @@ CHANGELOG.md                                           # Project root
 | No migration guide for breaking changes | Every breaking change needs a "Before/After" code example |
 | Overwriting existing CHANGELOG | Prepend new entries, never overwrite existing history |
 | Not grouping related commits | 5 auth-related commits → 1 "Authentication improvements" entry |
-

@@ -204,4 +204,3 @@
 | Add routing | No | Configurable option |
 
 **Conclusion:** All best practice improvements are backward compatible.
-

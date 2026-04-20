@@ -18,7 +18,7 @@ The `.antigravity/plugins/production-grade/` directory contains copies of skill 
 
 ## Why This Is Intentional
 
-1. **Antigravity is a plugin** — it should be self-contained and not depend on the parent forgewright submodule
+1. **Antigravity is a plugin** — it should be self-contained and not depend on the parent Digital-Nervous submodule
 2. **Git worktree isolation** — when using Antigravity in a different project, the templates must be available locally
 3. **Reproducibility** — the plugin version is pinned at a specific commit
 

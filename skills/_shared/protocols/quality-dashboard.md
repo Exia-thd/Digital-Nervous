@@ -215,4 +215,3 @@ IF cumulative average drops below block_score (default 60):
 The Quality Dashboard REPLACES the Final Summary Template in the orchestrator (the `╔══════╗` banner). The new dashboard includes all the same information plus quality metrics. The orchestrator should use this protocol's template instead of its built-in one.
 
 The existing HARDEN Summary banner is KEPT as a phase-level summary. The Quality Dashboard is the pipeline-level summary that appears at the very end or at Gate 3.
-

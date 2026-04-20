@@ -670,4 +670,3 @@ When the project needs a full brand system (not just a design system), produce t
 └── photography.md                     # Photo direction guide
 ```
 
-

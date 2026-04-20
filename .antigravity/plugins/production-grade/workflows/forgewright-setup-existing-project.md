@@ -200,4 +200,3 @@ This means Digital-Nervous will NEVER break your existing codebase.
 | **2** | + ForgeNexus indexes YOUR existing code |
 | **3** | + Persistent memory — remembers YOUR project decisions |
 | **4** | + 12 MCP tools — deep code intelligence on YOUR codebase |
-

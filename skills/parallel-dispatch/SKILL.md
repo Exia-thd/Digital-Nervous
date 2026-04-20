@@ -620,4 +620,3 @@ Update `.Digital-Nervous/task.md` with parallel status:
 - All worker processes run with the same user credentials
 - No network isolation between workers (they may all need package registries)
 - Secrets/credentials should NOT be in any contract input
-

@@ -273,4 +273,3 @@ Optionally append to project CLAUDE.md for cross-session persistence.
 | Document maintenance | No | Documentation only |
 
 **Conclusion:** All v8.0 SUSTAIN changes are backward compatible.
-

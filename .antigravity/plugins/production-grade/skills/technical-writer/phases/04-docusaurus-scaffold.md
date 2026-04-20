@@ -192,4 +192,3 @@ Before marking the Technical Writer skill as complete:
 - Search is configured (Algolia or local) — not silently omitted
 - Deployment config targets at least one platform with working commands
 - No hardcoded project-specific values that should be template variables
-

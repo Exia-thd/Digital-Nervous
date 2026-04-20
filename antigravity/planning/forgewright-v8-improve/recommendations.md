@@ -294,4 +294,3 @@
 3. Add checkpointing — 24 hours
 4. Implement event-driven pattern — 40 hours
 5. Add human-in-loop checkpoints — 16 hours
-

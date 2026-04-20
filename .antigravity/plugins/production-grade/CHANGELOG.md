@@ -180,4 +180,3 @@ All notable changes to Forge17 (formerly Production Grade Plugin).
 - 12 specialized agent skills coordinated through dependency graph.
 - 3 approval gates, autonomous execution between gates.
 - DEFINE > BUILD > HARDEN > SHIP > SUSTAIN pipeline.
-

@@ -103,4 +103,3 @@ Gameplay VFX per Technical Artist catalog:
 - [ ] Custom post-process materials for gameplay feedback
 - [ ] Performance profiling: GPU time per material, particle count limits
 - [ ] All visual systems respect platform performance budgets
-

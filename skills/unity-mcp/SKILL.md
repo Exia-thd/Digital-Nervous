@@ -453,4 +453,3 @@ Before completing Unity MCP work:
 - [ ] Prefabs created from reusable objects
 - [ ] Console cleared of errors
 - [ ] Notes for Unity Engineer documented
-

@@ -403,4 +403,3 @@ case "$CMD" in
   help)    head -18 "$0" | tail -15 ;;
   *)       echo "Unknown command: $CMD. Run: session.sh help"; exit 1 ;;
 esac
-

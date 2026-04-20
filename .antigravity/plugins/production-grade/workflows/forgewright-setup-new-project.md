@@ -158,4 +158,3 @@ Or use workflow shortcuts:
 | **2** | + ForgeNexus code intelligence — blast-radius analysis, call chains, impact |
 | **3** | + Persistent memory — cross-session context, remembers decisions |
 | **4** | + 12 MCP tools — `query`, `context`, `impact`, `rename`, `cypher`, etc. |
-

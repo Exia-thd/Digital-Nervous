@@ -346,4 +346,3 @@ After Gate 2: verify outputs, log decisions, read BUILD phase.
 | Mode overlap clarification | No | Priority documentation |
 
 **Conclusion:** All v8.0 changes are backward compatible.
-

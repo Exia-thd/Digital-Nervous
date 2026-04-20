@@ -253,4 +253,3 @@ IF guardrail rule evaluation fails (regex error, config parse error):
   3. Default to DENY (fail-closed for security rules marked critical: true)
   4. Continue pipeline — NEVER block pipeline on guardrail internal error
 ```
-

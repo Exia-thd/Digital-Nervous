@@ -457,4 +457,3 @@ When the user's request references prior work, decisions, or session history —
 2. `.Digital-Nervous/project-profile.json` — architecture/stack
 3. `.Digital-Nervous/code-conventions.md` — coding patterns
 4. `mem0-cli.py search` — cross-session memory
-

@@ -348,4 +348,3 @@ Preview:
 - Pricing được update theo API rates mới nhất
 - Data được retain 90 ngày mặc định
 - Dashboard hoạt động offline với demo data nếu không có API
-

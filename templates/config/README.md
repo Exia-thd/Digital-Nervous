@@ -62,4 +62,3 @@ npx ts-node scripts/generate-template.ts \
   "endOfLine": "lf"
 }
 ```
-

@@ -429,4 +429,3 @@ All games have access to these shared libraries via `@shared/lib/`:
 - [ ] **Typography** — custom font specified (Outfit from Google Fonts recommended)
 - [ ] **Background design** — gradient + ambient particles or grid pattern
 - [ ] **Shared libraries** used: audio-manager, vfx-helpers, ui-helpers
-

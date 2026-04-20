@@ -450,4 +450,3 @@ Quick lookup for common root causes:
 | Stopping at the first hypothesis | Generate multiple hypotheses. The obvious answer is often wrong. |
 | Ignoring intermittent bugs | They are real bugs with real causes. Usually: race conditions, timing, or data-dependent. |
 | Not documenting the investigation | Future-you needs to know what was checked and ruled out. Write it down. |
-

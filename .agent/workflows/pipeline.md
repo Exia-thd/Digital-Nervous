@@ -46,4 +46,3 @@ Examples:
 - "Write Playwright tests for my login flow"
 - "Design a UI system for a fintech dashboard"
 - "Help me think about building a restaurant management platform"
-

@@ -114,4 +114,3 @@ bash Digital-Nervous/scripts/mobile-test-setup.sh --check-only
 | iOS: "WebDriverAgent not responding" | Open Xcode → Start a Simulator first |
 | "Cannot find module @midscene/android" | Run `npm install @midscene/android --save-dev` |
 | Test hangs at "Connecting..." | Check if device screen is unlocked |
-

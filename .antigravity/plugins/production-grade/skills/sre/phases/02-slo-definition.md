@@ -147,4 +147,3 @@ Before proceeding to Phase 3, verify:
 ## Quality Bar
 
 SLOs must be based on user-observable impact, not internal metrics. Internal services get lower targets than user-facing services. Every SLO must have a documented consequence for budget exhaustion — SLOs without enforcement are aspirational fiction.
-

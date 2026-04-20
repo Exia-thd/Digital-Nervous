@@ -620,4 +620,3 @@ echo -e "  ${GREEN}▸${NC} View visual reports after test run:"
 echo -e "     ${CYAN}open ./midscene_run/report/index.html${NC}"
 echo ""
 echo -e "${DIM}─── Digital-Nervous Mobile Test Setup Complete ───${NC}"
-

@@ -327,4 +327,3 @@ Post-Skill: ⑥ QualityGate → ⑦ BrownfieldSafety → ⑧ TaskTracking → �
 | Make threshold configurable | No | Backward compatible defaults |
 
 **Conclusion:** All v8.0 middleware changes are backward compatible.
-

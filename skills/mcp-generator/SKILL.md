@@ -449,4 +449,3 @@ Unity projects benefit from game-specific queries:
 │ 5. Digital-Nervous Unity skills can now leverage Unity-MCP tools    │
 └─────────────────────────────────────────────────────────────────┘
 ```
-

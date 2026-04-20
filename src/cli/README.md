@@ -248,4 +248,3 @@ npm test
 ## License
 
 MIT
-

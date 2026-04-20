@@ -268,4 +268,3 @@ To generate a new project suite natively:
 1. Copy or edit `config_template.json` with your project's Milestones, Sprint counts, Backlogs, and Team roster.
 2. Run the core reactor: `python3 generator_app.py config_template.json`
 3. The AI will spawn two customized `.xlsx` files ready for enterprise-level tracking and accounting.
-

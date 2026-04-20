@@ -164,4 +164,3 @@ Before proceeding to Phase 5, verify:
 ## Quality Bar
 
 A data security audit that only checks database columns for PII is incomplete. PII leaks into logs, caches, error tracking services, analytics pipelines, browser localStorage, and third-party integrations. The audit must trace data through EVERY layer. Similarly, "encryption is enabled" is not an assessment -- specify the algorithm, key length, mode of operation, and whether the implementation follows current best practices.
-

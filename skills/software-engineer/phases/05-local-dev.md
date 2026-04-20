@@ -197,4 +197,3 @@ Before marking the suite as complete:
 - Documented: all ports, URLs, and credentials listed
 - Clean: `.env.example` committed, `.env` gitignored
 - Fast: infrastructure starts in under 60 seconds
-

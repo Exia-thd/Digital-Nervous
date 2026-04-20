@@ -36,4 +36,3 @@
 - If project-profile.json missing → WARN, continue with empty profile (new project)
 - If session-log.json missing → WARN, treat as first session
 - Never block pipeline due to session data issues
-

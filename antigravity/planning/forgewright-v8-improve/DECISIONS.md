@@ -247,4 +247,3 @@ Tree-sitter provides consistent AST across languages with good performance.
 - Migration effort required
 
 **Status:** Pending evaluation after review complete
-

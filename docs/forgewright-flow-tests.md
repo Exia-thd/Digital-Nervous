@@ -569,4 +569,3 @@ Status:   ⬜
 | `.production-grade.yaml` missing | INFO | Optional — defaults apply | Create per-project if custom paths needed |
 | `.Digital-Nervous/codebase-context.md` missing | INFO | Optional — greenfield mode | Create when onboarding existing project |
 | NotebookLM MCP requires login | INFO | Auth required for research flows | Re-authenticate each session if cookies expire |
-

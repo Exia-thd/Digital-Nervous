@@ -1321,4 +1321,3 @@ For ALL brownfield projects (any mode, not just Full Build), activate the safety
 | Modifying protected paths | Check brownfield-safety protected paths before ANY file write |
 | No regression check in brownfield | After EACH build skill, verify existing tests still pass against baseline |
 | Not saving session state | Call session lifecycle hooks at every phase/task/gate completion |
-

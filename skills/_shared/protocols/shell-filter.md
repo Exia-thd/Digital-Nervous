@@ -114,4 +114,3 @@ If the original output is < 500 characters and < 20 lines, skip filtering (not w
 | `shell_filter_command_type` | git/npm/cargo/etc |
 | `shell_filter_compressor` | rtk/chop/snip/native |
 | `shell_filter_fallback_count` | how many fell back to original |
-

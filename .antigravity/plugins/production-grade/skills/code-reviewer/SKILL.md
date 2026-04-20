@@ -385,4 +385,3 @@ Before marking the skill as complete, verify:
 - [ ] No files were created or modified outside of .Digital-Nervous/code-reviewer/
 - [ ] The report is actionable — a developer can read a finding and know exactly what to fix and where
 - [ ] No OWASP or security review was performed — security analysis is deferred to security-engineer
-

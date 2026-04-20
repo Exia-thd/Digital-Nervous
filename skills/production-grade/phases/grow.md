@@ -60,4 +60,3 @@ python3 scripts/mem0-cli.py add "GROW phase completed for [project]. Growth stra
 | Marketing | Growth Marketer | Go-to-market, content, SEO |
 | Grow | Growth Marketer + Conversion Optimizer | Full growth strategy |
 | CRO only | Conversion Optimizer | A/B tests, conversion analysis |
-

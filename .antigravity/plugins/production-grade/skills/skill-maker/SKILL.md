@@ -322,4 +322,3 @@ Fixes applied:
 | Not placing in skills/ directory | Skills go in `skills/<name>/SKILL.md` for auto-loading |
 | Overfitting to test cases | Generalize patterns, explain WHY, not just WHAT |
 | All caps instructions (MUST/NEVER) | Yellow flag — reframe as explanations with rationale |
-
