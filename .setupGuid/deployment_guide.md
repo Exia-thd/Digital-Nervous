@@ -65,7 +65,7 @@ your-new-project/
 │           ├── skills/                ← 55 AI Agent skills
 │           ├── forgenexus/            ← Code Intelligence engine
 │           └── scripts/               ← Setup utilities
-├── .forgewright/                      ← Workspace (tự tạo khi chạy)
+├── .Digital-Nervous/                      ← Workspace (tự tạo khi chạy)
 │   ├── project-profile.json           ← Fingerprint dự án
 │   ├── code-conventions.md            ← Coding patterns phát hiện được
 │   └── session-log.json               ← Lịch sử phiên làm việc
@@ -94,7 +94,7 @@ mkdir -p .ai-pipeline/forgenexus
 Copy **10 file protocol** quan trọng nhất:
 
 ```powershell
-$SRC = "C:\Users\thdat\Downloads\forgewright-main\Digital-Nervous"
+$SRC = "C:\Users\thdat\Downloads\Digital-Nervous-main\Digital-Nervous"
 
 # 10 protocols cốt lõi
 Copy-Item "$SRC\skills\_shared\protocols\plan-quality-loop.md"      ".ai-pipeline\protocols\"
@@ -197,7 +197,7 @@ your-new-project/
 │       └── ...
 ├── src/                               ← Source code dự án của bạn
 ├── .production-grade.yaml             ← Config
-└── .forgewright/                      ← Workspace (tự tạo lúc chạy)
+└── .Digital-Nervous/                      ← Workspace (tự tạo lúc chạy)
 ```
 
 ---
@@ -322,4 +322,5 @@ Get-ChildItem ".antigravity/plugins/production-grade/skills" -Directory | Measur
 ```
 
 > [!IMPORTANT] Lưu ý quan trọng
-> Sau khi triển khai, lần đầu tiên bạn chat với AI, hệ thống sẽ tự động tạo thư mục `.forgewright/` chứa `project-profile.json`, `session-log.json`... Đây là hành vi bình thường, không cần lo lắng.
+> Sau khi triển khai, lần đầu tiên bạn chat với AI, hệ thống sẽ tự động tạo thư mục `.Digital-Nervous/` chứa `project-profile.json`, `session-log.json`... Đây là hành vi bình thường, không cần lo lắng.
+

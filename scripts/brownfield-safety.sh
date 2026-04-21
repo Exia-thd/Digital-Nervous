@@ -354,3 +354,4 @@ case "$CMD" in
   help)        head -17 "$0" | tail -13 ;;
   *)           echo "Unknown: $CMD. Run: brownfield-safety.sh help"; exit 1 ;;
 esac
+

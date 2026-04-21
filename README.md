@@ -2,7 +2,7 @@
 
 <p align="center">
   <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT" /></a>
-  <img src="https://img.shields.io/badge/version-8.1.0-blue.svg" alt="Version" />
+  <img src="https://img.shields.io/badge/version-8.2.0-blue.svg" alt="Version" />
   <img src="https://img.shields.io/badge/skills-56-brightgreen.svg" alt="Skills" />
   <img src="https://img.shields.io/badge/templates-55-brightgreen.svg" alt="Templates" />
   <img src="https://img.shields.io/badge/features-3-brightgreen.svg" alt="New Features" />
@@ -12,6 +12,7 @@
   <img src="https://img.shields.io/badge/Code_Intelligence-ForgeNexus·GitNexus-4B0082.svg" alt="Code Intelligence" />
   <img src="https://img.shields.io/badge/Memory-Persistent%20(mem0)-00CED1.svg" alt="Memory" />
   <img src="https://img.shields.io/badge/MCP-12%20Tools-orange.svg" alt="MCP" />
+  <img src="https://img.shields.io/badge/Token_Efficiency-~90%25%20Reduction-2ecc71.svg" alt="Token Efficiency" />
 </p>
 
 ---
@@ -91,6 +92,478 @@ flowchart LR
     style L3A fill:#d35400,stroke:#e67e22,color:#fff
     style L4A fill:#c0392b,stroke:#e74c3c,color:#fff
 ```
+
+---
+
+## 🚀 Quick Start — 5 Phút Đầu Tiên
+
+### Trước khi bắt đầu
+
+Kiểm tra máy đã cài đủ công cụ chưa:
+
+```bash
+# macOS/Linux
+node --version   # Cần Node.js 18+
+python3 --version  # Cần Python 3.8+ (cho Memory/Level 3)
+git --version    # Cần Git
+
+# Windows: Dùng PowerShell hoặc WSL2
+```
+
+**Nếu chưa cài Node.js:**
+```bash
+# macOS
+brew install node
+
+# Linux
+curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+sudo apt-get install -y nodejs
+
+# Windows: Tải từ https://nodejs.org
+```
+
+---
+
+### Cách 1: Dùng ngay (Khuyên dùng — Level 1)
+
+Đây là cách nhanh nhất, không cần cài gì thêm:
+
+**Bước 1:** Tạo thư mục project mới (hoặc dùng project hiện có)
+
+```bash
+cd /path/to/your/project
+# Hoặc tạo mới:
+mkdir my-project && cd my-project
+git init
+```
+
+**Bước 2:** Clone Digital-Nervous
+
+```bash
+git clone https://github.com/buiphucminhtam/Digital-Nervous.git
+cd Digital-Nervous
+```
+
+**Bước 3:** Copy 2 file cần thiết vào project của bạn
+
+```bash
+# Quay lại thư mục project
+cd /path/to/your/project
+
+# Copy 2 file cấu hình (chạy từ thư mục chứa Digital-Nervous)
+cp Digital-Nervous/AGENTS.md .
+cp Digital-Nervous/CLAUDE.md .
+
+# Hoặc nếu dùng Claude Code/VS Code Agent, file sẽ tự đọc CLAUDE.md
+```
+
+**Bước 4:** Mở IDE và bắt đầu chat
+
+- **Cursor**: Mở Cursor, chọn thư mục project
+- **Claude Code**: Chạy `claude` trong terminal từ thư mục project
+- **VS Code + Claude Extension**: Mở project, bật Claude extension
+
+**Bước 5:** Gõ yêu cầu đầu tiên
+
+```bash
+# Ví dụ 1: Xây dựng website mới
+"Build me a landing page for my coffee shop"
+
+# Ví dụ 2: Thêm tính năng vào project hiện có
+"Add user authentication with JWT"
+
+# Ví dụ 3: Sửa bug
+"Fix the login bug where users get logged out randomly"
+
+# Ví dụ 4: Viết tests
+"Write unit tests for the payment module"
+```
+
+**Sau khi gõ, Digital-Nervous sẽ tự động:**
+1. Phân tích yêu cầu của bạn
+2. Chọn đúng AI skill cần thiết
+3. Thực hiện công việc theo pipeline
+4. Báo kết quả kèm điểm chất lượng (0-100)
+
+---
+
+### Cách 2: Cài đặt đầy đủ (Level 4 — Full Power)
+
+Cách này thêm **12 công cụ AI** vào IDE của bạn:
+
+**Bước 1-3:** Làm tương tự **Cách 1** (Bước 1-3)
+
+**Bước 4:** Chạy MCP Setup
+
+```bash
+# Từ thư mục project (nơi chứa Digital-Nervous/)
+cd /path/to/your/project
+bash Digital-Nervous/scripts/Digital-Nervous-mcp-setup.sh
+```
+
+Script này sẽ tự động:
+- Tạo MCP server cho project
+- Cấu hình workspace isolation
+- Cập nhật config của Cursor/VS Code/Claude Desktop
+- Kiểm tra cài đặt
+
+**Bước 5:** Restart IDE
+
+```bash
+# Tắt và mở lại Cursor/VS Code/Claude Desktop
+```
+
+**Bước 6:** Kiểm tra
+
+```bash
+# Kiểm tra MCP đã hoạt động chưa
+bash Digital-Nervous/scripts/Digital-Nervous-mcp-setup.sh --check
+```
+
+**Bước 7:** Bắt đầu sử dụng
+
+Giờ bạn có thể dùng các lệnh đặc biệt:
+
+```bash
+# Phân tích project
+"/onboard"
+
+# Xem pipeline
+"/pipeline"
+
+# Kiểm tra chất lượng code
+"/quality"
+
+# Hoặc hỏi thẳng:
+"How does the authentication flow work?"
+"What will break if I change the User model?"
+"Show me all API endpoints"
+```
+
+---
+
+### Cách 3: Dùng như Submodule (Cho team)
+
+Khi muốn thêm Digital-Nervous vào project để share với team:
+
+**Bước 1:** Thêm submodule
+
+```bash
+cd /path/to/your/project
+git submodule add -b main https://github.com/buiphucminhtam/Digital-Nervous.git \
+  .antigravity/plugins/production-grade
+```
+
+**Bước 2:** Copy file cấu hình
+
+```bash
+cp .antigravity/plugins/production-grade/AGENTS.md .
+cp .antigravity/plugins/production-grade/CLAUDE.md .
+```
+
+**Bước 3:** Commit
+
+```bash
+git add .gitmodules .antigravity AGENTS.md CLAUDE.md
+git commit -m "feat: add Digital-Nervous AI orchestrator"
+git push
+```
+
+**Bước 4:** Team member khác clone và init submodule
+
+```bash
+git clone https://github.com/your-org/your-project.git
+cd your-project
+git submodule update --init --recursive
+```
+
+---
+
+### 🔀 Multi-Project Workflow
+
+Làm việc với nhiều project cùng lúc:
+
+#### Cách 1: Nhiều Cursor/IDE windows (Đơn giản nhất)
+
+Mỗi project mở 1 window riêng:
+
+```bash
+# Project A
+cursor /path/to/project-a
+
+# Project B (terminal khác)
+cursor /path/to/project-b
+```
+
+**Mỗi window có:**
+- Memory riêng (`.Digital-Nervous/memory.jsonl`)
+- ForgeNexus index riêng
+- MCP config riêng
+
+#### Cách 2: Git Worktrees (Cùng repo, nhiều branches)
+
+Dùng khi cần test nhiều features trên cùng repo:
+
+```bash
+# Tạo worktree cho feature mới
+cd your-repo
+git worktree add .worktrees/feature-login feature/login
+
+# Tạo worktree cho hotfix
+git worktree add .worktrees/hotfix-payment hotfix/payment
+
+# Mở từng worktree trong Cursor riêng
+cursor .worktrees/feature-login
+cursor .worktrees/hotfix-payment
+```
+
+#### Cách 3: MCP cho mỗi workspace
+
+Mỗi project cần chạy MCP setup riêng:
+
+```bash
+# Project A
+cd project-a
+bash Digital-Nervous/scripts/Digital-Nervous-mcp-setup.sh
+
+# Project B (port khác để tránh conflict)
+cd project-b
+STUDIO_PORT=7893 bash Digital-Nervous/scripts/Digital-Nervous-mcp-setup.sh
+```
+
+#### Architecture: Multi-Project Isolation
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                    Your Machine                             │
+├─────────────────────────────────────────────────────────────┤
+│                                                             │
+│  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐        │
+│  │  Project A  │  │  Project B  │  │  Project C  │        │
+│  │  .Digital-Nervous│  │  .Digital-Nervous│  │  .Digital-Nervous│        │
+│  │  memory.jsonl│  │  memory.jsonl│  │  memory.jsonl│        │
+│  │  index.db   │  │  index.db   │  │  index.db   │        │
+│  └─────────────┘  └─────────────┘  └─────────────┘        │
+│         │                │                │                │
+│         ▼                ▼                ▼                │
+│  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐        │
+│  │ MCP Server  │  │ MCP Server  │  │ MCP Server  │        │
+│  │  (port A)   │  │  (port B)   │  │  (port C)   │        │
+│  └─────────────┘  └─────────────┘  └─────────────┘        │
+│                                                             │
+└─────────────────────────────────────────────────────────────┘
+```
+
+---
+
+## 🎯 Sau Khi Cài Đặt — Làm Gì?
+
+### Dùng như thế nào?
+
+| Bạn muốn... | Gõ/Dùng... | Digital-Nervous sẽ... |
+|-------------|-------------|-------------------|
+| Xây app mới | `"Build a todo app with React"` | BA → PM → Architect → Code → Test |
+| Thêm tính năng | `"Add dark mode"` | PM → Code → Test |
+| Viết tests | `"Write tests for auth"` | QA Engineer viết tests |
+| Review code | `"Review my API code"` | Code Reviewer check quality |
+| Sửa bug | `"Fix the memory leak"` | Debugger → Engineer fix |
+| Deploy | `"Deploy to Vercel"` | DevOps → SRE |
+| Tối ưu | `"Speed up the homepage"` | Performance Engineer analyze |
+| Bảo mật | `"Audit the auth flow"` | Security Engineer check |
+| Game | `"Build a 2D platformer in Unity"` | Game Designer → Unity Engineer |
+| Research | `"Research about RAG architecture"` | NotebookLM + Polymath |
+
+### Các lệnh đặc biệt
+
+```bash
+# Dashboard
+/onboard        # Phân tích sâu project, tạo profile
+/pipeline       # Xem tất cả 24 modes và 56 skills
+/quality        # Chấm điểm code 0-100
+/mcp            # Kiểm tra MCP setup
+
+# Trong chat
+"@file:auth.ts"    # Tham chiếu file cụ thể
+"how does X work?" # Hỏi về code
+"what depends on X?" # Hỏi về dependencies
+```
+
+### Hiểu output của Digital-Nervous
+
+Khi Digital-Nervous làm việc, bạn sẽ thấy:
+
+```
+🤔 INTERPRETING REQUEST...
+   Intent: Build a landing page
+   Mode: Full Build (simplified)
+   Confidence: HIGH
+
+📋 PLANNING...
+   Step 1: Business Analyst defines scope
+   Step 2: Architect designs structure
+   Step 3: Engineer builds code
+   Step 4: QA writes tests
+
+⚡ EXECUTING...
+   [████████░░░░░░░░░░] 45% - Building components...
+
+✅ DONE (Score: 87/100)
+   - 12 files created
+   - 3 tests passed
+   - No security issues
+```
+
+---
+
+## 🎨 Digital-Nervous Studio — Real-time Pipeline Monitor
+
+Digital-Nervous Studio là dashboard theo dõi pipeline theo thời gian thực, lấy cảm hứng từ [AgentScope Studio](https://github.com/agentscope-ai/agentscope-studio).
+
+### Tính năng
+
+| Tính năng | Mô tả |
+|------------|-------|
+| **Pipeline Monitor** | Theo dõi tiến độ các phase: DEFINE → BUILD → HARDEN → SHIP |
+| **Memory Trace** | Timeline của memory operations |
+| **Token Tracker** | Theo dõi tokens và chi phí API |
+| **Session History** | Lịch sử các phiên làm việc |
+
+### Cách chạy
+
+**Bước 1:** Cài đặt dependencies
+
+```bash
+cd /Users/buiphucminhtam/Documents/GitHub/Digital-Nervous
+npm install
+```
+
+**Bước 2:** Build ForgeNexus (nếu chưa có)
+
+```bash
+npm run build
+```
+
+**Bước 3:** Chạy Studio Server
+
+```bash
+# Cách 1: Chạy với ts-node
+npx ts-node src/studio/run.ts
+
+# Cách 2: Chạy với demo events
+npx ts-node src/studio/run.ts --demo
+
+# Cách 3: Chạy trên port khác
+STUDIO_PORT=9000 npx ts-node src/studio/run.ts
+```
+
+**Bước 4:** Mở Dashboard
+
+Sau khi chạy, bạn sẽ thấy:
+
+```
+╔══════════════════════════════════════════════════════════════╗
+║                   Digital-Nervous Studio                         ║
+╠══════════════════════════════════════════════════════════════╣
+║                                                              ║
+║  🎯 Dashboard:  http://localhost:7891                        ║
+║  📡 WebSocket: ws://localhost:7891                          ║
+║                                                              ║
+║  Status: Running                                             ║
+║                                                              ║
+╚══════════════════════════════════════════════════════════════╝
+```
+
+### Tự tạo UI Dashboard
+
+Component React của Studio có sẵn trong `src/studio/components/`. Bạn có thể tự tạo UI:
+
+```tsx
+import { StudioApp } from "@Digital-Nervous/studio";
+
+// Trong React app của bạn
+function App() {
+  return (
+    <StudioApp
+      sessionId="your-session-id"
+      wsUrl="ws://localhost:7891"
+    />
+  );
+}
+```
+
+### Architecture
+
+```
+┌─────────────┐     WebSocket      ┌──────────────┐
+│   IDE/CLI   │ ─────────────────► │  WS Server   │
+│ (Emitter)   │   port 7891       │  (run.ts)    │
+└─────────────┘                    └──────────────┘
+                                          │
+                                          ▼
+                                   ┌──────────────┐
+                                   │  Studio UI   │
+                                   │ (React App)  │
+                                   └──────────────┘
+```
+
+### Events được hỗ trợ
+
+| Event | Mô tả |
+|-------|-------|
+| `pipeline:start` | Pipeline bắt đầu |
+| `pipeline:progress` | Tiến độ thay đổi |
+| `pipeline:complete` | Pipeline hoàn thành |
+| `stats:update` | Cập nhật tokens/cost |
+| `memory:trace` | Memory operation |
+| `error:throw` | Error xảy ra |
+
+---
+
+## ❓ FAQ — Câu Hỏi Thường Gặp
+
+**Q: Cần trả tiền không?**
+A: Không. Digital-Nervous miễn phí. Bạn chỉ cần trả tiền cho Claude API nếu dùng Claude.
+
+**Q: Dùng được với GPT-4 không?**
+A: Có. Digital-Nervous hoạt động với Claude, GPT-4, và các LLM khác.
+
+**Q: Cần biết lập trình không?**
+A: Không bắt buộc. Level 1 có thể dùng như "AI assistant" đơn giản.
+
+**Q: Lưu dữ liệu ở đâu?**
+A: Tất cả data được lưu trong `.Digital-Nervous/` và `.antigravity/` của project bạn.
+
+**Q: Gặp lỗi thì làm sao?**
+A: Chạy `bash Digital-Nervous/scripts/Digital-Nervous-mcp-setup.sh --diagnose`
+
+**Q: Làm việc với nhiều project cùng lúc thì sao?**
+A: Có 3 cách:
+
+| Cách | Khi nào dùng | Cách setup |
+|------|---------------|------------|
+| **Nhiều Cursor windows** | Mỗi project 1 window riêng | Mỗi project cần có `AGENTS.md` + `CLAUDE.md` |
+| **Git worktrees** | Cùng 1 repo, nhiều branches chạy song song | Dùng `scripts/worktree-manager.sh` |
+| **MCP per workspace** | Mỗi project có MCP riêng | Mỗi project chạy `Digital-Nervous-mcp-setup.sh` |
+
+**Q: Mỗi project có memory riêng không?**
+A: Có! Memory được lưu trong `.Digital-Nervous/memory.jsonl` của từng project. Nếu muốn cross-project memory, dùng NotebookLM.
+
+**Q: Project A và B có bị conflict không?**
+A: Không. Mỗi project có workspace isolation riêng:
+- `.Digital-Nervous/` — project-specific state
+- `.antigravity/` — plugin config
+- MCP config — per-workspace (`~/.cursor/mcp.json`)
+
+---
+
+## 🔧 Troubleshooting Nhanh
+
+| Lỗi | Cách fix |
+|-----|----------|
+| MCP không hoạt động | Restart IDE, chạy `--diagnose` |
+| Không tìm thấy skills | Kiểm tra đã copy AGENTS.md và CLAUDE.md |
+| Index cũ | Chạy `npx forgenexus analyze` |
+| Submodule lỗi | `git submodule update --init --recursive` |
 
 ---
 
@@ -325,6 +798,178 @@ npx ts-node scripts/generate-template.ts \
 - Cursor: rule templates, file-specific rules, agent prompts, rules index
 - Skills: DevOps checklist, SRE runbook, SWE patterns, DB migration, mobile assertions
 - Game: Godot lobby, NetworkManager, SyncVar, server-authoritative loop
+
+---
+
+## Token Efficiency — 90% Reduction on AI Context
+
+Digital-Nervous v8.1+ implements a comprehensive token efficiency stack that compounds savings across every layer. **Save up to 90% on LLM token costs** while maintaining full functionality.
+
+### Impact Summary
+
+| Metric | Before | After | Reduction |
+|--------|--------|-------|-----------|
+| **Shell outputs** | Full raw output | Structured summary | **60-80%** |
+| **Session duplicate calls** | Repeated tool results | Deduplicated | **90%** |
+| **Conversation context** | All turns retained | Intelligent pruning | **50-70%** |
+| **Memory retrieval** | Full context load | Progressive disclosure | **75%** |
+| **Code execution output** | Raw stdout/stderr | Summarized results | **95-98%** |
+| **Symbol navigation** | Full file reads | Minimal signatures | **97%** |
+| **Combined estimate** | High token usage | Minimal usage | **~90%** |
+
+### Architecture Overview
+
+```mermaid
+flowchart TD
+    REQ(["User / AI Request"])
+
+    subgraph INPUT["Input Layer"]
+        I1["① Session Deduplication<br/>SHA-256 keys · LRU cache<br/>10-turn window"]
+        I2["② Context Loader<br/>Memory + conventions<br/>Progressive disclosure"]
+    end
+
+    subgraph PROCESS["Processing Layer"]
+        P1["③ Shell Filter<br/>Native awk/sed (60-80%)<br/>or RTK (80-90%)"]
+        P2["④ Tool Sandbox<br/>ANSI strip · Truncate ·<br/>Prompt injection detection"]
+        P3["⑤ Conversation Pruning<br/>DyCP KadaneDial<br/>Z-score normalization"]
+    end
+
+    subgraph OUTPUT["Output Layer"]
+        O1["⑥ Outline Mode<br/>Function signatures only<br/>>200 lines triggers"]
+        O2["⑦ ctx_execute<br/>Sandboxed execution<br/>Structured summary"]
+        O3["⑧ Memory v2<br/>SQLite + FTS5 + RRF<br/>3-layer disclosure"]
+    end
+
+    REQ --> INPUT --> PROCESS --> OUTPUT
+
+    style REQ fill:#1a1a2e,stroke:#e94560,color:#fff
+    style INPUT fill:#1a5276,stroke:#3498db
+    style PROCESS fill:#1e8449,stroke:#2ecc71
+    style OUTPUT fill:#d35400,stroke:#e67e22
+```
+
+### Components
+
+#### 1. Shell Output Filter — 60-80% reduction
+
+Pure shell script that compresses CLI outputs without external dependencies.
+
+```bash
+# Auto-detects best compressor: rtk > chop > snip > ctx > native
+bash scripts/run_shell_filter.sh --pipe
+```
+
+**Supported commands:** git, npm, cargo, pytest, docker, kubectl, curl, pytest, tsc, eslint, prettier, ruff, mypy, go, gradle, and more.
+
+#### 2. Session Deduplication — 90% reduction
+
+Prevents duplicate tool calls from re-entering context using SHA-256 normalized keys.
+
+```typescript
+// Sliding window: 10 turns / 5 minutes
+// LRU eviction: 500 entries max
+// Eviction: Least Recently Used
+```
+
+#### 3. Tool Output Sandboxing — Security + Efficiency
+
+Isolated execution with structured summaries and audit logging.
+
+```typescript
+// Features:
+// - ANSI stripping
+// - Prompt injection detection
+// - Compression (truncate >10KB)
+// - Audit log: .Digital-Nervous/audit/{session}/{turn}/{tool}/
+```
+
+#### 4. Conversation Pruning (DyCP) — 50-70% reduction
+
+KadaneDial algorithm for intelligent conversation span selection.
+
+```python
+# KadaneDial: Z-score normalized span scoring
+# Pre-processing: tool dedup + error purge
+# Strategies: structured_summary | truncate | offload
+```
+
+#### 5. Memory v2 (SQLite + FTS5 + RRF) — 75% reduction
+
+3-layer progressive disclosure for memory retrieval.
+
+| Layer | Tokens | Content |
+|-------|--------|---------|
+| Layer 1 | ~15 | Single-line summary |
+| Layer 2 | ~60 | Key facts only |
+| Layer 3 | ~200 | Full detail |
+
+#### 6. ForgeNexus Outline Mode — 97% reduction
+
+Pattern-based structural extraction for large files.
+
+```typescript
+// Thresholds:
+// - >200 lines OR >6000 tokens → Outline mode
+// - <200 lines → Full content
+// Session dedup: "[shown earlier]" on revisit
+```
+
+#### 7. ctx_execute Sandbox — 95-98% reduction
+
+Sandboxed code execution with structured output summarization.
+
+```typescript
+// Supports: python, node, bash, go, rust, ruby, php
+// Language auto-detection via shebang or syntax
+// Configurable: timeout_ms, max_output_chars
+```
+
+#### 8. Token-Savior Integration — 97% reduction (optional)
+
+Ultra-efficient symbol navigation via Token-Savior MCP.
+
+```bash
+# Install:
+pip install 'token-savior-recall[mcp,memory-vector]'
+
+# Detection: Auto-enabled in MCP setup
+# Fallback: ForgeNexus if not installed
+```
+
+### Test Coverage
+
+All token efficiency features have comprehensive test coverage:
+
+| Module | Tests | Status |
+|--------|-------|--------|
+| ForgeNexus | 173 | ✅ |
+| MCP Server | 86 | ✅ |
+| Memory v2 (mem0-v2) | 30 | ✅ |
+| DyCP Pruning | 25 | ✅ |
+| Shell Filter | 7 | ✅ |
+| **Total** | **321** | ✅ |
+
+### Configuration
+
+Settings are auto-generated by `Digital-Nervous-mcp-setup.sh` to `.Digital-Nervous/settings.env`:
+
+```bash
+# Shell output compressor
+export Digital-Nervous_SHELL_COMPRESSOR="Digital-Nervous-shell-filter"  # or rtk/chop/snip
+
+# Session deduplication
+export Digital-Nervous_SESSION_DEDUP="true"
+export Digital-Nervous_DEDUP_WINDOW="10"
+
+# Memory
+export Digital-Nervous_MEMORY_ENABLED="true"
+
+# Code navigation (token-savior > forgenexus)
+export Digital-Nervous_CODE_NAV="forgenexus"
+
+# Memory vector (token-savior > sqlite)
+export Digital-Nervous_MEMORY_VECTOR="sqlite"
+```
 
 ---
 
@@ -1271,3 +1916,4 @@ If Digital-Nervous helps you ship faster, you can support here:
 <p align="center">
   <em>Plan precisely. Build confidently. Scale intelligently.</em>
 </p>
+

@@ -139,3 +139,4 @@ export const options = {
 - [ ] Lighthouse CI integrated in PR pipeline
 - [ ] Production monitoring dashboards deployed
 - [ ] Alerting configured for latency/error/memory thresholds
+

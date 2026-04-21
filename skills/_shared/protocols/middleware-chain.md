@@ -219,3 +219,4 @@ After each middleware chain execution, log summary:
   ⑩ GracefulFailure:  ✓ 1ms    (no errors)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ```
+

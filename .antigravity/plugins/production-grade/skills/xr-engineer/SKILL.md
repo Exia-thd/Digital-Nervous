@@ -143,3 +143,4 @@ public class ComfortVignette : MonoBehaviour
 - [ ] Dynamic resolution scaling enabled
 - [ ] Passthrough/AR configured (if MR)
 - [ ] Multi-input support (controller + hand tracking minimum)
+

@@ -291,3 +291,4 @@ const batchCreate = async (issues) => {
 - Linear API: https://developers.linear.app/docs
 - GraphQL Playground: https://api.linear.app/graphql
 - MCP SDK: https://github.com/linearunofficial/linear-mcp
+

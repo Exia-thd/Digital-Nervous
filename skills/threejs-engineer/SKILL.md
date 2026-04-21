@@ -910,3 +910,4 @@ describe('World', () => {
 - [ ] Target: < 100 draw calls/frame, 60fps on mid-range hardware
 - [ ] Unit tests for CombatSystem, MovementSystem, ECS World
 - [ ] Performance benchmarks in CI (< 100 draw calls enforced)
+

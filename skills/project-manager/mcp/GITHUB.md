@@ -438,3 +438,4 @@ async function getCachedProject(projectId) {
 - GitHub MCP Server: https://github.com/github/github-mcp-server
 - GraphQL API: https://docs.github.com/en/graphql
 - Projects API: https://docs.github.com/en/rest/projects
+

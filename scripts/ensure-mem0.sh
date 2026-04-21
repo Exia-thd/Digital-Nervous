@@ -61,3 +61,4 @@ if [ ! -f "$MEMORY_FILE" ]; then
 fi
 
 echo "[Digital-Nervous] mem0 initialized (.Digital-Nervous/memory.jsonl). Run: python3 ${MEM0_CLI} refresh" >&2
+

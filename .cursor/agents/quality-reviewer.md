@@ -172,3 +172,4 @@ Append one-line summary:
 ```
 [QUALITY_OK|QUALITY_WARN|QUALITY_FAIL] | [task-id] | [score]/10 | [critical-issues]
 ```
+

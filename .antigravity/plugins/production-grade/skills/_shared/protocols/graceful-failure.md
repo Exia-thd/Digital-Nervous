@@ -136,3 +136,4 @@ And follow these rules:
 2. **On error:** Classify the error (user error, environment, knowledge gap, impossible, scope exceeded) and respond accordingly.
 3. **On success but wrong result:** Count as a failed attempt toward retry limits.
 4. **Always preserve partial results:** Even if the overall task fails, save any useful outputs (partial code, discovered information, evidence gathered).
+

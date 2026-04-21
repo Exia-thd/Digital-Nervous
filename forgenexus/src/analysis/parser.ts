@@ -1467,3 +1467,4 @@ const NODE_MAP_FALLBACK: Record<string, { nodeType: NodeType }> = {
   trait_item: { nodeType: 'Interface' },
   type_alias_item: { nodeType: 'TypeAlias' },
 }
+

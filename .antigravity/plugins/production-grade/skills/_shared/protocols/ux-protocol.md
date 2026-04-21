@@ -50,3 +50,4 @@ Summary: [what was produced]
 2. Self-resolve issues — debug and fix before asking user
 3. Report decisions made, don't ask for permission on minor choices
 4. Only use notify_user for major decisions or approval gates
+

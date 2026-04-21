@@ -106,3 +106,4 @@ return function()
     --     assert(player.CurrentHP == player.HUD:GetDisplayedHP(), "Health bar should sync")
     -- end
 end
+

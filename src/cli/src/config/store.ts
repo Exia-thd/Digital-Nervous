@@ -274,3 +274,4 @@ export function getConfig(): ConfigStore {
 export function resetConfig(): void {
   globalConfig = null;
 }
+

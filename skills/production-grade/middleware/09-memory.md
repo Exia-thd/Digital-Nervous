@@ -36,3 +36,4 @@
 
 - If mem0 unavailable → LOG warning, continue (non-blocking)
 - Check `MEM0_DISABLED` or `Digital-Nervous_SKIP_MEM0` env vars
+

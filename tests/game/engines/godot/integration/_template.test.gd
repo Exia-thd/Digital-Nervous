@@ -34,3 +34,4 @@
 #     var player = create_test_player()
 #     player.take_damage(50)
 #     assert_eq(player.current_hp, player.hud.health_bar.value, "HUD should sync with player HP")
+

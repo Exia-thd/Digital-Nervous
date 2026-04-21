@@ -151,3 +151,4 @@ function printHumanReadable(toolName: string, result: unknown): void {
   console.log(JSON.stringify(result, null, 2));
   console.log();
 }
+

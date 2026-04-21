@@ -112,3 +112,4 @@ Use this workflow when you need thorough, grounded research on any topic — tec
 | **Solution Architect** | Technology evaluation with real-world evidence |
 | **Data Scientist** | Model/framework comparison with benchmarks |
 | **Security Engineer** | Threat intelligence with current vulnerability data |
+

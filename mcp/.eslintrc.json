@@ -22,3 +22,4 @@
   },
   "ignorePatterns": ["build/", "node_modules/", "coverage/"]
 }
+

@@ -47,3 +47,4 @@ No,Category,Pattern,Motion_Level,Description,Implementation_Hint,Best_For,Avoid_
 46,Bento,Live Status,4+,Scheduling interface with breathing status indicators and spring pop-up badges,CSS @keyframes pulse + Framer overshoot spring,Dashboards · Monitoring · Calendars,Static content · Blog posts,Medium
 47,Bento,Wide Data Stream,3+,Horizontal infinite carousel of data cards/metrics,"Framer Motion x: ['0%' '-100%'] with seamless loop",Analytics · Metrics · Social proof,Small datasets · Simple pages,Medium
 48,Bento,Contextual UI Focus Mode,5+,Document view with staggered text highlight and floating action toolbar,Framer staggerChildren + float-in toolbar animation,Document editors · AI assistants · Reading,E-commerce · Landing pages,Medium
+

@@ -124,3 +124,4 @@ Use this checklist when evaluating any prompt:
 - [ ] Silent agent → add checkpoint output
 - [ ] Unrestricted filesystem → scope lock directories
 - [ ] No human review → add approval gate
+

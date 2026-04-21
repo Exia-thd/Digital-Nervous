@@ -424,3 +424,4 @@ function parseArgs(args: string[]): WikiOptions & { help: boolean; module?: stri
 
   return options;
 }
+

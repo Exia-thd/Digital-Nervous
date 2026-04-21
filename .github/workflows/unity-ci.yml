@@ -175,3 +175,4 @@ jobs:
           echo "| EditMode Tests | ${{ needs.editmode-tests.result }} |" >> $GITHUB_STEP_SUMMARY
           echo "| PlayMode Tests | ${{ needs.playmode-tests.result }} |" >> $GITHUB_STEP_SUMMARY
           echo "| Build | ${{ needs.build.result || 'skipped' }} |" >> $GITHUB_STEP_SUMMARY
+

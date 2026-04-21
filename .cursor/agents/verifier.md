@@ -106,3 +106,4 @@ Append a one-line summary to `.Digital-Nervous/subagent-context/VERIFIER_STATUS.
 ```
 [PASS|PARTIAL|FAIL] | [task-id] | [timestamp] | [issue count]
 ```
+

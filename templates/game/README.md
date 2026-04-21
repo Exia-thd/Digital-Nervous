@@ -52,3 +52,4 @@ npx ts-node scripts/generate-template.ts \
 - **NetworkManager**: ENet setup, connection handling, latency reporting
 - **SyncVar**: Authority management, interpolation, delta compression
 - **Server Authoritative**: Tick management, client prediction, reconciliation
+

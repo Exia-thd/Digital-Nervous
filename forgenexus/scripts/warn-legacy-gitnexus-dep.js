@@ -51,3 +51,4 @@ if (deps.gitnexus) {
       "Remove it and use \"forgenexus\" only (CLI: forgenexus, MCP server: forgenexus)."
   );
 }
+

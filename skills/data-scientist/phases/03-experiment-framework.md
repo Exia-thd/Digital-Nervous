@@ -92,3 +92,4 @@ Before proceeding to Phase 4, verify:
 ## Quality Bar
 
 Every experiment must have a null hypothesis, power analysis, and guardrail metrics with auto-rollback. "We ran the experiment for a week" is not acceptable — "We ran for 14 days, collecting 12,400 samples per variant (required: 11,200 at 80% power, 5% MDE)" is acceptable.
+

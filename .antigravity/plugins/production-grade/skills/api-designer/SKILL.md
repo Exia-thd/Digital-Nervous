@@ -318,3 +318,4 @@ docs/api/
 | Missing idempotency for mutations | Support `Idempotency-Key` header for POST/PATCH endpoints |
 | Deeply nested URLs (> 3 levels) | Flatten with query params: `/items?orderId=123` instead of `/users/1/orders/2/items` |
 | No rate limiting | Every API needs rate limits. Document them. Return `429` with `Retry-After`. |
+

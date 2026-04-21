@@ -11,3 +11,4 @@ import type { AndroidDeviceConfig, AndroidAppConfig } from './android';
 
 export type { iOSDeviceConfig, iOSAppConfig };
 export type { AndroidDeviceConfig, AndroidAppConfig };
+

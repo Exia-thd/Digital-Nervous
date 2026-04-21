@@ -242,3 +242,4 @@ Before marking the security audit complete, verify:
 ## Quality Bar
 
 A remediation plan that says "fix the SQL injection" is not a plan. Every Critical and High finding must have the exact vulnerable code, the exact fixed code, a test to verify the fix, and a reference for the developer to understand WHY. Medium and Low findings must have clear descriptions and a timeline. The plan must be actionable by an engineer who did not participate in the audit -- if they cannot pick up a finding and fix it from the plan alone, the plan is insufficient.
+

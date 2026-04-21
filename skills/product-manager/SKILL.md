@@ -432,3 +432,4 @@ Every BRD should define success metrics using the **AARRR funnel:**
 | Usage | [Regular use] | [Core feature] | [Limitations] | [Enhancement] |
 | Advocacy | [Sharing/referral] | [Share mechanism] | [Barrier] | [Incentive] |
 ```
+

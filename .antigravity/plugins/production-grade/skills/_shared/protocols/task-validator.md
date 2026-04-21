@@ -171,3 +171,4 @@ When a check fails with retry allowed:
 3. Worker regenerates DELIVERY.json
 4. Re-run validation pipeline
 5. After `max_retries` failures → escalate to CEO agent via notify_user
+

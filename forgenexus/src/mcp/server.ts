@@ -90,3 +90,4 @@ export async function startMCPServer(repoPath?: string) {
   process.stdin.on('error', () => shutdown())
   process.stdout.on('error', () => shutdown())
 }
+

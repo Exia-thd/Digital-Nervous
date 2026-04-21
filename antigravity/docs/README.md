@@ -68,3 +68,4 @@ Maintain version history at top of each doc:
 | 1.0.0 | 2024-01-01 | Initial release |
 | 1.1.0 | 2024-02-01 | Added X |
 ```
+

@@ -277,3 +277,4 @@ function deriveSemanticMeaning(element: { tagName: string; textContent: string |
   
   return text.slice(0, 50);
 }
+

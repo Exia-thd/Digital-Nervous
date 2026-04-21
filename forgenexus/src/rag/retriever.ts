@@ -370,3 +370,4 @@ export function createInMemoryStore(documents: Array<{
 }>): MockDocumentStore {
   return new MockDocumentStore(documents);
 }
+

@@ -342,3 +342,4 @@ function getFileAuthor(filePath: string): string | null {
     return null
   }
 }
+

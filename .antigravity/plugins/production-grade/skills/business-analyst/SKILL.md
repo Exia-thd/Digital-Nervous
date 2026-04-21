@@ -721,3 +721,4 @@ Avoid modifying other skills' outputs or project source code — the BA's role i
 | Merging BA role with PM | You validate information. PM writes specs. Don't write user stories — flag what's needed for PM to write them. |
 | Accepting "you decide" from client | Present options with trade-offs instead. The client must choose. You inform, they decide. |
 | Documenting BA assumptions as facts | If the client didn't say it, it's not a fact. Mark it as `[ASSUMPTION — needs client confirmation]`. |
+

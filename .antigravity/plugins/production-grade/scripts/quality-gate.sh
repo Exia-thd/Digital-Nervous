@@ -387,3 +387,4 @@ elif [[ $TOTAL_SCORE -lt 90 ]]; then
 else
   exit 0  # PASS
 fi
+

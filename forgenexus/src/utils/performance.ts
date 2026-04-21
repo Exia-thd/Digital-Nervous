@@ -395,3 +395,4 @@ export function checkPerformanceBudget(
     console.warn(`⚠️ Performance warning for ${name}: ${duration}ms > ${budget.warningThreshold}ms`);
   }
 }
+

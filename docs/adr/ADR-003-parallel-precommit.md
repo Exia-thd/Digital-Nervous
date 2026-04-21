@@ -49,3 +49,4 @@ GitHub Actions CI also parallelized:
 
 ## Notes
 Pre-commit runs only on `mcp/` directory (TypeScript source). Production skills (`skills/`) are markdown files and don't require linting.
+

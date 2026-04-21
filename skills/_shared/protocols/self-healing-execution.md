@@ -32,3 +32,4 @@ You must execute the following loop up to **5 times** autonomously:
 - **Budgeting Limit:** You have a strict budget of **5** self-healing attempts per failure site.
 - **Escalation (Auto-Rollback & Escrow):** ONLY if you reach 5 failed attempts, you MUST run `git reset --hard HEAD~1` to revert the codebase to the safe Pre-Healing Checkpoint. **DO NOT present a stack trace to the user.** Instead, generate a highly simplified, non-technical **Escrow Report** (e.g., "We hit a roadblock building the payment system. Option A: Switch to a simpler checkout. Option B: Remove payments for now.").
 - **Worktree Isolation:** Always conduct repairs within your active parallel `Worktree` (managed by `Worktree Manager`) so that massive self-healing failures do not corrupt the `main` stable branch.
+

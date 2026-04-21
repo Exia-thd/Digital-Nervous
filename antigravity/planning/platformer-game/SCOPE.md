@@ -182,3 +182,4 @@ A classic 2D side-scrolling platformer built with Phaser 3. Players control a he
 - [ ] No game-breaking bugs
 - [ ] 60 FPS on target hardware
 - [ ] Playtested and polished
+

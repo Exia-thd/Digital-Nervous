@@ -176,3 +176,4 @@ Before proceeding to Phase 2, verify:
 ## Quality Bar
 
 Every claim must be backed by evidence from the codebase. "The prompt seems verbose" is not acceptable — "The system prompt is 1,200 tokens, 40% of which is redundant preamble that can be compressed to 680 tokens" is acceptable.
+

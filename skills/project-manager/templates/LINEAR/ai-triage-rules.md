@@ -453,3 +453,4 @@ rules:
 | Avg triage time | 12 min | 6 min | 3 min |
 | Accuracy | 78% | 88% | 93% |
 | Team satisfaction | 🟡 | 🟢 | 🟢 |
+

@@ -314,3 +314,4 @@ export function getStudioEventEmitter(): StudioEventEmitter {
 export function createStudioEventEmitter(): StudioEventEmitter {
   return StudioEventEmitter.getInstance();
 }
+

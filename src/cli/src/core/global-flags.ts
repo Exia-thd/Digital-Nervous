@@ -59,3 +59,4 @@ export function shouldUseColors(options: GlobalOptions): boolean {
 export function isDebugMode(options: GlobalOptions): boolean {
   return options.debug || process.env.FORGE_DEBUG === '1';
 }
+

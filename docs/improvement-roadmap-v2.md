@@ -1112,3 +1112,4 @@ Phase 5 — External Tools (Weeks 12-16)
 4. **MCP manifest composition** — Phase 5 adds new servers without removing existing ones
 5. **Protocol-first** — Every improvement has a protocol doc before implementation
 6. **Session dedup is composable** — Adds to every other improvement for compounding savings
+

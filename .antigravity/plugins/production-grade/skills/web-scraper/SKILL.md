@@ -454,3 +454,4 @@ for bad in ['file:///etc/passwd', 'javascript:alert(1)', 'http://127.0.0.1', 'ht
 | Large max_depth without page limits | Cap at depth=3, pages=50 to prevent runaway crawls |
 | Ignoring `pip-audit` warnings | Fix or document ALL known vulnerabilities before production |
 | Using `ignore_https_errors=True` | NEVER in production — allows MITM attacks |
+

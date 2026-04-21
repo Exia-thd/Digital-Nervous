@@ -482,3 +482,4 @@ interface MiniMaxConfig {
 | Stably.ai | NL Locators | Natural language element detection |
 | MiniMax | LLM Provider | MiniMax-M2.7 (204K context), MiniMax-Text-01 (456B params) |
 | InspectWare | Debugging | Open-source debugger middleware |
+

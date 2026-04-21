@@ -62,3 +62,4 @@ export function exitWithCode(code: ExitCode, message?: string): never {
   }
   process.exit(code);
 }
+

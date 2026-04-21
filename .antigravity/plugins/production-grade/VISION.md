@@ -194,3 +194,4 @@ This document is the constitution of the production-grade ecosystem. Every skill
 **When the principles conflict:** They shouldn't, because they form a system. But if you perceive a conflict, default to the higher-numbered principle constraining the lower. Principle X (Mathematical Rigor) constrains IX (First-Principles Thinking) — think from fundamentals, but prove it with math. Principle VIII (Extreme Ownership) constrains III (On Behalf of User) — do the work, but own the outcome completely.
 
 **When the vision needs to evolve:** This is a living document. But changes require the same rigor as any other artifact in this system: a first-principles argument for *why* the change is necessary, not just a preference for something different.
+

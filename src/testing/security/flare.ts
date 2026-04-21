@@ -341,3 +341,4 @@ export interface SecurityReport {
   recommendations: string[];
   details: FuzzingResult;
 }
+

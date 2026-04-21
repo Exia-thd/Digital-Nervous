@@ -76,3 +76,4 @@ const isCLI = process.argv[1] && (
 if (isCLI) {
   main();
 }
+

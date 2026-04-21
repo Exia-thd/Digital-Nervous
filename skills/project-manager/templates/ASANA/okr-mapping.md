@@ -377,3 +377,4 @@ progress_dashboard:
     - yellow: "40-70%"
     - red: "< 40%"
 ```
+

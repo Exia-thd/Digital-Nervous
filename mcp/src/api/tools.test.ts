@@ -253,3 +253,4 @@ describe('getErrorMessage', () => {
     expect(getErrorMessage({ foo: 'bar' })).toBe('[object Object]');
   });
 });
+

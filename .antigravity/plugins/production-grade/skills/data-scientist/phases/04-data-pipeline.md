@@ -90,3 +90,4 @@ Before proceeding to Phase 5, verify:
 ## Quality Bar
 
 Every pipeline must have SLAs for freshness and completeness. "The data is updated regularly" is not acceptable — "The LLM usage mart refreshes every 2 hours with a freshness SLA of 3 hours, completeness target of 99.5%, and an automated alert if any quality check fails" is acceptable.
+

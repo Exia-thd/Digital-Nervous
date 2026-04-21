@@ -240,3 +240,4 @@ For greenfield projects, this entire protocol is skipped:
 - Git branching still recommended but optional
 
 The quality-gate protocol still runs in full for greenfield — it just skips Level 2 (Regression).
+

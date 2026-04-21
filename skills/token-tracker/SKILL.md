@@ -1,5 +1,6 @@
 ---
 name: token-tracker
+model: haiku
 description: >
   Track and analyze LLM token usage across projects. Monitor costs,
   generate reports, set budgets, and visualize usage patterns.
@@ -348,3 +349,4 @@ Preview:
 - Pricing được update theo API rates mới nhất
 - Data được retain 90 ngày mặc định
 - Dashboard hoạt động offline với demo data nếu không có API
+

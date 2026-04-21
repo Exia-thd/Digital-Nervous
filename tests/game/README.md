@@ -111,3 +111,4 @@ tests/game/
 Xem `tests/coverage/thresholds.json` — `game_test_quality` section.
 
 Xem `skills/_shared/protocols/game-test-protocol.md` — chi tiet day du.
+

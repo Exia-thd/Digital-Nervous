@@ -100,3 +100,4 @@ See `skills/_shared/protocols/game-test-protocol.md` Category 7b for full protoc
 ```
 
 **Rule:** If it's rendered by the game engine (pixels), test it with code-level tests. If it's rendered by the browser (DOM), test it with Midscene visual tests.
+

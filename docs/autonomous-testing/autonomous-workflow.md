@@ -410,3 +410,4 @@ autonomous:
 6. **Tricentis Testim: ML Self-Healing**
 7. **Applitools + Mabl: Visual AI**
 8. **Playwright: 200% YoY Growth**
+

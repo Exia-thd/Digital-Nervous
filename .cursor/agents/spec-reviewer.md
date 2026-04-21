@@ -128,3 +128,4 @@ Append a one-line summary:
 ```
 [SPEC_OK|PARTIAL|NON_COMPLIANT] | [task-id] | [criterion-count] | [passed/total]
 ```
+

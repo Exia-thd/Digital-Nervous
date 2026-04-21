@@ -158,3 +158,4 @@ function printSkillsHumanReadable(
 
   console.log(pc.dim('  Use --json for machine-readable output'));
 }
+

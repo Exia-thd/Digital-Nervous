@@ -57,3 +57,4 @@ Split into three layers with clear responsibilities:
 
 ## Notes
 Implemented in v7.8.1 as part of the quality overhaul.
+

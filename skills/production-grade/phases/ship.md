@@ -97,3 +97,4 @@ After T9 completes, present Gate 3 using the orchestrator's gate pattern.
 
 On approval → read `phases/sustain.md` and begin SUSTAIN phase.
 On "Fix issues first" → create additional remediation tasks.
+

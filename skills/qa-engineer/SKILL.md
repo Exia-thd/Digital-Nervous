@@ -873,3 +873,4 @@ Before marking the skill as complete, verify:
 - [ ] **(Midscene)** Canvas/complex UI tests cover non-DOM elements (if applicable)
 - [ ] **(Midscene)** Mobile tests written for Android/iOS (if mobile app exists)
 - [ ] **(Midscene)** Visual replay reports generated at `midscene_run/report/`
+

@@ -136,3 +136,4 @@ Before moving to Phase 3:
 - Every code example includes expected output or response
 - Error table has resolution steps, not just descriptions
 - Rate limiting section includes backoff code, not just prose
+

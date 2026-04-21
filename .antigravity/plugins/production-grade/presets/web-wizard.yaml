@@ -52,3 +52,4 @@ overrides:
 
   # Skip heavy skills for web projects
   skip_skills: [mobile-engineer, data-scientist]
+

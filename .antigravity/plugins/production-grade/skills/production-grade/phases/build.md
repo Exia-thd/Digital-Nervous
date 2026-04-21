@@ -165,3 +165,4 @@ When all BUILD tasks complete:
 - Self-debug: read errors, fix, retry before escalating
 - **Regression detected** → revert task changes, retry with constraints (brownfield-safety.md)
 - **Quality score below threshold** → pause, show scorecard, ask user to continue or fix
+

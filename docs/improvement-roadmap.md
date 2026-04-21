@@ -1008,3 +1008,4 @@ Every improvement follows these constraints:
 4. **MCP manifest composition** — Phase 5 adds new MCP servers to the manifest without removing existing ones. ForgeNexus continues as primary; external tools are additive.
 
 5. **Protocol-first** — Every improvement has a protocol doc in `skills/_shared/protocols/` before implementation. The protocol already exists for I2 (tool-sandboxing), I4 (dedup in middleware-chain), I10 (summarization).
+

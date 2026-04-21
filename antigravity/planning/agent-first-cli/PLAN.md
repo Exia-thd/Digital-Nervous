@@ -592,3 +592,4 @@ hyperfine --warmup 3 'forge tools list --json'
 |---------|------|---------|
 | 1.0 | 2026-04-15 | Initial plan |
 | 1.1 | 2026-04-15 | Added performance benchmarks, pilot group, buffer time |
+

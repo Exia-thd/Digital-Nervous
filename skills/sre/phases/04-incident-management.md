@@ -302,3 +302,4 @@ Before proceeding to Phase 5, verify:
 ## Quality Bar
 
 Runbooks are not generic templates. They must use real pod labels, real metric names, and real service names from THIS system. A runbook that says "check the logs" without specifying WHICH logs, WHERE, or what to look for is rejected. Decision trees, not paragraphs.
+

@@ -168,3 +168,4 @@ If Paperclip server is unreachable during a heartbeat:
 2. Commit with message: "[CLIP-?] wip: paperclip unreachable, saving progress"
 3. Exit gracefully — Paperclip will retry on next heartbeat
 ```
+

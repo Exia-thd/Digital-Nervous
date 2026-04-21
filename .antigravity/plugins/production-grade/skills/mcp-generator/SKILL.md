@@ -205,3 +205,4 @@ When the project changes significantly (new onboarding, architecture changes):
 - **project-onboarding.md** — Phase 1.6 triggers this skill
 - **session-lifecycle.md** — MCP server can re-index at session start/end
 - **code-intelligence.md** — Shares ForgeNexus data source
+

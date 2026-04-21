@@ -61,3 +61,4 @@ config = view_file(".production-grade.yaml")
 api_path = config.paths.api_contracts || "api/openapi/*.yaml"
 arch_path = config.paths.architecture_docs || "docs/architecture/"
 ```
+

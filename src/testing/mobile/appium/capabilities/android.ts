@@ -329,3 +329,4 @@ export const ACTIVITY_PATTERNS = {
   deeplink: (scheme: string, host: string, path: string) => 
     `${scheme}://${host}${path}`,
 };
+

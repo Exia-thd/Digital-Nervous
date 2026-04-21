@@ -26,3 +26,4 @@
 - If blocked tool called → DENY and explain why
 - If sensitive file detected → WARN with redaction recommendation
 - Never silently allow destructive operations
+

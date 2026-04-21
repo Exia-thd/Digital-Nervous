@@ -403,3 +403,4 @@ async function readResource(uri: string, db: ForgeDB, cwd: string): Promise<stri
 
   return `# Unknown resource: ${uri}`
 }
+

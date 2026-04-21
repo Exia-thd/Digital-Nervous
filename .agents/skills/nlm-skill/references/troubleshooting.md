@@ -381,3 +381,4 @@ nlm chat configure <id> --goal custom --prompt "Act as a tutor..."
 
 4. **GitHub Issues:**
    https://github.com/jacob-bd/notebooklm-cli/issues
+

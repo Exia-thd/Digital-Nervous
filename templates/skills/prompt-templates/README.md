@@ -74,3 +74,4 @@ npx ts-node scripts/generate-template.ts \
 ## Expected Output Format
 {{format}}
 ```
+

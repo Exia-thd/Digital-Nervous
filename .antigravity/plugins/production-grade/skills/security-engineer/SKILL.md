@@ -302,3 +302,4 @@ See `skills/web-scraper/SKILL.md` for the full secure integration reference.
 | Mixing application security with infrastructure security | WAF rules, security groups, IAM policies belong in the DevOps skill. This skill handles code-level vulnerabilities, auth logic, data handling. |
 | Ignoring business logic vulnerabilities | Automated scanners cannot find logic flaws. Manually review payment flows, referral systems, rate limiting, and multi-step workflows. |
 | One-time audit mentality | Security is continuous. Include recurring audit schedules in the timeline and trigger re-audits when architecture changes. |
+

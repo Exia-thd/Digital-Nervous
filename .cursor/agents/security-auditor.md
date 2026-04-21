@@ -185,3 +185,4 @@ Append one-line summary:
 ```
 [SECURE|REVIEW_NEEDED|BLOCK] | [task-id] | CRITICAL:N HIGH:N MEDIUM:N LOW:N
 ```
+

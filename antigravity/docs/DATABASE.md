@@ -215,3 +215,4 @@ CREATE INDEX idx_tasks_due_date ON tasks(due_date);
 |---------|------|---------|
 | 1.0.0 | 2024-01-01 | Initial schema |
 | 1.1.0 | 2024-02-01 | Added tasks table |
+

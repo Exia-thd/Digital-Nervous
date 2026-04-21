@@ -112,3 +112,4 @@ export class EnclosureCache {
  * Reset between incremental analysis runs.
  */
 export const globalEnclosureCache = new EnclosureCache(5000)
+

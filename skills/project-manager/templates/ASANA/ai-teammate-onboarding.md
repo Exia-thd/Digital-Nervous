@@ -490,3 +490,4 @@ Any blockers I can help with?
 | First PR merged | By Day 21 | — |
 | Training completion | By Day 14 | — |
 | Survey satisfaction | >4.5/5 | — |
+

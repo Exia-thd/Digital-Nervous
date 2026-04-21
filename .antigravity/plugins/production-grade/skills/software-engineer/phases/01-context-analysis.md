@@ -88,3 +88,4 @@ This phase reads from the Solution Architect's outputs:
 | `services/` (scaffolded) | Service names, structure |
 
 **Do NOT modify architecture files** (`api/`, `schemas/`, `docs/architecture/`). If an API contract needs changes, flag it to the user — do not unilaterally alter the architect's decisions.
+

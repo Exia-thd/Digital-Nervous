@@ -158,3 +158,4 @@ Before proceeding to Phase 3, verify:
 ## Quality Bar
 
 This is a code audit, not a checklist exercise. Every finding must include the vulnerable code snippet, an explanation of how it can be exploited, and the specific fix. "Possible SQL injection in user service" is not a finding. "String concatenation in user-service/src/db/queries.js:87 allows SQL injection via the `sort` parameter -- replace with parameterized query using `$1` placeholder" is a finding.
+

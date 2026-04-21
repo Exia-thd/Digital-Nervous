@@ -324,3 +324,4 @@ export function calculateHealthScore(checks: ConsistencyCheck[]): {
 
   return { score: Math.round(score * 100) / 100, grade, details };
 }
+

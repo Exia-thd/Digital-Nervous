@@ -252,3 +252,4 @@ Code Changed → Write Tests → Run Tests → Verify Pass → Done
 ```
 
 **Never wait for user to ask for tests. After any code change, auto-run QA.**
+

@@ -283,3 +283,4 @@ Runs AFTER Game Designer and engine engineers have core systems. Produces visual
 - [ ] LOD validation script/tool available
 - [ ] Artist tools catalog documented
 - [ ] All custom shaders under instruction budget
+

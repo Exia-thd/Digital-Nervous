@@ -370,3 +370,4 @@ For new/empty projects, the protocol still runs but produces minimal output:
 ```
 
 The profile is populated progressively as the pipeline creates project structure.
+

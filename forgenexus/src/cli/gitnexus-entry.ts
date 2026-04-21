@@ -27,3 +27,4 @@ const { main } = await import('./index.js').catch((err: unknown) => {
   process.exit(1)
 });
 main();
+

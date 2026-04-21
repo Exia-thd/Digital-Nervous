@@ -43,3 +43,4 @@ export const sharedConfig = {
   baseUrl: __ENV.BASE_URL || 'http://localhost:3000',
   timeout: '30s',
 };
+

@@ -279,3 +279,4 @@ features:
   realTimeBlocking: true  # Block dangerous operations immediately
   autoRollback: false     # Rollback on failure (experimental)
   sessionPersistence: true  # Maintain session state across operations
+

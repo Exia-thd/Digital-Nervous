@@ -131,3 +131,4 @@ Read these files first:
 - `forgenexus/src/mcp/tools.ts` — existing tool definitions
 - `forgenexus/src/data/graph.ts` — KuzuDB graph structure
 - `docs/improvement-roadmap-v2.md` §I-NEW-2
+

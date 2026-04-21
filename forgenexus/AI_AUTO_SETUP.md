@@ -310,3 +310,4 @@ node node_modules/forgenexus/dist/cli/index.js analyze --force
 ### Raw URL for agents (replace branch if needed)
 
 `https://raw.githubusercontent.com/buiphucminhtam/Digital-Nervous/main/forgenexus/AI_AUTO_SETUP.md`
+

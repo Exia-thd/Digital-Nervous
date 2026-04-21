@@ -10,3 +10,4 @@ startMCPServer()
     console.error("[ForgeNexus MCP] Failed to start:", err);
     process.exit(1);
   });
+

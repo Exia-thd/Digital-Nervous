@@ -323,3 +323,4 @@ export function formatIssues(verification: BindingVerification): string {
 
   return lines.join('\n');
 }
+

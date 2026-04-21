@@ -118,3 +118,4 @@ Runs in **Design** mode before UI Designer. Also invoked at start of **Full Buil
 - [ ] Usability findings ranked by severity
 - [ ] Recommendations linked to evidence
 - [ ] Research report delivered to design team
+

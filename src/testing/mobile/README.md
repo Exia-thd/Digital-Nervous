@@ -76,3 +76,4 @@ SAUCE_ACCESS_KEY=
 PLATFORM=iOS|Android
 DEVICE_NAME=iPhone 15|Pixel 8
 ```
+

@@ -462,3 +462,4 @@ export function getConfidenceSummary(result: ConfidenceResult): string {
   
   return `${levelEmoji} ${result.level.toUpperCase()} (${result.score.toFixed(2)}): ${reasons}`;
 }
+

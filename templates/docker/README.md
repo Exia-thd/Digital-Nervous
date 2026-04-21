@@ -46,3 +46,4 @@ npx ts-node scripts/generate-template.ts \
 - **Non-root user** — security hardened
 - **Health checks** — Docker HEALTHCHECK included
 - **BuildKit** — leverage Docker BuildKit for faster builds
+

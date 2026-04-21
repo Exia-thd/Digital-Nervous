@@ -123,3 +123,4 @@ Before proceeding to Phase 6, verify:
 ## Quality Bar
 
 A supply chain audit that runs `npm audit` and copies the output is not an audit. Every vulnerability must be evaluated in the context of THIS project: is the vulnerable code path reachable? Is the input user-controlled? A Critical CVE in a test-only dependency is not the same as a Critical CVE in a request-handling library. Re-evaluate, justify, and prioritize accordingly.
+

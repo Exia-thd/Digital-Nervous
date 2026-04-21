@@ -253,3 +253,4 @@ Plan Quality Loop (pre-implementation) → Implementation → Quality Gate (post
 ```
 
 > Inspired by ClaudeKit's review gates and Digital-Nervous's Quality Gate Protocol. Extended with research-driven self-improvement loop.
+

@@ -272,3 +272,4 @@ export function defaultReranker<T extends { id: string; file: string; score: num
     rerankScore: r.score * (1 - i / topK * 0.2), // Slight boost for position
   }));
 }
+

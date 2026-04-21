@@ -400,3 +400,4 @@ describe('Parse Position', () => {
     expect(parsePosition('')).toBeNull();
   });
 });
+

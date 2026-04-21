@@ -390,3 +390,4 @@ export function createUnknownResult(): FrameworkDetectionResult {
 export function isConfident(result: FrameworkDetectionResult): boolean {
   return result.confidence >= 0.7 && result.framework !== 'Unknown';
 }
+

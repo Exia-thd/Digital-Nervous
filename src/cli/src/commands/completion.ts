@@ -43,3 +43,4 @@ async function handleCompletion(shell: string): Promise<void> {
     process.exit(1);
   }
 }
+

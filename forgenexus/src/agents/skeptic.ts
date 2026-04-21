@@ -379,3 +379,4 @@ export class SkepticAgent {
 export function createSkepticAgent(options: SkepticAgentOptions): SkepticAgent {
   return new SkepticAgent(options);
 }
+

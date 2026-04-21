@@ -99,3 +99,4 @@ notify_user with markdown options:
 - Individual research sessions: `research/YYYY-MM-DD-topic.md`
 - Accumulated domain knowledge: `context/domain-research.md` (append new findings)
 - Flows into `handoff/context-package.md` at handoff time
+

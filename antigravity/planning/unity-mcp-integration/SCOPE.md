@@ -35,3 +35,4 @@
 | 6 | Updated MCP generator skill | `skills/mcp-generator/SKILL.md` |
 | 7 | Setup guide | `docs/unity-mcp-setup.md` |
 | 8 | Tools quick reference | `docs/unity-mcp-tools-reference.md` |
+

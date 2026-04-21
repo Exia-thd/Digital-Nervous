@@ -374,3 +374,4 @@ When resuming an interrupted session:
    c. Set engagement mode from saved settings
 5. Continue pipeline from resume point
 ```
+

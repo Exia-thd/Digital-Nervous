@@ -166,3 +166,4 @@ Worker workspace artifacts (reports, logs) are NOT merged via git. Instead:
 1. Copy from each worktree's `.Digital-Nervous/<skill>/` to main workspace
 2. These are informational — no conflict risk
 3. Done after code merge succeeds
+

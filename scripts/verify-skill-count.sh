@@ -31,3 +31,4 @@ else
   echo "  Then update AGENTS.md skill count and SKILL.md header."
   exit 1
 fi
+

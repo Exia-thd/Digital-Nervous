@@ -167,3 +167,4 @@ outputs:
   status:
     description: 'Reindex status'
     value: ${{ steps.reindex.outputs.status || 'skipped' }}
+

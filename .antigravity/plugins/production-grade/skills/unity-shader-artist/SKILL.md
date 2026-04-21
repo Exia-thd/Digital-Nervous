@@ -115,3 +115,4 @@ Assets/_Project/
 - [ ] All shaders under instruction budget per platform
 - [ ] Shader variants configured for quality levels
 - [ ] Materials render correctly in Scene + Game view
+

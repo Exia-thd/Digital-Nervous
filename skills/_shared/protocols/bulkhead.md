@@ -110,3 +110,4 @@ Log bulkhead events:
 | 3 | Worker segfault | Signal caught, cleanup executed, FAILED logged |
 | 4 | Memory leak | Watchdog kills worker at limit |
 | 5 | CPU spin | Timeout watchdog kills worker |
+

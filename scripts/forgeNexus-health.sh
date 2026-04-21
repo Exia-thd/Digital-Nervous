@@ -71,3 +71,4 @@ fi
 
 echo ""
 log_ok "Health check complete"
+

@@ -142,3 +142,4 @@ export const DEFAULT_TIMEOUTS: TimeoutSettings = {
   script: 30000,
   pageLoad: 30000,
 };
+

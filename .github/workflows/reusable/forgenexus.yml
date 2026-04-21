@@ -77,3 +77,4 @@ runs:
         llm_provider: ${{ inputs.wiki_provider }}
         api_key: ${{ inputs.llm_api_key }}
         publish_to: 'file'
+

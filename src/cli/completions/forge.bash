@@ -97,3 +97,4 @@ _forge_completion() {
 }
 
 complete -F _forge_completion forge
+

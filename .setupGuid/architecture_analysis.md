@@ -1,6 +1,6 @@
-# Giải Phẫu Toàn Diện Source Code: Digital-Nervous (Forgewright)
+# Giải Phẫu Toàn Diện Source Code: Digital-Nervous (Digital-Nervous)
 
-Chào bạn, đây là bản phân tích bóc tách cặn kẽ hệ thống **Digital-Nervous** (tên gốc Forgewright). Bản phân tích này sẽ giúp bạn hiểu rõ từng linh kiện của source code này, nó chạy như thế nào, và làm sao để bạn có thể rã nó ra để độ/chế (custom) lại cho riêng mình.
+Chào bạn, đây là bản phân tích bóc tách cặn kẽ hệ thống **Digital-Nervous** (tên gốc Digital-Nervous). Bản phân tích này sẽ giúp bạn hiểu rõ từng linh kiện của source code này, nó chạy như thế nào, và làm sao để bạn có thể rã nó ra để độ/chế (custom) lại cho riêng mình.
 
 > [!NOTE] Cốt lõi của hệ thống
 > Đây **KHÔNG** phải là một công cụ sinh code (code generator) đơn thuần. Nó là một **Dây chuyền sản xuất phần mềm tự động bằng AI (AI Pipeline Orchestrator)**. Thay vì một con chatbot ngồi đợi lệnh, hệ thống này chứa **55 chuyên gia AI** ảo tự động phối hợp với nhau qua các giai đoạn: *Phân Tích -> Thiết Kế -> Lập trình -> Kiểm thử -> Triển khai.*
@@ -71,3 +71,4 @@ Nếu bạn có ngôn ngữ riêng (DSL) hoặc muốn dùng thuật toán tìm 
 
 > [!WARNING] Cảnh Báo Khi Build Lại
 > Vì `forgenexus` là linh kiện nội bộ, nên khi thay đổi code trong thư mục đó, bạn hãy nhớ chạy `npm run build` bên trong thư mục `forgenexus` để biên dịch lại mã nguồn công cụ AST lõi. Mọi luồng trong `Digital-Nervous` đều phụ thuộc vào bộ não phân tích này.
+

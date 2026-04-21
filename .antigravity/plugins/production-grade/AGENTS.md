@@ -268,3 +268,4 @@ Before completing any code modification task, verify:
 - Generate docs: `npx forgenexus wiki`
 
 <!-- forgenexus:end -->
+

@@ -138,3 +138,4 @@ export function ftsAddMissing(db: ForgeDB): void {
     db.rebuildFTS()
   }
 }
+

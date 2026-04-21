@@ -59,3 +59,4 @@ Once Antigravity's plugin architecture is mature, consider:
 1. Templates live in `templates/` (canonical)
 2. Antigravity references `templates/` via relative path or env var
 3. No more file duplication
+

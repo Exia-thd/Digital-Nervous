@@ -151,3 +151,4 @@ export function formatTokens(tokens: number): string {
   }
   return `${(tokens / 1_000_000).toFixed(2)}M`;
 }
+

@@ -169,3 +169,4 @@ func set_threshold(new_threshold: float) -> void:
 	threshold = new_threshold
 	if debug_mode:
 		print("[FloatingOrigin] Threshold set to: ", threshold)
+

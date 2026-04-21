@@ -48,6 +48,20 @@ Based on the Digital-Nervous task dependency graph, these groups can run in para
 
 **Note:** T4 (DevOps) depends on T3a (Backend) for service discovery, so it starts after T3a or runs in a second wave if group size exceeds MAX_WORKERS.
 
+## Subagent Parallel Protocol
+
+Follow `skills/_shared/protocols/parallel-protocol.md` for subagent coordination:
+
+```
+!`cat skills/_shared/protocols/parallel-protocol.md 2>/dev/null || echo "Protocol not found — apply defaults: Issue all independent Task calls before waiting, surface blocks immediately, produce partial reports."`
+```
+
+**Quick Reference:**
+- Spawn independent tasks simultaneously
+- Surface BLOCKED agents immediately (never skip)
+- Produce partial reports if some fail
+- Wait for wave completion before next wave
+
 ## Execution Flow
 
 ### Phase 1 — Dependency Analysis
@@ -620,3 +634,4 @@ Update `.Digital-Nervous/task.md` with parallel status:
 - All worker processes run with the same user credentials
 - No network isolation between workers (they may all need package registries)
 - Secrets/credentials should NOT be in any contract input
+

@@ -198,3 +198,4 @@ export function StudioApp({ sessionId, wsUrl = "ws://localhost:7891" }: StudioAp
     </div>
   );
 }
+

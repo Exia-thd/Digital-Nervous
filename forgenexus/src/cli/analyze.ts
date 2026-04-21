@@ -97,3 +97,4 @@ export async function analyze(opts: {
   if (stats.hasEmbeddings) log(`[ForgeNexus] Embeddings: enabled`)
   if (stats.files > 0) log(`[ForgeNexus] Re-run with --force for full re-index`)
 }
+

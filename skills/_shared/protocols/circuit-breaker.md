@@ -121,3 +121,4 @@ function recordFailure(cb: CircuitBreaker): void {
 | 3 | After 60s in OPEN | State → HALF_OPEN |
 | 4 | Success in HALF_OPEN | State → CLOSED after 2 successes |
 | 5 | Failure in HALF_OPEN | State → OPEN |
+

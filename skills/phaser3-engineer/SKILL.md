@@ -863,3 +863,4 @@ describe('StateMachine', () => {
 - [ ] All business logic in testable TypeScript classes outside Scene
 - [ ] Unit tests for DamageCalculator, StateMachine, CurrencyManager
 - [ ] tsconfig strict mode, no `any` types
+

@@ -70,3 +70,4 @@ Or use workflow shortcuts:
 - `/pipeline` — Show full pipeline reference
 - `/mcp` — Regenerate MCP config
 - `/update` — Check for new Digital-Nervous versions
+

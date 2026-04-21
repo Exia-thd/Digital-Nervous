@@ -3,3 +3,4 @@
 
 cd mcp
 npx commitlint --edit ${1}
+

@@ -425,3 +425,4 @@ Execute sequentially: Build feature screens (detail, settings, modals). Write to
 - [ ] App bundle size within limits (30MB iOS, 20MB Android)
 - [ ] **(Midscene)** Cross-platform vision tests cover critical flows on Android + iOS
 - [ ] **(Midscene)** Visual replay reports generated for mobile test runs
+

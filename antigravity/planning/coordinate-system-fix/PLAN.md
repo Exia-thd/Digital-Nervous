@@ -257,3 +257,4 @@
 | Test coverage | ≥80% | Coverage report |
 | Integration | Listed in 3 skills | Skill docs updated |
 | Editor tools | Working gizmo + checklist | Demo scene |
+

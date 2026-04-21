@@ -526,3 +526,4 @@ notify_user with markdown options:
 | Staying in one mode when conversation shifts | Be fluid. If research leads to a decision, shift to advise mode. Load the new mode file. |
 | Treating all users the same | Adapt language to the user. Plain language for non-technical, data for technical. |
 | Pre-flight that feels like an interrogation | Max 2-3 quick exchanges with options. Frame as accelerating, not gatekeeping. |
+

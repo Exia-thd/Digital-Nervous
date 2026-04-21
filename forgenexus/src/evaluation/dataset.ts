@@ -807,3 +807,4 @@ export function formatCase(c: EvaluationCase): string {
     `Confidence: ${c.expected.confidence}\n` +
     `Tags: ${c.tags.join(', ')}`;
 }
+

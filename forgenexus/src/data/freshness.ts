@@ -323,3 +323,4 @@ export function isValidMetadata(metadata: unknown): metadata is GraphMetadata {
     typeof m.indexVersion === 'string'
   );
 }
+

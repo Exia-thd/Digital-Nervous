@@ -902,3 +902,4 @@ export class ForgeDB {
     this.db.close()
   }
 }
+

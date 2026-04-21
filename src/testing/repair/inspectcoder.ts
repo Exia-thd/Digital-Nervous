@@ -315,3 +315,4 @@ export interface ValidationResult {
   duration: number;
   error?: string;
 }
+

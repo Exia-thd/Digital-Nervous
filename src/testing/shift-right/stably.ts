@@ -226,3 +226,4 @@ export interface LocatorResult {
  * await stably.find("error message");             // [role="alert"]
  * await stably.find("submit form button");         // button[type="submit"]
  */
+

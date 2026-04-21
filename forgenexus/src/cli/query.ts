@@ -440,3 +440,4 @@ function parseArgs(args: string[]): ParsedArgs {
 
   return options;
 }
+

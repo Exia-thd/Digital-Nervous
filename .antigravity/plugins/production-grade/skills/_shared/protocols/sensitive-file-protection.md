@@ -86,3 +86,4 @@ All skills that perform file operations MUST follow this protocol:
 - **Debugger** — log analysis may expose secrets
 
 > Inspired by ClaudeKit's privacy-block pattern, adapted as instruction-based protocol for agent-agnostic portability.
+

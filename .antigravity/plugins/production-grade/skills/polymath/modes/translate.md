@@ -81,3 +81,4 @@ Read all SHIP phase outputs, then:
 ## Output
 
 Translate mode is **ephemeral** — it produces no persistent files. Its output is understanding in the conversation, not documents. The only exception: if the translation reveals a gap or concern, note it in `context/decisions.md`.
+

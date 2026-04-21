@@ -52,3 +52,4 @@ When HARDEN phase skills find issues that require code changes:
 ### product-manager vs solution-architect
 - **product-manager**: Owns WHAT to build (requirements, user stories, acceptance criteria).
 - **solution-architect**: Owns HOW to build it (architecture, tech stack, API contracts, data models). Does NOT change requirements — flags gaps back to PM.
+
