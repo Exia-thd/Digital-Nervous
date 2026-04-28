@@ -331,4 +331,3 @@ HALF-OPEN → success → CLOSED  |  failure → OPEN
 | Cache without invalidation strategy | Every cache write must have a TTL. Every data mutation must invalidate the relevant cache key. Document the strategy per entity. |
 | Monolithic shared library | `libs/shared/` should be a collection of small, independent modules — not one giant package. Each module has its own tests. |
 | No `.env.example` | Always commit `.env.example` with placeholder values. Never commit `.env` or `.env.development`. Add to `.gitignore`. |
-

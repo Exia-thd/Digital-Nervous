@@ -170,7 +170,7 @@ Add to `.cursor/mcp.json` (project-level) or global Cursor settings:
     "forgenexus": {
       "command": "node",
       "args": [
-        "ABSOLUTE_PATH_TO_Digital-Nervous/forgenexus/dist/cli/index.js",
+        "ABSOLUTE_PATH_TO_FORGEWRIGHT/forgenexus/dist/cli/index.js",
         "mcp",
         "ABSOLUTE_PATH_TO_PROJECT"
       ]
@@ -188,9 +188,9 @@ realpath .antigravity/plugins/production-grade
 pwd
 
 # Use sed to substitute into the config
-Digital-Nervous_PATH="$(realpath .antigravity/plugins/production-grade)"
+FORGEWRIGHT_PATH="$(realpath .antigravity/plugins/production-grade)"
 PROJECT_PATH="$(pwd)"
-sed -e "s|ABSOLUTE_PATH_TO_Digital-Nervous|$Digital-Nervous_PATH|g" \
+sed -e "s|ABSOLUTE_PATH_TO_FORGEWRIGHT|$FORGEWRIGHT_PATH|g" \
     -e "s|ABSOLUTE_PATH_TO_PROJECT|$PROJECT_PATH|g" \
     .Digital-Nervous/mcp-server/mcp-config.json > .cursor/mcp.json
 ```
@@ -205,7 +205,7 @@ Add to `~/.claude/settings.json` (global) or project-level `.claude.json`:
     "forgenexus": {
       "command": "node",
       "args": [
-        "ABSOLUTE_PATH_TO_Digital-Nervous/forgenexus/dist/cli/index.js",
+        "ABSOLUTE_PATH_TO_FORGEWRIGHT/forgenexus/dist/cli/index.js",
         "mcp",
         "ABSOLUTE_PATH_TO_PROJECT"
       ]
@@ -224,7 +224,7 @@ VS Code uses the same MCP config format as Cursor. Add to `.vscode/mcp.json`:
     "forgenexus": {
       "command": "node",
       "args": [
-        "ABSOLUTE_PATH_TO_Digital-Nervous/forgenexus/dist/cli/index.js",
+        "ABSOLUTE_PATH_TO_FORGEWRIGHT/forgenexus/dist/cli/index.js",
         "mcp",
         "ABSOLUTE_PATH_TO_PROJECT"
       ]
@@ -248,10 +248,10 @@ You should see symbol count and index freshness. If not, check:
 node --version
 
 # 2. Verify the forgenexus CLI exists
-ls ABSOLUTE_PATH_TO_Digital-Nervous/forgenexus/dist/cli/index.js
+ls ABSOLUTE_PATH_TO_FORGEWRIGHT/forgenexus/dist/cli/index.js
 
 # 3. Test CLI directly
-node ABSOLUTE_PATH_TO_Digital-Nervous/forgenexus/dist/cli/index.js status ABSOLUTE_PATH_TO_PROJECT
+node ABSOLUTE_PATH_TO_FORGEWRIGHT/forgenexus/dist/cli/index.js status ABSOLUTE_PATH_TO_PROJECT
 ```
 
 ---
@@ -375,7 +375,7 @@ Before any skill writes code, it MUST:
 |-------|-------------|---------------|
 | ⚡ **Basic** | 52 skills, full pipeline | Steps 1–3 |
 | ⚡⚡ **Smart** | Blast radius analysis, safe refactoring | Step 2 (ForgeNexus) |
-| ⚡⚡⚡ **Persistent** | Cross-session memory (**required** for orchestrator) | `bash scripts/ensure-mem0.sh` (or `python3 scripts/mem0-cli.py setup`) — CI: `Digital-Nervous_SKIP_MEM0=1` |
+| ⚡⚡⚡ **Persistent** | Cross-session memory (**required** for orchestrator) | `bash scripts/ensure-mem0.sh` (or `python3 scripts/mem0-cli.py setup`) — CI: `FORGEWRIGHT_SKIP_MEM0=1` |
 | ⚡⚡⚡⚡ **Research** | NotebookLM MCP — grounded AI, zero hallucinations | `pip install notebooklm-mcp`, add to MCP config |
 | ⚡⚡⚡⚡⚡ **Full Power** | Web crawling, AI vision testing, multi-agent | Steps 5–7 (see below) |
 
@@ -441,4 +441,3 @@ MIT
 <p align="center">
   <em>Understand relationships, not just files. Validate with zero assumptions. Research with zero hallucinations. Build games across 4 engines. Ship with quality scoring. Grow with data.</em>
 </p>
-

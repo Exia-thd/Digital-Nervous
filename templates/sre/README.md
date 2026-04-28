@@ -53,4 +53,3 @@ npx ts-node scripts/generate-template.ts \
 | SEV2 | Major degradation | 30 min | Feature broken |
 | SEV3 | Minor degradation | 2 hours | Non-critical issue |
 | SEV4 | Low impact | Next business day | Cosmetic issue |
-

@@ -192,4 +192,3 @@ export function validateXPath(xpath: string): boolean {
     return false;
   }
 }
-

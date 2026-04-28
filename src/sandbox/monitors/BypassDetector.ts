@@ -398,4 +398,3 @@ export class BypassDetector {
 export function createBypassDetector(): BypassDetector {
   return new BypassDetector();
 }
-

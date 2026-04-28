@@ -20,12 +20,12 @@ git submodule update --init --recursive
 ```bash
 cp .antigravity/plugins/production-grade/AGENTS.md AGENTS.md
 cp .antigravity/plugins/production-grade/CLAUDE.md CLAUDE.md
-cp .antigravity/plugins/production-grade/README.md Digital-Nervous.md
+cp .antigravity/plugins/production-grade/README.md FORGEWRIGHT.md
 ```
 
 3. Commit:
 ```bash
-git add .gitmodules .antigravity/ AGENTS.md CLAUDE.md Digital-Nervous.md
+git add .gitmodules .antigravity/ AGENTS.md CLAUDE.md FORGEWRIGHT.md
 git commit -m "feat: add Digital-Nervous v7.8 — 52 skills, ForgeNexus, MCP"
 ```
 
@@ -70,4 +70,3 @@ Or use workflow shortcuts:
 - `/pipeline` — Show full pipeline reference
 - `/mcp` — Regenerate MCP config
 - `/update` — Check for new Digital-Nervous versions
-

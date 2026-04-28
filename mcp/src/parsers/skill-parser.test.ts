@@ -18,4 +18,3 @@ describe('Skill Parser', () => {
     });
   });
 });
-

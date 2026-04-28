@@ -44,4 +44,3 @@ fi
 
 echo ""
 echo "✅ All 55 skills verified"
-

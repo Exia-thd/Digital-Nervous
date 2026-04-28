@@ -13,4 +13,3 @@ worker.start({
 });
 
 export { worker };
-

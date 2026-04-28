@@ -15,7 +15,7 @@
     "production"
   ],
   "file": "forgenexus/skills/anti-hallucination.md",
-  "author": "Digital-Nervous Research",
+  "author": "ForgeWright Research",
   "created": "2026-04-11",
   "sources": [
     "arXiv papers (68 sources)",
@@ -58,4 +58,3 @@
   "dependencies": [],
   "license": "MIT"
 }
-

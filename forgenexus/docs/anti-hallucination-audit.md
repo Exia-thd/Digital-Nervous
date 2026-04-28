@@ -1,4 +1,4 @@
-# Digital-Nervous Anti-Hallucination Audit Report
+# ForgeWright Anti-Hallucination Audit Report
 
 **Date**: April 2026  
 **Auditor**: AI Research (Anti-Hallucination Framework v1.0)  
@@ -8,7 +8,7 @@
 
 ## Executive Summary
 
-Digital-Nervous là một AI orchestration system phức tạp với 55 skills và nhiều LLM integration points. Audit này áp dụng **5-layer defense framework** để identify hallucination risks và recommend improvements.
+ForgeWright là một AI orchestration system phức tạp với 55 skills và nhiều LLM integration points. Audit này áp dụng **5-layer defense framework** để identify hallucination risks và recommend improvements.
 
 ### Risk Score by Area
 
@@ -745,7 +745,7 @@ export class SkepticAgent {
 
 ## Conclusion
 
-Digital-Nervous has a solid foundation with deterministic indexing pipeline and rule-based analysis. The main hallucination risks are in **LLM integration points**: wiki generation, impact analysis, and natural language queries.
+ForgeWright has a solid foundation with deterministic indexing pipeline and rule-based analysis. The main hallucination risks are in **LLM integration points**: wiki generation, impact analysis, and natural language queries.
 
 **Immediate priorities**:
 1. Add guardrails to wiki generation
@@ -763,4 +763,3 @@ Digital-Nervous has a solid foundation with deterministic indexing pipeline and 
 
 *Report generated using Anti-Hallucination Framework v1.0*  
 *Based on 161 verified research sources (2025-2026)*
-

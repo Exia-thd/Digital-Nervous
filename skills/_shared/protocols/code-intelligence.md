@@ -195,4 +195,3 @@ export FORGENEXUS_LLM_MODEL=gpt-4o-mini
 - **quality-gate.md:** Quality gate can use `detect_changes()` as additional validation signal
 - **graceful-failure.md:** All CI tool failures follow graceful failure protocol
 - **brownfield-safety.md:** `impact()` analysis feeds into brownfield risk assessment
-

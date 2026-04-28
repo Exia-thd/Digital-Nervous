@@ -1,5 +1,5 @@
 /**
- * RAG Module - Retriever for Digital-Nervous
+ * RAG Module - Retriever for ForgeWright
  * 
  * Main retrieval interface that combines hybrid search with citations.
  */
@@ -370,4 +370,3 @@ export function createInMemoryStore(documents: Array<{
 }>): MockDocumentStore {
   return new MockDocumentStore(documents);
 }
-

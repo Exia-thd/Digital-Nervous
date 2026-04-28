@@ -253,4 +253,3 @@ Mark deprecated tests:
 ## History
 
 - v1.0 — Initial framework (inspired by CCGS Skill Testing Framework)
-

@@ -43,4 +43,3 @@ run().catch((error) => {
   console.error('[Digital-Nervous Global MCP] Fatal error:', error);
   process.exit(1);
 });
-

@@ -191,4 +191,3 @@ Status: Exploring | Crystallized | Handed off
 ### Rejected Alternatives
 - [Alternative 1]: rejected because [reason]
 ```
-

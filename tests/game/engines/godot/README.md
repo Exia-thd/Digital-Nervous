@@ -36,4 +36,3 @@ godot --headless --test --suite-path res://tests/game/godot/mechanics/
 
 # Unit tests via GDScript
 ```
-

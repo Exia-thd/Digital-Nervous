@@ -76,4 +76,3 @@ export const providerModels: Record<string, string[]> = {
   ollama: ['llama3.2', 'qwen2.5-coder-7b', 'codellama'],
   minimax: ['MiniMax-M2.7', 'MiniMax-M2.7-highspeed', 'MiniMax-M2.1'],
 };
-

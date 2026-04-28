@@ -836,4 +836,3 @@ Score each item 0 (missing) or 1 (present). **Minimum passing score: 16/22.**
 - [ ] Game Over screen meets full checklist
 - [ ] HUD uses premium frosted glass + animated score
 - [ ] Quality audit score ≥ 16/22
-

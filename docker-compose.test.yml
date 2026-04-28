@@ -74,4 +74,3 @@ volumes:
 networks:
   test-network:
     driver: bridge
-

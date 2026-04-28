@@ -134,4 +134,3 @@ After Gate 2 approval:
 - If UI Designer lacks sufficient BRD context → proceed with minimal design, flag gaps
 - If Architect finds contradictions in BRD → flag to user, do not silently resolve
 - Each skill self-debugs before escalating
-

@@ -51,4 +51,3 @@ describe('Pact Provider Verification', () => {
     expect(result).toBeDefined();
   });
 });
-

@@ -1,5 +1,5 @@
 /**
- * Agent Types for Digital-Nervous Anti-Hallucination System
+ * Agent Types for ForgeWright Anti-Hallucination System
  * 
  * Core type definitions for the multi-agent verification system.
  */
@@ -332,4 +332,3 @@ export const DEFAULT_GUARDRAILS: Guardrails = {
   calibration: 'moderate',
   fallbackBehavior: 'best_effort',
 };
-

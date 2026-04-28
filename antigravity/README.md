@@ -174,4 +174,3 @@ antigravity/
 - **Digital-Nervous Pipeline**: `skills/production-grade/SKILL.md`
 - **Plan Quality Loop**: `skills/_shared/protocols/plan-quality-loop.md`
 - **Chat Interpreter**: `.cursor/agents/chat-interpreter.md`
-

@@ -237,4 +237,3 @@
 - [ ] Integration tests written for all auth flows
 - [ ] Security considerations met
 - [ ] Documentation updated
-

@@ -540,4 +540,3 @@ export function groupStatus(groupName: string): {
     closeRegistry(c)
   }
 }
-

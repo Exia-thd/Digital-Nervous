@@ -100,7 +100,7 @@ cat > "${PROJECT_ROOT}/.antigravity/mcp-manifest.json" << 'MANIFEST_EOF'
   "workspace": "${PROJECT_ROOT}",
   "generated_at": "${GENERATED_AT}",
   "generated_by": "Digital-Nervous/mcp-generator",
-  "Digital-Nervous_version": "${Digital-Nervous_VERSION}",
+  "Digital-Nervous_version": "${FORGEWRIGHT_VERSION}",
   "servers": [
     {
       "name": "${PROJECT_SLUG}-Digital-Nervous",
@@ -230,7 +230,7 @@ Also output the Antigravity global config update:
         "/path/to/Digital-Nervous/scripts/Digital-Nervous-mcp-launcher.sh"
       ],
       "env": {
-        "Digital-Nervous_WORKSPACE": "${workspaceFolder}"
+        "FORGEWRIGHT_WORKSPACE": "${workspaceFolder}"
       }
     }
   }
@@ -449,4 +449,3 @@ Unity projects benefit from game-specific queries:
 │ 5. Digital-Nervous Unity skills can now leverage Unity-MCP tools    │
 └─────────────────────────────────────────────────────────────────┘
 ```
-

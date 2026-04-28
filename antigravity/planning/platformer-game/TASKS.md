@@ -261,4 +261,3 @@
 | Fire breath | 60px wide, 200px long |
 | Dive speed | 500 px/s |
 | Damage to player | 3 |
-

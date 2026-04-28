@@ -663,4 +663,3 @@ antigravity/planning/autonomous-testing/
 - [ ] Phase 3: Agentic
 - [ ] Phase 4: Intelligence
 - [ ] Phase 5: Production
-

@@ -125,4 +125,3 @@ A typical E2E flow with 10 vision steps costs **~$0.01-0.05** per run.
 | **Frontend Engineer** | Visual QA for design fidelity without manual review |
 | **Mobile Engineer** | Cross-platform testing (Android + iOS) with natural language |
 | **UI Designer** | Automated design spec validation against implementation |
-

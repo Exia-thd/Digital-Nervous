@@ -171,4 +171,3 @@ tests:
       - output_contains_all
       - min_escalation_levels_satisfied
     timeout: 60s
-

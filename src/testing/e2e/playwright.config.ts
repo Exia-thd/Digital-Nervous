@@ -47,4 +47,3 @@ export default defineConfig({
     timeout: 120000,
   },
 });
-

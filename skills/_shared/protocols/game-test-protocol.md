@@ -883,4 +883,3 @@ For Three.js web games:
 ---
 
 > **Derived from:** QA Engineer Skill, Quality Gate Protocol, Task Validator Protocol, Plan Quality Loop Protocol, Self-Healing Execution Protocol.
-

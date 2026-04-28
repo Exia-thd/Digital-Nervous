@@ -717,4 +717,3 @@ export class Indexer {
     this.db.close()
   }
 }
-

@@ -219,4 +219,3 @@ describe('ctx_execute: sandbox isolation', () => {
     expect(result.exitCode).not.toBe(0)
   })
 })
-

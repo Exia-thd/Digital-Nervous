@@ -15,4 +15,3 @@ export default defineConfig({
     exclude: ['integration/**', 'scripts/**', 'node_modules/**', 'dist/**'],
   },
 });
-

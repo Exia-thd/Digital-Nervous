@@ -38,4 +38,3 @@ export default function () {
   errorRate.add(!isSuccess);
   sleep(0.5 + Math.random());
 }
-

@@ -292,4 +292,3 @@ export function shouldSkipBindingPropagation(nodes: CodeNode[], edges: CodeEdge[
   const ratio = totalNodes > 0 ? importEdgeCount / totalNodes : 0
   return ratio < 0.03 && totalNodes > 100
 }
-

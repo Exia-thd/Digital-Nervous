@@ -518,7 +518,7 @@ def _offload_conversation(
 
     # Save full conversation
     timestamp = datetime.now().strftime("%Y%m%d-%H%M%S")
-    session_id = os.environ.get("Digital-Nervous_SESSION_ID", "unknown")
+    session_id = os.environ.get("FORGEWRIGHT_SESSION_ID", "unknown")
     filename = f"context-cache/{session_id}-{timestamp}.md"
 
     # Ensure directory exists
@@ -667,4 +667,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-

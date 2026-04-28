@@ -1,4 +1,4 @@
-# Digital-Nervous Hallucination Risk Assessment
+# ForgeWright Hallucination Risk Assessment
 
 ## Quick Summary
 
@@ -106,4 +106,3 @@ Based on 161 sources (2025-2026):
 ---
 
 *Audit Date: April 2026*
-

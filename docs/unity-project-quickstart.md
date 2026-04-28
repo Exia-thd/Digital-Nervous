@@ -187,7 +187,7 @@ Assets/
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│  Digital-Nervous HANDLE                                         │
+│  FORGEWRIGHT HANDLE                                         │
 │  (AI-powered C# architecture - Không cần Unity Editor)     │
 ├─────────────────────────────────────────────────────────────┤
 │  • Architecture design (SO framework)                       │
@@ -807,4 +807,3 @@ Assets/
 **Version:** 1.0.0
 **Last Updated:** 2026-04-13
 **Maintainer:** Digital-Nervous
-

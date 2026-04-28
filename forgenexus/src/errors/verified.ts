@@ -1,21 +1,107 @@
 /**
- * Verified Errors Module for Digital-Nervous Anti-Hallucination System
+ * Verified Errors Module for ForgeWright Anti-Hallucination System
  * 
- * Provides structured error types for verification failures.
+ * Provides structured error types for verification failures and
+ * ForgeNexus-specific error codes for MCP operations.
  */
+
+// ============================================================================
+// ForgeNexus Error Codes (MCP Operations)
+// ============================================================================
+
+export enum ForgeNexusErrorCode {
+  // Index errors
+  INDEX_NOT_FOUND = 'INDEX_NOT_FOUND',
+  INDEX_CORRUPTED = 'INDEX_CORRUPTED',
+  INDEX_STALE = 'INDEX_STALE',
+  
+  // Database errors
+  DB_UNAVAILABLE = 'DB_UNAVAILABLE',
+  DB_CORRUPTED = 'DB_CORRUPTED',
+  DB_LOCK_CONFLICT = 'DB_LOCK_CONFLICT',
+  
+  // Setup errors
+  SETUP_INCOMPLETE = 'SETUP_INCOMPLETE',
+  DEPENDENCY_MISSING = 'DEPENDENCY_MISSING',
+  
+  // Query errors
+  GRAPH_UNAVAILABLE = 'GRAPH_UNAVAILABLE',
+  QUERY_FAILED = 'QUERY_FAILED',
+  EMBEDDING_FAILED = 'EMBEDDING_FAILED',
+  
+  // Tool errors
+  TOOL_NOT_FOUND = 'TOOL_NOT_FOUND',
+  TOOL_EXECUTION_FAILED = 'TOOL_EXECUTION_FAILED',
+  
+  // Fallback errors
+  FALLBACK_DISABLED = 'FALLBACK_DISABLED',
+  FALLBACK_TIMEOUT = 'FALLBACK_TIMEOUT',
+  
+  // Generic
+  UNKNOWN_ERROR = 'UNKNOWN_ERROR',
+}
+
+// ============================================================================
+// ForgeNexus Structured Error Response
+// ============================================================================
+
+export interface ForgeNexusErrorResponse {
+  error: {
+    code: ForgeNexusErrorCode;
+    message: string;
+    recoveryHint?: string;
+    quickStart?: string;
+    details?: Record<string, unknown>;
+  };
+}
+
+export function createErrorResponse(
+  code: ForgeNexusErrorCode,
+  message: string,
+  options?: {
+    recoveryHint?: string;
+    quickStart?: string;
+    details?: Record<string, unknown>;
+  }
+): ForgeNexusErrorResponse {
+  return {
+    error: {
+      code,
+      message,
+      ...(options?.recoveryHint && { recoveryHint: options.recoveryHint }),
+      ...(options?.quickStart && { quickStart: options.quickStart }),
+      ...(options?.details && { details: options.details }),
+    },
+  };
+}
+
+export function formatErrorAsText(error: ForgeNexusErrorResponse): string {
+  const { error: err } = error;
+  let text = `⚠️ ${err.code}\n\n${err.message}`;
+  
+  if (err.recoveryHint) {
+    text += `\n\n💡 Recovery: ${err.recoveryHint}`;
+  }
+  
+  if (err.quickStart) {
+    text += `\n\n🚀 Quick start: \`${err.quickStart}\``;
+  }
+  
+  return text;
+}
 
 // ============================================================================
 // Error Types
 // ============================================================================
 
-export class Digital-NervousError extends Error {
+export class ForgeWrightError extends Error {
   constructor(
     message: string,
     public code: string,
     public context?: Record<string, unknown>
   ) {
     super(message);
-    this.name = 'Digital-NervousError';
+    this.name = 'ForgeWrightError';
   }
 
   toJSON(): Record<string, unknown> {
@@ -28,7 +114,7 @@ export class Digital-NervousError extends Error {
   }
 }
 
-export class VerificationError extends Digital-NervousError {
+export class VerificationError extends ForgeWrightError {
   constructor(
     message: string,
     public verificationResult?: {
@@ -43,7 +129,7 @@ export class VerificationError extends Digital-NervousError {
   }
 }
 
-export class ConfidenceError extends Digital-NervousError {
+export class ConfidenceError extends ForgeWrightError {
   constructor(
     message: string,
     public score: number,
@@ -55,7 +141,7 @@ export class ConfidenceError extends Digital-NervousError {
   }
 }
 
-export class StaleDataError extends Digital-NervousError {
+export class StaleDataError extends ForgeWrightError {
   constructor(
     message: string,
     public lastIndexed: Date,
@@ -67,7 +153,7 @@ export class StaleDataError extends Digital-NervousError {
   }
 }
 
-export class HallucinationError extends Digital-NervousError {
+export class HallucinationError extends ForgeWrightError {
   constructor(
     message: string,
     public claims: Array<{
@@ -82,7 +168,7 @@ export class HallucinationError extends Digital-NervousError {
   }
 }
 
-export class CitationError extends Digital-NervousError {
+export class CitationError extends ForgeWrightError {
   constructor(
     message: string,
     public citations: Array<{
@@ -122,9 +208,9 @@ export class ErrorHandler {
     };
   }
 
-  handle(error: unknown): { handled: boolean; error?: Digital-NervousError } {
-    if (error instanceof Digital-NervousError) {
-      return this.handleDigital-NervousError(error);
+  handle(error: unknown): { handled: boolean; error?: ForgeWrightError } {
+    if (error instanceof ForgeWrightError) {
+      return this.handleForgeWrightError(error);
     }
 
     if (error instanceof Error) {
@@ -136,7 +222,7 @@ export class ErrorHandler {
     };
   }
 
-  private handleDigital-NervousError(error: Digital-NervousError): { handled: boolean; error: Digital-NervousError } {
+  private handleForgeWrightError(error: ForgeWrightError): { handled: boolean; error: ForgeWrightError } {
     if (this.options.debug) {
       console.error(`[${error.code}] ${error.message}`, error.context);
     }
@@ -176,12 +262,12 @@ export class ErrorHandler {
     return { handled: true, error };
   }
 
-  private handleUnknownError(error: Error): { handled: boolean; error: Digital-NervousError } {
+  private handleUnknownError(error: Error): { handled: boolean; error: ForgeWrightError } {
     if (this.options.debug) {
       console.error('[UNKNOWN_ERROR]', error.message, error.stack);
     }
 
-    const wrapped = new Digital-NervousError(
+    const wrapped = new ForgeWrightError(
       error.message,
       'UNKNOWN_ERROR',
       { originalError: error.stack }
@@ -205,8 +291,60 @@ export interface RecoverySuggestion {
   priority: 'high' | 'medium' | 'low';
 }
 
-export function getRecoverySuggestions(error: Digital-NervousError): RecoverySuggestion[] {
+export function getRecoverySuggestions(error: ForgeWrightError): RecoverySuggestion[] {
   switch (error.code) {
+    // ForgeNexus-specific errors
+    case 'INDEX_NOT_FOUND':
+      return [
+        { action: 'Run forgenexus analyze to index the codebase', command: 'forgenexus analyze', priority: 'high' },
+        { action: 'Quick index for fast setup', command: 'forgenexus analyze --quick', priority: 'medium' },
+        { action: 'Run forgenexus doctor to check setup', command: 'forgenexus doctor', priority: 'low' },
+      ];
+
+    case 'INDEX_STALE':
+      return [
+        { action: 'Update the index with latest code changes', command: 'forgenexus analyze', priority: 'high' },
+        { action: 'Force re-index if there are issues', command: 'forgenexus analyze --force', priority: 'medium' },
+        { action: 'Check what changed with forgenexus status', command: 'forgenexus status', priority: 'low' },
+      ];
+
+    case 'INDEX_CORRUPTED':
+    case 'DB_CORRUPTED':
+      return [
+        { action: 'Rebuild the index from scratch', command: 'forgenexus analyze --force', priority: 'high' },
+        { action: 'Check for backup and restore if needed', command: './scripts/rollback-forgenexus.sh', priority: 'medium' },
+        { action: 'Run doctor to diagnose issues', command: 'forgenexus doctor', priority: 'low' },
+      ];
+
+    case 'DB_LOCK_CONFLICT':
+      return [
+        { action: 'Stop other ForgeNexus processes', command: 'pkill -f forgenexus', priority: 'high' },
+        { action: 'Wait 5 seconds and retry', priority: 'medium' },
+        { action: 'Check running processes', command: 'ps aux | grep forgenexus', priority: 'low' },
+      ];
+
+    case 'SETUP_INCOMPLETE':
+      return [
+        { action: 'Complete ForgeNexus setup', command: 'forgenexus setup', priority: 'high' },
+        { action: 'Run doctor to see missing setup steps', command: 'forgenexus doctor', priority: 'medium' },
+        { action: 'Check prerequisites (Node.js, git)', priority: 'low' },
+      ];
+
+    case 'GRAPH_UNAVAILABLE':
+      return [
+        { action: 'Check if the index was created', command: 'forgenexus analyze', priority: 'high' },
+        { action: 'Try with text-search fallback (if enabled)', priority: 'medium' },
+        { action: 'Run doctor to diagnose', command: 'forgenexus doctor', priority: 'low' },
+      ];
+
+    case 'EMBEDDING_FAILED':
+      return [
+        { action: 'Check API key configuration', command: 'forgenexus doctor', priority: 'high' },
+        { action: 'Retry without semantic search', command: 'EMBEDDING_PROVIDER=none forgenexus analyze', priority: 'medium' },
+        { action: 'Use local embeddings', command: 'EMBEDDING_PROVIDER=transformers forgenexus analyze', priority: 'medium' },
+      ];
+
+    // Original ForgeWright errors
     case 'VERIFICATION_ERROR':
       return [
         { action: 'Add more evidence to verify claims', priority: 'high' },
@@ -245,6 +383,7 @@ export function getRecoverySuggestions(error: Digital-NervousError): RecoverySug
       return [
         { action: 'Retry the operation', priority: 'medium' },
         { action: 'Check for updates', command: 'forgenexus version', priority: 'low' },
+        { action: 'Run doctor to diagnose', command: 'forgenexus doctor', priority: 'low' },
       ];
   }
 }
@@ -268,7 +407,7 @@ export interface ErrorReport {
 export class ErrorReporter {
   private reports: ErrorReport[] = [];
 
-  report(error: Digital-NervousError): string {
+  report(error: ForgeWrightError): string {
     const id = `ERR-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
 
     const report: ErrorReport = {
@@ -329,7 +468,7 @@ export const globalReporter = new ErrorReporter();
 // CLI Error Display
 // ============================================================================
 
-export function displayError(error: Digital-NervousError): void {
+export function displayError(error: ForgeWrightError): void {
   console.error(`
 ╔══════════════════════════════════════════════════════════════╗
 ║  ERROR: ${error.code.padEnd(53)}║
@@ -350,4 +489,3 @@ export function displayError(error: Digital-NervousError): void {
     }
   }
 }
-

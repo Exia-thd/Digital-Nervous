@@ -197,4 +197,3 @@ export function colorsSimilar(color1: string, color2: string, threshold = 30): b
   const diff = Math.abs(r1 - r2) + Math.abs(g1 - g2) + Math.abs(b1 - b2);
   return diff < threshold;
 }
-

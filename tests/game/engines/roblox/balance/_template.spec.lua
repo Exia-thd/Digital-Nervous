@@ -37,4 +37,3 @@ return function()
     --     assert近似(ratio, 1.15, 0.05, "+15% difficulty per 5 levels")
     -- end
 end
-

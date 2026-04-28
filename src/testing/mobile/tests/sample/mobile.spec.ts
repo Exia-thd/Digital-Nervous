@@ -198,4 +198,3 @@ test.describe('Cross-Platform Element Tests', () => {
     await expect(locator).toBeVisible();
   });
 });
-

@@ -329,7 +329,7 @@ Preview:
 
 | Issue | Solution |
 |-------|----------|
-| "No usage data found" | Kiểm tra `Digital-Nervous_TOKEN_TRACKING=disabled` trong env |
+| "No usage data found" | Kiểm tra `FORGEWRIGHT_TOKEN_TRACKING=disabled` trong env |
 | "Permission denied" | chmod 755 ~/.Digital-Nervous/usage |
 | "Dashboard not loading" | Kiểm tra Chart.js CDN, dùng local file |
 | "Analyzer error" | Python 3.8+ required, check jsonl format |
@@ -345,8 +345,7 @@ Preview:
 
 ## Notes
 
-- Token tracking **mặc định enabled** — set `Digital-Nervous_TOKEN_TRACKING=disabled` để tắt
+- Token tracking **mặc định enabled** — set `FORGEWRIGHT_TOKEN_TRACKING=disabled` để tắt
 - Pricing được update theo API rates mới nhất
 - Data được retain 90 ngày mặc định
 - Dashboard hoạt động offline với demo data nếu không có API
-

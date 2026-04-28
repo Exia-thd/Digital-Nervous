@@ -12,4 +12,3 @@
 - [x] P3-02: Add platform comparison chart
 
 ## All tasks completed ✅
-

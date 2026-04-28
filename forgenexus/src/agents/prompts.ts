@@ -1,5 +1,5 @@
 /**
- * Agent Prompts for Digital-Nervous Anti-Hallucination System
+ * Agent Prompts for ForgeWright Anti-Hallucination System
  * 
  * Prompts and prompt templates for various agents.
  */
@@ -389,4 +389,3 @@ export const DEFAULT_PROMPTS = {
     calibrate: buildConfidenceCalibrationPrompt,
   },
 };
-

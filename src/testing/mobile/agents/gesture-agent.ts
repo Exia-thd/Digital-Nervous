@@ -406,4 +406,3 @@ export interface GestureResult {
   duration?: number;
   metadata?: Record<string, unknown>;
 }
-

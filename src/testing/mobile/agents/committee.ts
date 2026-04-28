@@ -361,4 +361,3 @@ export interface MobileContext {
     version?: string;
   };
 }
-

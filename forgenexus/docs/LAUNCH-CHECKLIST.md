@@ -1,4 +1,4 @@
-# Digital-Nervous Anti-Hallucination - Launch Checklist
+# ForgeWright Anti-Hallucination - Launch Checklist
 
 ## Pre-Launch Checklist
 
@@ -180,4 +180,3 @@ FORCE_NO_VERIFY=1 forgenexus wiki
 | Version | Date | Changes |
 |---------|------|---------|
 | 1.0.0 | TBD | Initial release |
-

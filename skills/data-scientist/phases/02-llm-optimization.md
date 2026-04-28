@@ -393,4 +393,3 @@ Before proceeding to Phase 3, verify:
 ## Quality Bar
 
 Every optimization must show before/after metrics. "The prompt was improved" is not acceptable. "Input tokens reduced from 1,200 to 680 (-43%), cost per call from $0.045 to $0.022 (-51%), quality score maintained at 8.2/10" is acceptable. Optimizations that reduce quality below the minimum threshold are rejected regardless of cost savings.
-

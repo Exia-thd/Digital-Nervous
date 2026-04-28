@@ -63,4 +63,3 @@ overrides:
 
   # Skip frontend-focused skills
   skip_skills: [frontend-engineer, ui-designer, mobile-engineer]
-

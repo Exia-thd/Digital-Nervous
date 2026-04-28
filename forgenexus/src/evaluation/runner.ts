@@ -1,5 +1,5 @@
 /**
- * Evaluation Runner for Digital-Nervous Anti-Hallucination System
+ * Evaluation Runner for ForgeWright Anti-Hallucination System
  * 
  * Runs evaluation cases and calculates metrics.
  */
@@ -514,4 +514,3 @@ export async function runEvaluation(
 
   return results;
 }
-

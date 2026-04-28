@@ -1,5 +1,5 @@
 /**
- * CLI Evaluation Command for Digital-Nervous Anti-Hallucination System
+ * CLI Evaluation Command for ForgeWright Anti-Hallucination System
  * 
  * Provides command-line interface for running evaluations.
  */
@@ -36,7 +36,7 @@ export async function evaluate(options: EvaluateOptions = {}): Promise<void> {
     verbose = false,
   } = options;
 
-  console.log('\n🔍 Digital-Nervous Anti-Hallucination Evaluation\n');
+  console.log('\n🔍 ForgeWright Anti-Hallucination Evaluation\n');
   console.log('='.repeat(50));
 
   // Filter cases
@@ -184,7 +184,7 @@ function outputReport(runner: EvaluationRunner, outputFile?: string): void {
 export async function evaluateCommand(args: string[]): Promise<void> {
   if (args.includes('--help') || args.includes('-h')) {
     console.log(`
-🔍 Digital-Nervous Anti-Hallucination Evaluation
+🔍 ForgeWright Anti-Hallucination Evaluation
 
 Usage:
   forgenexus evaluate [options]
@@ -222,4 +222,3 @@ Examples:
 
   await evaluate(options).catch(console.error);
 }
-

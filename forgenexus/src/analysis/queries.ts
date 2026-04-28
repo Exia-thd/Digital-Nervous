@@ -2106,4 +2106,3 @@ export function getQueryCacheStats(): { compiled: number; execution: number } {
     execution: QUERY_EXECUTION_CACHE.size,
   }
 }
-

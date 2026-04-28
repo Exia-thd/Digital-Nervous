@@ -102,4 +102,3 @@ describe('Pipeline Manager', () => {
         expect(PIPELINE_PHASES[4]).toContain('Phase 4');
     });
 });
-

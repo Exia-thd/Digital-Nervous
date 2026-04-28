@@ -382,4 +382,3 @@ export class DeviceFactory {
     return devices;
   }
 }
-

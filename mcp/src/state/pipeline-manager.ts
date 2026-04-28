@@ -3,15 +3,15 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 
 // ─── Digital-Nervous Root Detection ──────────────────────────────────────
-// Compiled entry: Digital-Nervous/mcp/build/index.js
-// __dirname at runtime: Digital-Nervous/mcp/build
-// Navigate up 2 levels to get Digital-Nervous
+// Compiled entry: FORGEWRIGHT/mcp/build/index.js
+// __dirname at runtime: FORGEWRIGHT/mcp/build
+// Navigate up 2 levels to get FORGEWRIGHT
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const MCP_BUILD_DIR = __dirname; // Digital-Nervous/mcp/build
-const MCP_ROOT_DIR = path.dirname(MCP_BUILD_DIR); // Digital-Nervous/mcp
-const Digital-Nervous_ROOT = path.dirname(MCP_ROOT_DIR); // Digital-Nervous
+const MCP_BUILD_DIR = __dirname; // FORGEWRIGHT/mcp/build
+const MCP_ROOT_DIR = path.dirname(MCP_BUILD_DIR); // FORGEWRIGHT/mcp
+const FORGEWRIGHT_ROOT = path.dirname(MCP_ROOT_DIR); // FORGEWRIGHT
 
 // Always use absolute, pre-computed path (never recalculate after chdir)
 let _Digital-NervousRoot: string | null = null;
@@ -30,7 +30,7 @@ function _getDigital-NervousRoot(): string {
       if (parent === dir) break;
       dir = parent;
     }
-    _Digital-NervousRoot = path.resolve(Digital-Nervous_ROOT);
+    _Digital-NervousRoot = path.resolve(FORGEWRIGHT_ROOT);
   }
   return _Digital-NervousRoot;
 }
@@ -60,9 +60,9 @@ export function setWorkspaceRoot(): void {
   }
 
   if (!ws) {
-    // Last resort: use Digital-Nervous_ROOT itself (dev mode)
+    // Last resort: use FORGEWRIGHT_ROOT itself (dev mode)
     console.error(
-      `[Digital-Nervous Global MCP] Warning: Could not detect workspace. Using Digital-Nervous_ROOT.`,
+      `[Digital-Nervous Global MCP] Warning: Could not detect workspace. Using FORGEWRIGHT_ROOT.`,
     );
     console.error(
       `[Digital-Nervous Global MCP] Set CURSOR_WORKSPACE_ROOT env var for multi-project support.`,
@@ -205,4 +205,3 @@ export function approveGate(): string {
   saveState(state);
   return 'Gate successfully approved. Proceed to next step or advance phase.';
 }
-

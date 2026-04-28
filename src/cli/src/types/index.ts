@@ -134,4 +134,3 @@ export interface CommandResult<T = unknown> {
   error?: string;
   exitCode: number;
 }
-

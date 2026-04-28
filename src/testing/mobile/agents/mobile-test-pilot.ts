@@ -380,4 +380,3 @@ export interface MobileResult {
   duration?: number;
   metadata?: Record<string, unknown>;
 }
-

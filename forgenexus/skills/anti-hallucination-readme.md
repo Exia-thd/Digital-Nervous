@@ -63,4 +63,3 @@ Based on 161 verified sources including:
 ---
 
 *Version 1.0.0 | April 2026*
-

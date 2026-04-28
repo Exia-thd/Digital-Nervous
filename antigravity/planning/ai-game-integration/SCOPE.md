@@ -129,4 +129,3 @@ Integrate AI services (LLM + Image Generation) into the Digital-Nervous game bui
 | AC-03 | Cache hit returns in < 50ms | Unit test |
 | AC-04 | Costs tracked accurately | Integration test |
 | AC-05 | Moderation blocks NSFW | E2E test |
-

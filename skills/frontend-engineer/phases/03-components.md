@@ -149,4 +149,3 @@ Before moving to Phase 4:
 - No component exceeds 200 lines (decompose if larger)
 - All visual values come from design tokens
 - Every component has at least one Storybook story
-

@@ -1,5 +1,5 @@
 /**
- * Multi-Agent Workflow for Digital-Nervous Anti-Hallucination System
+ * Multi-Agent Workflow for ForgeWright Anti-Hallucination System
  * 
  * Orchestrates synthesizer and skeptic agents in a verification loop.
  */
@@ -187,4 +187,3 @@ export function createMultiAgentWorkflow(
 ): MultiAgentWorkflow {
   return new MultiAgentWorkflow(options);
 }
-

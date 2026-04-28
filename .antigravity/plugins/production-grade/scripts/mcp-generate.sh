@@ -20,16 +20,16 @@ set -euo pipefail
 # ─── Resolve Paths ───────────────────────────────────────
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-Digital-Nervous_DIR="$(cd "${SCRIPT_DIR}/.." && pwd)"
+FORGEWRIGHT_DIR="$(cd "${SCRIPT_DIR}/.." && pwd)"
 
 # Detect project root: either parent of Digital-Nervous submodule, or Digital-Nervous itself
-if [ -f "${Digital-Nervous_DIR}/../.git" ] || [ -d "${Digital-Nervous_DIR}/../.git" ]; then
-  PROJECT_ROOT="$(cd "${Digital-Nervous_DIR}/.." && pwd)"
+if [ -f "${FORGEWRIGHT_DIR}/../.git" ] || [ -d "${FORGEWRIGHT_DIR}/../.git" ]; then
+  PROJECT_ROOT="$(cd "${FORGEWRIGHT_DIR}/.." && pwd)"
 else
-  PROJECT_ROOT="$Digital-Nervous_DIR"
+  PROJECT_ROOT="$FORGEWRIGHT_DIR"
 fi
 
-TEMPLATE_DIR="${Digital-Nervous_DIR}/skills/mcp-generator/templates"
+TEMPLATE_DIR="${FORGEWRIGHT_DIR}/skills/mcp-generator/templates"
 OUTPUT_DIR="${PROJECT_ROOT}/.Digital-Nervous/mcp-server"
 PROFILE_FILE="${PROJECT_ROOT}/.Digital-Nervous/project-profile.json"
 
@@ -77,7 +77,7 @@ read_project_vars() {
   PROJECT_NAME=$(basename "$PROJECT_ROOT")
   PROJECT_SLUG=$(echo "$PROJECT_NAME" | tr '[:upper:]' '[:lower:]' | tr ' ' '-' | tr -cd 'a-z0-9-')
   GENERATED_AT=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
-  Digital-Nervous_VERSION="7.0.0"
+  FORGEWRIGHT_VERSION="7.0.0"
 
   # Read from project-profile.json if it exists
   if [ -f "$PROFILE_FILE" ]; then
@@ -133,7 +133,7 @@ generate_server() {
     sed -i '' "s|{{projectName}}|${PROJECT_NAME}|g" "${OUTPUT_DIR}/${output_name}"
     sed -i '' "s|{{projectSlug}}|${PROJECT_SLUG}|g" "${OUTPUT_DIR}/${output_name}"
     sed -i '' "s|{{generatedAt}}|${GENERATED_AT}|g" "${OUTPUT_DIR}/${output_name}"
-    sed -i '' "s|{{forgwrightVersion}}|${Digital-Nervous_VERSION}|g" "${OUTPUT_DIR}/${output_name}"
+    sed -i '' "s|{{forgwrightVersion}}|${FORGEWRIGHT_VERSION}|g" "${OUTPUT_DIR}/${output_name}"
     sed -i '' "s|{{projectLanguage}}|${PROJECT_LANGUAGE}|g" "${OUTPUT_DIR}/${output_name}"
     sed -i '' "s|{{projectFramework}}|${PROJECT_FRAMEWORK}|g" "${OUTPUT_DIR}/${output_name}"
     sed -i '' "s|{{mcpServerPath}}|${MCP_SERVER_PATH}|g" "${OUTPUT_DIR}/${output_name}"
@@ -205,4 +205,3 @@ main() {
 }
 
 main "$@"
-

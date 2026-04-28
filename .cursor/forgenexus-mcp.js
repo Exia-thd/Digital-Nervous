@@ -1,5 +1,5 @@
 /**
- * ForgeNexus MCP Server Entry Point — Digital-Nervous workspace
+ * ForgeNexus MCP Server Entry Point — forgewright workspace
  * Points to the local forgenexus dist.
  */
 
@@ -10,4 +10,3 @@ startMCPServer()
     console.error("[ForgeNexus MCP] Failed to start:", err);
     process.exit(1);
   });
-

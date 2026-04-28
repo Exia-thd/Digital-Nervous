@@ -146,4 +146,3 @@
 | 3 | Document fallback procedures | DevOps | Week 2 |
 
 **Status:** 🟡 In Progress
-

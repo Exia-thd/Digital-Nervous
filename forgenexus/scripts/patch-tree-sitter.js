@@ -102,4 +102,3 @@ if (content.includes(patch4_old)) {
 
 writeFileSync(tsPath, content);
 console.log('[patch-tree-sitter] Done.');
-

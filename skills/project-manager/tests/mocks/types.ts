@@ -111,4 +111,3 @@ export interface Risk {
   title: string;
   mitigation?: string;
 }
-

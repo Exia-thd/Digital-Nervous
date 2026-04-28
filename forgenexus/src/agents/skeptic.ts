@@ -1,5 +1,5 @@
 /**
- * Skeptic Agent for Digital-Nervous Anti-Hallucination System
+ * Skeptic Agent for ForgeWright Anti-Hallucination System
  * 
  * A verification agent that critically examines claims and validates them
  * against provided evidence.
@@ -379,4 +379,3 @@ export class SkepticAgent {
 export function createSkepticAgent(options: SkepticAgentOptions): SkepticAgent {
   return new SkepticAgent(options);
 }
-

@@ -1,4 +1,4 @@
-# Digital-Nervous Anti-Hallucination System
+# ForgeWright Anti-Hallucination System
 
 A comprehensive anti-hallucination system for code analysis and documentation generation.
 
@@ -65,7 +65,7 @@ const confidence = calculateConfidence({
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│                    Digital-Nervous System                        │
+│                    ForgeWright System                        │
 ├─────────────────────────────────────────────────────────────┤
 │                                                             │
 │  ┌─────────────┐    ┌─────────────┐    ┌─────────────┐  │
@@ -196,4 +196,3 @@ applyBehavior(result: ConfidenceResult): BehaviorAction
 ## License
 
 MIT
-

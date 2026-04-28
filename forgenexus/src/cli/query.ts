@@ -312,7 +312,7 @@ export async function queryCommand(args: string[]): Promise<void> {
   
   if (options.help) {
     console.log(`
-🔍 Digital-Nervous Query
+🔍 ForgeWright Query
 
 Usage:
   forgenexus query "<natural language query>" [options]
@@ -440,4 +440,3 @@ function parseArgs(args: string[]): ParsedArgs {
 
   return options;
 }
-

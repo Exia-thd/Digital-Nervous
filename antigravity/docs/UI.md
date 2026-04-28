@@ -288,4 +288,3 @@ graph LR
 |---------|------|---------|
 | 1.0.0 | 2024-01-01 | Initial design system |
 | 1.1.0 | 2024-02-01 | Added dark mode tokens |
-

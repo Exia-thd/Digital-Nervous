@@ -128,4 +128,3 @@ Before proceeding to Phase 2, verify:
 ## Quality Bar
 
 A production readiness review is NOT complete if it just says "looks good." Every checklist item must have a concrete pass/fail with evidence. Vague assessments ("timeout seems reasonable") are not acceptable — state the actual value and whether it meets the criterion.
-

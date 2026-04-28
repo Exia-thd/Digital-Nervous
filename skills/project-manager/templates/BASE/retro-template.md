@@ -208,4 +208,3 @@ Avg     | [Avg]    |
 |--------|-------|-----|
 | Add edge case AC to all auth tickets | Alice | Sprint 25 |
 | Set up dedicated review time in calendar | Bob | This week |
-

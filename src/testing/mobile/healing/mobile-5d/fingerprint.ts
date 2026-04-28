@@ -403,4 +403,3 @@ export interface MobileElementData {
   screenWidth?: number;
   screenHeight?: number;
 }
-

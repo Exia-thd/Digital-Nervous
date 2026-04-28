@@ -1,5 +1,5 @@
 /**
- * Evaluation Dataset for Digital-Nervous Anti-Hallucination System
+ * Evaluation Dataset for ForgeWright Anti-Hallucination System
  * 
  * Contains test cases for evaluating the verification system.
  */
@@ -807,4 +807,3 @@ export function formatCase(c: EvaluationCase): string {
     `Confidence: ${c.expected.confidence}\n` +
     `Tags: ${c.tags.join(', ')}`;
 }
-

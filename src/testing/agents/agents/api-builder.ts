@@ -402,4 +402,3 @@ export interface APIResult {
   duration?: number;
   metadata?: Record<string, unknown>;
 }
-

@@ -121,4 +121,3 @@ export function registerPrompts(server: Server): void {
     throw new Error(`Unknown prompt: ${name}`)
   })
 }
-

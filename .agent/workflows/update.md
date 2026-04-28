@@ -43,4 +43,3 @@ git commit -m "chore: update Digital-Nervous to $(cat .antigravity/plugins/produ
 - If step 3 shows no output, you're already on the latest version.
 - If step 3 shows commits, steps 4-6 will apply the update.
 - Run this workflow periodically to stay up to date with new skills and improvements.
-

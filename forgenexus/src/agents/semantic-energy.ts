@@ -1,5 +1,5 @@
 /**
- * Semantic Energy Module for Digital-Nervous Anti-Hallucination System
+ * Semantic Energy Module for ForgeWright Anti-Hallucination System
  * 
  * Implements Semantic Energy for uncertainty quantification.
  * Based on research showing +13% AUROC improvement over Semantic Entropy.
@@ -292,4 +292,3 @@ export function combinedCheck(
     recommendations,
   };
 }
-

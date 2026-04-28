@@ -1,5 +1,5 @@
 /**
- * LLM Client with Guardrails for Digital-Nervous Anti-Hallucination System
+ * LLM Client with Guardrails for ForgeWright Anti-Hallucination System
  * 
  * Provides a unified interface for LLM interactions with built-in guardrails,
  * citation extraction, and confidence estimation.
@@ -586,4 +586,3 @@ export function createMockGuardedLLMClient(
     guardrails: guardrails ?? DEFAULT_GUARDRAILS,
   });
 }
-

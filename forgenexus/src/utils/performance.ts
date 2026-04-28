@@ -1,5 +1,5 @@
 /**
- * Performance Optimization Module for Digital-Nervous
+ * Performance Optimization Module for ForgeWright
  * 
  * Provides caching, memoization, and performance monitoring.
  */
@@ -395,4 +395,3 @@ export function checkPerformanceBudget(
     console.warn(`⚠️ Performance warning for ${name}: ${duration}ms > ${budget.warningThreshold}ms`);
   }
 }
-

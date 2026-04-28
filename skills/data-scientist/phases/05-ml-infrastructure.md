@@ -96,4 +96,3 @@ Before proceeding to Phase 6, verify:
 ## Quality Bar
 
 Every model in production must have monitoring, drift detection, and a rollback procedure. "The model is deployed" is not acceptable — "Model rec-engine-v3.1.0 serves at p99 < 85ms, PSI monitored hourly with retraining at PSI > 0.25, canary validates on 5% traffic for 24h before full rollout" is acceptable.
-

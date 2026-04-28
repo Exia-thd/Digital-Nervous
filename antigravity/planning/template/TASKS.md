@@ -152,4 +152,3 @@ Mỗi task cần meet các criteria sau trước khi mark là done:
 ## Notes
 
 [Các notes chung về task breakdown, assumptions, hoặc decisions]
-

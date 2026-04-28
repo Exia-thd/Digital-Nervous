@@ -218,4 +218,3 @@ outputs:
   index_found:
     description: 'Whether index was found'
     value: ${{ steps.check_index.outputs.index_found || 'false' }}
-

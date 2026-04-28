@@ -713,4 +713,3 @@ function formatEntries(entries: OutlineEntry[], depth: number, filePath: string)
 
   return lines.join('\n')
 }
-

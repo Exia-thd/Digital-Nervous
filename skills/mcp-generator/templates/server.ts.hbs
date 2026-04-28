@@ -22,7 +22,6 @@ process.title = "{{projectNameLowerCase}}-mcp";
 // ─── Start Native Server ────────────────────────────────────────
 
 startMCPServer(PROJECT_ROOT).catch((err: any) => {
-  console.error(`[Digital-Nervous MCP] Fatal error: ${err.message}`);
+  console.error(`[ForgeWright MCP] Fatal error: ${err.message}`);
   process.exit(1);
 });
-

@@ -22,12 +22,12 @@ set -euo pipefail
 
 # ── Resolve paths ──────────────────────────────────────
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-Digital-Nervous_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
+FORGEWRIGHT_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
 
-if [[ -d "$Digital-Nervous_DIR/.Digital-Nervous" ]]; then
-  PROJECT_ROOT="$Digital-Nervous_DIR"
-elif [[ -d "$Digital-Nervous_DIR/../.Digital-Nervous" ]]; then
-  PROJECT_ROOT="$(cd "$Digital-Nervous_DIR/.." && pwd)"
+if [[ -d "$FORGEWRIGHT_DIR/.Digital-Nervous" ]]; then
+  PROJECT_ROOT="$FORGEWRIGHT_DIR"
+elif [[ -d "$FORGEWRIGHT_DIR/../.Digital-Nervous" ]]; then
+  PROJECT_ROOT="$(cd "$FORGEWRIGHT_DIR/.." && pwd)"
 else
   PROJECT_ROOT="$(pwd)"
 fi
@@ -403,4 +403,3 @@ case "$CMD" in
   help)    head -18 "$0" | tail -15 ;;
   *)       echo "Unknown command: $CMD. Run: session.sh help"; exit 1 ;;
 esac
-

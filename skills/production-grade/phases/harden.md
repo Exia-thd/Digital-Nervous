@@ -139,4 +139,3 @@ Quality Score: [XX]/100 (Grade [A-F])
 ## Handoff to SHIP
 
 Read `phases/ship.md` and begin SHIP phase.
-

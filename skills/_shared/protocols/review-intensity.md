@@ -278,4 +278,3 @@ Update `production/review-mode.txt` immediately after user selection.
 ## History
 
 - v1.0 — Initial protocol (inspired by CCGS review modes)
-

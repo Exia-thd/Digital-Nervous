@@ -177,4 +177,3 @@ export const SAUCELABS_DATACENTERS = {
   'us-east': 'ondemand.us-east-1.saucelabs.com',
   'eu-central': 'ondemand.eu-central-1.saucelabs.com',
 };
-

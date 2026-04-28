@@ -453,4 +453,3 @@ export function getToolCountByCategory(): Record<string, number> {
   }
   return counts;
 }
-

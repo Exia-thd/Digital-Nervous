@@ -139,4 +139,3 @@ Before proceeding to Phase 4, verify:
 ## Quality Bar
 
 Auth review is NOT reading the JWT library documentation and confirming it is used. It is tracing the actual middleware chain to verify that EVERY route applies the auth check, that token validation actually verifies signatures (not just decodes), that refresh token rotation is implemented (not just planned), and that RBAC checks happen at the data access layer (not just the route layer). Test the boundaries, not the happy path.
-

@@ -1,12 +1,12 @@
 {
   "manifest_version": "1.0",
-  "workspace": "/Users/buiphucminhtam/Documents/GitHub/Digital-Nervous",
-  "generated_at": "2026-04-20T02:47:11Z",
+  "workspace": "/Users/buiphucminhtam/Documents/GitHub/openclaw_code",
+  "generated_at": "2026-04-25T06:05:56Z",
   "generated_by": "Digital-Nervous/mcp-generator",
   "Digital-Nervous_version": "7.0.0",
   "servers": [
     {
-      "name": "Digital-Nervous-Digital-Nervous",
+      "name": "openclawcode-Digital-Nervous",
       "type": "Digital-Nervous-mcp-server",
       "enabled": true,
       "description": "Digital-Nervous project intelligence — code graph, project profile, filesystem tools"
@@ -17,9 +17,8 @@
       "enabled": true,
       "description": "Code intelligence — query, context, impact, blast-radius analysis",
       "config": {
-        "forgenexus_path": "/Users/buiphucminhtam/Documents/GitHub/Digital-Nervous/forgenexus/dist/cli/index.js"
+        "forgenexus_path": "/Users/buiphucminhtam/Documents/GitHub/openclaw_code/forgenexus/dist/cli/index.js"
       }
     }
   ]
 }
-

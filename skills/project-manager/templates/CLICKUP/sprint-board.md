@@ -341,4 +341,3 @@ columns:
 |--------|--------|--------|
 | Velocity | 34 pts | 32 pts (in progress) |
 | Completion | 100% | 94% (projected) |
-

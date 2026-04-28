@@ -453,4 +453,3 @@ async function handleBatch(file: string | undefined, options: BatchOptions): Pro
     }
   }
 }
-

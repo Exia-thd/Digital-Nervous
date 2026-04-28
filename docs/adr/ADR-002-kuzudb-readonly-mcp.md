@@ -46,4 +46,3 @@ const db = new ForgeDB(dbPath)
 
 ## Notes
 KuzuDB supports concurrent reads with a single writer. The MCP server only queries; the analyze CLI is the sole writer.
-

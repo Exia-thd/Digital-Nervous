@@ -123,4 +123,3 @@ Runs in **Harden** mode (alongside Security, QA). Also invoked as sub-step in **
 - [ ] Zoom to 400% works without horizontal scrolling
 - [ ] CI integration with axe-core configured
 - [ ] Accessibility statement page created
-

@@ -180,4 +180,3 @@ func set_enabled(value: bool) -> void:
 
 func set_precision(value: int) -> void:
     precision = value
-

@@ -599,4 +599,3 @@ export async function hybridSearch(
 
   return fused.slice(0, limit)
 }
-

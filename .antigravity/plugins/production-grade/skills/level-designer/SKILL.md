@@ -267,4 +267,3 @@ High (arena fight) → Low (puzzle) → Peak (boss) → Release (treasure/exit)
 - [ ] Secrets and collectibles placement documented
 - [ ] Golden path timing calculated per level
 - [ ] Blockout specs ready for engine engineers
-

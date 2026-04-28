@@ -26,4 +26,3 @@
 ## Note
 
 This is a non-blocking optimization. If summarization fails, continue with existing context.
-

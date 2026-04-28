@@ -244,4 +244,3 @@ export interface OTelSpan {
   endTime?: number;
   attributes: Record<string, unknown>;
 }
-

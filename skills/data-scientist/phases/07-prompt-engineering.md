@@ -180,4 +180,3 @@ services/<service>/prompts/          # Versioned prompt library (co-located with
 - [ ] All guardrails are implemented and tested
 - [ ] No PII in prompt templates, few-shot examples, or eval test cases
 - [ ] Cost projections include prompt token counts at 2x, 5x, 10x scale
-

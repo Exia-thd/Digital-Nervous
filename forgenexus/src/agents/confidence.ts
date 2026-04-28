@@ -1,5 +1,5 @@
 /**
- * Confidence Module for Digital-Nervous Anti-Hallucination System
+ * Confidence Module for ForgeWright Anti-Hallucination System
  * 
  * Provides confidence calculation based on multiple signals including
  * relevance, spread, evidence strength, and behavioral thresholds.
@@ -462,4 +462,3 @@ export function getConfidenceSummary(result: ConfidenceResult): string {
   
   return `${levelEmoji} ${result.level.toUpperCase()} (${result.score.toFixed(2)}): ${reasons}`;
 }
-

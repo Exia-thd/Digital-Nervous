@@ -419,4 +419,3 @@ struct FDamageExecution : public FGameplayEffectCustomExecutionCalculation
 - [ ] Object pooling for frequent spawns
 - [ ] Build pipeline configured for target platforms
 - [ ] Blueprint-exposed API documented
-

@@ -365,4 +365,3 @@ cp .antigravity/plugins/production-grade/.claude/hooks/post-tool-use.ts ~/.claud
 - **AGENTS.md:** Danh sách 56 skills + protocols
 - **Skills:** `skills/*/SKILL.md` — chi tiết từng kỹ năng
 - **Protocols:** `skills/_shared/protocols/*.md` — 29 shared protocols
-

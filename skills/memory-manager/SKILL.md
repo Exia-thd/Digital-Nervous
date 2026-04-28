@@ -1,16 +1,39 @@
 ---
 name: memory-manager
 description: >
-  Persistent project memory using JSONL (git-committed). TF-IDF search,
-  markdown-aware chunking, value-weighted GC. Stores decisions, architecture,
-  blockers, and task status for cross-session continuity.
+  Persistent project memory using SQLite + FTS5 + BM25.
+  Fast, zero dependencies (stdlib only), production-ready.
+  Progressive disclosure with 3 layers (compact/index/detailed).
 ---
 
 # Memory Manager Skill
 
-> **Purpose:** Give the AI agent persistent, searchable project memory so it
-> doesn't re-discover the same context every session. Retrieve only what's
-> relevant, compress the rest.
+> **Purpose:** Give the AI agent persistent, searchable project memory — store decisions,
+> blockers, session summaries, and query them semantically across sessions.
+
+## Architecture
+
+| Component | Technology | Notes |
+|-----------|------------|-------|
+| **Database** | SQLite + FTS5 | WAL mode, crash-safe, concurrent reads |
+| **Search** | BM25 ranking | FTS5 full-text search |
+| **Token Optimization** | 3-layer progressive disclosure | 15/60/200 tokens per result |
+
+> **Zero dependencies.** Only stdlib + SQLite (built into Python). No API key needed.
+
+### Progressive Disclosure Layers
+
+| Layer | Command | Tokens/Result | When Used |
+|-------|---------|---------------|-----------|
+| **L1: Compact Index** | `index <query>` | ~15 | Always first — quick overview |
+| **L2: FTS Search** | `search <query>` | ~60 | Top matches get details |
+| **L3: Full Detail** | `get <id>` | ~200 | On-demand for specific items |
+
+### Token Savings vs Old Systems
+
+- Search: **800 → 200 tokens** (75% reduction)
+- Index: ~15 tokens/result (new capability)
+- Timeline: ~60 tokens/result (new capability)
 
 ## When to Use
 
@@ -21,133 +44,155 @@ description: >
 
 ## Memory Model
 
-| Category | Examples | Weight (GC) |
-|----------|----------|-------------|
-| **decisions** | "Chose PostgreSQL because..." | 10 |
-| **architecture** | "Using Next.js + Prisma + PostgreSQL" | 8 |
-| **project** | "Digital-Nervous v7.1 — 47 skills, 19 modes" | 8 |
-| **blockers** | "Waiting on API key from vendor" | 7 |
-| **session** | "Session completed: built auth module" | 6 |
-| **tasks** | "BUILD complete: 3 services, 142 tests pass" | 5 |
-| **conversation** | Extracted facts from summarized files | 4 |
-| **general** | User-added notes | 4 |
-| **git-activity** | Recent commit summaries | 3 |
-| **ingested** | Chunked README/docs sections | 2 |
+Category weights for search relevance and GC prioritization:
+
+| Category | Weight | Examples |
+|----------|--------|----------|
+| **decisions** | 10 | "Chose PostgreSQL because..." |
+| **architecture** | 8 | "Using Next.js + Prisma" |
+| **blockers** | 7 | "Waiting on API key" |
+| **session** | 6 | "Session completed: built auth" |
+| **tasks** | 5 | "BUILD complete: 142 tests pass" |
+| **conversation** | 4 | Auto-generated summaries |
+| **general** | 4 | User-added notes |
+| **git-activity** | 3 | Recent commits |
+| **ingested** | 2 | Project file summaries |
 
 ## CLI Commands
 
-All commands use `scripts/mem0-cli.py`:
+Primary CLI: `scripts/mem0-v2.py`
 
 ```bash
-# Search memory — TF-IDF with cosine similarity
-python3 scripts/mem0-cli.py search "authentication flow" --limit 5
+# Setup (first time)
+python3 scripts/mem0-v2.py setup
 
-# Add a memory manually
-python3 scripts/mem0-cli.py add "Decided to use JWT + refresh tokens for auth" --category decisions
+# Add a memory
+python3 scripts/mem0-v2.py add "Decided to use JWT + refresh tokens for auth" --category decisions
 
-# Refresh project state — replaces old ingested data with current reality
-python3 scripts/mem0-cli.py refresh
+# Search with BM25 ranking
+python3 scripts/mem0-v2.py search "authentication flow" --limit 5
 
-# Ingest files — markdown-aware chunking with section context
-python3 scripts/mem0-cli.py ingest README.md VISION.md
+# Layer 1: Compact index (always first)
+python3 scripts/mem0-v2.py index "project" --limit 30
 
-# Ingest from recent git history
-python3 scripts/mem0-cli.py ingest-git --days 7
+# Layer 3: Full detail on demand
+python3 scripts/mem0-v2.py get 123
 
-# Summarize file — extracts structured facts (key-value, decisions, blockers)
-python3 scripts/mem0-cli.py summarize path/to/conversation.md
+# List all (with optional category filter)
+python3 scripts/mem0-v2.py list --category decisions --limit 20
 
-# List all memories (with optional category filter)
-python3 scripts/mem0-cli.py list --category decisions
+# Stats - memory statistics
+python3 scripts/mem0-v2.py stats
 
-# Delete a specific memory
-python3 scripts/mem0-cli.py delete <memory_id>
+# Garbage collection (value-weighted)
+python3 scripts/mem0-v2.py gc --max-obs 200
 
-# Export all memories to markdown
-python3 scripts/mem0-cli.py export > project-memory.md
-
-# Stats: memory count, file size, token estimate, categories
-python3 scripts/mem0-cli.py stats
-
-# Garbage collection — value-weighted (category × recency)
-python3 scripts/mem0-cli.py gc --max-memories 200
+# Migrate from old systems
+python3 scripts/mem0-v2.py migrate  # JSONL → SQLite
+python3 scripts/migrate-chroma-to-sqlite.py  # ChromaDB → SQLite
 ```
 
-## Search — How It Works
+## Python API
 
-Search uses **TF-IDF (Term Frequency × Inverse Document Frequency)** with **cosine similarity** — all Python stdlib, zero external dependencies.
+```python
+import sys
+sys.path.insert(0, 'scripts')
+from mem0_v2 import MemoryDB, get_db
 
+# Initialize
+db = get_db()
+
+# Add memory
+result = db.add("Decided to use JWT for auth", category="decisions")
+
+# Search (backward compatible)
+results = db.search("authentication", limit=5)
+
+# Layer 1: Compact index
+index = db.memory_index("project", limit=30)
+
+# Layer 3: Full detail
+obs = db.memory_get(123)
+
+# List by category
+memories = db.list_all(category="decisions", limit=10)
+
+# Stats
+stats = db.stats()
+
+# GC
+removed = db.gc(max_obs=200)
 ```
-Query: "authentication JWT"
-→ Tokenize → Compute TF-IDF vectors → Cosine similarity against all memories
-→ Return top-N ranked results
-```
-
-**Advantages over keyword search:**
-- Matches semantic relevance, not just keyword overlap
-- Rare terms (e.g., "JWT") get higher weight than common terms
-- Better results for paraphrased or related concepts
 
 ## Token Optimization Strategy
 
 ### When to Retrieve
+
 1. **Always** at session start — search with project name + request keywords, limit to top-5
 2. **Before complex tasks** — search with task keywords, limit to top-3
 3. **At gate decisions** — fetch relevant decisions/blockers
 
 ### Token Budget
-- Retrieval output: max **500 tokens** (configurable via `MEM0_MAX_TOKENS`)
+
+- Retrieval output: max **500 tokens** (configurable)
 - Total memory injection per prompt: **800 tokens** ceiling
+- Use Layer 1 (index) first for overview, upgrade to Layer 2/3 as needed
 
 ## Safety
 
 ### Secret Redaction
+
 The CLI automatically redacts patterns matching:
 - API keys (`sk-*`, `key-*`, Bearer tokens)
 - Passwords, secrets, tokens (configurable regex)
 - Database connection strings with credentials
 
 ### .memignore
+
 Create `.memignore` at project root to exclude files/folders from ingestion.
 
 ### Opt-out
-- Set `MEM0_DISABLED=true` to skip all memory operations
+
+```bash
+# Set env var to disable all memory operations
+export MEM0_DISABLED=true
+```
 
 ## Configuration
 
 ```bash
-# Storage (JSONL, git-committed)
-MEM0_PROJECT_ID=my-project        # namespace for multi-project
+# Project namespace (auto-detected from git)
+MEM0_PROJECT_ID=my-project
 
 # Limits
 MEM0_MAX_TOKENS=500               # max tokens per retrieval
-MEM0_MAX_MEMORIES=200             # max stored memories before GC
+MEM0_MAX_OBS=200                  # max observations before GC
 
 # Safety
 MEM0_REDACT_SECRETS=true          # auto-redact API keys, passwords
-MEM0_DISABLED=false               # set true to skip all ops
+MEM0_DISABLED=false                # set true to skip all ops
 ```
 
 ## Integration with Digital-Nervous Pipeline
 
 ### Active Lifecycle Hooks
 
-The orchestrator calls memory-manager at specific lifecycle points. All hooks are wired with exact CLI commands in `skills/_shared/protocols/session-lifecycle.md`:
+The orchestrator calls memory-manager at specific lifecycle points:
 
 | Hook | Trigger | Memory Command |
 |------|---------|---------------|
 | `SESSION_START` | Pipeline begins | `search "<project> <keywords>" --limit 5` |
-| `TURN_CLOSE` | After every user request is answered (before idle) | **Mandatory** `add "REQ:… | DONE:… | OPEN:…" --category session` (+ optional `decisions` / `architecture` / `blockers`). See session-lifecycle §Per-request memory. |
+| `TURN_CLOSE` | After every user request | `add "REQ:... | DONE:... | OPEN:..." --category session` |
 | `PHASE_COMPLETE` | After DEFINE/BUILD/HARDEN/SHIP | `add "Phase [name]: [summary]" --category tasks` |
 | `GATE_DECISION` | After Gate 1/2/3 | `add "Gate [N] [decision]: [feedback]" --category decisions` |
-| `SESSION_END` | Pipeline completes | `add "Session completed: [summary]" --category session` + `refresh` |
-| `ERROR` | Task failure/escalation | `add "BLOCKER: [task] failed: [details]" --category blockers` |
+| `SESSION_END` | Pipeline completes | `add "Session completed: [summary]" --category session` |
+| `ERROR` | Task failure | `add "BLOCKER: [task] failed: [details]" --category blockers` |
 
 ### Context Integration with Project Profile
 
 Memory works alongside `.Digital-Nervous/project-profile.json`:
 - **Project Profile** = structural facts (stack, health, patterns) — always loaded
-- **Memory** = temporal facts (decisions, blockers, progress) — searched contextually
+- **Memory** = semantic facts (decisions, blockers, progress) — searched with FTS5
 - Together they provide full project context without re-scanning
 
 ### BA Integration
@@ -162,30 +207,11 @@ When the Business Analyst skill completes:
 Any skill can invoke memory commands directly:
 ```bash
 # Before starting work
-python3 scripts/mem0-cli.py search "current task" --limit 3 --format compact
+python3 scripts/mem0-v2.py search "current task" --limit 3
 
 # After completing work
-python3 scripts/mem0-cli.py add "Completed: auth module with JWT + refresh tokens" --category decisions
+python3 scripts/mem0-v2.py add "Completed: auth module with JWT + refresh tokens" --category decisions
 ```
-
-## Garbage Collection — Value-Weighted
-
-GC scores each entry: `category_weight × recency_factor`, then prunes lowest-scored:
-
-| Category | Weight | Rationale |
-|----------|--------|-----------|
-| decisions | 10 | Most valuable — architecture choices persist |
-| architecture | 8 | Stack identity rarely changes |
-| project | 8 | Core project facts |
-| blockers | 7 | Active impediments need attention |
-| session | 6 | Recent work history |
-| tasks | 5 | Phase completion status |
-| conversation | 4 | Summarized context |
-| general | 4 | User notes |
-| git-activity | 3 | Easily re-ingested |
-| ingested | 2 | Easily re-ingested from source files |
-
-Recency factor: today=1.0, 30 days ago=0.7, 90+ days ago=0.1.
 
 ## File Layout
 
@@ -194,13 +220,102 @@ Digital-Nervous/
 ├── skills/memory-manager/
 │   └── SKILL.md              ← this file
 ├── scripts/
-│   └── mem0-cli.py           ← CLI tool (TF-IDF, JSONL, zero deps)
-├── .memignore                ← exclusion patterns
+│   ├── mem0-v2.py            ← PRIMARY CLI (SQLite + FTS5)
+│   ├── mem0-cli.py           ← DEPRECATED (TF-IDF + JSONL)
+│   ├── local_memory.py       ← DEPRECATED (ChromaDB + embeddings)
+│   ├── migrate-chroma-to-sqlite.py  ← Migration helper
+│   └── ...
 └── .Digital-Nervous/
-    ├── memory.jsonl          ← source of truth (committed to git)
-    ├── project-profile.json  ← project fingerprint (committed)
-    ├── code-conventions.md   ← detected patterns (committed)
-    ├── session-log.json      ← session history (gitignored)
-    └── .gitignore            ← auto-generated
+    ├── memory.db             ← PRIMARY storage (SQLite + FTS5)
+    ├── memory.db-wal         ← WAL journal
+    ├── memory.db-shm         ← Shared memory
+    ├── memory.jsonl          ← Legacy storage (read-only, migrate then delete)
+    ├── memory_db/            ← DEPRECATED ChromaDB storage
+    └── project-profile.json  ← project fingerprint (committed)
 ```
 
+## Dependencies
+
+**Zero external dependencies.** Only Python stdlib + SQLite (built-in).
+
+| Package | Purpose | Install |
+|---------|---------|---------|
+| None | Everything is built-in | — |
+
+## Migration
+
+### From JSONL (mem0-cli.py)
+
+```bash
+python3 scripts/mem0-v2.py migrate
+```
+
+### From ChromaDB (local_memory.py)
+
+```bash
+python3 scripts/migrate-chroma-to-sqlite.py
+```
+
+### Verify Migration
+
+```bash
+python3 scripts/mem0-v2.py stats
+```
+
+## Deprecated Systems
+
+### mem0-cli.py (JSONL + TF-IDF)
+
+- **Status:** DEPRECATED
+- **Reason:** No indexing, unbounded file growth, O(n) search
+- **Action:** Migrate data then disable
+
+```bash
+# Migrate first, then disable
+export MEM0_DISABLED=true
+```
+
+### local_memory.py (ChromaDB + embeddings)
+
+- **Status:** DEPRECATED
+- **Reason:** Heavy dependencies (~500MB), slow startup (model loading)
+- **Action:** Migrate data then disable
+
+```bash
+# Migrate first, then disable
+export LOCAL_MEMORY_DISABLED=true
+```
+
+## RRF Fusion (Future)
+
+The system supports Reciprocal Rank Fusion for hybrid search combining:
+- FTS5 + BM25 results
+- (Future) Vector search results
+
+```python
+# Example: Merge rankings from multiple sources
+results = db.rrf_merge(list1, list2, list3)
+```
+
+## Observation Links (Advanced)
+
+Link related observations:
+
+```sql
+-- Related concepts
+-- Contradicting decisions
+-- Superseded approaches
+-- Extended implementations
+```
+
+## Session Tracking (Advanced)
+
+Track sessions across the memory system:
+
+```python
+# Sessions table for cross-session tracking
+# - request_summary
+# - completed_tasks
+# - next_steps
+# - notes
+```

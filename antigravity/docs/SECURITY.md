@@ -252,4 +252,3 @@ const apiKey = process.env.API_KEY;
 |---------|------|---------|
 | 1.0.0 | 2024-01-01 | Initial security docs |
 | 1.1.0 | 2024-02-01 | Added incident response |
-

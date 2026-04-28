@@ -1,4 +1,4 @@
-# Digital-Nervous Anti-Hallucination - Revised Roadmap v2
+# ForgeWright Anti-Hallucination - Revised Roadmap v2
 
 **Version**: 2.0  
 **Duration**: 9 weeks (8 weeks + 1 week buffer)  
@@ -24,7 +24,7 @@
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────────────────────┐
-│                         Digital-Nervous ANTI-HALLUCINATION v2.0                              │
+│                         FORGEWRIGHT ANTI-HALLUCINATION v2.0                              │
 ├─────────────────────────────────────────────────────────────────────────────────────────┤
 │                                                                                         │
 │  WEEK 1        WEEK 2        WEEK 3        WEEK 4        WEEK 5-6    WEEK 7-8  WEEK 9  │
@@ -808,4 +808,3 @@
 *Roadmap Version: 2.0*  
 *Based on: Evaluation v1.0 recommendations*  
 *Last Updated: April 2026*
-

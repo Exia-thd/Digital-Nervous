@@ -189,4 +189,3 @@ tests:
       - output_contains_all
       - min_medium_findings_satisfied
     timeout: 60s
-

@@ -47,4 +47,3 @@ You're ready to go! Try:
 - "Write tests for this project"
 
 Run `/update` anytime to check for new versions.
-

@@ -170,4 +170,3 @@ tests:
       - output_contains_all
       - file_count_matches
     timeout: 60s
-

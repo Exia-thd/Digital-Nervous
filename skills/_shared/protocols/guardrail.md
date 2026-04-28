@@ -299,4 +299,3 @@ Automatically load and enforce coding standards based on file location. See `rul
    
    Fix: Use GameData.get_value("melee_damage")
 ```
-

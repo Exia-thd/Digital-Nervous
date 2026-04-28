@@ -61,8 +61,8 @@ detect_Digital-Nervous_path() {
     echo "$SCRIPT_DIR/.."
 }
 
-Digital-Nervous_PATH="$(detect_Digital-Nervous_path)"
-LAUNCHER_PATH="${Digital-Nervous_PATH}/scripts/Digital-Nervous-mcp-launcher.sh"
+FORGEWRIGHT_PATH="$(detect_Digital-Nervous_path)"
+LAUNCHER_PATH="${FORGEWRIGHT_PATH}/scripts/Digital-Nervous-mcp-launcher.sh"
 
 # ─── Commands ────────────────────────────────────────────
 
@@ -183,7 +183,7 @@ cmd_config() {
         "command": "bash",
         "args": ["${LAUNCHER_PATH}"],
         "env": {
-          "Digital-Nervous_WORKSPACE": "\${workspaceFolder}"
+          "FORGEWRIGHT_WORKSPACE": "\${workspaceFolder}"
         }
       }
     }
@@ -298,4 +298,3 @@ case "${1:-help}" in
         exit 1
         ;;
 esac
-

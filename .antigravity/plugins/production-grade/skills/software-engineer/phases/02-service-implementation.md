@@ -307,4 +307,3 @@ Before moving to Phase 3:
 | No hardcoded secrets | No API keys, passwords, or tokens in source code |
 | Config validation | Service fails fast on startup if required env vars missing |
 | Graceful shutdown | SIGTERM triggers connection draining, in-flight request completion |
-

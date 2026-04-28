@@ -659,4 +659,3 @@ export async function createSandboxSession(
 export async function endSandboxSession(): Promise<SandboxMetrics | null> {
   return getSandboxManager().endSession();
 }
-

@@ -29,5 +29,4 @@
 
 - If mem0 unavailable → WARN, continue without memory
 - If code-conventions.md missing → skip, no blocking
-- Check `Digital-Nervous_SKIP_MEM0` env var to disable
-
+- Check `FORGEWRIGHT_SKIP_MEM0` env var to disable

@@ -1,5 +1,5 @@
 /**
- * RAG Module - Chunking Strategies for Digital-Nervous
+ * RAG Module - Chunking Strategies for ForgeWright
  * 
  * Provides text chunking for RAG retrieval.
  */
@@ -317,4 +317,3 @@ export function semanticChunk(
   
   return chunks;
 }
-

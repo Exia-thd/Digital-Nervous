@@ -388,4 +388,3 @@ export function createShellExecutor(
 ): ShellExecutor {
   return new ShellExecutor(config, policyEngine);
 }
-

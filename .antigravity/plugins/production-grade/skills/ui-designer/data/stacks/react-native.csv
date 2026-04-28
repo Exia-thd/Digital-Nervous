@@ -50,4 +50,3 @@ No,Category,Guideline,Description,Do,Don't,Code Good,Code Bad,Severity,Docs URL
 49,Native,Use native modules carefully,Bridge has overhead,Batch native calls,Frequent bridge crossing,Batch updates,Call native on every keystroke,High,
 50,Native,Use Expo when possible,Simplified development,Expo for standard features,Bare RN for simple apps,expo install package,react-native link package,Low,https://docs.expo.dev/
 51,Native,Handle permissions,Request permissions properly,Check and request permissions,Assume permissions granted,PermissionsAndroid.request(),Access without permission check,High,https://reactnative.dev/docs/permissionsandroid
-

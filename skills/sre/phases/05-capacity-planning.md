@@ -156,4 +156,3 @@ Before marking SRE skill as complete, verify:
 ## Quality Bar
 
 Capacity planning based on averages will fail. Model peak load (p99 of daily traffic), seasonal spikes, and known events. Size for peaks, not averages. Cost projections must include not just compute but also data transfer, managed services, and storage growth.
-

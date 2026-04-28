@@ -47,7 +47,10 @@ async function loadLanguage(lang: string): Promise<any> {
       } catch { return null }
     }
     case 'python': {
-      try { return (_require('tree-sitter-python') as any).default ?? null }
+      try { 
+        const mod = _require('tree-sitter-python') as any;
+        return mod.language ?? mod.default ?? null;
+      }
       catch { return null }
     }
     case 'go': {
@@ -334,8 +337,9 @@ export class ParserEngine {
     // File-level pattern detection
     this.detectFilePatterns(content, filePath, nodes, edges)
 
+    let tree: any = null
     try {
-      const tree = parser.parse(content)
+      tree = parser.parse(content)
       const root = tree.rootNode
 
       // Phase 1: TSQuery extraction (fast path)
@@ -355,6 +359,10 @@ export class ParserEngine {
       }
     } catch {
       /* skip parse errors */
+    } finally {
+      if (tree && typeof tree.delete === 'function') {
+        tree.delete()
+      }
     }
 
     // ── Deduplicate nodes (tree-sitter queries may emit the same node twice
@@ -411,11 +419,12 @@ export class ParserEngine {
     nodes: CodeNode[],
     _edges: CodeEdge[],
   ): void {
+    const langObj = this.langCache.get(lang)
+    if (!langObj) return
+    
+    let tsQuery: any
     try {
-      const langObj = this.langCache.get(lang)
-      if (!langObj) return
-
-      const tsQuery = (langObj as any).query(query)
+      tsQuery = (langObj as any).query(query)
 
       tsQuery.captures(root).forEach((m: any) => {
         const name = m.name
@@ -482,6 +491,10 @@ export class ParserEngine {
     } catch {
       // Fallback to manual walk if TSQuery fails
       this.walkFallback(root, content, filePath, lang, nodes, [])
+    } finally {
+      if (tsQuery && typeof tsQuery.delete === 'function') {
+        tsQuery.delete()
+      }
     }
   }
 
@@ -494,11 +507,12 @@ export class ParserEngine {
     _nodes: CodeNode[],
     edges: CodeEdge[],
   ): void {
+    const langObj = this.langCache.get(lang)
+    if (!langObj) return
+    
+    let tsQuery: any
     try {
-      const langObj = this.langCache.get(lang)
-      if (!langObj) return
-
-      const tsQuery = (langObj as any).query(query)
+      tsQuery = (langObj as any).query(query)
 
       tsQuery.captures(root).forEach((m: any) => {
         if (m.name !== 'call.expression') return
@@ -520,7 +534,11 @@ export class ParserEngine {
           reason: 'tsq-call',
         })
       })
-    } catch { /* skip */ }
+    } catch { /* skip */ } finally {
+      if (tsQuery && typeof tsQuery.delete === 'function') {
+        tsQuery.delete()
+      }
+    }
   }
 
   private extractImportsTSQ(
@@ -532,11 +550,12 @@ export class ParserEngine {
     _nodes: CodeNode[],
     edges: CodeEdge[],
   ): void {
-    try {
-      const langObj = this.langCache.get(lang)
-      if (!langObj) return
+    const langObj = this.langCache.get(lang)
+    if (!langObj) return
 
-      const tsQuery = (langObj as any).query(query)
+    let tsQuery: any
+    try {
+      tsQuery = (langObj as any).query(query)
 
       tsQuery.captures(root).forEach((m: any) => {
         if (m.name !== 'import.statement' && m.name !== 'require.statement') return
@@ -565,7 +584,11 @@ export class ParserEngine {
           }
         }
       })
-    } catch { /* skip */ }
+    } catch { /* skip */ } finally {
+      if (tsQuery && typeof tsQuery.delete === 'function') {
+        tsQuery.delete()
+      }
+    }
   }
 
   private extractHeritageTSQ(
@@ -577,11 +600,12 @@ export class ParserEngine {
     _nodes: CodeNode[],
     edges: CodeEdge[],
   ): void {
+    const langObj = this.langCache.get(lang)
+    if (!langObj) return
+    
+    let tsQuery: any
     try {
-      const langObj = this.langCache.get(lang)
-      if (!langObj) return
-
-      const tsQuery = (langObj as any).query(query)
+      tsQuery = (langObj as any).query(query)
 
       tsQuery.captures(root).forEach((m: any) => {
         if (!m.name.startsWith('heritage.')) return
@@ -624,7 +648,11 @@ export class ParserEngine {
           }
         }
       })
-    } catch { /* skip */ }
+    } catch { /* skip */ } finally {
+      if (tsQuery && typeof tsQuery.delete === 'function') {
+        tsQuery.delete()
+      }
+    }
   }
 
   // ── Fallback walk (only for unsupported languages or uncovered types) ────
@@ -1467,4 +1495,3 @@ const NODE_MAP_FALLBACK: Record<string, { nodeType: NodeType }> = {
   trait_item: { nodeType: 'Interface' },
   type_alias_item: { nodeType: 'TypeAlias' },
 }
-

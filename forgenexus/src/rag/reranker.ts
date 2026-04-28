@@ -1,5 +1,5 @@
 /**
- * RAG Module - Result Reranking for Digital-Nervous
+ * RAG Module - Result Reranking for ForgeWright
  * 
  * Provides reranking of search results using various strategies.
  */
@@ -272,4 +272,3 @@ export function defaultReranker<T extends { id: string; file: string; score: num
     rerankScore: r.score * (1 - i / topK * 0.2), // Slight boost for position
   }));
 }
-

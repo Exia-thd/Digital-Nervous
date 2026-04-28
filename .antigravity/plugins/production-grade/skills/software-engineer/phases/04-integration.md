@@ -196,4 +196,3 @@ libs/shared/providers/
 ```
 
 Select provider via config: `CLOUD_PROVIDER=aws|gcp|azure`. Wire in DI container.
-

@@ -57,4 +57,3 @@ Based on what's available:
 - Adjust output sections to reflect actual coverage
 - Never fabricate content for missing inputs — use placeholders
 - Document what was skipped and why in the skill's workspace output
-

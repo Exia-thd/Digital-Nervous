@@ -510,4 +510,3 @@ function printHumanReadable(result: ValidationResult, strict: boolean): void {
     console.log(pc.dim('  Run with --json for machine-readable output'));
   }
 }
-

@@ -240,4 +240,3 @@ Before moving to Phase 5:
 - All pages have SEO metadata
 - Mobile-first responsive design at all breakpoints
 - No `useEffect` for data fetching (React Query used instead)
-

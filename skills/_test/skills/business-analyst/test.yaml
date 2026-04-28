@@ -163,4 +163,3 @@ tests:
       - output_contains_all
       - min_risks_satisfied
     timeout: 60s
-

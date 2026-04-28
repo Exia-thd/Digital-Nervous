@@ -796,4 +796,3 @@ export function formatCypherResult(result: CypherResult): string {
   }
   return md
 }
-

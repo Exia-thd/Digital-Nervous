@@ -159,4 +159,3 @@ gantt
 - Architecture: `./ARCHITECTURE.md`
 - Tasks: `./TASKS.md`
 - Decisions: `./DECISIONS.md`
-

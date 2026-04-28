@@ -34,4 +34,3 @@ export function ensureNexusDataDirMigrated(repoRoot: string): void {
     )
   }
 }
-

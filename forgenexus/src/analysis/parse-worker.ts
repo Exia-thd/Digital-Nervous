@@ -434,4 +434,3 @@ parentPort.on('message', async (msg: PoolMessage) => {
     process.exit(0)
   }
 })
-

@@ -67,4 +67,3 @@ complete -c forge -n '__fish_seen_subcommand_from doctor' -l verbose -s v -d 'Ve
 complete -c forge -n '__fish_seen_subcommand_from validate' -l level -s l -d 'Validation level (1-3)' -r
 complete -c forge -n '__fish_seen_subcommand_from validate' -l strict -d 'Treat warnings as failures'
 complete -c forge -n '__fish_seen_subcommand_from validate' -l report -d 'Write report to file' -r -F
-

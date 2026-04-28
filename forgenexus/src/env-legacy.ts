@@ -26,4 +26,3 @@ export function applyLegacyGitnexusEnv(): void {
     }
   }
 }
-

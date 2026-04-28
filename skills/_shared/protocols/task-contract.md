@@ -214,4 +214,3 @@ Add `implementer_status` to the DELIVERY.json format. Workers MUST set this fiel
 ```
 
 See `parallel-dispatch/SKILL.md` → Implementer Status Protocol for handling each status.
-

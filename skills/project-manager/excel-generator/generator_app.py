@@ -151,4 +151,3 @@ def generate_project_files(config_path):
 if __name__ == "__main__":
     if len(sys.argv) > 1:
         generate_project_files(sys.argv[1])
-

@@ -1,5 +1,5 @@
 /**
- * Freshness Module for Digital-Nervous Anti-Hallucination System
+ * Freshness Module for ForgeWright Anti-Hallucination System
  * 
  * Tracks and manages the freshness of graph data to prevent
  * hallucinations from stale data.
@@ -323,4 +323,3 @@ export function isValidMetadata(metadata: unknown): metadata is GraphMetadata {
     typeof m.indexVersion === 'string'
   );
 }
-

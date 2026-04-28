@@ -82,4 +82,3 @@ jobs:
           else
             echo "✅ **Complete** — Index updated successfully"
           fi
-

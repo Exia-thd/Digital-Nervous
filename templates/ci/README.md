@@ -52,4 +52,3 @@ npx ts-node scripts/generate-template.ts \
 | PR Checks | pull_request |
 | Commit Lint | commit messages |
 | Scheduled | cron (configurable) |
-

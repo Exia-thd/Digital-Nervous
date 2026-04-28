@@ -143,4 +143,3 @@ class UnifiedUsage:
 | Cache | `~/.Digital-Nervous/cache/` | JSON |
 | Logs | `~/.Digital-Nervous/usage/` | JSONL |
 | Config | `~/.Digital-Nervous/config.yaml` | YAML |
-

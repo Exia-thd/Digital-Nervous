@@ -42,16 +42,16 @@ describe('getDigital-NervousRoot', () => {
         expect(typeof root).toBe('string');
         expect(root.length).toBeGreaterThan(0);
     });
-    it('should return Digital-Nervous_ROOT env var when set', () => {
-        const prev = process.env.Digital-Nervous_ROOT;
-        process.env.Digital-Nervous_ROOT = '/custom/path';
+    it('should return FORGEWRIGHT_ROOT env var when set', () => {
+        const prev = process.env.FORGEWRIGHT_ROOT;
+        process.env.FORGEWRIGHT_ROOT = '/custom/path';
         // Note: requires module reload to pick up new env
         expect(getDigital-NervousRoot()).toBeTruthy();
         if (prev !== undefined) {
-            process.env.Digital-Nervous_ROOT = prev;
+            process.env.FORGEWRIGHT_ROOT = prev;
         }
         else {
-            delete process.env.Digital-Nervous_ROOT;
+            delete process.env.FORGEWRIGHT_ROOT;
         }
     });
 });
@@ -201,4 +201,3 @@ describe('getErrorMessage', () => {
         expect(getErrorMessage({ foo: 'bar' })).toBe('[object Object]');
     });
 });
-

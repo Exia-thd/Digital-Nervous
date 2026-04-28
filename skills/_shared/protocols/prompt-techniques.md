@@ -211,4 +211,3 @@ Give your final answer in <answer> tags only.
 | Image generation | Visual Descriptor template |
 | Creative writing | Role + CRISPE template |
 | Research/summaries | Grounding + Context |
-

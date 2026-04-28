@@ -278,4 +278,3 @@ function printHumanReadable(
     console.log(pc.dim('  Run with --json for machine-readable output'));
   }
 }
-

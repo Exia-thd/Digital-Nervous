@@ -37,4 +37,3 @@ return function()
     --     assert(elapsed < 5.0, "Main scene load time should be under 5s")
     -- end
 end
-

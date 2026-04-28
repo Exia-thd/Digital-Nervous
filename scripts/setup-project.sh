@@ -17,7 +17,7 @@
 #   5. Prints the Cursor MCP config snippet (add to ~/.cursor/mcp.json)
 #
 # Requirements:
-#   - Global Digital-Nervous repo must exist at Digital-Nervous_PATH (see below)
+#   - Global Digital-Nervous repo must exist at FORGEWRIGHT_PATH (see below)
 #   - Node.js >= 18 (for ForgeNexus)
 #   - Git repository (for ForgeNexus)
 # ============================================================================
@@ -26,7 +26,7 @@ set -euo pipefail
 
 # ─── Configuration ──────────────────────────────────────────────────────
 # Auto-detect Digital-Nervous root from script location (supports any clone path)
-Digital-Nervous_PATH="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+FORGEWRIGHT_PATH="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 # ─────────────────────────────────────────────────────────────────────────
 
 # Colors
@@ -70,19 +70,19 @@ check_prerequisites() {
     echo ""
 
     # Check Digital-Nervous exists
-    if [ ! -d "$Digital-Nervous_PATH" ]; then
-        log_error "Digital-Nervous repo not found at: ${Digital-Nervous_PATH}"
-        log_info "Edit Digital-Nervous_PATH in this script to point to your Digital-Nervous repo."
+    if [ ! -d "$FORGEWRIGHT_PATH" ]; then
+        log_error "Digital-Nervous repo not found at: ${FORGEWRIGHT_PATH}"
+        log_info "Edit FORGEWRIGHT_PATH in this script to point to your Digital-Nervous repo."
         exit 1
     fi
     log_ok "Digital-Nervous repo found"
 
     # Check skills directory
-    if [ ! -d "$Digital-Nervous_PATH/skills" ]; then
+    if [ ! -d "$FORGEWRIGHT_PATH/skills" ]; then
         log_error "Digital-Nervous skills directory not found."
         exit 1
     fi
-    log_ok "Skills directory found ($(find "$Digital-Nervous_PATH/skills" -maxdepth 1 -type d | tail -n +2 | wc -l | tr -d '[:space:]') skills)"
+    log_ok "Skills directory found ($(find "$FORGEWRIGHT_PATH/skills" -maxdepth 1 -type d | tail -n +2 | wc -l | tr -d '[:space:]') skills)"
 
     # Check git repo
     if ! git -C "$TARGET_PROJECT" rev-parse --is-inside-work-tree > /dev/null 2>&1; then
@@ -188,9 +188,9 @@ create_Digital-Nervous_dir() {
   "language": "$lang",
   "framework": "$framework",
   "projectRoot": "$TARGET_PROJECT",
-  "Digital-NervousRepo": "$Digital-Nervous_PATH",
+  "Digital-NervousRepo": "$FORGEWRIGHT_PATH",
   "generatedAt": "$(date -u +"%Y-%m-%dT%H:%M:%SZ")",
-  "Digital-NervousVersion": "$(cat "$Digital-Nervous_PATH/VERSION" 2>/dev/null || echo "unknown")"
+  "Digital-NervousVersion": "$(cat "$FORGEWRIGHT_PATH/VERSION" 2>/dev/null || echo "unknown")"
 }
 EOF
 
@@ -228,7 +228,7 @@ print_cursor_config() {
     echo "  Your global Digital-Nervous MCP is already configured at:"
     echo "  ${CYAN}~/.cursor/mcp.json${NC}"
     echo ""
-    echo "  MCP server path: ${Digital-Nervous_PATH}/mcp/build/index.js"
+    echo "  MCP server path: ${FORGEWRIGHT_PATH}/mcp/build/index.js"
     echo ""
     echo "  ⚠️  Restart Cursor for MCP changes to take effect."
     echo ""
@@ -237,19 +237,19 @@ print_cursor_config() {
 # ─── Main ───────────────────────────────────────────────────────────────
 
 run_mem0_ensure() {
-    if [ "${Digital-Nervous_SKIP_MEM0:-}" = "1" ]; then
-        log_info "Skipping mem0 (Digital-Nervous_SKIP_MEM0=1)."
+    if [ "${FORGEWRIGHT_SKIP_MEM0:-}" = "1" ]; then
+        log_info "Skipping mem0 (FORGEWRIGHT_SKIP_MEM0=1)."
         return
     fi
     if ! command -v python3 &> /dev/null; then
-        log_warn "python3 not found — mem0 not initialized. Install Python 3 and run: bash ${Digital-Nervous_PATH}/scripts/ensure-mem0.sh"
+        log_warn "python3 not found — mem0 not initialized. Install Python 3 and run: bash ${FORGEWRIGHT_PATH}/scripts/ensure-mem0.sh"
         return
     fi
     log_info "Ensuring Digital-Nervous memory (mem0)..."
-    if bash "${Digital-Nervous_PATH}/scripts/ensure-mem0.sh" "$TARGET_PROJECT"; then
+    if bash "${FORGEWRIGHT_PATH}/scripts/ensure-mem0.sh" "$TARGET_PROJECT"; then
         log_ok "mem0 ready (.Digital-Nervous/memory.jsonl)"
     else
-        log_warn "mem0 setup failed. Fix errors and run: bash ${Digital-Nervous_PATH}/scripts/ensure-mem0.sh \"$TARGET_PROJECT\""
+        log_warn "mem0 setup failed. Fix errors and run: bash ${FORGEWRIGHT_PATH}/scripts/ensure-mem0.sh \"$TARGET_PROJECT\""
     fi
 }
 
@@ -274,4 +274,3 @@ main() {
 }
 
 main "$@"
-

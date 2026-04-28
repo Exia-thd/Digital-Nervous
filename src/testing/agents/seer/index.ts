@@ -439,4 +439,3 @@ Provide a ${agent.persona === 'critical' ? 'critical' : 'clear and actionable'} 
     return recommendations;
   }
 }
-

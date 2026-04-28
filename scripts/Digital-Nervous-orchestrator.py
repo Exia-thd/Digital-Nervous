@@ -1,0 +1,206 @@
+import os
+import sys
+import json
+import asyncio
+import requests
+from typing import List, Dict, Any
+from contextlib import AsyncExitStack
+
+from mcp import ClientSession, StdioServerParameters
+from mcp.client.stdio import stdio_client
+
+API_KEY = os.environ.get('MINIMAX_API_KEY', 'sk-cp-2vP0SZLSFnl_sbVSpxX2S213n39WcIWf4Lo0rkJyxRsrq4JcnoRplWIM4nPQQJ_tPmyn1dhY2ZB9ApwYY3QnxBJlTNPV6WwT3rscQsUxYlEI8oFNoKH0b00')
+BASE_URL = 'https://api.minimax.io/v1/text/chatcompletion_v2'
+
+class Digital-NervousAgent:
+    def __init__(self, project_id: str, code_dir: str):
+        self.project_id = project_id
+        self.code_dir = code_dir
+        self.messages = []
+        
+    def _call_minimax(self, tools: List[Dict]) -> Dict:
+        headers = {
+            'Authorization': f'Bearer {API_KEY}',
+            'Content-Type': 'application/json'
+        }
+        
+        data = {
+            'model': 'MiniMax-M2.7',
+            'messages': self.messages,
+            'temperature': 0.1
+        }
+        if tools:
+            data['tools'] = tools
+            
+        print(f"[*] Calling MiniMax (Messages: {len(self.messages)})...")
+        resp = requests.post(BASE_URL, headers=headers, json=data, timeout=120)
+        resp_json = resp.json()
+        
+        if 'choices' not in resp_json:
+            print(f"[!] API Error: {resp_json}")
+            sys.exit(1)
+            
+        return resp_json['choices'][0]['message']
+
+    async def run(self, task: str):
+        # Define isolated path for DB
+        forgenexus_db_path = os.path.normpath(os.path.join(self.code_dir, "..", "forgenexus_db"))
+        
+        forgenexus_env = {**os.environ}
+        forgenexus_env["FORGEWRIGHT_WORKSPACE"] = self.code_dir
+        forgenexus_env["FORGEWRIGHT_TOOL_SANDBOX"] = "false"
+        forgenexus_env["FORGENEXUS_DB"] = forgenexus_db_path
+
+        mcp_servers = [
+            {
+                "name": "forgenexus",
+                "params": StdioServerParameters(
+                    command="npx",
+                    args=["tsx", "/root/Digital-Nervous/forgenexus/src/server.ts"],
+                    env=forgenexus_env
+                )
+            },
+            {
+                "name": "Digital-Nervous",
+                "params": StdioServerParameters(
+                    command="bash",
+                    args=["/root/openclaw/scripts/Digital-Nervous-mcp-launcher.sh"],
+                    env={**os.environ, "FORGEWRIGHT_WORKSPACE": self.code_dir}
+                )
+            },
+            {
+                "name": "nlm",
+                "params": StdioServerParameters(
+                    command="nlm",
+                    args=["mcp"],
+                    env={**os.environ}
+                )
+            }
+        ]
+        
+        # Extract Project Context to give Tieu Mo better background
+        project_context = ""
+        readme_path = os.path.join(self.code_dir, "README.md")
+        profile_path = os.path.join(self.code_dir, "..", ".Digital-Nervous", "project-profile.json")
+        pkg_path = os.path.join(self.code_dir, "package.json")
+        
+        try:
+            if os.path.exists(readme_path):
+                with open(readme_path, "r", encoding="utf-8") as f:
+                    project_context = f.read()[:2000]
+            elif os.path.exists(profile_path):
+                with open(profile_path, "r", encoding="utf-8") as f:
+                    project_context = f.read()[:2000]
+            elif os.path.exists(pkg_path):
+                with open(pkg_path, "r", encoding="utf-8") as f:
+                    project_context = f.read()[:2000]
+            else:
+                project_context = "Chưa có thông tin README.md hoặc project-profile.json. Đây có thể là dự án mới khởi tạo."
+        except Exception:
+            project_context = "Không thể đọc thông tin ngữ cảnh dự án do lỗi cấp quyền hoặc định dạng file."
+
+        system_prompt = f"""
+Bạn là Tiểu Mơ - Siêu Trí Tuệ Digital-Nervous (Level 4 Agent Executor).
+Dự án bạn đang làm việc: '{self.project_id}'
+Thư mục mã nguồn cục bộ: '{self.code_dir}'
+Thư mục Database ForgeNexus của dự án (Isolate Data): '{forgenexus_db_path}'
+
+[NGỮ CẢNH DỰ ÁN TÓM TẮT]:
+{project_context}
+
+[YÊU CẦU BẮT BUỘC]:
+1. Bạn phải TỰ CHỦ sử dụng các Function Tools (do hệ thống MCP cung cấp) để dọc mã nguồn, tạo thư mục, viết/sửa code theo yêu cầu của Sếp.
+2. Cấm "đoán" cấu trúc thư mục, hãy dùng lệnh thích hợp để list file trước khi sửa hoặc viết đè.
+3. Luôn đảm bảo bạn tự kiểm tra code sau khi viết. 
+4. Nếu có tool hỗ trợ chạy Terminal, bạn được phép gọi các lệnh như `npm run build` hoặc `test` để tự Debug kết quả.
+
+Nhiệm vụ từ Sếp: {task}
+Khi bạn nghĩ rằng mình ĐÃ THỰC THI XONG VÀ HOÀN CHỈNH CODE, hãy trả về kết quả bằng văn bản bình thường (không gọi tool nữa) để hệ thống kết thúc và deploy.
+"""
+        self.messages.append({"role": "system", "content": system_prompt.strip()})
+        self.messages.append({"role": "user", "content": f"Bắt đầu xử lý tính năng: {task}"})
+        
+        try:
+            async with AsyncExitStack() as stack:
+                active_sessions = {}
+                for srv in mcp_servers:
+                    try:
+                        read, write = await stack.enter_async_context(stdio_client(srv["params"]))
+                        session = await stack.enter_async_context(ClientSession(read, write))
+                        await session.initialize()
+                        active_sessions[srv["name"]] = session
+                        print(f"[✓] MCP Server connected: {srv['name']}")
+                    except Exception as e:
+                        print(f"[!] Warning: Failed to connect to MCP Server: {srv['name']} - {e}")
+                
+                if not active_sessions:
+                    raise RuntimeError("No MCP Servers could be connected. Check dependencies.")
+
+                while True:
+                    # 1. Fetch available MCP Tools dynamically
+                    tools_payload = []
+                    tool_to_session_map = {}
+                    
+                    for srv_name, session in active_sessions.items():
+                        try:
+                            mcp_tools = await session.list_tools()
+                            for t in mcp_tools.tools:
+                                tool_to_session_map[t.name] = session
+                                tools_payload.append({
+                                    "type": "function",
+                                    "function": {
+                                        "name": t.name,
+                                        "description": t.description,
+                                        "parameters": t.inputSchema
+                                    }
+                                })
+                        except Exception as e:
+                            print(f"[!] Error querying tools from {srv_name}: {e}")
+                            
+                    # 2. ReAct reasoning with MiniMax
+                    reply = self._call_minimax(tools_payload)
+                    self.messages.append(reply)
+                    
+                    # 3. Tool Execution Phase
+                    if "tool_calls" in reply and reply["tool_calls"]:
+                        for tcall in reply["tool_calls"]:
+                            tname = tcall["function"]["name"]
+                            targs = json.loads(tcall["function"]["arguments"])
+                            print(f" ⚙️  Thực thi Tool: {tname} | Args: {targs}")
+                            
+                            target_session = tool_to_session_map.get(tname)
+                            if not target_session:
+                                res_text = f"Execution Error: Unknown tool {tname} - It was not supplied by any connected MCP server."
+                            else:
+                                try:
+                                    result = await target_session.call_tool(tname, arguments=targs)
+                                    res_text = "\n".join([c.text for c in result.content if hasattr(c, 'text')])
+                                except Exception as e:
+                                    res_text = f"Execution Error: {str(e)}"
+                                    
+                            self.messages.append({
+                                "role": "tool",
+                                "tool_call_id": tcall["id"],
+                                "name": tname,
+                                "content": res_text
+                            })
+                    else:
+                        # Final output reached
+                        final_str = reply.get('content', '')
+                        print(f"\n[🏁 KẾT THÚC TASK]\n{final_str}")
+                        break
+        except Exception as err:
+            print(f"[!] Orchestrator Error: {str(err)}")
+            sys.exit(1)
+
+if __name__ == "__main__":
+    if len(sys.argv) < 3:
+        print("Usage: python3 Digital-Nervous-orchestrator.py <PROJECT_ID> <TASK_PROMPT> [CODE_DIR]")
+        sys.exit(1)
+        
+    pid = sys.argv[1]
+    task_desc = sys.argv[2]
+    cdir = sys.argv[3] if len(sys.argv) > 3 else f"/root/projects/{pid}/code"
+    
+    agent = Digital-NervousAgent(pid, cdir)
+    asyncio.run(agent.run(task_desc))

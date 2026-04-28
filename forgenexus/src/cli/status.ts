@@ -226,4 +226,3 @@ function runLegacyStatus(repoPath: string, dbPath: string): void {
     console.error(`[ForgeNexus] Could not read status: ${e}`)
   }
 }
-

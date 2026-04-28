@@ -97,4 +97,3 @@ publish_to: 'pages'  # Deploy lên GitHub Pages
 ```yaml
 publish_to: 'gist'  # Tạo/update secret Gist
 ```
-

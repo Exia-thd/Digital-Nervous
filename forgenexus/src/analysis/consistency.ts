@@ -1,5 +1,5 @@
 /**
- * Consistency Checks Module for Digital-Nervous
+ * Consistency Checks Module for ForgeWright
  * 
  * Runs various consistency checks on the codebase graph.
  */
@@ -324,4 +324,3 @@ export function calculateHealthScore(checks: ConsistencyCheck[]): {
 
   return { score: Math.round(score * 100) / 100, grade, details };
 }
-

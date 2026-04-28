@@ -264,4 +264,3 @@ Open: ./midscene_run/report/index.html
 - [ ] Critical user flows have test scripts
 - [ ] Visual replay report generated and reviewed
 - [ ] Test results documented in `tests/e2e/mobile/reports/`
-

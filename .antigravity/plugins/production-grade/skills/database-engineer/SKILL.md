@@ -346,4 +346,3 @@ schemas/
 | No constraints at DB level | "The app validates" — until someone runs a manual SQL script. DB constraints are the last line of defense |
 | Same pool size for all environments | Dev: 2-5, staging: 5-10, prod: 10-20. Don't connect prod pool settings to dev database |
 | No data dictionary | Future developers need to know what `status INT` means. Document every column |
-

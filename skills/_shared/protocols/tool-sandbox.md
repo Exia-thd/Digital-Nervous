@@ -174,4 +174,3 @@ Result Summary → LLM Context
 - I2 in `docs/improvement-roadmap-v2.md`
 - Session Deduplication: `session-deduplication.md`
 - Middleware Chain: `middleware-chain.md`
-

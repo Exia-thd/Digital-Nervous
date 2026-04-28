@@ -206,4 +206,3 @@ export interface ForgeNexusConfig {
   skipPatterns?: string[]
   includeEmbeddings?: boolean
 }
-

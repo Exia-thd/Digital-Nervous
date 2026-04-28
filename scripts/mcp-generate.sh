@@ -23,16 +23,16 @@ set -euo pipefail
 # ─── Resolve Paths ───────────────────────────────────────
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-Digital-Nervous_DIR="$(cd "${SCRIPT_DIR}/.." && pwd)"
+FORGEWRIGHT_DIR="$(cd "${SCRIPT_DIR}/.." && pwd)"
 
 # Detect project root: either parent of Digital-Nervous submodule, or Digital-Nervous itself
-if [ -f "${Digital-Nervous_DIR}/../.git" ] || [ -d "${Digital-Nervous_DIR}/../.git" ]; then
-  PROJECT_ROOT="$(cd "${Digital-Nervous_DIR}/.." && pwd)"
+if [ -f "${FORGEWRIGHT_DIR}/../.git" ] || [ -d "${FORGEWRIGHT_DIR}/../.git" ]; then
+  PROJECT_ROOT="$(cd "${FORGEWRIGHT_DIR}/.." && pwd)"
 else
-  PROJECT_ROOT="$Digital-Nervous_DIR"
+  PROJECT_ROOT="$FORGEWRIGHT_DIR"
 fi
 
-TEMPLATE_DIR="${Digital-Nervous_DIR}/skills/mcp-generator/templates"
+TEMPLATE_DIR="${FORGEWRIGHT_DIR}/skills/mcp-generator/templates"
 OUTPUT_DIR="${PROJECT_ROOT}/.Digital-Nervous/mcp-server"
 PROFILE_FILE="${PROJECT_ROOT}/.Digital-Nervous/project-profile.json"
 
@@ -81,7 +81,7 @@ read_project_vars() {
   PROJECT_NAME=$(basename "$PROJECT_ROOT")
   PROJECT_SLUG=$(echo "$PROJECT_NAME" | tr '[:upper:]' '[:lower:]' | tr ' ' '-' | tr -cd 'a-z0-9-')
   GENERATED_AT=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
-  Digital-Nervous_VERSION="7.0.0"
+  FORGEWRIGHT_VERSION="7.0.0"
 
   # Read from project-profile.json if it exists
   if [ -f "$PROFILE_FILE" ]; then
@@ -137,7 +137,7 @@ generate_server() {
     sed -i '' "s|{{projectName}}|${PROJECT_NAME}|g" "${OUTPUT_DIR}/${output_name}"
     sed -i '' "s|{{projectSlug}}|${PROJECT_SLUG}|g" "${OUTPUT_DIR}/${output_name}"
     sed -i '' "s|{{generatedAt}}|${GENERATED_AT}|g" "${OUTPUT_DIR}/${output_name}"
-    sed -i '' "s|{{Digital-NervousVersion}}|${Digital-Nervous_VERSION}|g" "${OUTPUT_DIR}/${output_name}"
+    sed -i '' "s|{{Digital-NervousVersion}}|${FORGEWRIGHT_VERSION}|g" "${OUTPUT_DIR}/${output_name}"
     sed -i '' "s|{{projectLanguage}}|${PROJECT_LANGUAGE}|g" "${OUTPUT_DIR}/${output_name}"
     sed -i '' "s|{{projectFramework}}|${PROJECT_FRAMEWORK}|g" "${OUTPUT_DIR}/${output_name}"
     sed -i '' "s|{{mcpServerPath}}|${MCP_SERVER_PATH}|g" "${OUTPUT_DIR}/${output_name}"
@@ -177,7 +177,7 @@ generate_manifest() {
   local candidates=(
     "${PROJECT_ROOT}/.antigravity/plugins/production-grade/forgenexus/dist/cli/index.js"
     "${PROJECT_ROOT}/.Digital-Nervous/plugins/forgenexus/dist/cli/index.js"
-    "${Digital-Nervous_DIR}/forgenexus/dist/cli/index.js"
+    "${FORGEWRIGHT_DIR}/forgenexus/dist/cli/index.js"
     "${HOME}/.Digital-Nervous/forgenexus/dist/cli/index.js"
   )
   for candidate in "${candidates[@]}"; do
@@ -193,7 +193,7 @@ generate_manifest() {
   "workspace": "${PROJECT_ROOT}",
   "generated_at": "${GENERATED_AT}",
   "generated_by": "Digital-Nervous/mcp-generator",
-  "Digital-Nervous_version": "${Digital-Nervous_VERSION}",
+  "Digital-Nervous_version": "${FORGEWRIGHT_VERSION}",
   "servers": [
     {
       "name": "${PROJECT_SLUG}-Digital-Nervous",
@@ -246,12 +246,12 @@ print_summary() {
   echo '    "mcpServers": {'
   echo '      "Digital-Nervous-workspace": {'
   echo '        "command": "bash",'
-  echo "        \"args\": [\"${Digital-Nervous_DIR}/scripts/Digital-Nervous-mcp-launcher.sh\"]"
+  echo "        \"args\": [\"${FORGEWRIGHT_DIR}/scripts/Digital-Nervous-mcp-launcher.sh\"]"
   echo "      }"
   echo "    }"
   echo "  }"
   echo ""
-  echo "  ⚠️  Replace ${Digital-Nervous_DIR} with the absolute path"
+  echo "  ⚠️  Replace ${FORGEWRIGHT_DIR} with the absolute path"
   echo "      to your Digital-Nervous submodule."
   echo ""
   echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
@@ -273,4 +273,3 @@ main() {
 }
 
 main "$@"
-

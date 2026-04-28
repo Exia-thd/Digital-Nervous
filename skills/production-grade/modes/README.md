@@ -55,4 +55,3 @@ These modes skip plan presentation — classify and invoke immediately:
 These modes present a plan for user confirmation:
 
 `Feature`, `Harden`, `Ship`, `Optimize`, `Architect`, `Design`, `Debug`, `AI Build`, `Migrate`, `Custom`
-

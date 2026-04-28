@@ -51,9 +51,9 @@ from collections import Counter
 from typing import Optional
 
 # ── Constants ─────────────────────────────────────────────────────────────────
-Digital-Nervous_DIR = ".Digital-Nervous"
-MEMORY_DB = os.path.join(Digital-Nervous_DIR, "memory.db")
-MEMORY_JSONL = os.path.join(Digital-Nervous_DIR, "memory.jsonl")
+FORGEWRIGHT_DIR = ".Digital-Nervous"
+MEMORY_DB = os.path.join(FORGEWRIGHT_DIR, "memory.db")
+MEMORY_JSONL = os.path.join(FORGEWRIGHT_DIR, "memory.jsonl")
 MEMIGNORE_FILE = ".memignore"
 MAX_OBS_DEFAULT = 200
 
@@ -870,8 +870,8 @@ def cmd_migrate(args):
 
 def cmd_setup(args):
     print("🔧 Digital-Nervous Memory Manager v2 Setup\n")
-    os.makedirs(Digital-Nervous_DIR, exist_ok=True)
-    print(f"  ✅ {Digital-Nervous_DIR}/ ready")
+    os.makedirs(FORGEWRIGHT_DIR, exist_ok=True)
+    print(f"  ✅ {FORGEWRIGHT_DIR}/ ready")
 
     db = get_db()
     print(f"  ✅ {MEMORY_DB} initialized ({db.size_bytes()} bytes)")
@@ -926,4 +926,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-

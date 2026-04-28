@@ -1,6 +1,6 @@
 {
   "name": "Digital-Nervous",
-  "version": "8.2.0",
+  "version": "8.0.0",
   "description": "Adaptive AI Orchestrator — 52 skills, 19 modes. SaaS, game dev, XR, AI/ML, data engineering. Pipeline: DEFINE → BUILD → HARDEN → SHIP → SUSTAIN → GROW",
   "private": true,
   "scripts": {
@@ -29,4 +29,3 @@
     "zod": "^4.3.6"
   }
 }
-

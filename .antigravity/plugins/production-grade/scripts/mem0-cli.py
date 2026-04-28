@@ -39,8 +39,8 @@ from datetime import datetime, timedelta
 from collections import Counter
 
 # ── Constants ──
-Digital-Nervous_DIR = ".Digital-Nervous"
-MEMORY_LOG = os.path.join(Digital-Nervous_DIR, "memory.jsonl")
+FORGEWRIGHT_DIR = ".Digital-Nervous"
+MEMORY_LOG = os.path.join(FORGEWRIGHT_DIR, "memory.jsonl")
 MEMIGNORE_FILE = ".memignore"
 MAX_MEMORIES_DEFAULT = 200
 
@@ -781,8 +781,8 @@ def cmd_gc(args):
 
 def cmd_setup(args):
     print("🔧 Digital-Nervous Memory Manager Setup\n")
-    os.makedirs(Digital-Nervous_DIR, exist_ok=True)
-    print(f"  ✅ {Digital-Nervous_DIR}/ ready")
+    os.makedirs(FORGEWRIGHT_DIR, exist_ok=True)
+    print(f"  ✅ {FORGEWRIGHT_DIR}/ ready")
 
     if not Path(MEMIGNORE_FILE).exists():
         Path(MEMIGNORE_FILE).write_text(
@@ -820,4 +820,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-

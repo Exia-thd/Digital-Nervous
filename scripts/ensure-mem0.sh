@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # ─────────────────────────────────────────────────────────
-# Ensures Digital-Nervous local memory (mem0-cli) is initialized
-# in the host project (.Digital-Nervous/memory.jsonl).
+# Ensures Digital-Nervous memory is initialized
+# Uses SQLite + FTS5 (mem0-v2.py) — zero dependencies
 #
 # Usage (from host project):
 #   bash <path-to-Digital-Nervous>/scripts/ensure-mem0.sh [PROJECT_ROOT]
@@ -10,55 +10,49 @@
 # If PROJECT_ROOT is omitted: same resolution as mcp-generate.sh (sibling of
 # this repo with a .git, else this repo root).
 #
-# Skip (CI / headless only): Digital-Nervous_SKIP_MEM0=1
+# Skip (CI / headless only): MEM0_DISABLED=true
 # ─────────────────────────────────────────────────────────
 
 set -euo pipefail
 
-if [ "${Digital-Nervous_SKIP_MEM0:-}" = "1" ]; then
+if [ "${MEM0_DISABLED:-}" = "true" ]; then
   exit 0
 fi
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-Digital-Nervous_DIR="$(cd "${SCRIPT_DIR}/.." && pwd)"
+FORGEWRIGHT_DIR="$(cd "${SCRIPT_DIR}/.." && pwd)"
 
 if [ -n "${1:-}" ]; then
   PROJECT_ROOT="$(cd "$1" && pwd)"
 else
-  if [ -f "${Digital-Nervous_DIR}/../.git" ] || [ -d "${Digital-Nervous_DIR}/../.git" ]; then
-    PROJECT_ROOT="$(cd "${Digital-Nervous_DIR}/.." && pwd)"
+  if [ -f "${FORGEWRIGHT_DIR}/../.git" ] || [ -d "${FORGEWRIGHT_DIR}/../.git" ]; then
+    PROJECT_ROOT="$(cd "${FORGEWRIGHT_DIR}/.." && pwd)"
   else
-    PROJECT_ROOT="$Digital-Nervous_DIR"
+    PROJECT_ROOT="$FORGEWRIGHT_DIR"
   fi
 fi
 
-MEMORY_FILE="${PROJECT_ROOT}/.Digital-Nervous/memory.jsonl"
-MEM0_CLI="${Digital-Nervous_DIR}/scripts/mem0-cli.py"
+MEMORY_DB="${PROJECT_ROOT}/.Digital-Nervous/memory.db"
+MEMORY_SCRIPT="${FORGEWRIGHT_DIR}/scripts/mem0-v2.py"
 
-if [ -f "$MEMORY_FILE" ]; then
+# Check if memory DB already exists
+if [ -f "$MEMORY_DB" ]; then
   exit 0
 fi
 
 if ! command -v python3 &>/dev/null; then
-  echo "[Digital-Nervous] mem0 requires python3. Install Python 3 and re-run:" >&2
-  echo "  bash ${Digital-Nervous_DIR}/scripts/ensure-mem0.sh" >&2
+  echo "[Digital-Nervous] Memory requires python3. Install Python 3 and re-run:" >&2
+  echo "  bash ${FORGEWRIGHT_DIR}/scripts/ensure-mem0.sh" >&2
   exit 1
 fi
 
-if [ ! -f "$MEM0_CLI" ]; then
-  echo "[Digital-Nervous] Missing mem0 CLI at ${MEM0_CLI}" >&2
+# Initialize memory (creates the DB)
+cd "$PROJECT_ROOT"
+python3 "$MEMORY_SCRIPT" setup &>/dev/null || true
+
+if [ ! -f "$MEMORY_DB" ]; then
+  echo "[Digital-Nervous] Memory setup did not create ${MEMORY_DB}" >&2
   exit 1
 fi
 
-(
-  cd "$PROJECT_ROOT"
-  python3 "$MEM0_CLI" setup
-)
-
-if [ ! -f "$MEMORY_FILE" ]; then
-  echo "[Digital-Nervous] mem0 setup did not create ${MEMORY_FILE}" >&2
-  exit 1
-fi
-
-echo "[Digital-Nervous] mem0 initialized (.Digital-Nervous/memory.jsonl). Run: python3 ${MEM0_CLI} refresh" >&2
-
+echo "[Digital-Nervous] Memory initialized (.Digital-Nervous/memory.db)" >&2

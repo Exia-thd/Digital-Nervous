@@ -24,7 +24,7 @@ function unwrapResult(result: any): any {
 
 // Find the Digital-Nervous root (parent of forgenexus/)
 function findDigital-NervousRoot(): string {
-  const envRoot = process.env.Digital-Nervous_ROOT
+  const envRoot = process.env.FORGEWRIGHT_ROOT
   if (envRoot && existsSync(envRoot)) return envRoot
 
   let dir = dirname(fileURLToPath(import.meta.url))
@@ -315,4 +315,3 @@ export class UnifiedGraph {
     this.dbs.clear()
   }
 }
-

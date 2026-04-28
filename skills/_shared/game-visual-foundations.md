@@ -511,4 +511,3 @@ AI GUARD:  Explicit intent lock | No "mathematically perfect" smoothing
 ---
 
 *Document này được tham chiếu bởi: game-asset-vfx, level-designer, technical-artist, unity-shader-artist, unreal-technical-artist, narrative-designer, threejs-engineer, game-designer, game-audio-engineer*
-

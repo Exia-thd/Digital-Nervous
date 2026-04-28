@@ -107,4 +107,3 @@ export class EmbeddingCache {
     return this.cache.size
   }
 }
-

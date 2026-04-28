@@ -210,4 +210,3 @@ describe('Agent Committee', () => {
     });
   });
 });
-

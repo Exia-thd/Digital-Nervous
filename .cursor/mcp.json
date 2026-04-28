@@ -1,6 +1,6 @@
 {
   "mcpServers": {
-    "Digital-Nervous-forgenexus": {
+    "forgewright-forgenexus": {
       "command": "node",
       "args": [
         ".cursor/forgenexus-mcp.js"
@@ -21,4 +21,3 @@
     }
   }
 }
-

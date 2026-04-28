@@ -37,4 +37,3 @@ RunUAT RunUnreal -Project={Project}.uproject -Engine -ExecuteAutomatonTest -Test
 # Functional Testing Plugin
 AutomationManager.StartTest({Category})
 ```
-

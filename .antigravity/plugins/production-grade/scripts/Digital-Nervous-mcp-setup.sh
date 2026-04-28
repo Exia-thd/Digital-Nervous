@@ -16,8 +16,8 @@ set -euo pipefail
 # ─── Detect Digital-Nervous Location ────────────────────────────────────────────────
 
 # Capture via stdout, pass Digital-Nervous path via a global
-declare Digital-Nervous_DIR=""
-declare Digital-Nervous_IS_PROJECT="false"
+declare FORGEWRIGHT_DIR=""
+declare FORGEWRIGHT_IS_PROJECT="false"
 
 detect_Digital-Nervous() {
     local script_path="${BASH_SOURCE[0]}"
@@ -34,30 +34,30 @@ detect_Digital-Nervous() {
     # If this script is in scripts/ under Digital-Nervous root
     if [[ "$resolved" == */scripts ]]; then
         local possible_fw="$(dirname "$resolved")"
-        Digital-Nervous_DIR="$possible_fw"
+        FORGEWRIGHT_DIR="$possible_fw"
 
         # Check if this is actually Digital-Nervous (has AGENTS.md)
         if [[ -f "${possible_fw}/AGENTS.md" ]] || [[ -f "${possible_fw}/CLAUDE.md" ]]; then
-            Digital-Nervous_IS_PROJECT="true"
+            FORGEWRIGHT_IS_PROJECT="true"
         else
             # Digital-Nervous might be a submodule — walk up to find the project root
             local current="$possible_fw"
             while [[ "$current" != "/" ]] && [[ "$current" != "$HOME" ]]; do
                 if [[ -f "${current}/AGENTS.md" ]] || [[ -f "${current}/CLAUDE.md" ]]; then
-                    Digital-Nervous_DIR="$current"
-                    Digital-Nervous_IS_PROJECT="true"
+                    FORGEWRIGHT_DIR="$current"
+                    FORGEWRIGHT_IS_PROJECT="true"
                     break
                 fi
                 # Also stop if we find a .git directory (not a file) — this is the repo root
                 if [[ -d "${current}/.git" ]]; then
                     # This .git dir means current is the project root
-                    Digital-Nervous_IS_PROJECT="true"
+                    FORGEWRIGHT_IS_PROJECT="true"
                     break
                 fi
                 current="$(dirname "$current")"
             done
-            if [[ "$Digital-Nervous_IS_PROJECT" != "true" ]]; then
-                Digital-Nervous_IS_PROJECT="false"
+            if [[ "$FORGEWRIGHT_IS_PROJECT" != "true" ]]; then
+                FORGEWRIGHT_IS_PROJECT="false"
             fi
         fi
     # If this script is in scripts/ under Antigravity plugin
@@ -85,45 +85,45 @@ detect_Digital-Nervous() {
         done
 
         if [[ -n "$found_Digital-Nervous" ]]; then
-            Digital-Nervous_DIR="$found_Digital-Nervous"
+            FORGEWRIGHT_DIR="$found_Digital-Nervous"
             # If found_Digital-Nervous == plugin_root, Digital-Nervous IS the project
             if [[ "$found_Digital-Nervous" == "$plugin_root" ]]; then
-                Digital-Nervous_IS_PROJECT="true"
+                FORGEWRIGHT_IS_PROJECT="true"
             else
-                Digital-Nervous_IS_PROJECT="false"
+                FORGEWRIGHT_IS_PROJECT="false"
             fi
         else
-            Digital-Nervous_DIR="$plugin_root"
-            Digital-Nervous_IS_PROJECT="false"
+            FORGEWRIGHT_DIR="$plugin_root"
+            FORGEWRIGHT_IS_PROJECT="false"
         fi
     # Fallback
     else
-        Digital-Nervous_DIR="$(dirname "$resolved")"
-        Digital-Nervous_IS_PROJECT="false"
+        FORGEWRIGHT_DIR="$(dirname "$resolved")"
+        FORGEWRIGHT_IS_PROJECT="false"
     fi
 }
 
 # Detect the actual project root (where the user runs the script from)
-# Key insight: if Digital-Nervous_DIR is inside PWD, then PWD is the parent project.
+# Key insight: if FORGEWRIGHT_DIR is inside PWD, then PWD is the parent project.
 detect_actual_project_root() {
     local pwd_root
     pwd_root="$(pwd -P)"
 
-    # If Digital-Nervous_DIR is a subdirectory of PWD, PWD is the parent project root
-    if [[ "$Digital-Nervous_DIR" == "$pwd_root"/* ]]; then
+    # If FORGEWRIGHT_DIR is a subdirectory of PWD, PWD is the parent project root
+    if [[ "$FORGEWRIGHT_DIR" == "$pwd_root"/* ]]; then
         echo "$pwd_root"
         return
     fi
 
     # If PWD IS the Digital-Nervous root (Digital-Nervous IS the project)
-    if [[ "$pwd_root" == "$Digital-Nervous_DIR" ]]; then
-        echo "$Digital-Nervous_DIR"
+    if [[ "$pwd_root" == "$FORGEWRIGHT_DIR" ]]; then
+        echo "$FORGEWRIGHT_DIR"
         return
     fi
 
     # If PWD is a subdirectory of Digital-Nervous (e.g., running from Digital-Nervous/scripts/)
-    if [[ "$pwd_root" == "${Digital-Nervous_DIR}"/* ]]; then
-        echo "$Digital-Nervous_DIR"
+    if [[ "$pwd_root" == "${FORGEWRIGHT_DIR}"/* ]]; then
+        echo "$FORGEWRIGHT_DIR"
         return
     fi
 
@@ -208,12 +208,12 @@ check_prerequisites() {
     log_ok "Node.js $(node -v)"
 
     # Check Digital-Nervous dir
-    if [[ ! -f "${Digital-Nervous_DIR}/scripts/mcp-generate.sh" ]]; then
+    if [[ ! -f "${FORGEWRIGHT_DIR}/scripts/mcp-generate.sh" ]]; then
         log_error "Digital-Nervous MCP scripts not found at:"
-        log_info "  $Digital-Nervous_DIR"
+        log_info "  $FORGEWRIGHT_DIR"
         exit 1
     fi
-    log_ok "Digital-Nervous found at $Digital-Nervous_DIR"
+    log_ok "Digital-Nervous found at $FORGEWRIGHT_DIR"
 }
 
 # ─── Step 1b: Detect Shell Compressor ────────────────────────────────────────
@@ -261,21 +261,36 @@ write_Digital-Nervous_settings() {
 # Generated by Digital-Nervous-mcp-setup.sh
 
 # Shell output compressor (rtk > chop > snip > ctx > tkill > Digital-Nervous-shell-filter)
-export Digital-Nervous_SHELL_COMPRESSOR="${SHELL_COMPRESSOR}"
+export FORGEWRIGHT_SHELL_COMPRESSOR="${SHELL_COMPRESSOR}"
 
 # Path to native shell filter (fallback)
-export Digital-Nervous_SHELL_FILTER_PATH="${Digital-Nervous_DIR}/scripts/Digital-Nervous-shell-filter.sh"
+export FORGEWRIGHT_SHELL_FILTER_PATH="${FORGEWRIGHT_DIR}/scripts/Digital-Nervous-shell-filter.sh"
 
 # Token budget for LLM context (tokens)
-export Digital-Nervous_TOKEN_BUDGET="120000"
+export FORGEWRIGHT_TOKEN_BUDGET="120000"
 
 # Session deduplication window (turns)
-export Digital-Nervous_DEDUP_WINDOW="10"
+export FORGEWRIGHT_DEDUP_WINDOW="10"
 
 # Enable/disable features
-export Digital-Nervous_SESSION_DEDUP="true"
-export Digital-Nervous_TOOL_SANDBOX="true"
-export Digital-Nervous_MEMORY_ENABLED="true"
+export FORGEWRIGHT_SESSION_DEDUP="true"
+export FORGEWRIGHT_TOOL_SANDBOX="true"
+export FORGEWRIGHT_MEMORY_ENABLED="true"
+
+# Code navigation tool (token-savior > forgenexus)
+if command -v token-savior &> /dev/null; then
+    export FORGEWRIGHT_CODE_NAV="token-savior"
+    log_ok "Found: Token-Savior — 97% navigation token reduction"
+else
+    export FORGEWRIGHT_CODE_NAV="forgenexus"
+fi
+
+# Memory vector store (token-savior > sqlite)
+if command -v token-savior &> /dev/null; then
+    export FORGEWRIGHT_MEMORY_VECTOR="token-savior"
+else
+    export FORGEWRIGHT_MEMORY_VECTOR="sqlite"  # Uses mem0-v2.py
+fi
 SETTINGS_EOF
 
     chmod 644 "$settings_file"
@@ -286,7 +301,7 @@ SETTINGS_EOF
 
 setup_mcp_server() {
     log_step "Generating MCP server..."
-    bash "${Digital-Nervous_DIR}/scripts/mcp-generate.sh" > /dev/null 2>&1
+    bash "${FORGEWRIGHT_DIR}/scripts/mcp-generate.sh" > /dev/null 2>&1
     if [[ $? -eq 0 ]]; then
         log_ok "MCP server generated"
     else
@@ -373,7 +388,7 @@ update_global_config() {
 
     # Update config with jq
     local server_name="Digital-Nervous-workspace"
-    local launcher_path="${Digital-Nervous_DIR}/scripts/Digital-Nervous-mcp-launcher.sh"
+    local launcher_path="${FORGEWRIGHT_DIR}/scripts/Digital-Nervous-mcp-launcher.sh"
 
     local new_config
     new_config=$(node -e "
@@ -389,7 +404,7 @@ cfg.mcpServers['$server_name'] = {
     command: 'bash',
     args: ['$launcher_path'],
     env: {
-        Digital-Nervous_WORKSPACE: '$PROJECT_ROOT'
+        FORGEWRIGHT_WORKSPACE: '$PROJECT_ROOT'
     }
 };
 console.log(JSON.stringify(cfg, null, 2));
@@ -406,7 +421,7 @@ console.log(JSON.stringify(cfg, null, 2));
 
 print_manual_config() {
     local server_name="Digital-Nervous-workspace"
-    local launcher_path="${Digital-Nervous_DIR}/scripts/Digital-Nervous-mcp-launcher.sh"
+    local launcher_path="${FORGEWRIGHT_DIR}/scripts/Digital-Nervous-mcp-launcher.sh"
 
     cat << EOF
 
@@ -430,7 +445,7 @@ print_manual_config() {
         "command": "bash",
         "args": ["$launcher_path"],
         "env": {
-          "Digital-Nervous_WORKSPACE": "$PROJECT_ROOT"
+          "FORGEWRIGHT_WORKSPACE": "$PROJECT_ROOT"
         }
       }
     }
@@ -560,7 +575,7 @@ console.log('  Generated: ' + m.generated_at);
     if [[ -f "$settings_file" ]]; then
         log_ok "Settings: $settings_file"
         local compressor
-        compressor=$(grep Digital-Nervous_SHELL_COMPRESSOR "$settings_file" 2>/dev/null | cut -d'"' -f2)
+        compressor=$(grep FORGEWRIGHT_SHELL_COMPRESSOR "$settings_file" 2>/dev/null | cut -d'"' -f2)
         if [[ -n "$compressor" ]]; then
             echo "  Compressor: $compressor"
         fi
@@ -580,14 +595,14 @@ cmd_diagnose() {
 
     log_step "Environment"
     echo "  PWD:        $(pwd)"
-    echo "  Digital-Nervous_WORKSPACE: ${Digital-Nervous_WORKSPACE:-<not set>}"
+    echo "  FORGEWRIGHT_WORKSPACE: ${FORGEWRIGHT_WORKSPACE:-<not set>}"
     echo "  MCP_WORKSPACE_ROOT:   ${MCP_WORKSPACE_ROOT:-<not set>}"
     echo ""
 
     log_step "Digital-Nervous"
-    echo "  DIR:     $Digital-Nervous_DIR"
+    echo "  DIR:     $FORGEWRIGHT_DIR"
     echo "  PROJECT: $PROJECT_ROOT"
-    echo "  EXISTS:  $([ -d "$Digital-Nervous_DIR" ] && echo YES || echo NO)"
+    echo "  EXISTS:  $([ -d "$FORGEWRIGHT_DIR" ] && echo YES || echo NO)"
     echo ""
 
     log_step "Manifest"
@@ -680,7 +695,7 @@ main() {
         esac
     done
 
-    # Detect paths (sets Digital-Nervous_DIR and Digital-Nervous_IS_PROJECT globals)
+    # Detect paths (sets FORGEWRIGHT_DIR and FORGEWRIGHT_IS_PROJECT globals)
     detect_Digital-Nervous
     PROJECT_ROOT="$(detect_actual_project_root)"
 
@@ -743,4 +758,3 @@ main() {
 }
 
 main "$@"
-

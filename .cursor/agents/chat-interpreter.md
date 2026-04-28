@@ -15,7 +15,7 @@ Most users don't speak "prompt engineer." They say:
 - "I want something like..."
 - "there's this bug where..."
 
-Your job is to extract their TRUE intent and produce a structured pipeline request that Digital-Nervous can execute without ambiguity.
+Your job is to extract their TRUE intent and produce a structured pipeline request that Forgewright can execute without ambiguity.
 
 ## The 9-Dimension Extraction (from prompt-master)
 
@@ -24,7 +24,7 @@ Before anything else, silently extract these 9 dimensions from the user's messag
 | Dimension | What to Find | Always Required? |
 |-----------|-------------|----------------|
 | **Task** | What they actually want done | Yes |
-| **Target tool** | Digital-Nervous pipeline mode | Auto-detect |
+| **Target tool** | Forgewright pipeline mode | Auto-detect |
 | **Output format** | What they expect to receive | Yes |
 | **Constraints** | Explicit limits (scale, budget, team) | If mentioned |
 | **Input** | What they're providing (files, specs, URLs) | If applicable |
@@ -106,7 +106,7 @@ Silently scan the user's message for these failure patterns. Fix silently — fl
 
 ### Step 1: Detect Intent Type
 
-Map the user's message to one of Digital-Nervous's modes:
+Map the user's message to one of Forgewright's modes:
 
 | Mode | Trigger Phrases |
 |------|----------------|
@@ -294,7 +294,7 @@ Success criteria:
   - Deployable as Docker container
 
 Related context from session:
-  [Check .Digital-Nervous/session-log.json for prior decisions]
+  [Check .forgewright/session-log.json for prior decisions]
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
@@ -420,18 +420,18 @@ Ready to route to Debug pipeline.
 
 Write the interpreted request to:
 ```
-.Digital-Nervous/subagent-context/INTERPRETED_REQUEST.md
+.forgewright/subagent-context/INTERPRETED_REQUEST.md
 ```
 
 Append to session log:
 ```
-.Digital-Nervous/session-log.json (append interpreted_request to last entry)
+.forgewright/session-log.json (append interpreted_request to last entry)
 ```
 
 ## When Done
 
 Once the structured request is produced:
-1. Write to `.Digital-Nervous/subagent-context/INTERPRETED_REQUEST.md`
+1. Write to `.forgewright/subagent-context/INTERPRETED_REQUEST.md`
 2. Proceed to invoke the appropriate pipeline mode
 3. Pass the interpreted request as context to the mode classifier
 
@@ -453,8 +453,7 @@ When the user's request references prior work, decisions, or session history —
 - No explicit context but session has history
 
 **Source priorities:**
-1. `.Digital-Nervous/session-log.json` — recent decisions
-2. `.Digital-Nervous/project-profile.json` — architecture/stack
-3. `.Digital-Nervous/code-conventions.md` — coding patterns
+1. `.forgewright/session-log.json` — recent decisions
+2. `.forgewright/project-profile.json` — architecture/stack
+3. `.forgewright/code-conventions.md` — coding patterns
 4. `mem0-cli.py search` — cross-session memory
-

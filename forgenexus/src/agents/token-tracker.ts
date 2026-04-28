@@ -1,5 +1,5 @@
 /**
- * Token Tracker Module for Digital-Nervous
+ * Token Tracker Module for ForgeWright
  * 
  * Logs LLM usage to per-project JSONL files for analysis.
  * Location: ~/.Digital-Nervous/usage/{project}/{date}.jsonl
@@ -99,7 +99,7 @@ export class TokenTracker {
     this.projectName = path.basename(this.projectPath);
     
     // Check if tracking is disabled
-    this.enabled = process.env.Digital-Nervous_TOKEN_TRACKING !== 'disabled';
+    this.enabled = process.env.FORGEWRIGHT_TOKEN_TRACKING !== 'disabled';
     
     if (this.enabled) {
       const home = os.homedir();
@@ -122,7 +122,7 @@ export class TokenTracker {
     const file = path.join(this.logDir, `${this.getDate()}.jsonl`);
     const record = {
       timestamp: usage.timestamp,
-      sessionId: usage.sessionId || process.env.Digital-Nervous_SESSION_ID || 'unknown',
+      sessionId: usage.sessionId || process.env.FORGEWRIGHT_SESSION_ID || 'unknown',
       project: this.projectName,
       projectPath: this.projectPath,
       model: usage.model,
@@ -150,7 +150,7 @@ export class TokenTracker {
     const file = path.join(this.logDir, `errors-${this.getDate()}.jsonl`);
     const record = {
       timestamp: error.timestamp,
-      sessionId: error.sessionId || process.env.Digital-Nervous_SESSION_ID || 'unknown',
+      sessionId: error.sessionId || process.env.FORGEWRIGHT_SESSION_ID || 'unknown',
       project: this.projectName,
       projectPath: this.projectPath,
       model: error.model,
@@ -415,4 +415,3 @@ export function getGlobalTracker(): TokenTracker {
 export function createTracker(projectPath?: string): TokenTracker {
   return new TokenTracker(projectPath);
 }
-

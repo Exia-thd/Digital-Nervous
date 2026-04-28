@@ -358,4 +358,3 @@ console-get-logs(filter="Error")
 1. **Prefer `object-get-data`** over `gameobject-find` for single objects
 2. **Use filters** in `console-get-logs` to reduce output
 3. **Batch scene changes** before saving
-

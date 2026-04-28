@@ -52,4 +52,3 @@ Dry Run execution explicitly tests:
 - **Specificity:** Are the diff line removals/additions unambiguous?
 
 If the Agent scores itself < 9.0, it is forced to self-research, write an improvement to its own `SKILL.md`, and redo the `.diff` computation silently. Only when it reaches $\ge 9.0$ is the output returned to the human reviewer via Middleware ⑥ (QualityGate).
-

@@ -27,8 +27,8 @@ set -euo pipefail
 resolve_workspace() {
     local workspace
 
-    if [[ -n "${Digital-Nervous_WORKSPACE:-}" ]]; then
-        workspace="$Digital-Nervous_WORKSPACE"
+    if [[ -n "${FORGEWRIGHT_WORKSPACE:-}" ]]; then
+        workspace="$FORGEWRIGHT_WORKSPACE"
     elif [[ -n "${MCP_WORKSPACE_ROOT:-}" ]]; then
         workspace="$MCP_WORKSPACE_ROOT"
     elif git rev-parse --show-toplevel >/dev/null 2>&1; then
@@ -172,4 +172,3 @@ main() {
 }
 
 main "$@"
-

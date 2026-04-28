@@ -424,9 +424,9 @@ Is factual accuracy critical?
 
 ---
 
-## Module 8: Digital-Nervous-Specific Implementation
+## Module 8: ForgeWright-Specific Implementation
 
-### 8.1 Digital-Nervous Risk Assessment
+### 8.1 ForgeWright Risk Assessment
 
 Based on codebase audit (April 2026):
 
@@ -438,7 +438,7 @@ Based on codebase audit (April 2026):
 | Framework Detection | 🟡 MEDIUM | Pattern matching | Uncertainty indication |
 | Indexing Pipeline | 🟢 LOW | Deterministic | Binding verification |
 
-### 8.2 Digital-Nervous LLM Integration Points
+### 8.2 ForgeWright LLM Integration Points
 
 #### Point 1: Embedding Generation
 **File**: `forgenexus/src/data/embeddings.ts`
@@ -558,12 +558,12 @@ function calculateConfidence(results: SearchResult[]): number {
 }
 ```
 
-### 8.3 Skeptic Agent for Digital-Nervous
+### 8.3 Skeptic Agent for ForgeWright
 
 ```typescript
 // forgenexus/src/agents/skeptic.ts
 export class SkepticAgent {
-  name = 'Digital-Nervous Skeptic';
+  name = 'ForgeWright Skeptic';
   
   async verifyImpactAnalysis(params: {
     symbol: string;
@@ -656,7 +656,7 @@ export const DEFAULT_CONFIG: ConfidenceConfig = {
 
 ---
 
-## Module 9: Digital-Nervous Audit Summary
+## Module 9: ForgeWright Audit Summary
 
 ### Risk Matrix
 
@@ -741,7 +741,7 @@ Skill applies:
 - [ ] Evaluate new architectures (Mamba hybrids)
 
 ### Version History
-- v1.1: Added Digital-Nervous-specific implementation (April 2026)
+- v1.1: Added ForgeWright-specific implementation (April 2026)
   - Risk assessment for 5 areas
   - Skeptic agent template
   - Freshness monitoring
@@ -752,4 +752,3 @@ Skill applies:
 ---
 
 *This skill transforms hallucination research into actionable practices. Update based on emerging research and production learnings.*
-

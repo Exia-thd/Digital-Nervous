@@ -89,4 +89,3 @@ interface TemplateContext {
 | Version | Date | Changes |
 |---------|------|---------|
 | 8.1.0 | 2026-04-20 | Initial templates directory |
-

@@ -36,13 +36,13 @@ git submodule update --init --recursive
 ```bash
 cp .antigravity/plugins/production-grade/AGENTS.md AGENTS.md
 cp .antigravity/plugins/production-grade/CLAUDE.md CLAUDE.md
-cp .antigravity/plugins/production-grade/README.md Digital-Nervous.md
+cp .antigravity/plugins/production-grade/README.md FORGEWRIGHT.md
 ```
 
 ## Step 4 — Commit
 
 ```bash
-git add .gitmodules .antigravity AGENTS.md CLAUDE.md Digital-Nervous.md
+git add .gitmodules .antigravity AGENTS.md CLAUDE.md FORGEWRIGHT.md
 git commit -m "feat: add Digital-Nervous v7.8 — 52 skills, ForgeNexus, MCP"
 ```
 
@@ -84,10 +84,10 @@ npx forgenexus analyze "$(pwd)" --embeddings
 **Requires:** Python 3.8+
 
 ```bash
-Digital-Nervous_ROOT="$(pwd)/.antigravity/plugins/production-grade"
-bash "$Digital-Nervous_ROOT/scripts/ensure-mem0.sh" "$(pwd)"
+FORGEWRIGHT_ROOT="$(pwd)/.antigravity/plugins/production-grade"
+bash "$FORGEWRIGHT_ROOT/scripts/ensure-mem0.sh" "$(pwd)"
 ls .Digital-Nervous/memory.jsonl   # must exist
-python3 "$Digital-Nervous_ROOT/scripts/mem0-cli.py" refresh
+python3 "$FORGEWRIGHT_ROOT/scripts/mem0-cli.py" refresh
 ```
 
 ### Level 4 — MCP Tools (12 ForgeNexus tools in AI chat) ⚡⚡⚡⚡
@@ -200,4 +200,3 @@ This means Digital-Nervous will NEVER break your existing codebase.
 | **2** | + ForgeNexus indexes YOUR existing code |
 | **3** | + Persistent memory — remembers YOUR project decisions |
 | **4** | + 12 MCP tools — deep code intelligence on YOUR codebase |
-

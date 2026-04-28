@@ -182,4 +182,3 @@ export function createDedupMiddleware(
   mw.configure(config);
   return mw;
 }
-

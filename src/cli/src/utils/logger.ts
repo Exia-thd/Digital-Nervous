@@ -98,4 +98,3 @@ export function createLogger(options: Partial<LoggerOptions> = {}): Logger {
     useColors: options.useColors ?? true,
   });
 }
-

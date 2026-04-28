@@ -181,4 +181,3 @@ When running as a Cursor subagent:
 ## History
 
 - v1.0 — Initial protocol (inspired by CCGS model tier assignment)
-

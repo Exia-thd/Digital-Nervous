@@ -281,4 +281,3 @@ export function usePipeline(options: UsePipelineOptions = {}): UsePipelineReturn
     subscribe,
   };
 }
-

@@ -32,4 +32,3 @@
 #     yield(get_tree(), "tree_changed")
 #     var elapsed_s = (Time.get_ticks_msec() - sw) / 1000.0
 #     assert(elapsed_s < 5.0, "Main scene load time should be under 5s")
-

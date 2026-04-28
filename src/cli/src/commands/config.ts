@@ -310,4 +310,3 @@ async function handleConfigDelete(key: string, useJson: boolean): Promise<void> 
 
   process.exit(0);
 }
-

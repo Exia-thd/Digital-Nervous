@@ -175,4 +175,3 @@ Secure authentication system với OAuth2 (Google, GitHub) và JWT tokens. Suppo
 - [ ] OAuth apps registered with Google/GitHub
 - [ ] Email templates created
 - [ ] Deployed to staging and tested
-

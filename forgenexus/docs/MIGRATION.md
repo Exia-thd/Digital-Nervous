@@ -1,10 +1,10 @@
-# Migration Guide: Digital-Nervous Anti-Hallucination System
+# Migration Guide: ForgeWright Anti-Hallucination System
 
 ## Upgrading from v1.0 to v2.0
 
 ### Overview
 
-This guide helps you migrate from the basic Digital-Nervous system to the Anti-Hallucination system.
+This guide helps you migrate from the basic ForgeWright system to the Anti-Hallucination system.
 
 ### Breaking Changes
 
@@ -304,4 +304,3 @@ Digital-Nervous evaluate --verbose > debug.log
 ```
 
 Then file an issue with the debug log attached.
-

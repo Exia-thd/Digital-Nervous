@@ -237,4 +237,3 @@ Before proceeding to Phase 4, verify:
 ## Quality Bar
 
 Chaos experiments without a steady-state hypothesis are dangerous guesswork. Every scenario must define: (1) what "normal" looks like before the experiment, (2) what behavior is expected during the experiment, (3) what recovery should look like after. Scenarios that say "see what happens" are not acceptable.
-

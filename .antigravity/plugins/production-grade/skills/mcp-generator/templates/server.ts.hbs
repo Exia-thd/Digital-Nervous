@@ -22,7 +22,7 @@ import { LocalBackend } from "forgenexus/dist/mcp/local/local-backend.js";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const PROJECT_ROOT = resolve(__dirname, "../../..");
-const Digital-Nervous_DIR = join(PROJECT_ROOT, ".Digital-Nervous");
+const FORGEWRIGHT_DIR = join(PROJECT_ROOT, ".Digital-Nervous");
 
 // Ensure MCP server operates from the project root
 process.chdir(PROJECT_ROOT);
@@ -442,4 +442,3 @@ main().catch((error) => {
   console.error("[{{projectName}}] Fatal error:", error);
   process.exit(1);
 });
-

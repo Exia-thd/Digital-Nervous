@@ -79,4 +79,3 @@
 | ADR | Superseded By | Date | Reason |
 |-----|--------------|------|--------|
 | ADR-XXX | ADR-YYY | [YYYY-MM-DD] | [Why superseded] |
-

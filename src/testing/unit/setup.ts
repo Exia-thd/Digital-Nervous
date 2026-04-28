@@ -26,4 +26,3 @@ beforeAll(() => {
     if (process.env.DEBUG) originalConsole.warn(...args);
   };
 });
-

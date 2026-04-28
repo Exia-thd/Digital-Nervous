@@ -175,4 +175,3 @@ export function MemoryTrace({ events, maxEvents = 100 }: MemoryTraceProps) {
     </div>
   );
 }
-

@@ -128,4 +128,3 @@
 **When to review:** Trong retrospective meeting với team
 
 **Follow-up:** Action items được tracked trong project management tool
-

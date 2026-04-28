@@ -171,4 +171,3 @@ echo "================================" >&2
 log_info "Asset validated successfully"
 
 exit 0
-

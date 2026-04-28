@@ -5,17 +5,17 @@ import * as jsyaml from 'js-yaml';
 import { z } from 'zod';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
-// Build → parsers → build → mcp → Digital-Nervous_ROOT
-const MCP_DIR = __dirname; // Digital-Nervous/mcp/build/parsers
-const MCP_BUILD_DIR = dirname(MCP_DIR); // Digital-Nervous/mcp/build
-const MCP_ROOT_DIR = dirname(MCP_BUILD_DIR); // Digital-Nervous/mcp
-const Digital-Nervous_ROOT = dirname(MCP_ROOT_DIR); // Digital-Nervous
+// Build → parsers → build → mcp → FORGEWRIGHT_ROOT
+const MCP_DIR = __dirname; // FORGEWRIGHT/mcp/build/parsers
+const MCP_BUILD_DIR = dirname(MCP_DIR); // FORGEWRIGHT/mcp/build
+const MCP_ROOT_DIR = dirname(MCP_BUILD_DIR); // FORGEWRIGHT/mcp
+const FORGEWRIGHT_ROOT = dirname(MCP_ROOT_DIR); // FORGEWRIGHT
 let resolvedRoot;
 try {
-    resolvedRoot = fs.realpathSync(Digital-Nervous_ROOT);
+    resolvedRoot = fs.realpathSync(FORGEWRIGHT_ROOT);
 }
 catch {
-    resolvedRoot = Digital-Nervous_ROOT;
+    resolvedRoot = FORGEWRIGHT_ROOT;
 }
 export let SKILLS_DIR = join(resolvedRoot, 'skills');
 export function _setRootOverride(root) {
@@ -114,4 +114,3 @@ export function getSharedProtocols() {
     }
     return protocols;
 }
-

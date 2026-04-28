@@ -382,4 +382,3 @@ else
         if [[ -n "$f" ]]; then echo "$f"; else echo "$out"; fi
     }
 fi
-

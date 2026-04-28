@@ -87,4 +87,3 @@ If the AI feature uses tool-calling agents:
 2. **Agent loop design** — ReAct, Planning, or Supervisor pattern (Data Scientist Phase 10)
 3. **Safety guardrails** — max iterations, tool permissions, human-in-the-loop
 4. **Memory management** — short-term (conversation), long-term (vector store)
-

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Token Usage API Server for Digital-Nervous Dashboard
+Token Usage API Server for ForgeWright Dashboard
 
 Serves token usage data via REST API for the dashboard.
 
@@ -120,7 +120,7 @@ DASHBOARD_HTML = """
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Token Usage Dashboard - Digital-Nervous</title>
+  <title>Token Usage Dashboard - ForgeWright</title>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
@@ -1193,4 +1193,3 @@ if __name__ == '__main__':
         app.run(host='0.0.0.0', port=args.port, debug=False)
     else:
         run_basic_server(args.port)
-

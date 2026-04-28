@@ -492,4 +492,3 @@ export function loadSandboxConfig(
 ): LoadedConfig {
   return getConfigLoader().load(inlineConfig);
 }
-

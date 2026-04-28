@@ -375,4 +375,3 @@ labels = #risk AND status = Closed ORDER BY resolved DESC
 ### Process Improvements
 [Changes to make for next time]
 ```
-

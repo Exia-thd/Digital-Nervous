@@ -199,4 +199,3 @@ See `skills/parallel-dispatch/SKILL.md` for full implementation.
 ## History
 
 - v1.0 — Initial protocol (inspired by CCGS parallel task protocol)
-

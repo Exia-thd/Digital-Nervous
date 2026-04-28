@@ -379,4 +379,3 @@ export interface HealingResult {
   fromCache?: boolean;
   duration?: number;
 }
-

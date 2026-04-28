@@ -362,4 +362,3 @@ export function detectLeidenCommunities(
 
   return result.sort((a, b) => b.cohesion - a.cohesion)
 }
-

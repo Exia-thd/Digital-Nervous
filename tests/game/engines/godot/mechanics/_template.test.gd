@@ -92,4 +92,3 @@
 #     var player = Player.new()
 #     player.take_damage(10)
 #     assert_eq(player.current_hp, player.hud.get_displayed_hp(), "Health bar should sync with player HP")
-

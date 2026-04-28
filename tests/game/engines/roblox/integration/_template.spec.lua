@@ -40,4 +40,3 @@ return function()
     --     assert(player.CurrentHP == player.HUD.HealthBar.Value, "HUD should sync with player HP")
     -- end
 end
-

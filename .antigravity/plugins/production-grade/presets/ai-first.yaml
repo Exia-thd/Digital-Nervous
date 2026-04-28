@@ -58,4 +58,3 @@ overrides:
 
   # Skip mobile for AI-first web apps
   skip_skills: [mobile-engineer]
-

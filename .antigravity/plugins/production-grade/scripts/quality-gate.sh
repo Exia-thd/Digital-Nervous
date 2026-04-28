@@ -24,13 +24,13 @@ set -euo pipefail
 
 # ── Resolve paths ──────────────────────────────────────
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-Digital-Nervous_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
+FORGEWRIGHT_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
 
 # Find project root (where .Digital-Nervous/ lives or parent of Digital-Nervous submodule)
-if [[ -d "$Digital-Nervous_DIR/.Digital-Nervous" ]]; then
-  PROJECT_ROOT="$Digital-Nervous_DIR"
-elif [[ -d "$Digital-Nervous_DIR/../.Digital-Nervous" ]]; then
-  PROJECT_ROOT="$(cd "$Digital-Nervous_DIR/.." && pwd)"
+if [[ -d "$FORGEWRIGHT_DIR/.Digital-Nervous" ]]; then
+  PROJECT_ROOT="$FORGEWRIGHT_DIR"
+elif [[ -d "$FORGEWRIGHT_DIR/../.Digital-Nervous" ]]; then
+  PROJECT_ROOT="$(cd "$FORGEWRIGHT_DIR/.." && pwd)"
 else
   PROJECT_ROOT="$(pwd)"
 fi
@@ -387,4 +387,3 @@ elif [[ $TOTAL_SCORE -lt 90 ]]; then
 else
   exit 0  # PASS
 fi
-

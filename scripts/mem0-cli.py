@@ -1,5 +1,21 @@
 #!/usr/bin/env python3
 """
+⚠️  DEPRECATED — This script is deprecated as of v8.0.
+
+Please use `mem0-v2.py` instead:
+  python3 scripts/mem0-v2.py setup      # First time setup
+  python3 scripts/mem0-v2.py add ...   # Add memory
+  python3 scripts/mem0-v2.py search ... # Search
+  python3 scripts/mem0-v2.py migrate   # Migrate data first
+
+For migration:
+  python3 scripts/mem0-v2.py migrate          # JSONL → SQLite
+  python3 scripts/migrate-chroma-to-sqlite.py  # ChromaDB → SQLite
+
+This script is kept for backward compatibility but will be removed in a future version.
+
+---
+
 Digital-Nervous Memory Manager CLI — persistent project memory, git-versioned.
 
 Storage:
@@ -39,8 +55,8 @@ from datetime import datetime, timedelta
 from collections import Counter
 
 # ── Constants ──
-Digital-Nervous_DIR = ".Digital-Nervous"
-MEMORY_LOG = os.path.join(Digital-Nervous_DIR, "memory.jsonl")
+FORGEWRIGHT_DIR = ".Digital-Nervous"
+MEMORY_LOG = os.path.join(FORGEWRIGHT_DIR, "memory.jsonl")
 MEMIGNORE_FILE = ".memignore"
 MAX_MEMORIES_DEFAULT = 200
 
@@ -781,8 +797,8 @@ def cmd_gc(args):
 
 def cmd_setup(args):
     print("🔧 Digital-Nervous Memory Manager Setup\n")
-    os.makedirs(Digital-Nervous_DIR, exist_ok=True)
-    print(f"  ✅ {Digital-Nervous_DIR}/ ready")
+    os.makedirs(FORGEWRIGHT_DIR, exist_ok=True)
+    print(f"  ✅ {FORGEWRIGHT_DIR}/ ready")
 
     if not Path(MEMIGNORE_FILE).exists():
         Path(MEMIGNORE_FILE).write_text(
@@ -820,4 +836,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-

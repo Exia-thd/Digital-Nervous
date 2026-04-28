@@ -407,4 +407,3 @@ console.log(`   Target: ${kuzuPath}`);
 console.log('');
 
 migrate(sqlitePath, kuzuPath, repoPath);
-

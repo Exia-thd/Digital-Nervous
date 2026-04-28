@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Token Usage Analyzer CLI for Digital-Nervous
+Token Usage Analyzer CLI for ForgeWright
 
 Analyze and report LLM token usage across projects.
 
@@ -368,7 +368,7 @@ def print_summary(summary: dict, daily: list[dict]):
 
 def main():
     parser = argparse.ArgumentParser(
-        description='Token Usage Analyzer for Digital-Nervous',
+        description='Token Usage Analyzer for ForgeWright',
         formatter_class=argparse.RawDescriptionHelpFormatter,
     )
     
@@ -430,7 +430,7 @@ def main():
     if not analyzer.usage_dir.exists():
         print(f"⚠️  No usage data found for project: {analyzer.project_name}")
         print(f"    Data directory: {analyzer.usage_dir}")
-        print(f"\n💡 To start tracking, run Digital-Nervous with token tracking enabled.")
+        print(f"\n💡 To start tracking, run ForgeWright with token tracking enabled.")
         return
     
     # Load records
@@ -479,4 +479,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-

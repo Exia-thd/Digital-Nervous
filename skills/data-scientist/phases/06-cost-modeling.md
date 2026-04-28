@@ -91,4 +91,3 @@ Before concluding, verify:
 ## Quality Bar
 
 Every cost claim must trace to actual API pricing and measured usage. "LLM costs are high" is not acceptable — "GPT-4 calls for summarization cost $4,200/month (14,000 calls/day x 1,800 avg tokens x $0.01/1K), projected $21,000/month at 5x, reducible to $8,400/month via GPT-4o-mini downgrade with 94% quality retention" is acceptable.
-

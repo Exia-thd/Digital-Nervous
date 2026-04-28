@@ -707,4 +707,3 @@ For detailed information, see:
 - **[references/command_reference.md](references/command_reference.md)**: Complete command signatures
 - **[references/troubleshooting.md](references/troubleshooting.md)**: Detailed error handling
 - **[references/workflows.md](references/workflows.md)**: End-to-end task sequences
-

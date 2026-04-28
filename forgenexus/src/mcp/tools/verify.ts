@@ -1,5 +1,5 @@
 /**
- * MCP Verification Tools for Digital-Nervous
+ * MCP Verification Tools for ForgeWright
  * 
  * Provides MCP tools for claim verification, confidence analysis, and freshness checks.
  */
@@ -420,4 +420,3 @@ export function registerVerificationTools(server: {
     );
   }
 }
-

@@ -1,5 +1,5 @@
 /**
- * Synthesizer Agent for Digital-Nervous Anti-Hallucination System
+ * Synthesizer Agent for ForgeWright Anti-Hallucination System
  * 
  * Generates accurate content based on verified evidence.
  */
@@ -173,4 +173,3 @@ export class SynthesizerAgent {
 export function createSynthesizer(options: SynthesizerOptions): SynthesizerAgent {
   return new SynthesizerAgent(options);
 }
-

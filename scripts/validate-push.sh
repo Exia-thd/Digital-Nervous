@@ -152,4 +152,3 @@ echo "================================" >&2
 log_info "Push validated successfully"
 
 exit 0
-

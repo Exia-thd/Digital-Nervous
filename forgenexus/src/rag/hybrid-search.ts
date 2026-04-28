@@ -1,5 +1,5 @@
 /**
- * RAG Module - Hybrid Search for Digital-Nervous
+ * RAG Module - Hybrid Search for ForgeWright
  * 
  * Combines BM25 keyword search with vector similarity search.
  */
@@ -345,4 +345,3 @@ export function advancedHybridSearch(
   
   return results.slice(0, limit);
 }
-

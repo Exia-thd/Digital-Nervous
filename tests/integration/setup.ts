@@ -63,4 +63,3 @@ export function getForgenexusDBUrl(): string {
 export function getMcpDBUrl(): string {
   return 'postgresql://testuser:testpass@localhost:5434/mcp_test';
 }
-

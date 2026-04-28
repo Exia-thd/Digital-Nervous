@@ -158,4 +158,3 @@ function SkillItem({ skill }: { skill: Skill }) {
     </div>
   );
 }
-

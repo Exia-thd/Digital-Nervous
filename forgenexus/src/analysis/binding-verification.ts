@@ -1,5 +1,5 @@
 /**
- * Binding Verification Module for Digital-Nervous
+ * Binding Verification Module for ForgeWright
  * 
  * Multi-pass verification of symbol bindings to catch errors early.
  */
@@ -323,4 +323,3 @@ export function formatIssues(verification: BindingVerification): string {
 
   return lines.join('\n');
 }
-

@@ -173,4 +173,3 @@ describe('Projects API Contract', () => {
     });
   });
 });
-

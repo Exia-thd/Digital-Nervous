@@ -155,4 +155,3 @@ func send_input(input: Dictionary, tick: int) -> void:
 - [ ] Network stats display (ping, packet loss)
 - [ ] Dedicated server build (headless)
 - [ ] Stress tested with bots
-

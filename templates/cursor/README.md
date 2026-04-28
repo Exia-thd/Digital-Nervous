@@ -70,4 +70,3 @@ Files matching: [scope]
 - Include concrete examples
 - Avoid conflicting rules
 - Review rules quarterly
-

@@ -31,4 +31,3 @@
 #     var enemy10 = EnemyFactory.create("Boss", level=10)
 #     var ratio = enemy10.total_difficulty / enemy1.total_difficulty
 #     assert_almost_eq(ratio, 1.15, 0.05, "+15% difficulty per 5 levels")
-

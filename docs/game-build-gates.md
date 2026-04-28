@@ -335,4 +335,3 @@ Assets/_Project/
 | Gate 2 | Architecture | Tech Lead | After Core Framework |
 | Gate 3 | Implementation | QA/User | After Gameplay Systems |
 | Gate 4 | Testing | QA Lead | Pre-Release |
-
